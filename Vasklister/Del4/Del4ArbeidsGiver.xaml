@@ -377,6 +377,22 @@
                                         <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" WaitForReady="INTERACTIVE" />
                                       </ui:SendHotkey.Target>
                                     </ui:SendHotkey>
+                                    <ui:GetActiveWindow ApplicationWindow="{x:Null}" DisplayName="Get active window" sap2010:WorkflowViewState.IdRef="GetActiveWindow_2">
+                                      <ui:GetActiveWindow.Body>
+                                        <ActivityAction x:TypeArguments="x:Object">
+                                          <ActivityAction.Argument>
+                                            <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+                                          </ActivityAction.Argument>
+                                          <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_195">
+                                            <ui:SendHotkey DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="True" DisplayName="Send hotkey 'Predator.exe  Søk'" EmptyField="False" sap2010:WorkflowViewState.IdRef="SendHotkey_64" Key="f4" KeyModifiers="Alt" SendWindowMessages="True" SpecialKey="True">
+                                              <ui:SendHotkey.Target>
+                                                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="4cfe5d4b141becd00dbb8f0df273cb2e" Selector="&lt;wnd app='predator.exe' cls='TfrmSearch' title='Søk' /&gt;" WaitForReady="INTERACTIVE" />
+                                              </ui:SendHotkey.Target>
+                                            </ui:SendHotkey>
+                                          </Sequence>
+                                        </ActivityAction>
+                                      </ui:GetActiveWindow.Body>
+                                    </ui:GetActiveWindow>
                                     <Sequence DisplayName="Lage nytt fane for debtor" sap2010:WorkflowViewState.IdRef="Sequence_45">
                                       <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" DisplayName="Attach Window 'PredatorN Tfrmpreda'" sap2010:WorkflowViewState.IdRef="WindowScope_19" InformativeScreenshot="b56971d07d3be5267389a2c784309f9e" Selector="&lt;wnd app='predator.exe' cls='TfrmPredator' title='PredatorNO - [Debitor]' /&gt;">
                                         <ui:WindowScope.Body>
@@ -551,7 +567,7 @@
       </Sequence>
     </FlowStep>
     <x:Reference>__ReferenceID7</x:Reference>
-    <sads:DebugSymbol.Symbol>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</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>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</sads:DebugSymbol.Symbol>
   </Flowchart>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
@@ -766,6 +782,15 @@
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="SendHotkey_33" sap:VirtualizedContainerService.HintSize="440,114" />
+      <sap2010:ViewStateData Id="SendHotkey_64" sap:VirtualizedContainerService.HintSize="314,152" />
+      <sap2010:ViewStateData Id="Sequence_195" sap:VirtualizedContainerService.HintSize="336,276">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="GetActiveWindow_2" sap:VirtualizedContainerService.HintSize="440,354" />
       <sap2010:ViewStateData Id="SendHotkey_34" sap:VirtualizedContainerService.HintSize="314,152" />
       <sap2010:ViewStateData Id="Sequence_44" sap:VirtualizedContainerService.HintSize="336,276">
         <sap:WorkflowViewStateService.ViewState>
@@ -812,14 +837,14 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Sequence_48" sap:VirtualizedContainerService.HintSize="462,4811">
+      <sap2010:ViewStateData Id="Sequence_48" sap:VirtualizedContainerService.HintSize="462,5205">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Sequence_43" sap:VirtualizedContainerService.HintSize="200,49">
+      <sap2010:ViewStateData Id="Sequence_43" sap:VirtualizedContainerService.HintSize="484,5329">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
