@@ -67,6 +67,7 @@
       <Variable x:TypeArguments="x:String" Default="260904" Name="saksNo" />
       <Variable x:TypeArguments="ui:GenericValue" Name="SakNoFraSkjerm" />
       <Variable x:TypeArguments="x:String" Default="971802502" Name="orgNo" />
+      <Variable x:TypeArguments="x:String" Default="AG" Name="Trekkkilde" />
     </Flowchart.Variables>
     <Flowchart.StartNode>
       <FlowStep x:Name="__ReferenceID0" sap2010:WorkflowViewState.IdRef="FlowStep_20">
@@ -301,7 +302,8 @@
                                   <If.Then>
                                     <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke OpprettAvdragsAvtale workflow" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="Del4\OpprettAvdragsAvtale.xaml">
                                       <ui:InvokeWorkflowFile.Arguments>
-                                        <InArgument x:TypeArguments="x:String" x:Key="terminBeløp" />
+                                        <InArgument x:TypeArguments="x:String" x:Key="terminBeløp">[terminBeløp]</InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="trekkkilde">[Trekkkilde]</InArgument>
                                       </ui:InvokeWorkflowFile.Arguments>
                                     </ui:InvokeWorkflowFile>
                                   </If.Then>
@@ -382,7 +384,7 @@
                                       <FlowStep x:Name="__ReferenceID7" sap2010:WorkflowViewState.IdRef="FlowStep_51">
                                         <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke Tvangavtale workflow" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="Del4\Tvangavtale.xaml">
                                           <ui:InvokeWorkflowFile.Arguments>
-                                            <InArgument x:TypeArguments="x:String" x:Key="terminBeløp" />
+                                            <InArgument x:TypeArguments="x:String" x:Key="terminBeløp">[terminBeløp]</InArgument>
                                           </ui:InvokeWorkflowFile.Arguments>
                                         </ui:InvokeWorkflowFile>
                                         <FlowStep.Next>
@@ -407,7 +409,7 @@
                                             </Sequence>
                                             <FlowStep.Next>
                                               <FlowStep x:Name="__ReferenceID9" sap2010:WorkflowViewState.IdRef="FlowStep_56">
-                                                <Sequence DisplayName="Set 003 AG Trekk" sap2010:WorkflowViewState.IdRef="Sequence_219">
+                                                <Sequence DisplayName="Set Sakstype" sap2010:WorkflowViewState.IdRef="Sequence_219">
                                                   <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" DisplayName="Attach Window 'PredatorN Tfrmpreda'" sap2010:WorkflowViewState.IdRef="WindowScope_127" InformativeScreenshot="147fdbf968d4e9237b1c5e4e1fbc7ec3" Selector="&lt;wnd app='predator.exe' cls='TfrmPredator' title='PredatorNO - [Saksbehandling]' /&gt;">
                                                     <ui:WindowScope.Body>
                                                       <ActivityAction x:TypeArguments="x:Object">
@@ -427,117 +429,341 @@
                                                       </ActivityAction>
                                                     </ui:WindowScope.Body>
                                                   </ui:WindowScope>
-                                                  <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" DisplayName="Attach Window 'Sakstyper Tfrmsakst'" sap2010:WorkflowViewState.IdRef="WindowScope_128" InformativeScreenshot="d780d8ea371b07dee992814014583693" Selector="&lt;wnd app='predator.exe' cls='TfrmSaksTypeListe' title='Sakstyper' /&gt;">
-                                                    <ui:WindowScope.Body>
-                                                      <ActivityAction x:TypeArguments="x:Object">
-                                                        <ActivityAction.Argument>
-                                                          <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
-                                                        </ActivityAction.Argument>
-                                                        <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_221">
-                                                          <ui:SelectItem ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Select item 'list'" sap2010:WorkflowViewState.IdRef="SelectItem_8" Item="003">
-                                                            <ui:SelectItem.Items>
-                                                              <scg:List x:TypeArguments="x:String" Capacity="128">
-                                                                <x:String>001</x:String>
-                                                                <x:String>002</x:String>
-                                                                <x:String>003</x:String>
-                                                                <x:String>004</x:String>
-                                                                <x:String>005</x:String>
-                                                                <x:String>006</x:String>
-                                                                <x:String>007</x:String>
-                                                                <x:String>008</x:String>
-                                                                <x:String>009</x:String>
-                                                                <x:String>010</x:String>
-                                                                <x:String>011</x:String>
-                                                                <x:String>012</x:String>
-                                                                <x:String>013</x:String>
-                                                                <x:String>014</x:String>
-                                                                <x:String>015</x:String>
-                                                                <x:String>016</x:String>
-                                                                <x:String>017</x:String>
-                                                                <x:String>018</x:String>
-                                                                <x:String>019</x:String>
-                                                                <x:String>020</x:String>
-                                                                <x:String>021</x:String>
-                                                                <x:String>022</x:String>
-                                                                <x:String>023</x:String>
-                                                                <x:String>024</x:String>
-                                                                <x:String>025</x:String>
-                                                                <x:String>026</x:String>
-                                                                <x:String>027</x:String>
-                                                                <x:String>028</x:String>
-                                                                <x:String>029</x:String>
-                                                                <x:String>030</x:String>
-                                                                <x:String>031</x:String>
-                                                                <x:String>032</x:String>
-                                                                <x:String>035</x:String>
-                                                                <x:String>036</x:String>
-                                                                <x:String>037</x:String>
-                                                                <x:String>038</x:String>
-                                                                <x:String>039</x:String>
-                                                                <x:String>040</x:String>
-                                                                <x:String>041</x:String>
-                                                                <x:String>042</x:String>
-                                                                <x:String>043</x:String>
-                                                                <x:String>044</x:String>
-                                                                <x:String>045</x:String>
-                                                                <x:String>046</x:String>
-                                                                <x:String>047</x:String>
-                                                                <x:String>048</x:String>
-                                                                <x:String>049</x:String>
-                                                                <x:String>050</x:String>
-                                                                <x:String>051</x:String>
-                                                                <x:String>052</x:String>
-                                                                <x:String>053</x:String>
-                                                                <x:String>054</x:String>
-                                                                <x:String>055</x:String>
-                                                                <x:String>056</x:String>
-                                                                <x:String>057</x:String>
-                                                                <x:String>058</x:String>
-                                                                <x:String>059</x:String>
-                                                                <x:String>060</x:String>
-                                                                <x:String>061</x:String>
-                                                                <x:String>062</x:String>
-                                                                <x:String>063</x:String>
-                                                                <x:String>064</x:String>
-                                                                <x:String>065</x:String>
-                                                                <x:String>066</x:String>
-                                                                <x:String>067</x:String>
-                                                                <x:String>068</x:String>
-                                                                <x:String>069</x:String>
-                                                                <x:String>070</x:String>
-                                                                <x:String>071</x:String>
-                                                                <x:String>072</x:String>
-                                                                <x:String>073</x:String>
-                                                                <x:String>074</x:String>
-                                                                <x:String>075</x:String>
-                                                                <x:String>076</x:String>
-                                                                <x:String>077</x:String>
-                                                                <x:String>999</x:String>
-                                                              </scg:List>
-                                                            </ui:SelectItem.Items>
-                                                            <ui:SelectItem.Target>
-                                                              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="e066eb78685221a96af2182d84784d30" Selector="&lt;wnd app='predator.exe' cls='TfrmSaksTypeListe' title='Sakstyper' /&gt;&lt;wnd cls='TListView' /&gt;&lt;ctrl name='003' role='list item' text='003' /&gt;" WaitForReady="INTERACTIVE" />
-                                                            </ui:SelectItem.Target>
-                                                          </ui:SelectItem>
-                                                          <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_DOUBLE" DisplayName="Double Click" sap2010:WorkflowViewState.IdRef="Click_5" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="True">
-                                                            <ui:Click.CursorPosition>
-                                                              <ui:CursorPosition Position="Center">
-                                                                <ui:CursorPosition.OffsetX>
-                                                                  <InArgument x:TypeArguments="x:Int32" />
-                                                                </ui:CursorPosition.OffsetX>
-                                                                <ui:CursorPosition.OffsetY>
-                                                                  <InArgument x:TypeArguments="x:Int32" />
-                                                                </ui:CursorPosition.OffsetY>
-                                                              </ui:CursorPosition>
-                                                            </ui:Click.CursorPosition>
-                                                            <ui:Click.Target>
-                                                              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="e066eb78685221a96af2182d84784d30" Selector="&lt;wnd app='predator.exe' cls='TfrmSaksTypeListe' title='Sakstyper' /&gt;&lt;wnd cls='TListView' /&gt;&lt;ctrl name='003' role='list item' text='003' /&gt;" WaitForReady="INTERACTIVE" />
-                                                            </ui:Click.Target>
-                                                          </ui:Click>
-                                                        </Sequence>
-                                                      </ActivityAction>
-                                                    </ui:WindowScope.Body>
-                                                  </ui:WindowScope>
+                                                  <Switch x:TypeArguments="x:String" DisplayName="Switch&lt;string&gt;" Expression="[trekkkilde]" sap2010:WorkflowViewState.IdRef="Switch`1_1">
+                                                    <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" x:Key="AG" DisplayName="Attach Window 'Sakstyper Tfrmsakst'" sap2010:WorkflowViewState.IdRef="WindowScope_132" InformativeScreenshot="d780d8ea371b07dee992814014583693" Selector="&lt;wnd app='predator.exe' cls='TfrmSaksTypeListe' title='Sakstyper' /&gt;">
+                                                      <ui:WindowScope.Body>
+                                                        <ActivityAction x:TypeArguments="x:Object">
+                                                          <ActivityAction.Argument>
+                                                            <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+                                                          </ActivityAction.Argument>
+                                                          <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_232">
+                                                            <ui:SelectItem ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Select item 'list'" sap2010:WorkflowViewState.IdRef="SelectItem_11" Item="003">
+                                                              <ui:SelectItem.Items>
+                                                                <scg:List x:TypeArguments="x:String" Capacity="128">
+                                                                  <x:String>001</x:String>
+                                                                  <x:String>002</x:String>
+                                                                  <x:String>003</x:String>
+                                                                  <x:String>004</x:String>
+                                                                  <x:String>005</x:String>
+                                                                  <x:String>006</x:String>
+                                                                  <x:String>007</x:String>
+                                                                  <x:String>008</x:String>
+                                                                  <x:String>009</x:String>
+                                                                  <x:String>010</x:String>
+                                                                  <x:String>011</x:String>
+                                                                  <x:String>012</x:String>
+                                                                  <x:String>013</x:String>
+                                                                  <x:String>014</x:String>
+                                                                  <x:String>015</x:String>
+                                                                  <x:String>016</x:String>
+                                                                  <x:String>017</x:String>
+                                                                  <x:String>018</x:String>
+                                                                  <x:String>019</x:String>
+                                                                  <x:String>020</x:String>
+                                                                  <x:String>021</x:String>
+                                                                  <x:String>022</x:String>
+                                                                  <x:String>023</x:String>
+                                                                  <x:String>024</x:String>
+                                                                  <x:String>025</x:String>
+                                                                  <x:String>026</x:String>
+                                                                  <x:String>027</x:String>
+                                                                  <x:String>028</x:String>
+                                                                  <x:String>029</x:String>
+                                                                  <x:String>030</x:String>
+                                                                  <x:String>031</x:String>
+                                                                  <x:String>032</x:String>
+                                                                  <x:String>035</x:String>
+                                                                  <x:String>036</x:String>
+                                                                  <x:String>037</x:String>
+                                                                  <x:String>038</x:String>
+                                                                  <x:String>039</x:String>
+                                                                  <x:String>040</x:String>
+                                                                  <x:String>041</x:String>
+                                                                  <x:String>042</x:String>
+                                                                  <x:String>043</x:String>
+                                                                  <x:String>044</x:String>
+                                                                  <x:String>045</x:String>
+                                                                  <x:String>046</x:String>
+                                                                  <x:String>047</x:String>
+                                                                  <x:String>048</x:String>
+                                                                  <x:String>049</x:String>
+                                                                  <x:String>050</x:String>
+                                                                  <x:String>051</x:String>
+                                                                  <x:String>052</x:String>
+                                                                  <x:String>053</x:String>
+                                                                  <x:String>054</x:String>
+                                                                  <x:String>055</x:String>
+                                                                  <x:String>056</x:String>
+                                                                  <x:String>057</x:String>
+                                                                  <x:String>058</x:String>
+                                                                  <x:String>059</x:String>
+                                                                  <x:String>060</x:String>
+                                                                  <x:String>061</x:String>
+                                                                  <x:String>062</x:String>
+                                                                  <x:String>063</x:String>
+                                                                  <x:String>064</x:String>
+                                                                  <x:String>065</x:String>
+                                                                  <x:String>066</x:String>
+                                                                  <x:String>067</x:String>
+                                                                  <x:String>068</x:String>
+                                                                  <x:String>069</x:String>
+                                                                  <x:String>070</x:String>
+                                                                  <x:String>071</x:String>
+                                                                  <x:String>072</x:String>
+                                                                  <x:String>073</x:String>
+                                                                  <x:String>074</x:String>
+                                                                  <x:String>075</x:String>
+                                                                  <x:String>076</x:String>
+                                                                  <x:String>077</x:String>
+                                                                  <x:String>999</x:String>
+                                                                </scg:List>
+                                                              </ui:SelectItem.Items>
+                                                              <ui:SelectItem.Target>
+                                                                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="e066eb78685221a96af2182d84784d30" Selector="&lt;wnd app='predator.exe' cls='TfrmSaksTypeListe' title='Sakstyper' /&gt;&lt;wnd cls='TListView' /&gt;&lt;ctrl name='003' role='list item' text='003' /&gt;" WaitForReady="INTERACTIVE" />
+                                                              </ui:SelectItem.Target>
+                                                            </ui:SelectItem>
+                                                            <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_DOUBLE" DisplayName="Double Click" sap2010:WorkflowViewState.IdRef="Click_6" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="True">
+                                                              <ui:Click.CursorPosition>
+                                                                <ui:CursorPosition Position="Center">
+                                                                  <ui:CursorPosition.OffsetX>
+                                                                    <InArgument x:TypeArguments="x:Int32" />
+                                                                  </ui:CursorPosition.OffsetX>
+                                                                  <ui:CursorPosition.OffsetY>
+                                                                    <InArgument x:TypeArguments="x:Int32" />
+                                                                  </ui:CursorPosition.OffsetY>
+                                                                </ui:CursorPosition>
+                                                              </ui:Click.CursorPosition>
+                                                              <ui:Click.Target>
+                                                                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="e066eb78685221a96af2182d84784d30" Selector="&lt;wnd app='predator.exe' cls='TfrmSaksTypeListe' title='Sakstyper' /&gt;&lt;wnd cls='TListView' /&gt;&lt;ctrl name='003' role='list item' text='003' /&gt;" WaitForReady="INTERACTIVE" />
+                                                              </ui:Click.Target>
+                                                            </ui:Click>
+                                                          </Sequence>
+                                                        </ActivityAction>
+                                                      </ui:WindowScope.Body>
+                                                    </ui:WindowScope>
+                                                    <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" x:Key="AETAT" DisplayName="Attach Window 'Sakstyper Tfrmsakst'" sap2010:WorkflowViewState.IdRef="WindowScope_133" InformativeScreenshot="d780d8ea371b07dee992814014583693" Selector="&lt;wnd app='predator.exe' cls='TfrmSaksTypeListe' title='Sakstyper' /&gt;">
+                                                      <ui:WindowScope.Body>
+                                                        <ActivityAction x:TypeArguments="x:Object">
+                                                          <ActivityAction.Argument>
+                                                            <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+                                                          </ActivityAction.Argument>
+                                                          <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_233">
+                                                            <ui:SelectItem ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Select item 'list'" sap2010:WorkflowViewState.IdRef="SelectItem_12" Item="004">
+                                                              <ui:SelectItem.Items>
+                                                                <scg:List x:TypeArguments="x:String" Capacity="128">
+                                                                  <x:String>001</x:String>
+                                                                  <x:String>002</x:String>
+                                                                  <x:String>003</x:String>
+                                                                  <x:String>004</x:String>
+                                                                  <x:String>005</x:String>
+                                                                  <x:String>006</x:String>
+                                                                  <x:String>007</x:String>
+                                                                  <x:String>008</x:String>
+                                                                  <x:String>009</x:String>
+                                                                  <x:String>010</x:String>
+                                                                  <x:String>011</x:String>
+                                                                  <x:String>012</x:String>
+                                                                  <x:String>013</x:String>
+                                                                  <x:String>014</x:String>
+                                                                  <x:String>015</x:String>
+                                                                  <x:String>016</x:String>
+                                                                  <x:String>017</x:String>
+                                                                  <x:String>018</x:String>
+                                                                  <x:String>019</x:String>
+                                                                  <x:String>020</x:String>
+                                                                  <x:String>021</x:String>
+                                                                  <x:String>022</x:String>
+                                                                  <x:String>023</x:String>
+                                                                  <x:String>024</x:String>
+                                                                  <x:String>025</x:String>
+                                                                  <x:String>026</x:String>
+                                                                  <x:String>027</x:String>
+                                                                  <x:String>028</x:String>
+                                                                  <x:String>029</x:String>
+                                                                  <x:String>030</x:String>
+                                                                  <x:String>031</x:String>
+                                                                  <x:String>032</x:String>
+                                                                  <x:String>035</x:String>
+                                                                  <x:String>036</x:String>
+                                                                  <x:String>037</x:String>
+                                                                  <x:String>038</x:String>
+                                                                  <x:String>039</x:String>
+                                                                  <x:String>040</x:String>
+                                                                  <x:String>041</x:String>
+                                                                  <x:String>042</x:String>
+                                                                  <x:String>043</x:String>
+                                                                  <x:String>044</x:String>
+                                                                  <x:String>045</x:String>
+                                                                  <x:String>046</x:String>
+                                                                  <x:String>047</x:String>
+                                                                  <x:String>048</x:String>
+                                                                  <x:String>049</x:String>
+                                                                  <x:String>050</x:String>
+                                                                  <x:String>051</x:String>
+                                                                  <x:String>052</x:String>
+                                                                  <x:String>053</x:String>
+                                                                  <x:String>054</x:String>
+                                                                  <x:String>055</x:String>
+                                                                  <x:String>056</x:String>
+                                                                  <x:String>057</x:String>
+                                                                  <x:String>058</x:String>
+                                                                  <x:String>059</x:String>
+                                                                  <x:String>060</x:String>
+                                                                  <x:String>061</x:String>
+                                                                  <x:String>062</x:String>
+                                                                  <x:String>063</x:String>
+                                                                  <x:String>064</x:String>
+                                                                  <x:String>065</x:String>
+                                                                  <x:String>066</x:String>
+                                                                  <x:String>067</x:String>
+                                                                  <x:String>068</x:String>
+                                                                  <x:String>069</x:String>
+                                                                  <x:String>070</x:String>
+                                                                  <x:String>071</x:String>
+                                                                  <x:String>072</x:String>
+                                                                  <x:String>073</x:String>
+                                                                  <x:String>074</x:String>
+                                                                  <x:String>075</x:String>
+                                                                  <x:String>076</x:String>
+                                                                  <x:String>077</x:String>
+                                                                  <x:String>999</x:String>
+                                                                </scg:List>
+                                                              </ui:SelectItem.Items>
+                                                              <ui:SelectItem.Target>
+                                                                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="e066eb78685221a96af2182d84784d30" Selector="&lt;wnd app='predator.exe' cls='TfrmSaksTypeListe' title='Sakstyper' /&gt;&lt;wnd cls='TListView' /&gt;&lt;ctrl name='004' role='list item' text='004' /&gt;" WaitForReady="INTERACTIVE" />
+                                                              </ui:SelectItem.Target>
+                                                            </ui:SelectItem>
+                                                            <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_DOUBLE" DisplayName="Double Click" sap2010:WorkflowViewState.IdRef="Click_7" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="True">
+                                                              <ui:Click.CursorPosition>
+                                                                <ui:CursorPosition Position="Center">
+                                                                  <ui:CursorPosition.OffsetX>
+                                                                    <InArgument x:TypeArguments="x:Int32" />
+                                                                  </ui:CursorPosition.OffsetX>
+                                                                  <ui:CursorPosition.OffsetY>
+                                                                    <InArgument x:TypeArguments="x:Int32" />
+                                                                  </ui:CursorPosition.OffsetY>
+                                                                </ui:CursorPosition>
+                                                              </ui:Click.CursorPosition>
+                                                              <ui:Click.Target>
+                                                                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="e066eb78685221a96af2182d84784d30" Selector="&lt;wnd app='predator.exe' cls='TfrmSaksTypeListe' title='Sakstyper' /&gt;&lt;wnd cls='TListView' /&gt;&lt;ctrl name='004' role='list item' text='004' /&gt;" WaitForReady="INTERACTIVE" />
+                                                              </ui:Click.Target>
+                                                            </ui:Click>
+                                                          </Sequence>
+                                                        </ActivityAction>
+                                                      </ui:WindowScope.Body>
+                                                    </ui:WindowScope>
+                                                    <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" x:Key="TK" DisplayName="Attach Window 'Sakstyper Tfrmsakst'" sap2010:WorkflowViewState.IdRef="WindowScope_134" InformativeScreenshot="d780d8ea371b07dee992814014583693" Selector="&lt;wnd app='predator.exe' cls='TfrmSaksTypeListe' title='Sakstyper' /&gt;">
+                                                      <ui:WindowScope.Body>
+                                                        <ActivityAction x:TypeArguments="x:Object">
+                                                          <ActivityAction.Argument>
+                                                            <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+                                                          </ActivityAction.Argument>
+                                                          <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_234">
+                                                            <ui:SelectItem ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Select item 'list'" sap2010:WorkflowViewState.IdRef="SelectItem_13" Item="002">
+                                                              <ui:SelectItem.Items>
+                                                                <scg:List x:TypeArguments="x:String" Capacity="128">
+                                                                  <x:String>001</x:String>
+                                                                  <x:String>002</x:String>
+                                                                  <x:String>003</x:String>
+                                                                  <x:String>004</x:String>
+                                                                  <x:String>005</x:String>
+                                                                  <x:String>006</x:String>
+                                                                  <x:String>007</x:String>
+                                                                  <x:String>008</x:String>
+                                                                  <x:String>009</x:String>
+                                                                  <x:String>010</x:String>
+                                                                  <x:String>011</x:String>
+                                                                  <x:String>012</x:String>
+                                                                  <x:String>013</x:String>
+                                                                  <x:String>014</x:String>
+                                                                  <x:String>015</x:String>
+                                                                  <x:String>016</x:String>
+                                                                  <x:String>017</x:String>
+                                                                  <x:String>018</x:String>
+                                                                  <x:String>019</x:String>
+                                                                  <x:String>020</x:String>
+                                                                  <x:String>021</x:String>
+                                                                  <x:String>022</x:String>
+                                                                  <x:String>023</x:String>
+                                                                  <x:String>024</x:String>
+                                                                  <x:String>025</x:String>
+                                                                  <x:String>026</x:String>
+                                                                  <x:String>027</x:String>
+                                                                  <x:String>028</x:String>
+                                                                  <x:String>029</x:String>
+                                                                  <x:String>030</x:String>
+                                                                  <x:String>031</x:String>
+                                                                  <x:String>032</x:String>
+                                                                  <x:String>035</x:String>
+                                                                  <x:String>036</x:String>
+                                                                  <x:String>037</x:String>
+                                                                  <x:String>038</x:String>
+                                                                  <x:String>039</x:String>
+                                                                  <x:String>040</x:String>
+                                                                  <x:String>041</x:String>
+                                                                  <x:String>042</x:String>
+                                                                  <x:String>043</x:String>
+                                                                  <x:String>044</x:String>
+                                                                  <x:String>045</x:String>
+                                                                  <x:String>046</x:String>
+                                                                  <x:String>047</x:String>
+                                                                  <x:String>048</x:String>
+                                                                  <x:String>049</x:String>
+                                                                  <x:String>050</x:String>
+                                                                  <x:String>051</x:String>
+                                                                  <x:String>052</x:String>
+                                                                  <x:String>053</x:String>
+                                                                  <x:String>054</x:String>
+                                                                  <x:String>055</x:String>
+                                                                  <x:String>056</x:String>
+                                                                  <x:String>057</x:String>
+                                                                  <x:String>058</x:String>
+                                                                  <x:String>059</x:String>
+                                                                  <x:String>060</x:String>
+                                                                  <x:String>061</x:String>
+                                                                  <x:String>062</x:String>
+                                                                  <x:String>063</x:String>
+                                                                  <x:String>064</x:String>
+                                                                  <x:String>065</x:String>
+                                                                  <x:String>066</x:String>
+                                                                  <x:String>067</x:String>
+                                                                  <x:String>068</x:String>
+                                                                  <x:String>069</x:String>
+                                                                  <x:String>070</x:String>
+                                                                  <x:String>071</x:String>
+                                                                  <x:String>072</x:String>
+                                                                  <x:String>073</x:String>
+                                                                  <x:String>074</x:String>
+                                                                  <x:String>075</x:String>
+                                                                  <x:String>076</x:String>
+                                                                  <x:String>077</x:String>
+                                                                  <x:String>999</x:String>
+                                                                </scg:List>
+                                                              </ui:SelectItem.Items>
+                                                              <ui:SelectItem.Target>
+                                                                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="e066eb78685221a96af2182d84784d30" Selector="&lt;wnd app='predator.exe' cls='TfrmSaksTypeListe' title='Sakstyper' /&gt;&lt;wnd cls='TListView' /&gt;&lt;ctrl name='002' role='list item' text='002' /&gt;" WaitForReady="INTERACTIVE" />
+                                                              </ui:SelectItem.Target>
+                                                            </ui:SelectItem>
+                                                            <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_DOUBLE" DisplayName="Double Click" sap2010:WorkflowViewState.IdRef="Click_8" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="True">
+                                                              <ui:Click.CursorPosition>
+                                                                <ui:CursorPosition Position="Center">
+                                                                  <ui:CursorPosition.OffsetX>
+                                                                    <InArgument x:TypeArguments="x:Int32" />
+                                                                  </ui:CursorPosition.OffsetX>
+                                                                  <ui:CursorPosition.OffsetY>
+                                                                    <InArgument x:TypeArguments="x:Int32" />
+                                                                  </ui:CursorPosition.OffsetY>
+                                                                </ui:CursorPosition>
+                                                              </ui:Click.CursorPosition>
+                                                              <ui:Click.Target>
+                                                                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="e066eb78685221a96af2182d84784d30" Selector="&lt;wnd app='predator.exe' cls='TfrmSaksTypeListe' title='Sakstyper' /&gt;&lt;wnd cls='TListView' /&gt;&lt;ctrl name='002' role='list item' text='002' /&gt;" WaitForReady="INTERACTIVE" />
+                                                              </ui:Click.Target>
+                                                            </ui:Click>
+                                                          </Sequence>
+                                                        </ActivityAction>
+                                                      </ui:WindowScope.Body>
+                                                    </ui:WindowScope>
+                                                  </Switch>
                                                 </Sequence>
                                               </FlowStep>
                                             </FlowStep.Next>
@@ -572,7 +798,7 @@
     <x:Reference>__ReferenceID8</x:Reference>
     <x:Reference>__ReferenceID9</x:Reference>
     <x:Reference>__ReferenceID10</x:Reference>
-    <sads:DebugSymbol.Symbol>dzxXOlxycGFcVmFza2xpc3RlclxEZWw0XFJlZ2lzdHJlcmluZyBhdiB1bGlrZSB0cmVra3R5cGVyLnhhbWyIAT4DwAQPAgEBQjRCOAIBBEM0QzwCAQNFNEU/AgECSQlaFAMBigFdDZUBGAIBcpgBEakBHAIBa6wBFf4BIAIBToECGYcCMQIBSIoCHakCKAIBOKwCIdgCJgIBKtsCJfwCMAIBHf8CKYMDQQIBG4YDLZcDOAIBFZoDMZ0EPAIBBUoLWRwDAYsBXg91GgMBggF2D5QBIAIBc5kBE6gBJAIBbK0BF7EBJwIBarIBF/0BKAIBT4UCWYUCYQIBTIMCWYMCYAIBSoECywGBAucBAgFJiwIfqAIwAgE5rAIvrAJeAgErrgIlsgI9AgE2tQIl1gIwAgEs3AIn6wI4AgEk7AIn+wI4AgEe/wLcAf8C8wECARyHAy+WA0ACARabAzOtA0QCAQ6uAzOcBEQCAQZKnAJK5AIDAY4BUBFWHAMBjAFfEXQiAwGDAXaXAnbTAgMBgQF8FZEBIAIBdJkBowKZAf4CAgFxnwEZpQEkAgFtsgGnArIB+wICAWm4AR36ASgCAVCLAq8CiwKDAwIBR5ECJaUCMAIBOq4C4QGuAoECAgE3tgInxQI4AgExxgIn1QI4AgEt3AK3AtwCigMCASniAi3oAjgCASXsArgC7AKNAwIBI/ICLfgCOAIBH4cDwAKHA5IDAgEajQM1kwNAAgEXmwPEApsDnwMCARShAzmqA0QCAQ+uA8QCrgOQAwIBDbQDOZkERAIBB1ETVSMDAY0BX6ICX/0CAwGJAWUXcSIDAYQBgAEXkAEiAgF1oAEbpAEpAgFuuQEfzAExAgFgzQEf+QEqAgFRkgInlgI1AgFElwInnwI1AgFAoAInpAI9AgE7tgK3ArYCigMCATW8Ai3CAjgCATLGArMCxgLzAgIBMMwCLdICOAIBLuMCL+cCPQIBJvMCL/cCPQIBII4DN5IDRwIBGKIDO6kDRgIBELUDO4kESwIBCooEO5gERgIBCGYZcCkDAYUBgQEZhQEnAgF9hgEZigEnAgF6iwEZjwEnAgF2ogGuAaIBzwECAXCgAbQCoAG+AgIBb7kB0AK5AeACAgFluQGsArkBrwICAWTGAZgBxgHPAgIBaLsBPrsBQQIBZrsBSrsBTQIBZ8IBJcIBmgICAWHRASH3ATICAVT4ASH4Ab4BAgFSlAK6AZQC8AICAUaSAr4CkgLIAgIBRZkCoAGZAoMCAgFDlwK0AZcCugECAUKXAtYClwL/AgIBQaACzgGgAtQBAgE/oAJMoAJSAgE+ogJaogJ4AgE8vQIvwQI/AgEzzQIv0QI/AgEv5QLCAeUC2gICASjjAsYC4wLQAgIBJ/UCwgH1AtoCAgEi8wLGAvMC0AICASGQA8oBkAOrAgIBGacDzgGnA7wDAgETpANnpANrAgESpANapANeAgERtQPnAbUD7AECAQuHBM4BhwTsAgIBDJYEzgGWBOwCAgEJa0drTAMBiAFoOGg7AwGGAWhEaEcDAYcBgwGsAYMBxwEDAYABgQGsAoEBtgICAX6IAawBiAHHAQIBfIYBrAKGAbcCAgF7jQGsAY0B1QECAXmLAaYBiwGsAQIBeIsBxQKLAdICAgF3wgHmAcIB7wECAWLRAbIC0QGGAwIBX9cBJ/QBMgIBVfgBePgBuwECAVO/AsIBvwKlAgIBNNgBKeYBNAIBW+cBKe4BPQIBV+8BKfMBQAIBVtkBK+ABQAIBXeEBK+UBQgIBXOcBYecBZwIBWuwBXOwBdwIBWNsBWdsBXgIBXg==</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>dzxXOlxycGFcVmFza2xpc3RlclxEZWw0XFJlZ2lzdHJlcmluZyBhdiB1bGlrZSB0cmVra3R5cGVyLnhhbWyeAT4DogYPAgEBQjRCOAIBBUM0QzwCAQRFNEU/AgEDRjRGOAIBAkoJWxQDAaQBXg2WARgDAYwBmQERqgEcAwGFAa0BFf8BIAIBaIICGYgCMQIBYosCHaoCKAIBUq0CIdoCJgIBQN0CJf4CMAIBM4EDKYUDQQIBL4gDLZkDOAIBKZwDMf8FPAIBBksLWhwDAaUBXw92GgMBnAF3D5UBIAMBjQGaAROpASQDAYYBrgEXsgEnAwGEAbMBF/4BKAIBaYYCWYYCYQIBZoQCWYQCYAIBZIICywGCAucBAgFjjAIfqQIwAgFTrQIvrQJeAgFBrwIltAI9AgFMtwIl2AIwAgFC3gIn7QI4AgE67gIn/QI4AgE0gQPcAYED8wECATKDA2iDA3UCATCJAy+YA0ACASqdAzOvA0QCASKwAzP+BTwCAQdLnAJL5AIDAagBURFXHAMBpgFgEXUiAwGdAXeXAnfTAgMBmwF9FZIBIAMBjgGaAaMCmgH+AgMBiwGgARmmASQDAYcBswGnArMB+wIDAYMBuQEd+wEoAgFqjAKvAowCgwMCAWGSAiWmAjACAVSyAmOyAm8CAVCvAuEBrwKBAgIBT7ECZLECcQIBTbgCJ8cCOAIBR8gCJ9cCOAIBQ94CtwLeAooDAgE/5AIt6gI4AgE77gK4Au4CjQMCATn0Ai36AjgCATWJA8ACiQOSAwIBLo8DNZUDQAIBK50DxAKdA58DAgEoowM5rANEAgEjsAOEAbADkgECAQixAzWfBEYCARqgBDWOBUYCARKPBTX9BUYCAQpSE1YjAwGnAWCiAmD9AgMBowFmF3IiAwGeAYEBF5EBIgMBjwGhARulASkDAYgBugEfzQExAgF6zgEf+gEqAgFrkwInlwI1AgFemAInoAI1AgFaoQInpQI9AgFVuAK3ArgCigMCAUu+Ai3EAjgCAUjIArMCyALzAgIBRs4CLdQCOAIBROUCL+kCPQIBPPUCL/kCPQIBNpADN5QDRwIBLKQDO6sDRgIBJLED0QKxA50DAgEhtwM7nARGAgEboATUAqAEoAMCARmmBDuLBUYCAROPBdECjwWdAwIBEZUFO/oFRgIBC2cZcSkDAZ8BggEZhgEnAwGXAYcBGYsBJwMBlAGMARmQAScDAZABowGuAaMBzwEDAYoBoQG0AqEBvgIDAYkBugHQAroB4AICAX+6AawCugGvAgIBfscBmAHHAc8CAwGCAbwBPrwBQQMBgAG8AUq8AU0DAYEBwwElwwGaAgIBe9IBIfgBMgIBbvkBIfkBvgECAWyVAroBlQLwAgIBYJMCvgKTAsgCAgFfmgKgAZoCgwICAV2YArQBmAK6AQIBXJgC1gKYAv8CAgFboQLOAaEC1AECAVmhAkyhAlICAVijAlqjAngCAVa/Ai/DAj8CAUnPAi/TAj8CAUXnAsIB5wLaAgIBPuUCxgLlAtACAgE99wLCAfcC2gICATj1AsYC9QLQAgIBN5IDygGSA6sCAgEtqQPOAakDvAMCASemA2emA2sCASamA1qmA14CASW4Az2MBE0CAR6NBD2bBEgCARynBD37BE0CARb8BD2KBUgCARSWBT3qBU0CAQ7rBT35BUgCAQxsR2xMAwGiAWk4aTsDAaABaURpRwMBoQGEAawBhAHHAQMBmgGCAawCggG2AgMBmAGJAawBiQHHAQMBlgGHAawChwG3AgMBlQGOAawBjgHVAQMBkwGMAaYBjAGsAQMBkgGMAcUCjAHSAgMBkQHDAeYBwwHvAQIBfNIBsgLSAYYDAgF52AEn9QEyAgFv+QF4+QG7AQIBbcECwgHBAqUCAgFKuAPqAbgD7wECAR+KBNABigTuAgIBIJkE0AGZBO4CAgEdpwTqAacE7wECARf5BNAB+QTuAgIBGIgF0AGIBe4CAgEVlgXqAZYF7wECAQ/oBdAB6AXuAgIBEPcF0AH3Be4CAgEN2QEp5wE0AgF16AEp7wE9AgFx8AEp9AFAAgFw2gEr4QFAAgF34gEr5gFCAgF26AFh6AFnAgF07QFc7QF3AgFy3AFZ3AFeAgF4</sads:DebugSymbol.Symbol>
   </Flowchart>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
@@ -739,7 +965,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="If_2" sap:VirtualizedContainerService.HintSize="775,1191">
+      <sap2010:ViewStateData Id="If_2" sap:VirtualizedContainerService.HintSize="200,49">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -796,17 +1022,38 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="WindowScope_127" sap:VirtualizedContainerService.HintSize="414,376" />
-      <sap2010:ViewStateData Id="SelectItem_8" sap:VirtualizedContainerService.HintSize="314,134" />
-      <sap2010:ViewStateData Id="Click_5" sap:VirtualizedContainerService.HintSize="314,106" />
-      <sap2010:ViewStateData Id="Sequence_221" sap:VirtualizedContainerService.HintSize="336,404">
+      <sap2010:ViewStateData Id="WindowScope_127" sap:VirtualizedContainerService.HintSize="473,376" />
+      <sap2010:ViewStateData Id="SelectItem_11" sap:VirtualizedContainerService.HintSize="314,134" />
+      <sap2010:ViewStateData Id="Click_6" sap:VirtualizedContainerService.HintSize="314,106" />
+      <sap2010:ViewStateData Id="Sequence_232" sap:VirtualizedContainerService.HintSize="336,404">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="WindowScope_128" sap:VirtualizedContainerService.HintSize="414,550" />
+      <sap2010:ViewStateData Id="WindowScope_132" sap:VirtualizedContainerService.HintSize="414,550" />
+      <sap2010:ViewStateData Id="SelectItem_12" sap:VirtualizedContainerService.HintSize="314,134" />
+      <sap2010:ViewStateData Id="Click_7" sap:VirtualizedContainerService.HintSize="314,106" />
+      <sap2010:ViewStateData Id="Sequence_233" sap:VirtualizedContainerService.HintSize="336,404">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="WindowScope_133" sap:VirtualizedContainerService.HintSize="414,550" />
+      <sap2010:ViewStateData Id="SelectItem_13" sap:VirtualizedContainerService.HintSize="314,134" />
+      <sap2010:ViewStateData Id="Click_8" sap:VirtualizedContainerService.HintSize="314,106" />
+      <sap2010:ViewStateData Id="Sequence_234" sap:VirtualizedContainerService.HintSize="336,404">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="WindowScope_134" sap:VirtualizedContainerService.HintSize="414,550" />
+      <sap2010:ViewStateData Id="Switch`1_1" sap:VirtualizedContainerService.HintSize="473,174" />
       <sap2010:ViewStateData Id="Sequence_219" sap:VirtualizedContainerService.HintSize="200,49">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
