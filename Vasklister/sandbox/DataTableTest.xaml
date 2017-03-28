@@ -58,6 +58,7 @@
       <AssemblyReference>System.ServiceModel</AssemblyReference>
       <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
       <AssemblyReference>Microsoft.VisualStudio.Services.Common</AssemblyReference>
+      <AssemblyReference>TimeSpan2</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
   <Sequence DisplayName="Main" sap2010:WorkflowViewState.IdRef="Sequence_1">
@@ -127,6 +128,7 @@
                         <InArgument x:TypeArguments="sd:DataRow">[capturedData.NewRow]</InArgument>
                       </Assign.Value>
                     </Assign>
+                    <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_4" Text="[&quot;tableCells(0)&quot;+tableCells(0).ToString()+tableCells(0).TopParent.ToString]" />
                     <ui:GetValue ContinueOnError="{x:Null}" DisplayName="Get FirstName" sap2010:WorkflowViewState.IdRef="GetValue_1">
                       <ui:GetValue.Target>
                         <ui:Target ClippingRegion="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" Element="[tableCells(0)]" WaitForReady="INTERACTIVE" />
@@ -156,75 +158,74 @@
                 </ActivityAction>
               </ui:ForEach.Body>
             </ui:ForEach>
-            <ui:WriteCsvFile Encoding="{x:Null}" AddHeaders="True" DataTable="[capturedData]" Delimitator="Semicolon" DisplayName="Print output" FilePath="capturedData.csv" sap2010:WorkflowViewState.IdRef="WriteCsvFile_1" />
           </Sequence>
         </ActivityAction>
       </ui:OpenBrowser.Body>
     </ui:OpenBrowser>
-    <sads:DebugSymbol.Symbol>dyBDOlxUZXN0XFRlc3Q1XERhdGFUYWJsZVRlc3QueGFtbCo/A6UBDgIBAUcFowEWAgECR7sBR+4BAgE2TQugARYCAQNTDVPuCgIBM1QNWCYCAS9ZDV0fAgEqXg1ezAECAShfDWYWAgEkZw2eARoCAQifAQ2fAeEBAgEEUypTOgIBNFRPVGMCATFWoAFW0gECATBZYll9AgEuW2dbewIBLFknWTQCASteowFeyQECASlkO2RmAgEnYTxhSgIBJWe4AWfNAQIBI20TmwEeAgEJnwFOnwFeAgEGnwGbAZ8BrQECAQVyFXkeAgEfehWBAR4CARuCARWJASMCAReKARWRASMCAROSARWZASMCAQ+aARWaAbgBAgEKd0Z3fwIBInRHdFMCASB/Qn9XAgEefEN8SwIBHIcBQYcBTAIBGIQBb4QBgAECARmPAUGPAUwCARSMAW+MAYABAgEVlwFBlwFMAgEQlAFvlAGAAQIBEZoBQJoBSgIBDZoBVZoBZQIBCw==</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>dzVcXENsaWVudFxDJFxycGFcVmFza2xpc3RlclxzYW5kYm94XERhdGFUYWJsZVRlc3QueGFtbClAA6YBDgIBAUgFpAEWAgECSLsBSO4BAgE0TguhARYCAQNUDVTuCgIBMVUNWSYCAS1aDV4fAgEoXw1fzAECASZgDWcWAgEiaA2gARoCAQRUKlQ6AgEyVU9VYwIBL1egAVfSAQIBLlpiWn0CASxcZ1x7AgEqWidaNAIBKV+jAV/JAQIBJ2U7ZWYCASViPGJKAgEjaLgBaM0BAgEhbhOdAR4CAQVzFXoeAgEdexWCAR4CARmDARWDAcYBAgEXhAEViwEjAgETjAEVkwEjAgEPlAEVmwEjAgELnAEVnAG4AQIBBnhGeH8CASB1R3VTAgEegAFCgAFXAgEcfUN9SwIBGoMBbIMBwwECARiJAUGJAUwCARSGAW+GAYABAgEVkQFBkQFMAgEQjgFvjgGAAQIBEZkBQZkBTAIBDJYBb5YBgAECAQ2cAUCcAUoCAQmcAVWcAWUCAQc=</sads:DebugSymbol.Symbol>
   </Sequence>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
       <sap2010:ViewStateData Id="BuildDataTable_1" sap:VirtualizedContainerService.HintSize="352,59" />
       <sap2010:ViewStateData Id="WaitUiElementAppear_1" sap:VirtualizedContainerService.HintSize="352,106" />
       <sap2010:ViewStateData Id="FindChildren_1" sap:VirtualizedContainerService.HintSize="352,68" />
-      <sap2010:ViewStateData Id="WriteLine_3" sap:VirtualizedContainerService.HintSize="352,88">
+      <sap2010:ViewStateData Id="WriteLine_3" sap:VirtualizedContainerService.HintSize="352,84">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Assign_6" sap:VirtualizedContainerService.HintSize="352,102">
+      <sap2010:ViewStateData Id="Assign_6" sap:VirtualizedContainerService.HintSize="352,84">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Assign_5" sap:VirtualizedContainerService.HintSize="314,102">
+      <sap2010:ViewStateData Id="Assign_5" sap:VirtualizedContainerService.HintSize="314,97">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Assign_3" sap:VirtualizedContainerService.HintSize="314,60" />
+      <sap2010:ViewStateData Id="Assign_3" sap:VirtualizedContainerService.HintSize="314,59" />
+      <sap2010:ViewStateData Id="WriteLine_4" sap:VirtualizedContainerService.HintSize="314,59" />
       <sap2010:ViewStateData Id="GetValue_1" sap:VirtualizedContainerService.HintSize="314,68" />
       <sap2010:ViewStateData Id="GetValue_2" sap:VirtualizedContainerService.HintSize="314,68" />
       <sap2010:ViewStateData Id="GetValue_3" sap:VirtualizedContainerService.HintSize="314,68" />
       <sap2010:ViewStateData Id="AddDataRow_1" sap:VirtualizedContainerService.HintSize="314,22" />
-      <sap2010:ViewStateData Id="Sequence_4" sap:VirtualizedContainerService.HintSize="336,712">
+      <sap2010:ViewStateData Id="Sequence_4" sap:VirtualizedContainerService.HintSize="336,805">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="ForEach`1_4" sap:VirtualizedContainerService.HintSize="352,872">
+      <sap2010:ViewStateData Id="ForEach`1_4" sap:VirtualizedContainerService.HintSize="352,961">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="WriteCsvFile_1" sap:VirtualizedContainerService.HintSize="352,87" />
-      <sap2010:ViewStateData Id="Sequence_3" sap:VirtualizedContainerService.HintSize="374,1746">
+      <sap2010:ViewStateData Id="Sequence_3" sap:VirtualizedContainerService.HintSize="374,1686">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="OpenBrowser_1" sap:VirtualizedContainerService.HintSize="414,1845" />
-      <sap2010:ViewStateData Id="Sequence_1" sap:VirtualizedContainerService.HintSize="436,1969">
+      <sap2010:ViewStateData Id="OpenBrowser_1" sap:VirtualizedContainerService.HintSize="414,1779" />
+      <sap2010:ViewStateData Id="Sequence_1" sap:VirtualizedContainerService.HintSize="436,1903">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="DataTableTest_1" sap:VirtualizedContainerService.HintSize="476,2049" />
+      <sap2010:ViewStateData Id="DataTableTest_1" sap:VirtualizedContainerService.HintSize="476,2543" />
     </sap2010:ViewStateManager>
   </sap2010:WorkflowViewState.ViewStateManager>
 </Activity>
