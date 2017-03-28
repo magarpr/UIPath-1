@@ -1,0 +1,442 @@
+﻿<Activity mc:Ignorable="sap sap2010 sads" x:Class="Tvangavtale" this:Tvangavtale.trekkkilde="AG"
+ xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities"
+ xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+ xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities"
+ xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger"
+ xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation"
+ xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation"
+ xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib"
+ xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib"
+ xmlns:this="clr-namespace:"
+ xmlns:ui="http://schemas.uipath.com/workflow/activities"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="terminBeløp" Type="InArgument(x:String)" />
+    <x:Property Name="trekkkilde" Type="InArgument(x:String)" />
+  </x:Members>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap2010:WorkflowViewState.IdRef>Tvangavtale_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Framework.Activities</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>UiPath.Credentials.Activities</x:String>
+      <x:String>UiPath.Excel.Activities</x:String>
+      <x:String>UiPath.CSV.Activities</x:String>
+      <x:String>UiPath.Excel</x:String>
+      <x:String>UiPath.CSV</x:String>
+      <x:String>UiPath.Checkpoint.Activities</x:String>
+      <x:String>UiPath.DataTable.Activities</x:String>
+      <x:String>UiPath.Dialog.Activities</x:String>
+      <x:String>UiPath.FileSystem.Activities</x:String>
+      <x:String>UiPath.PowerShell.Activities</x:String>
+      <x:String>UiPath.RegEx.Activities</x:String>
+      <x:String>UiPath.Mail.Activities</x:String>
+      <x:String>UiPath.Mail.Exchange.Activities</x:String>
+      <x:String>UiPath.Mail.IMAP.Activities</x:String>
+      <x:String>UiPath.Mail.Outlook.Activities</x:String>
+      <x:String>UiPath.Mail.POP3.Activities</x:String>
+      <x:String>UiPath.Mail.SMTP.Activities</x:String>
+      <x:String>UiPath.PDF.Activities</x:String>
+      <x:String>UiPath.XPS.Activities</x:String>
+      <x:String>UiPath.Enterprise.Activities.Assets</x:String>
+      <x:String>UiPath.Enterprise.Activities.Process</x:String>
+      <x:String>UiPath.Enterprise.Activities.Queues</x:String>
+      <x:String>UiPath.Enterprise.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>UiPath.Core</AssemblyReference>
+      <AssemblyReference>UiPath.Framework.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Core.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Credentials.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.PDF.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Enterprise.Activities</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>TimeSpan2</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="TvangAvtale" sap2010:WorkflowViewState.IdRef="Sequence_191">
+    <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" DisplayName="Attach Window 'PredatorN Tfrmpreda'" sap2010:WorkflowViewState.IdRef="WindowScope_114" InformativeScreenshot="76b20176ee64c1e35839730837f5054c" Selector="&lt;wnd app='predator.exe' cls='TfrmPredator' title='PredatorNO - [Tvang]' /&gt;">
+      <ui:WindowScope.Body>
+        <ActivityAction x:TypeArguments="x:Object">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_210">
+            <ui:SendHotkey DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Send hotkey 'TfrmTvang'" EmptyField="False" sap2010:WorkflowViewState.IdRef="SendHotkey_49" Key="n" KeyModifiers="Ctrl" SendWindowMessages="False" SpecialKey="False">
+              <ui:SendHotkey.Target>
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="a9d6c019d26916bc77e064c4963b75c5" Selector="&lt;wnd aaname='Arbeidsområde' cls='MDIClient' /&gt;&lt;wnd cls='TfrmTvang' title='Tvang' /&gt;" WaitForReady="INTERACTIVE" />
+              </ui:SendHotkey.Target>
+            </ui:SendHotkey>
+          </Sequence>
+        </ActivityAction>
+      </ui:WindowScope.Body>
+    </ui:WindowScope>
+    <Switch x:TypeArguments="x:String" DisplayName="Switch&lt;string&gt;" Expression="[trekkkilde]" sap2010:WorkflowViewState.IdRef="Switch`1_1">
+      <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" x:Key="AG" DisplayName="Attach Window 'Nytttvang Tfrmtvang'" sap2010:WorkflowViewState.IdRef="WindowScope_118" InformativeScreenshot="e3a5285ac59fceb75b2df8e29ffcd5df" Selector="&lt;wnd app='predator.exe' cls='TfrmTvangsGrunnlag' title='Nytt tvangsgrunnlag' /&gt;">
+        <ui:WindowScope.Body>
+          <ActivityAction x:TypeArguments="x:Object">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+            </ActivityAction.Argument>
+            <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_213">
+              <ui:SelectItem ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Select item 'list'" sap2010:WorkflowViewState.IdRef="SelectItem_5" Item="812   Trekk AG">
+                <ui:SelectItem.Items>
+                  <scg:List x:TypeArguments="x:String" Capacity="16">
+                    <x:String xml:space="preserve">801   Uteblivelsesdom</x:String>
+                    <x:String xml:space="preserve">802   Dom</x:String>
+                    <x:String xml:space="preserve">803   Kjennelse</x:String>
+                    <x:String xml:space="preserve">810   Trekk NAV</x:String>
+                    <x:String xml:space="preserve">811   Trekk Abetal</x:String>
+                    <x:String xml:space="preserve">812   Trekk AG</x:String>
+                    <x:String xml:space="preserve">814   Utleggsforretning</x:String>
+                    <x:String xml:space="preserve">815   Løsøre</x:String>
+                    <x:String xml:space="preserve">816   Realreg form.gode</x:String>
+                    <x:String xml:space="preserve">817   Adkomstdokument</x:String>
+                    <x:String xml:space="preserve">818   Pengekrav</x:String>
+                    <x:String xml:space="preserve">820   Utleggsforretn namsmann</x:String>
+                  </scg:List>
+                </ui:SelectItem.Items>
+                <ui:SelectItem.Target>
+                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="92841062193d7b68d557e567c67d33e1" Selector="&lt;wnd cls='TListView' /&gt;&lt;ctrl role='list' /&gt;" WaitForReady="INTERACTIVE" />
+                </ui:SelectItem.Target>
+              </ui:SelectItem>
+              <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_DOUBLE" DisplayName="Click 'list item  812 Trekk AG'" sap2010:WorkflowViewState.IdRef="Click_2" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
+                <ui:Click.CursorPosition>
+                  <ui:CursorPosition OffsetX="66" OffsetY="1" Position="TopLeft" />
+                </ui:Click.CursorPosition>
+                <ui:Click.Target>
+                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="6e373c7a292173d6f05114b332eedea1" Selector="&lt;wnd cls='TListView' /&gt;&lt;ctrl name='812   Trekk AG' role='list item' /&gt;" WaitForReady="INTERACTIVE" />
+                </ui:Click.Target>
+              </ui:Click>
+            </Sequence>
+          </ActivityAction>
+        </ui:WindowScope.Body>
+      </ui:WindowScope>
+      <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" x:Key="AETAT" DisplayName="Attach Window 'Nytttvang Tfrmtvang'" sap2010:WorkflowViewState.IdRef="WindowScope_119" InformativeScreenshot="e3a5285ac59fceb75b2df8e29ffcd5df" Selector="&lt;wnd app='predator.exe' cls='TfrmTvangsGrunnlag' title='Nytt tvangsgrunnlag' /&gt;">
+        <ui:WindowScope.Body>
+          <ActivityAction x:TypeArguments="x:Object">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+            </ActivityAction.Argument>
+            <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_214">
+              <ui:SelectItem ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Select item 'list'" sap2010:WorkflowViewState.IdRef="SelectItem_6" Item="811   Trekk Abetal">
+                <ui:SelectItem.Items>
+                  <scg:List x:TypeArguments="x:String" Capacity="16">
+                    <x:String xml:space="preserve">801   Uteblivelsesdom</x:String>
+                    <x:String xml:space="preserve">802   Dom</x:String>
+                    <x:String xml:space="preserve">803   Kjennelse</x:String>
+                    <x:String xml:space="preserve">810   Trekk NAV</x:String>
+                    <x:String xml:space="preserve">811   Trekk Abetal</x:String>
+                    <x:String xml:space="preserve">812   Trekk AG</x:String>
+                    <x:String xml:space="preserve">814   Utleggsforretning</x:String>
+                    <x:String xml:space="preserve">815   Løsøre</x:String>
+                    <x:String xml:space="preserve">816   Realreg form.gode</x:String>
+                    <x:String xml:space="preserve">817   Adkomstdokument</x:String>
+                    <x:String xml:space="preserve">818   Pengekrav</x:String>
+                    <x:String xml:space="preserve">820   Utleggsforretn namsmann</x:String>
+                  </scg:List>
+                </ui:SelectItem.Items>
+                <ui:SelectItem.Target>
+                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="92841062193d7b68d557e567c67d33e1" Selector="&lt;wnd cls='TListView' /&gt;&lt;ctrl role='list' /&gt;" WaitForReady="INTERACTIVE" />
+                </ui:SelectItem.Target>
+              </ui:SelectItem>
+              <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_DOUBLE" DisplayName="Click 'list item  811 Trekk Abetal'" sap2010:WorkflowViewState.IdRef="Click_3" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
+                <ui:Click.CursorPosition>
+                  <ui:CursorPosition OffsetX="66" OffsetY="1" Position="TopLeft" />
+                </ui:Click.CursorPosition>
+                <ui:Click.Target>
+                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="6e373c7a292173d6f05114b332eedea1" Selector="&lt;wnd cls='TListView' /&gt;&lt;ctrl name='811   Trekk Abetal' role='list item' /&gt;" WaitForReady="INTERACTIVE" />
+                </ui:Click.Target>
+              </ui:Click>
+            </Sequence>
+          </ActivityAction>
+        </ui:WindowScope.Body>
+      </ui:WindowScope>
+      <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" x:Key="TK" DisplayName="Attach Window 'Nytttvang Tfrmtvang'" sap2010:WorkflowViewState.IdRef="WindowScope_120" InformativeScreenshot="e3a5285ac59fceb75b2df8e29ffcd5df" Selector="&lt;wnd app='predator.exe' cls='TfrmTvangsGrunnlag' title='Nytt tvangsgrunnlag' /&gt;">
+        <ui:WindowScope.Body>
+          <ActivityAction x:TypeArguments="x:Object">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+            </ActivityAction.Argument>
+            <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_215">
+              <ui:SelectItem ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Select item 'list'" sap2010:WorkflowViewState.IdRef="SelectItem_7" Item="810   Trekk NAV">
+                <ui:SelectItem.Items>
+                  <scg:List x:TypeArguments="x:String" Capacity="16">
+                    <x:String xml:space="preserve">801   Uteblivelsesdom</x:String>
+                    <x:String xml:space="preserve">802   Dom</x:String>
+                    <x:String xml:space="preserve">803   Kjennelse</x:String>
+                    <x:String xml:space="preserve">810   Trekk NAV</x:String>
+                    <x:String xml:space="preserve">811   Trekk Abetal</x:String>
+                    <x:String xml:space="preserve">812   Trekk AG</x:String>
+                    <x:String xml:space="preserve">814   Utleggsforretning</x:String>
+                    <x:String xml:space="preserve">815   Løsøre</x:String>
+                    <x:String xml:space="preserve">816   Realreg form.gode</x:String>
+                    <x:String xml:space="preserve">817   Adkomstdokument</x:String>
+                    <x:String xml:space="preserve">818   Pengekrav</x:String>
+                    <x:String xml:space="preserve">820   Utleggsforretn namsmann</x:String>
+                  </scg:List>
+                </ui:SelectItem.Items>
+                <ui:SelectItem.Target>
+                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="92841062193d7b68d557e567c67d33e1" Selector="&lt;wnd cls='TListView' /&gt;&lt;ctrl role='list' /&gt;" WaitForReady="INTERACTIVE" />
+                </ui:SelectItem.Target>
+              </ui:SelectItem>
+              <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_DOUBLE" DisplayName="Click 'list item  810 Trekk NAV'" sap2010:WorkflowViewState.IdRef="Click_4" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
+                <ui:Click.CursorPosition>
+                  <ui:CursorPosition OffsetX="66" OffsetY="1" Position="TopLeft" />
+                </ui:Click.CursorPosition>
+                <ui:Click.Target>
+                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="6e373c7a292173d6f05114b332eedea1" Selector="&lt;wnd cls='TListView' /&gt;&lt;ctrl name='810   Trekk NAV' role='list item' /&gt;" WaitForReady="INTERACTIVE" />
+                </ui:Click.Target>
+              </ui:Click>
+            </Sequence>
+          </ActivityAction>
+        </ui:WindowScope.Body>
+      </ui:WindowScope>
+    </Switch>
+    <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" DisplayName="Attach Window 'PredatorN Tfrmpreda'" sap2010:WorkflowViewState.IdRef="WindowScope_116" InformativeScreenshot="208340c81a6cd98d96422f184d19c9a9" Selector="&lt;wnd app='predator.exe' cls='TfrmPredator' title='PredatorNO - [Tvang]' /&gt;">
+      <ui:WindowScope.Body>
+        <ActivityAction x:TypeArguments="x:Object">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_192">
+            <ui:ClickImage ContinueOnError="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click image 'TGroupBox'" sap2010:WorkflowViewState.IdRef="ClickImage_38" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False">
+              <ui:ClickImage.CursorPosition>
+                <ui:CursorPosition OffsetX="46" OffsetY="5" Position="TopRight" />
+              </ui:ClickImage.CursorPosition>
+              <ui:ClickImage.Image>
+                <ui:ImageTarget Image="{x:Null}" Accuracy="0.8" TargetImageBase64="iVBORw0KGgoAAAANSUhEUgAAAEgAAAAPCAYAAABHsImTAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADQSURBVFhH7ZNBCsQwDAPz/8f1stDvdOnB4KpS5EAW9uDDEFuW0yDoOD/H1Wg6IEMHZJABjTGozljx3ij/rnt28pcBVe9zvtV3MWhAux+KKP/u766+i7EUkOrzyTyoY42eXCPZmz0zbeZxvALCZfwAm90n8838lTmi/Ai7p7qLLAWU+6xXPEyv7gXKH3WGzaNmvYIGhOA8n1jn3unVvaDqZ7ryOB4BqSV3ueqdXt0Lqn6mK4/jpwFFHbi58mRmfqUzT2iO1y/WPOmADB3QlOP6ArkvHId8iD5JAAAAAElFTkSuQmCC" />
+              </ui:ClickImage.Image>
+              <ui:ClickImage.Target>
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" WaitForReady="INTERACTIVE" />
+              </ui:ClickImage.Target>
+            </ui:ClickImage>
+            <ui:SetValue ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Set Text 'TDatoEdit'" sap2010:WorkflowViewState.IdRef="SetValue_22" Text="[DateTime.Now.ToString(&quot;dd.MM.yyyy&quot;)]">
+              <ui:SetValue.Target>
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="35787c0876dabd0f332adb4a5991a543" Selector="&lt;wnd aaname='Arbeidsområde' cls='MDIClient' /&gt;&lt;wnd cls='TfrmTvang' title='Tvang' /&gt;&lt;wnd cls='TGroupBox' title='Trekk *' idx='2' /&gt;&lt;wnd cls='TDatoEdit' idx='1' /&gt;" WaitForReady="INTERACTIVE" />
+              </ui:SetValue.Target>
+            </ui:SetValue>
+            <ui:SendHotkey DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Send hotkey" EmptyField="False" sap2010:WorkflowViewState.IdRef="SendHotkey_50" Key="tab" KeyModifiers="Win" SendWindowMessages="False" SpecialKey="True">
+              <ui:SendHotkey.Target>
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" Selector="&lt;wnd aaname='Arbeidsområde' cls='MDIClient' /&gt;&#xD;&#xA;&lt;wnd cls='TfrmTvang' title='Tvang' /&gt;&#xD;&#xA;&lt;wnd cls='TGroupBox' title='Trekk *' idx='2' /&gt;&#xD;&#xA;&lt;wnd cls='TDatoEdit' idx='1' /&gt;" WaitForReady="INTERACTIVE" />
+              </ui:SendHotkey.Target>
+            </ui:SendHotkey>
+            <ui:SendHotkey DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Send hotkey 'TfrmTvang'" EmptyField="False" sap2010:WorkflowViewState.IdRef="SendHotkey_46" Key="s" KeyModifiers="Ctrl" SendWindowMessages="False" SpecialKey="False">
+              <ui:SendHotkey.Target>
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="cf971baac39fba7c3d00a7205c12fd2c" Selector="&lt;wnd aaname='Arbeidsområde' cls='MDIClient' /&gt;&lt;wnd cls='TfrmTvang' title='Tvang' /&gt;" WaitForReady="INTERACTIVE" />
+              </ui:SendHotkey.Target>
+            </ui:SendHotkey>
+            <ui:ClickImage ContinueOnError="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click image 'list'" sap2010:WorkflowViewState.IdRef="ClickImage_39" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False">
+              <ui:ClickImage.CursorPosition>
+                <ui:CursorPosition OffsetX="0" OffsetY="0" Position="Center" />
+              </ui:ClickImage.CursorPosition>
+              <ui:ClickImage.Image>
+                <ui:ImageTarget Image="{x:Null}" Accuracy="0.8" TargetImageBase64="iVBORw0KGgoAAAANSUhEUgAAAEQAAAAXCAYAAACyCenrAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACASURBVFhH7ZJRCoAgEAX3anm08Hz9BF1nww+xHvnrLjQDA5ofspN2nYfjkCCi1b06Dq1sxXFoDi8IIhBEIIgQGsQs3/8giEAQIVWQtu9GkfaFREVJFaS/jm4Ey299DjpbNwjy1yCNNuzXwP377HwFMbcmhiACQQSCCAQRCPLC/QYaCsSTSst35wAAAABJRU5ErkJggg==" />
+              </ui:ClickImage.Image>
+              <ui:ClickImage.Target>
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" WaitForReady="INTERACTIVE" />
+              </ui:ClickImage.Target>
+            </ui:ClickImage>
+            <ui:ClickImage ContinueOnError="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click image 'TfrmTvang'" sap2010:WorkflowViewState.IdRef="ClickImage_40" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False">
+              <ui:ClickImage.CursorPosition>
+                <ui:CursorPosition OffsetX="0" OffsetY="0" Position="Center" />
+              </ui:ClickImage.CursorPosition>
+              <ui:ClickImage.Image>
+                <ui:ImageTarget Image="{x:Null}" Accuracy="0.8" TargetImageBase64="iVBORw0KGgoAAAANSUhEUgAAAE8AAAAXCAYAAABK6RIcAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADoSURBVFhH7ZNhCsIwDEZzNXc02fn2R/A6lQqBEJO2STYF+QrPti/pJh8rNYz0oOfjaCAHwiuAa1sY+PKS7Pcd4WUJh0dEH1h9Hl7/ynOsnuj7zyT95WX/dCU8C4Q38DP+JrzupOe9dpG1xPL6nETWpRv5CKeHZ63lXs9e3cKqWef6WnpdG/kIl4ankZ77dL/2Eu/cyszMfISvfXna67rnJVZNn/NmZuYj/Ozarq4llmfXZ+sZ+szMR7gsPN4zo56RX3V9lui63ns+Qjo8gPBKILwC7/D6D8hB221rIAeubQGEVwDhpTnaCyVtyBDbtRBwAAAAAElFTkSuQmCC" />
+              </ui:ClickImage.Image>
+              <ui:ClickImage.Target>
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" WaitForReady="INTERACTIVE" />
+              </ui:ClickImage.Target>
+            </ui:ClickImage>
+            <ui:ClickText ContinueOnError="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click text 'TGroupBox'" FormattedText="False" sap2010:WorkflowViewState.IdRef="ClickText_11" KeyModifiers="None" MouseButton="BTN_LEFT" Occurrence="1" SendWindowMessages="False" Text="Beløp">
+              <ui:ClickText.CursorPosition>
+                <ui:CursorPosition OffsetX="135" OffsetY="8" Position="TopRight" />
+              </ui:ClickText.CursorPosition>
+              <ui:ClickText.Target>
+                <ui:Target Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="0cb0ab11be94240ae287e1dcbecd979f" Selector="&lt;wnd aaname='Arbeidsområde' cls='MDIClient' /&gt;&lt;wnd cls='TfrmTvang' title='Tvang' /&gt;&lt;wnd cls='TGroupBox' title='Trekk i lønn' /&gt;" WaitForReady="INTERACTIVE">
+                  <ui:Target.ClippingRegion>
+                    <ui:Region Rectangle="5, 182, 48, 30" />
+                  </ui:Target.ClippingRegion>
+                </ui:Target>
+              </ui:ClickText.Target>
+            </ui:ClickText>
+            <ui:ClickImage ContinueOnError="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click image 'TGroupBox'" sap2010:WorkflowViewState.IdRef="ClickImage_41" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False">
+              <ui:ClickImage.CursorPosition>
+                <ui:CursorPosition OffsetX="133" OffsetY="16" Position="TopRight" />
+              </ui:ClickImage.CursorPosition>
+              <ui:ClickImage.Image>
+                <ui:ImageTarget Image="{x:Null}" Accuracy="0.8" TargetImageBase64="iVBORw0KGgoAAAANSUhEUgAAADEAAAAYCAYAAABTPxXiAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACbSURBVFhH7ZNBCoAwDAT7dun7ehH8TqWHQFxWbWyFiBGGdJMcOkhTXnJt37aWzxISXggJL4SEF0LCC/+RSCkdYDtI794MuiWuMiMkjEyRaFlgO3oufdZ7yvCbOMtY5cz6LFsY/hPtjOiduypgtjBFQs+wf1cFzBamS0jWle3rHssWht8EznUPZzhn/Sd0SbzB6MU1IeGFkPBBqTu2zAbZbc1PGgAAAABJRU5ErkJggg==" />
+              </ui:ClickImage.Image>
+              <ui:ClickImage.Target>
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" WaitForReady="INTERACTIVE" />
+              </ui:ClickImage.Target>
+            </ui:ClickImage>
+            <ui:SetValue ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Set Text 'TFloatEdit'" sap2010:WorkflowViewState.IdRef="SetValue_23" Text="[terminBeløp]">
+              <ui:SetValue.Target>
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="77d5e6c6cf9da0bb6bb3f55e672e6439" Selector="&lt;wnd aaname='Arbeidsområde' cls='MDIClient' /&gt;&lt;wnd cls='TfrmTvang' title='Tvang' /&gt;&lt;wnd cls='TGroupBox' title='Trekk i lønn' /&gt;&lt;wnd cls='TFloatEdit' idx='3' /&gt;" WaitForReady="INTERACTIVE" />
+              </ui:SetValue.Target>
+            </ui:SetValue>
+            <ui:SendHotkey DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Send hotkey 'TfrmTvang'" EmptyField="False" sap2010:WorkflowViewState.IdRef="SendHotkey_47" Key="s" KeyModifiers="Ctrl" SendWindowMessages="False" SpecialKey="False">
+              <ui:SendHotkey.Target>
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="4828e53dc318113e914142a86ec1e04d" Selector="&lt;wnd aaname='Arbeidsområde' cls='MDIClient' /&gt;&lt;wnd cls='TfrmTvang' title='Tvang' /&gt;" WaitForReady="INTERACTIVE" />
+              </ui:SendHotkey.Target>
+            </ui:SendHotkey>
+          </Sequence>
+        </ActivityAction>
+      </ui:WindowScope.Body>
+    </ui:WindowScope>
+    <Sequence DisplayName="Recording Sequence" sap2010:WorkflowViewState.IdRef="Sequence_216">
+      <Sequence.Variables>
+        <Variable x:TypeArguments="ui:UiElement" Name="Tdatoedit" />
+      </Sequence.Variables>
+      <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" DisplayName="Attach Window 'PredatorN Tfrmpreda'" sap2010:WorkflowViewState.IdRef="WindowScope_121" InformativeScreenshot="fdcdd072529ea3e34545ac1753b3ecf4" Selector="&lt;wnd app='predator.exe' cls='TfrmPredator' title='PredatorNO - [Tvang]' /&gt;">
+        <ui:WindowScope.Body>
+          <ActivityAction x:TypeArguments="x:Object">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+            </ActivityAction.Argument>
+            <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_217">
+              <ui:FindRelative DisplayName="Find Relative Element 'TDatoEdit'" sap2010:WorkflowViewState.IdRef="FindRelative_1" RelativeElement="[Tdatoedit]">
+                <ui:FindRelative.CursorPosition>
+                  <ui:CursorPosition OffsetX="0" OffsetY="0" Position="TopLeft" />
+                </ui:FindRelative.CursorPosition>
+                <ui:FindRelative.Target>
+                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="dc3da0e18e137aa24bae1abad05223c5" Selector="&lt;wnd aaname='Arbeidsområde' cls='MDIClient' /&gt;&lt;wnd cls='TfrmTvang' title='Tvang' /&gt;&lt;wnd cls='TGroupBox' title='Trekk Abetal' /&gt;&lt;wnd cls='TDatoEdit' idx='5' /&gt;" WaitForReady="INTERACTIVE" />
+                </ui:FindRelative.Target>
+              </ui:FindRelative>
+            </Sequence>
+          </ActivityAction>
+        </ui:WindowScope.Body>
+      </ui:WindowScope>
+    </Sequence>
+    <sads:DebugSymbol.Symbol>dydXOlxycGFcVmFza2xpc3RlclxEZWw0XFR2YW5nYXZ0YWxlLnhhbWxVAV0BYAECYwPjAg4CAQFkBXMWAgFTdAXtAQ4CATLuAQXJAhYCAQzKAgXhAhACAQJklgJk6AICAVdqC3AWAgFUdFZ0ZAIBM3UHnAEYAgFJnQEHxAEYAgE/xQEH7AEYAgE17gGWAu4B6AICATH0AQvGAhYCAQ3OAgfgAhgCAQNrDW8dAgFVdaMCdfoCAgFSew2ZARgCAUqdAaYCnQH9AgIBSKMBDcEBGAIBQMUBowLFAfoCAgE+ywEN6QEYAgE29QEN/wEdAgEtgAINhAIbAgEqhQINiQIdAgEoigINjgIdAgEmjwINmQIdAgEimgINpAIdAgEepQINsAIcAgEYsQINuwIdAgEUvAINwAIbAgEQwQINxQIdAgEOzgKYAs4C6gICAQvUAg3dAhgCAQRtoAFtgQICAVZ8D5ABHwIBT5EBD5gBGgIBS6QBD7gBHwIBRbkBD8ABGgIBQcwBD+ABHwIBO+EBD+gBGgIBN/oBO/oBQAIBMPcBLPcBMAIBLvcBOfcBPAIBL4ACuAGAAukBAgErggKgAYIC2wICASyHAmeHAsACAgEpjAKgAYwCgQICASeUAjuUAkACASWRAiyRAi8CASORAjiRAjsCASSfAjufAkACASGcAiycAi8CAR+cAjicAjsCASClAr0CpQLEAgIBGqUCmQKlApwCAgEZqgKGAaoCmQICAR2nAiynAjECARunAjqnAj0CARy2Aju2AkACARezAiyzAjECARWzAjqzAj4CARa8ArkBvALIAQIBEb4CoAG+AtkCAgETwwKgAcMCgQICAQ/VAg/cAiECAQV8uwF8ywECAVCOAaIBjgHbAQIBUZYBogGWAfYBAgFOkwE7kwE+AgFNkwEukwEyAgFMpAG7AaQBzwECAUa2AaIBtgHbAQIBR74BogG+AfoBAgFEuwE7uwE+AgFDuwEuuwEyAgFCzAG7AcwBzAECATzeAaIB3gHbAQIBPeYBogHmAfcBAgE64wE74wE+AgE54wEu4wEyAgE42gKiAdoC2gICAQrXAjrXAj0CAQnXAi7XAjECAQjVApEB1QKeAQIBBg==</sads:DebugSymbol.Symbol>
+  </Sequence>
+  <sap2010:WorkflowViewState.ViewStateManager>
+    <sap2010:ViewStateManager>
+      <sap2010:ViewStateData Id="SendHotkey_49" sap:VirtualizedContainerService.HintSize="314,152" />
+      <sap2010:ViewStateData Id="Sequence_210" sap:VirtualizedContainerService.HintSize="336,276">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="WindowScope_114" sap:VirtualizedContainerService.HintSize="473,422" />
+      <sap2010:ViewStateData Id="SelectItem_5" sap:VirtualizedContainerService.HintSize="314,134" />
+      <sap2010:ViewStateData Id="Click_2" sap:VirtualizedContainerService.HintSize="314,106" />
+      <sap2010:ViewStateData Id="Sequence_213" sap:VirtualizedContainerService.HintSize="336,404">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="WindowScope_118" sap:VirtualizedContainerService.HintSize="414,550" />
+      <sap2010:ViewStateData Id="SelectItem_6" sap:VirtualizedContainerService.HintSize="314,134" />
+      <sap2010:ViewStateData Id="Click_3" sap:VirtualizedContainerService.HintSize="314,106" />
+      <sap2010:ViewStateData Id="Sequence_214" sap:VirtualizedContainerService.HintSize="336,404">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="WindowScope_119" sap:VirtualizedContainerService.HintSize="414,550" />
+      <sap2010:ViewStateData Id="SelectItem_7" sap:VirtualizedContainerService.HintSize="314,134" />
+      <sap2010:ViewStateData Id="Click_4" sap:VirtualizedContainerService.HintSize="314,106" />
+      <sap2010:ViewStateData Id="Sequence_215" sap:VirtualizedContainerService.HintSize="336,404">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="WindowScope_120" sap:VirtualizedContainerService.HintSize="414,550" />
+      <sap2010:ViewStateData Id="Switch`1_1" sap:VirtualizedContainerService.HintSize="473,174" />
+      <sap2010:ViewStateData Id="ClickImage_38" sap:VirtualizedContainerService.HintSize="314,106" />
+      <sap2010:ViewStateData Id="SetValue_22" sap:VirtualizedContainerService.HintSize="314,134" />
+      <sap2010:ViewStateData Id="SendHotkey_50" sap:VirtualizedContainerService.HintSize="314,114" />
+      <sap2010:ViewStateData Id="SendHotkey_46" sap:VirtualizedContainerService.HintSize="314,152" />
+      <sap2010:ViewStateData Id="ClickImage_39" sap:VirtualizedContainerService.HintSize="314,106" />
+      <sap2010:ViewStateData Id="ClickImage_40" sap:VirtualizedContainerService.HintSize="314,106" />
+      <sap2010:ViewStateData Id="ClickText_11" sap:VirtualizedContainerService.HintSize="314,134" />
+      <sap2010:ViewStateData Id="ClickImage_41" sap:VirtualizedContainerService.HintSize="314,106" />
+      <sap2010:ViewStateData Id="SetValue_23" sap:VirtualizedContainerService.HintSize="314,134" />
+      <sap2010:ViewStateData Id="SendHotkey_47" sap:VirtualizedContainerService.HintSize="314,152" />
+      <sap2010:ViewStateData Id="Sequence_192" sap:VirtualizedContainerService.HintSize="336,1728">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="WindowScope_116" sap:VirtualizedContainerService.HintSize="473,1874" />
+      <sap2010:ViewStateData Id="FindRelative_1" sap:VirtualizedContainerService.HintSize="314,106" />
+      <sap2010:ViewStateData Id="Sequence_217" sap:VirtualizedContainerService.HintSize="336,230">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="WindowScope_121" sap:VirtualizedContainerService.HintSize="414,376" />
+      <sap2010:ViewStateData Id="Sequence_216" sap:VirtualizedContainerService.HintSize="473,500">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_191" sap:VirtualizedContainerService.HintSize="495,3214">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Tvangavtale_1" sap:VirtualizedContainerService.HintSize="535,3294" />
+    </sap2010:ViewStateManager>
+  </sap2010:WorkflowViewState.ViewStateManager>
+</Activity>

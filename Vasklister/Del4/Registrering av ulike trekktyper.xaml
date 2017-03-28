@@ -67,488 +67,274 @@
       <Variable x:TypeArguments="x:String" Default="260904" Name="saksNo" />
       <Variable x:TypeArguments="ui:GenericValue" Name="SakNoFraSkjerm" />
       <Variable x:TypeArguments="x:String" Default="971802502" Name="orgNo" />
+      <Variable x:TypeArguments="x:String" Default="AG" Name="Trekkkilde" />
     </Flowchart.Variables>
     <Flowchart.StartNode>
-      <FlowStep x:Name="__ReferenceID9" sap2010:WorkflowViewState.IdRef="FlowStep_57">
-        <Sequence sap2010:WorkflowViewState.IdRef="Sequence_222">
-          <Sequence.Variables>
-            <Variable x:TypeArguments="x:String" Name="variable1" />
-          </Sequence.Variables>
-          <ui:CommentOut DisplayName="Comment out" sap2010:WorkflowViewState.IdRef="CommentOut_1">
-            <ui:CommentOut.Body>
-              <Sequence DisplayName="Ignored Activities" sap2010:WorkflowViewState.IdRef="Sequence_223">
-                <ui:SelectItem ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Select item 'list item'" sap2010:WorkflowViewState.IdRef="SelectItem_9" Item="1">
-                  <ui:SelectItem.Items>
-                    <scg:List x:TypeArguments="x:String" Capacity="0" />
-                  </ui:SelectItem.Items>
-                  <ui:SelectItem.Target>
-                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="d8af249f6c7fce2eac9955ae32632954" Selector="&lt;wnd app='predator.exe' cls='TfrmPredator' title='PredatorNO - [Saksbehandling]' /&gt;&lt;wnd aaname='Arbeidsområde' cls='MDIClient' /&gt;&lt;wnd cls='TfrmSaksbeh' title='Saksbehandling' /&gt;&lt;wnd cls='TListView' idx='2' /&gt;&lt;ctrl role='list item' idx='1' /&gt;" WaitForReady="INTERACTIVE" />
-                  </ui:SelectItem.Target>
-                </ui:SelectItem>
-              </Sequence>
-            </ui:CommentOut.Body>
-          </ui:CommentOut>
-          <ui:GetVisibleText WordsInfo="{x:Null}" DisplayName="Get visible text 'list item'" FormattedText="False" sap2010:WorkflowViewState.IdRef="GetVisibleText_4">
-            <ui:GetVisibleText.Target>
-              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="f1affa1c4c98606f016acd1b9cd639bf" Selector="&lt;wnd app='predator.exe' cls='TfrmPredator' title='PredatorNO - [Saksbehandling]' /&gt;&lt;wnd aaname='Arbeidsområde' cls='MDIClient' /&gt;&lt;wnd cls='TfrmSaksbeh' title='Saksbehandling' /&gt;&lt;wnd cls='TListView' idx='2' /&gt;&lt;ctrl idx='1' role='list item' /&gt;" WaitForReady="INTERACTIVE" />
-            </ui:GetVisibleText.Target>
-            <ui:GetVisibleText.Text>
-              <OutArgument x:TypeArguments="x:String">[variable1]</OutArgument>
-            </ui:GetVisibleText.Text>
-          </ui:GetVisibleText>
-          <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_6" Text="[&quot;variable1&quot;+variable1]" />
-          <ui:GetVisibleText WordsInfo="{x:Null}" DisplayName="Get visible text 'list item'" FormattedText="False" sap2010:WorkflowViewState.IdRef="GetVisibleText_5">
-            <ui:GetVisibleText.Target>
-              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="f1affa1c4c98606f016acd1b9cd639bf" Selector="&lt;wnd app='predator.exe' cls='TfrmPredator' title='PredatorNO - [Saksbehandling]' /&gt;&lt;wnd aaname='Arbeidsområde' cls='MDIClient' /&gt;&lt;wnd cls='TfrmSaksbeh' title='Saksbehandling' /&gt;&lt;wnd cls='TListView' idx='2' /&gt;&lt;ctrl idx='2' role='list item' /&gt;" WaitForReady="INTERACTIVE" />
-            </ui:GetVisibleText.Target>
-            <ui:GetVisibleText.Text>
-              <OutArgument x:TypeArguments="x:String">[variable1]</OutArgument>
-            </ui:GetVisibleText.Text>
-          </ui:GetVisibleText>
-          <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_7" Text="[&quot;variable1&quot;+variable1]" />
-          <Assign sap2010:WorkflowViewState.IdRef="Assign_1" />
-          <ui:ForEach x:TypeArguments="x:Object" DisplayName="For each&lt;object&gt;" sap2010:WorkflowViewState.IdRef="ForEach`1_1">
-            <ui:ForEach.Body>
+      <FlowStep x:Name="__ReferenceID0" sap2010:WorkflowViewState.IdRef="FlowStep_20">
+        <Sequence DisplayName="Saksbehandlingvindu" sap2010:WorkflowViewState.IdRef="Sequence_50">
+          <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" DisplayName="Attach Window 'PredatorNO Tfrmpreda'" sap2010:WorkflowViewState.IdRef="WindowScope_44" InformativeScreenshot="6066cf1f619f0e35f9fada13e7c99f2b" Selector="&lt;wnd app='predator.exe' cls='TfrmPredator' title='PredatorNO' /&gt;">
+            <ui:WindowScope.Body>
               <ActivityAction x:TypeArguments="x:Object">
                 <ActivityAction.Argument>
-                  <DelegateInArgument x:TypeArguments="x:Object" Name="item" />
+                  <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
                 </ActivityAction.Argument>
-                <Sequence DisplayName="Body" sap2010:WorkflowViewState.IdRef="Sequence_224" />
+                <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_54">
+                  <ui:SendHotkey DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Send hotkey" EmptyField="False" sap2010:WorkflowViewState.IdRef="SendHotkey_48" Key="f6" KeyModifiers="None" SendWindowMessages="False" SpecialKey="True">
+                    <ui:SendHotkey.Target>
+                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" WaitForReady="INTERACTIVE" />
+                    </ui:SendHotkey.Target>
+                  </ui:SendHotkey>
+                </Sequence>
               </ActivityAction>
-            </ui:ForEach.Body>
-          </ui:ForEach>
+            </ui:WindowScope.Body>
+          </ui:WindowScope>
         </Sequence>
-      </FlowStep>
-    </Flowchart.StartNode>
-    <FlowStep sap2010:WorkflowViewState.IdRef="FlowStep_20">
-      <Sequence DisplayName="Saksbehandlingvindu" sap2010:WorkflowViewState.IdRef="Sequence_50">
-        <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" DisplayName="Attach Window 'PredatorNO Tfrmpreda'" sap2010:WorkflowViewState.IdRef="WindowScope_44" InformativeScreenshot="6066cf1f619f0e35f9fada13e7c99f2b" Selector="&lt;wnd app='predator.exe' cls='TfrmPredator' title='PredatorNO' /&gt;">
-          <ui:WindowScope.Body>
-            <ActivityAction x:TypeArguments="x:Object">
-              <ActivityAction.Argument>
-                <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
-              </ActivityAction.Argument>
-              <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_54">
-                <ui:SendHotkey DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Send hotkey" EmptyField="False" sap2010:WorkflowViewState.IdRef="SendHotkey_48" Key="f6" KeyModifiers="None" SendWindowMessages="False" SpecialKey="True">
-                  <ui:SendHotkey.Target>
-                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" WaitForReady="INTERACTIVE" />
-                  </ui:SendHotkey.Target>
-                </ui:SendHotkey>
-              </Sequence>
-            </ActivityAction>
-          </ui:WindowScope.Body>
-        </ui:WindowScope>
-      </Sequence>
-      <FlowStep.Next>
-        <FlowStep x:Name="__ReferenceID1" sap2010:WorkflowViewState.IdRef="FlowStep_25">
-          <Sequence DisplayName="saksøk" sap2010:WorkflowViewState.IdRef="Sequence_59">
-            <Sequence DisplayName="Søk vindu" sap2010:WorkflowViewState.IdRef="Sequence_196">
-              <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" DisplayName="Attach Window 'PredatorN Tfrmpreda'" sap2010:WorkflowViewState.IdRef="WindowScope_118" InformativeScreenshot="eec68c2b8b393f97a17b5311917fbe53" Selector="&lt;wnd app='predator.exe' cls='TfrmPredator' title='PredatorNO - [Saksbehandling]' /&gt;">
-                <ui:WindowScope.Body>
-                  <ActivityAction x:TypeArguments="x:Object">
-                    <ActivityAction.Argument>
-                      <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
-                    </ActivityAction.Argument>
-                    <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_195">
-                      <ui:ClickImage ContinueOnError="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click image 'TAdvToolBar'" sap2010:WorkflowViewState.IdRef="ClickImage_42" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False">
-                        <ui:ClickImage.CursorPosition>
-                          <ui:CursorPosition OffsetX="0" OffsetY="0" Position="Center" />
-                        </ui:ClickImage.CursorPosition>
-                        <ui:ClickImage.Image>
-                          <ui:ImageTarget Image="{x:Null}" Accuracy="0.8" TargetImageBase64="iVBORw0KGgoAAAANSUhEUgAAABoAAAAXCAYAAAAV1F8QAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAJYSURBVEhL7ZQxa9xAEIX9l1KqFbiIIIUFKSJwERYXZnERlhSHSBPEFYe4IggXh3BxoCsOfIUhLgJOY7CLgF0YLoXBKa/0T5i8N9LqpOPcmJDGLgaJ1bz55s2udufhz6P8j3iBoOX9StJxIeF7I292Iwl2Y7wnko1LWf5ebdVsiydBxaSScM9IsJcoJHgLAN6Dd3Xw3X8vTk631uhGD5QfVxIfOIn2rUb4wbRPFtb1j1ZBur6PdX5r8qIDKzkafLjvQxgKurpeooBTSHzkxAxSPDNJPmU12IMAYagbuIwPkYcc5iUDh2cKWF3n4nLZB3HOFBPgprHkP+vIziMxQ1vDDl09Mh0XRxfrGpsxIyvZWSTFJXWRpNNEvxF409nDHfOZXaeSzmMpb41Ud7YNwpIvgCFHRwUX3hkbMEOnTa01TorrROxJpCA7yNcgLpivFgkdwS1mra5CFXE8BNGJHgTsDUFuHnUgVspfRptLF4E2yIbWIOyN+2aQlLSCApD0LJTsRyRuBhGKcsOr2XcpEYRybe3G6TQIYXMcpRlhhDDRdzRqQI0ThagIoGmoY2BxLyKU+8CC6qSB+OboyAxxEjcd8SAwgfP1yQrCuxnXnZ2eX7UivhPuJkY13kne6NwsrA9L15GKuLmYqcWYCNJYYH+OsT88QZ3OfOixR9gJCs8DbYoahQzgZqM5/Y94nXhntMxREszTyPVtV83N3aqFGeRyT6hjDT3Fo7KX394M1eICIv7ddNAUwLHmXcfoinywAebQsULxpI61NnOfvOv+dbyCnh2voGfGo/wF7HZOe0WWHLgAAAAASUVORK5CYII=" />
-                        </ui:ClickImage.Image>
-                        <ui:ClickImage.Target>
-                          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" WaitForReady="INTERACTIVE" />
-                        </ui:ClickImage.Target>
-                      </ui:ClickImage>
-                    </Sequence>
-                  </ActivityAction>
-                </ui:WindowScope.Body>
-              </ui:WindowScope>
-            </Sequence>
-            <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" DisplayName="Attach Window 'S k Tfrmsok'" sap2010:WorkflowViewState.IdRef="WindowScope_46" InformativeScreenshot="697d717a59ab63c787cb29a02fce2627" Selector="&lt;wnd app='predator.exe' cls='TfrmSok' title='Søk' /&gt;">
-              <ui:WindowScope.Body>
-                <ActivityAction x:TypeArguments="x:Object">
-                  <ActivityAction.Argument>
-                    <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
-                  </ActivityAction.Argument>
-                  <Sequence sap2010:WorkflowViewState.IdRef="Sequence_126">
-                    <Sequence.Variables>
-                      <Variable x:TypeArguments="x:Boolean" Name="booleanSearchExists" />
-                    </Sequence.Variables>
-                    <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_127">
-                      <ui:TypeInto DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Type into 'TEdit'" EmptyField="False" sap2010:WorkflowViewState.IdRef="TypeInto_16" SendWindowMessages="False" SimulateType="False" Text="[saksNo]">
-                        <ui:TypeInto.Target>
-                          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="84eba2fc1136a448691d1e7c6eb6c007" Selector="&lt;wnd cls='TEdit' /&gt;" WaitForReady="INTERACTIVE" />
-                        </ui:TypeInto.Target>
-                      </ui:TypeInto>
-                      <ui:TypeInto DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Type into 'TEdit'" EmptyField="False" sap2010:WorkflowViewState.IdRef="TypeInto_17" SendWindowMessages="False" SimulateType="False" Text="%[k(tab)]">
-                        <ui:TypeInto.Target>
-                          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="3e13d5d3579a37c4deefe6fc87afcc51" Selector="&lt;wnd cls='TEdit' /&gt;" WaitForReady="INTERACTIVE" />
-                        </ui:TypeInto.Target>
-                      </ui:TypeInto>
-                      <ui:TypeInto DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" ContinueOnError="True" DisplayName="Type into 'TButton'" EmptyField="False" sap2010:WorkflowViewState.IdRef="TypeInto_18" SendWindowMessages="False" SimulateType="False" Text="%[k(enter)]">
-                        <ui:TypeInto.Target>
-                          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="8b4137d510de5c5bd3170e341ff56226" Selector="&lt;wnd cls='TButton' title='Søk' /&gt;" WaitForReady="INTERACTIVE" />
-                        </ui:TypeInto.Target>
-                      </ui:TypeInto>
-                    </Sequence>
-                  </Sequence>
-                </ActivityAction>
-              </ui:WindowScope.Body>
-            </ui:WindowScope>
-          </Sequence>
-          <FlowStep.Next>
-            <FlowStep x:Name="__ReferenceID5" sap2010:WorkflowViewState.IdRef="FlowStep_44">
-              <Sequence DisplayName="Hotkey for Arbeidsgiver" sap2010:WorkflowViewState.IdRef="Sequence_154">
-                <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" DisplayName="Attach Window 'PredatorN Tfrmpreda'" sap2010:WorkflowViewState.IdRef="WindowScope_91" InformativeScreenshot="772d3be1ffad11ea34f7c75da1956c9d" Selector="&lt;wnd app='predator.exe' cls='TfrmPredator' title='PredatorNO - [Saksbehandling]' /&gt;">
+        <FlowStep.Next>
+          <FlowStep x:Name="__ReferenceID2" sap2010:WorkflowViewState.IdRef="FlowStep_25">
+            <Sequence DisplayName="saksøk" sap2010:WorkflowViewState.IdRef="Sequence_59">
+              <Sequence DisplayName="Søk vindu" sap2010:WorkflowViewState.IdRef="Sequence_196">
+                <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" DisplayName="Attach Window 'PredatorN Tfrmpreda'" sap2010:WorkflowViewState.IdRef="WindowScope_118" InformativeScreenshot="eec68c2b8b393f97a17b5311917fbe53" Selector="&lt;wnd app='predator.exe' cls='TfrmPredator' title='PredatorNO - [Saksbehandling]' /&gt;">
                   <ui:WindowScope.Body>
                     <ActivityAction x:TypeArguments="x:Object">
                       <ActivityAction.Argument>
                         <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
                       </ActivityAction.Argument>
-                      <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_155">
-                        <ui:TypeInto DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Type into 'TAdvToolBar'" EmptyField="False" sap2010:WorkflowViewState.IdRef="TypeInto_24" SendWindowMessages="False" SimulateType="False" Text="%[k(f4)]">
-                          <ui:TypeInto.Target>
-                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="341ba210cdb94d789153f49a73c34757" Selector="&lt;wnd cls='TAdvToolBar' /&gt;" WaitForReady="INTERACTIVE" />
-                          </ui:TypeInto.Target>
-                        </ui:TypeInto>
+                      <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_195">
+                        <ui:ClickImage ContinueOnError="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click image 'TAdvToolBar'" sap2010:WorkflowViewState.IdRef="ClickImage_42" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False">
+                          <ui:ClickImage.CursorPosition>
+                            <ui:CursorPosition OffsetX="0" OffsetY="0" Position="Center" />
+                          </ui:ClickImage.CursorPosition>
+                          <ui:ClickImage.Image>
+                            <ui:ImageTarget Image="{x:Null}" Accuracy="0.8" TargetImageBase64="iVBORw0KGgoAAAANSUhEUgAAABoAAAAXCAYAAAAV1F8QAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAJYSURBVEhL7ZQxa9xAEIX9l1KqFbiIIIUFKSJwERYXZnERlhSHSBPEFYe4IggXh3BxoCsOfIUhLgJOY7CLgF0YLoXBKa/0T5i8N9LqpOPcmJDGLgaJ1bz55s2udufhz6P8j3iBoOX9StJxIeF7I292Iwl2Y7wnko1LWf5ebdVsiydBxaSScM9IsJcoJHgLAN6Dd3Xw3X8vTk631uhGD5QfVxIfOIn2rUb4wbRPFtb1j1ZBur6PdX5r8qIDKzkafLjvQxgKurpeooBTSHzkxAxSPDNJPmU12IMAYagbuIwPkYcc5iUDh2cKWF3n4nLZB3HOFBPgprHkP+vIziMxQ1vDDl09Mh0XRxfrGpsxIyvZWSTFJXWRpNNEvxF409nDHfOZXaeSzmMpb41Ud7YNwpIvgCFHRwUX3hkbMEOnTa01TorrROxJpCA7yNcgLpivFgkdwS1mra5CFXE8BNGJHgTsDUFuHnUgVspfRptLF4E2yIbWIOyN+2aQlLSCApD0LJTsRyRuBhGKcsOr2XcpEYRybe3G6TQIYXMcpRlhhDDRdzRqQI0ThagIoGmoY2BxLyKU+8CC6qSB+OboyAxxEjcd8SAwgfP1yQrCuxnXnZ2eX7UivhPuJkY13kne6NwsrA9L15GKuLmYqcWYCNJYYH+OsT88QZ3OfOixR9gJCs8DbYoahQzgZqM5/Y94nXhntMxREszTyPVtV83N3aqFGeRyT6hjDT3Fo7KX394M1eICIv7ddNAUwLHmXcfoinywAebQsULxpI61NnOfvOv+dbyCnh2voGfGo/wF7HZOe0WWHLgAAAAASUVORK5CYII=" />
+                          </ui:ClickImage.Image>
+                          <ui:ClickImage.Target>
+                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" WaitForReady="INTERACTIVE" />
+                          </ui:ClickImage.Target>
+                        </ui:ClickImage>
                       </Sequence>
                     </ActivityAction>
                   </ui:WindowScope.Body>
                 </ui:WindowScope>
               </Sequence>
-              <FlowStep.Next>
-                <FlowStep x:Name="__ReferenceID0" sap2010:WorkflowViewState.IdRef="FlowStep_23">
-                  <Sequence DisplayName="Debitor-arbeidsgiver" sap2010:WorkflowViewState.IdRef="Sequence_58">
-                    <ui:SendHotkey DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Send hotkey" EmptyField="False" sap2010:WorkflowViewState.IdRef="SendHotkey_11" Key="f4" KeyModifiers="None" SendWindowMessages="False" SpecialKey="True">
-                      <ui:SendHotkey.Target>
-                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" WaitForReady="INTERACTIVE" />
-                      </ui:SendHotkey.Target>
-                    </ui:SendHotkey>
-                    <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" DisplayName="Attach Window 'PredatorN Tfrmpreda'" sap2010:WorkflowViewState.IdRef="WindowScope_90" InformativeScreenshot="a3781aa008e963cdb00f7e5394f71400" Selector="&lt;wnd app='predator.exe' cls='TfrmPredator' title='PredatorNO - [Debitor]' /&gt;">
-                      <ui:WindowScope.Body>
-                        <ActivityAction x:TypeArguments="x:Object">
-                          <ActivityAction.Argument>
-                            <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
-                          </ActivityAction.Argument>
-                          <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_153">
-                            <ui:ClickOCRText ContinueOnError="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click OCR text 'page tab  Arbeidsgiver'" sap2010:WorkflowViewState.IdRef="ClickOCRText_17" KeyModifiers="None" MouseButton="BTN_LEFT" Occurrence="1" SendWindowMessages="False" Text="Arbeidsgiver I">
-                              <ui:ClickOCRText.CursorPosition>
-                                <ui:CursorPosition OffsetX="0" OffsetY="0" Position="TopLeft" />
-                              </ui:ClickOCRText.CursorPosition>
-                              <ui:ClickOCRText.OCREngine>
-                                <ActivityFunc x:TypeArguments="sd:Image, scg:IEnumerable(scg:KeyValuePair(sd:Rectangle, x:String))">
-                                  <ActivityFunc.Argument>
-                                    <DelegateInArgument x:TypeArguments="sd:Image" Name="Image" />
-                                  </ActivityFunc.Argument>
-                                  <ui:GoogleOCR FilterRegion="{x:Null}" Text="{x:Null}" AllowedCharacters="" DeniedCharacters="" DisplayName="Google OCR" ExtractWords="True" sap2010:WorkflowViewState.IdRef="GoogleOCR_19" Image="[Image]" Invert="False" Language="eng" Scale="2" />
-                                </ActivityFunc>
-                              </ui:ClickOCRText.OCREngine>
-                              <ui:ClickOCRText.Target>
-                                <ui:Target Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="ff0be7e3a7ea74c7c10774416d1dec35" Selector="&lt;wnd aaname='Arbeidsområde' cls='MDIClient' /&gt;&lt;wnd cls='TfrmDebitor' title='Debitor' /&gt;&lt;wnd cls='TPageControl' /&gt;&lt;ctrl name='Arbeidsgiver' role='page tab' /&gt;" WaitForReady="INTERACTIVE">
-                                  <ui:Target.ClippingRegion>
-                                    <ui:Region Rectangle="2, 1, 67, 17" />
-                                  </ui:Target.ClippingRegion>
-                                </ui:Target>
-                              </ui:ClickOCRText.Target>
-                            </ui:ClickOCRText>
-                            <Sequence DisplayName="Scrape Arbeidsgiver nummer" sap2010:WorkflowViewState.IdRef="Sequence_209">
-                              <Sequence.Variables>
-                                <Variable x:TypeArguments="ui:GenericValue" Name="Tbuttonededit" />
-                              </Sequence.Variables>
-                              <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" DisplayName="Attach Window 'PredatorN Tfrmpreda'" sap2010:WorkflowViewState.IdRef="WindowScope_122" InformativeScreenshot="97b943b40b7afbffa8dcadd997d73a9e" Selector="&lt;wnd app='predator.exe' cls='TfrmPredator' title='PredatorNO - [Debitor]' /&gt;">
+              <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" DisplayName="Attach Window 'S k Tfrmsok'" sap2010:WorkflowViewState.IdRef="WindowScope_46" InformativeScreenshot="697d717a59ab63c787cb29a02fce2627" Selector="&lt;wnd app='predator.exe' cls='TfrmSok' title='Søk' /&gt;">
+                <ui:WindowScope.Body>
+                  <ActivityAction x:TypeArguments="x:Object">
+                    <ActivityAction.Argument>
+                      <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+                    </ActivityAction.Argument>
+                    <Sequence sap2010:WorkflowViewState.IdRef="Sequence_126">
+                      <Sequence.Variables>
+                        <Variable x:TypeArguments="x:Boolean" Name="booleanSearchExists" />
+                      </Sequence.Variables>
+                      <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_127">
+                        <ui:TypeInto DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Type into 'TEdit'" EmptyField="False" sap2010:WorkflowViewState.IdRef="TypeInto_16" SendWindowMessages="False" SimulateType="False" Text="[saksNo]">
+                          <ui:TypeInto.Target>
+                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="84eba2fc1136a448691d1e7c6eb6c007" Selector="&lt;wnd cls='TEdit' /&gt;" WaitForReady="INTERACTIVE" />
+                          </ui:TypeInto.Target>
+                        </ui:TypeInto>
+                        <ui:TypeInto DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Type into 'TEdit'" EmptyField="False" sap2010:WorkflowViewState.IdRef="TypeInto_17" SendWindowMessages="False" SimulateType="False" Text="%[k(tab)]">
+                          <ui:TypeInto.Target>
+                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="3e13d5d3579a37c4deefe6fc87afcc51" Selector="&lt;wnd cls='TEdit' /&gt;" WaitForReady="INTERACTIVE" />
+                          </ui:TypeInto.Target>
+                        </ui:TypeInto>
+                        <ui:TypeInto DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" ContinueOnError="True" DisplayName="Type into 'TButton'" EmptyField="False" sap2010:WorkflowViewState.IdRef="TypeInto_18" SendWindowMessages="False" SimulateType="False" Text="%[k(enter)]">
+                          <ui:TypeInto.Target>
+                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="8b4137d510de5c5bd3170e341ff56226" Selector="&lt;wnd cls='TButton' title='Søk' /&gt;" WaitForReady="INTERACTIVE" />
+                          </ui:TypeInto.Target>
+                        </ui:TypeInto>
+                      </Sequence>
+                    </Sequence>
+                  </ActivityAction>
+                </ui:WindowScope.Body>
+              </ui:WindowScope>
+            </Sequence>
+            <FlowStep.Next>
+              <FlowStep x:Name="__ReferenceID6" sap2010:WorkflowViewState.IdRef="FlowStep_44">
+                <Sequence DisplayName="Hotkey for Arbeidsgiver" sap2010:WorkflowViewState.IdRef="Sequence_154">
+                  <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" DisplayName="Attach Window 'PredatorN Tfrmpreda'" sap2010:WorkflowViewState.IdRef="WindowScope_91" InformativeScreenshot="772d3be1ffad11ea34f7c75da1956c9d" Selector="&lt;wnd app='predator.exe' cls='TfrmPredator' title='PredatorNO - [Saksbehandling]' /&gt;">
+                    <ui:WindowScope.Body>
+                      <ActivityAction x:TypeArguments="x:Object">
+                        <ActivityAction.Argument>
+                          <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+                        </ActivityAction.Argument>
+                        <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_155">
+                          <ui:TypeInto DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Type into 'TAdvToolBar'" EmptyField="False" sap2010:WorkflowViewState.IdRef="TypeInto_24" SendWindowMessages="False" SimulateType="False" Text="%[k(f4)]">
+                            <ui:TypeInto.Target>
+                              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="341ba210cdb94d789153f49a73c34757" Selector="&lt;wnd cls='TAdvToolBar' /&gt;" WaitForReady="INTERACTIVE" />
+                            </ui:TypeInto.Target>
+                          </ui:TypeInto>
+                        </Sequence>
+                      </ActivityAction>
+                    </ui:WindowScope.Body>
+                  </ui:WindowScope>
+                </Sequence>
+                <FlowStep.Next>
+                  <FlowStep x:Name="__ReferenceID1" sap2010:WorkflowViewState.IdRef="FlowStep_23">
+                    <Sequence DisplayName="Debitor-arbeidsgiver" sap2010:WorkflowViewState.IdRef="Sequence_58">
+                      <ui:SendHotkey DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Send hotkey" EmptyField="False" sap2010:WorkflowViewState.IdRef="SendHotkey_11" Key="f4" KeyModifiers="None" SendWindowMessages="False" SpecialKey="True">
+                        <ui:SendHotkey.Target>
+                          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" WaitForReady="INTERACTIVE" />
+                        </ui:SendHotkey.Target>
+                      </ui:SendHotkey>
+                      <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" DisplayName="Attach Window 'PredatorN Tfrmpreda'" sap2010:WorkflowViewState.IdRef="WindowScope_90" InformativeScreenshot="a3781aa008e963cdb00f7e5394f71400" Selector="&lt;wnd app='predator.exe' cls='TfrmPredator' title='PredatorNO - [Debitor]' /&gt;">
+                        <ui:WindowScope.Body>
+                          <ActivityAction x:TypeArguments="x:Object">
+                            <ActivityAction.Argument>
+                              <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+                            </ActivityAction.Argument>
+                            <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_153">
+                              <ui:ClickOCRText ContinueOnError="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click OCR text 'page tab  Arbeidsgiver'" sap2010:WorkflowViewState.IdRef="ClickOCRText_17" KeyModifiers="None" MouseButton="BTN_LEFT" Occurrence="1" SendWindowMessages="False" Text="Arbeidsgiver I">
+                                <ui:ClickOCRText.CursorPosition>
+                                  <ui:CursorPosition OffsetX="0" OffsetY="0" Position="TopLeft" />
+                                </ui:ClickOCRText.CursorPosition>
+                                <ui:ClickOCRText.OCREngine>
+                                  <ActivityFunc x:TypeArguments="sd:Image, scg:IEnumerable(scg:KeyValuePair(sd:Rectangle, x:String))">
+                                    <ActivityFunc.Argument>
+                                      <DelegateInArgument x:TypeArguments="sd:Image" Name="Image" />
+                                    </ActivityFunc.Argument>
+                                    <ui:GoogleOCR FilterRegion="{x:Null}" Text="{x:Null}" AllowedCharacters="" DeniedCharacters="" DisplayName="Google OCR" ExtractWords="True" sap2010:WorkflowViewState.IdRef="GoogleOCR_19" Image="[Image]" Invert="False" Language="eng" Scale="2" />
+                                  </ActivityFunc>
+                                </ui:ClickOCRText.OCREngine>
+                                <ui:ClickOCRText.Target>
+                                  <ui:Target Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="ff0be7e3a7ea74c7c10774416d1dec35" Selector="&lt;wnd aaname='Arbeidsområde' cls='MDIClient' /&gt;&lt;wnd cls='TfrmDebitor' title='Debitor' /&gt;&lt;wnd cls='TPageControl' /&gt;&lt;ctrl name='Arbeidsgiver' role='page tab' /&gt;" WaitForReady="INTERACTIVE">
+                                    <ui:Target.ClippingRegion>
+                                      <ui:Region Rectangle="2, 1, 67, 17" />
+                                    </ui:Target.ClippingRegion>
+                                  </ui:Target>
+                                </ui:ClickOCRText.Target>
+                              </ui:ClickOCRText>
+                              <Sequence DisplayName="Scrape Arbeidsgiver nummer" sap2010:WorkflowViewState.IdRef="Sequence_209">
+                                <Sequence.Variables>
+                                  <Variable x:TypeArguments="ui:GenericValue" Name="Tbuttonededit" />
+                                </Sequence.Variables>
+                                <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" DisplayName="Attach Window 'PredatorN Tfrmpreda'" sap2010:WorkflowViewState.IdRef="WindowScope_122" InformativeScreenshot="97b943b40b7afbffa8dcadd997d73a9e" Selector="&lt;wnd app='predator.exe' cls='TfrmPredator' title='PredatorNO - [Debitor]' /&gt;">
+                                  <ui:WindowScope.Body>
+                                    <ActivityAction x:TypeArguments="x:Object">
+                                      <ActivityAction.Argument>
+                                        <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+                                      </ActivityAction.Argument>
+                                      <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_208">
+                                        <Sequence DisplayName="Find relative image" sap2010:WorkflowViewState.IdRef="Sequence_207">
+                                          <ui:WaitImageAppear FoundElement="{x:Null}" DisplayName="Find Image 'TTabSheet'" sap2010:WorkflowViewState.IdRef="WaitImageAppear_5">
+                                            <ui:WaitImageAppear.Image>
+                                              <ui:ImageTarget Image="{x:Null}" Accuracy="0.8" TargetImageBase64="iVBORw0KGgoAAAANSUhEUgAAAGcAAAAVCAYAAABbq/AzAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFCSURBVGhD7ZM7DsMwDENz/8N1KdDrpPAggGUpyU4MRIOGh0gknQ/YHp/362xq0uUUpsspTJdTmC6nMF1OYbqcwnQ5hfkr5zyOH9j38LIr99jN6rN3fsOO75blRLtHltvxsqvseuYT7z5Iy/E0Jss88YG7nvnEuw8ulTN2Q2mso6/yrHk7Y753Bn3TOIc6z14Gdy/LV8zibLA25uVy2Lc909HPstHskd0D90yfOTebzfxIv1QOwxnclZ9lWfcYPmIa+jbjbnmEfTvDe+Thrs6wxnDm9j/H023nK8+4s+5pSlf3mMkgnh/tnqcy0Tmlp+XM7pmOfpaNZk/L7oF7ps+cW8mu7KjLchD2OaM01r05ymIGNcR8zGFe+cpDTflKt93LqgzupuEZ02z+K6e5hyrhKl3OTfDXv7OYQZdTmC6nLK/zCwDCwzBR72csAAAAAElFTkSuQmCC" />
+                                            </ui:WaitImageAppear.Image>
+                                            <ui:WaitImageAppear.Target>
+                                              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" WaitForReady="INTERACTIVE" />
+                                            </ui:WaitImageAppear.Target>
+                                          </ui:WaitImageAppear>
+                                          <ui:SetClippingRegion Element="{x:Null}" Region="{x:Null}" Direction="TRANSLATE" DisplayName="Translate clipping region" sap2010:WorkflowViewState.IdRef="SetClippingRegion_9">
+                                            <ui:SetClippingRegion.Size>
+                                              <ui:Region Rectangle="90, -7, -217, 2" />
+                                            </ui:SetClippingRegion.Size>
+                                          </ui:SetClippingRegion>
+                                        </Sequence>
+                                        <ui:GetVisibleText WordsInfo="{x:Null}" ContinueOnError="True" DisplayName="Get visible text 'TButtonedEdit'" FormattedText="False" sap2010:WorkflowViewState.IdRef="GetVisibleText_3">
+                                          <ui:GetVisibleText.Target>
+                                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="836a6ffe1cf8d6d56cc2cbb6acfa34c5" WaitForReady="INTERACTIVE" />
+                                          </ui:GetVisibleText.Target>
+                                          <ui:GetVisibleText.Text>
+                                            <OutArgument x:TypeArguments="ui:GenericValue">[DebitorsArbeidsgiverOrgNo]</OutArgument>
+                                          </ui:GetVisibleText.Text>
+                                        </ui:GetVisibleText>
+                                        <ui:SetClippingRegion Element="{x:Null}" Region="{x:Null}" Direction="RECTANGLE" DisplayName="Reset clipping region" sap2010:WorkflowViewState.IdRef="SetClippingRegion_10">
+                                          <ui:SetClippingRegion.Size>
+                                            <ui:Region Rectangle="0, 0, 0, 0" />
+                                          </ui:SetClippingRegion.Size>
+                                        </ui:SetClippingRegion>
+                                      </Sequence>
+                                    </ActivityAction>
+                                  </ui:WindowScope.Body>
+                                </ui:WindowScope>
+                                <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_5" Text="[&quot;DebitorsArbeidsgiverOrgNo&quot;+DebitorsArbeidsgiverOrgNo]" />
+                              </Sequence>
+                            </Sequence>
+                          </ActivityAction>
+                        </ui:WindowScope.Body>
+                      </ui:WindowScope>
+                    </Sequence>
+                    <FlowStep.Next>
+                      <FlowStep x:Name="__ReferenceID8" sap2010:WorkflowViewState.IdRef="FlowStep_52">
+                        <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke workflow for debtor" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Del4\Del4ArbeidsGiver.xaml">
+                          <ui:InvokeWorkflowFile.Arguments>
+                            <InArgument x:TypeArguments="x:String" x:Key="orgNoFraMain">[orgNo]</InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="PersonIdent" />
+                            <InArgument x:TypeArguments="x:String" x:Key="sakNoFraMain">[saksNo]</InArgument>
+                          </ui:InvokeWorkflowFile.Arguments>
+                        </ui:InvokeWorkflowFile>
+                        <FlowStep.Next>
+                          <FlowStep x:Name="__ReferenceID3" sap2010:WorkflowViewState.IdRef="FlowStep_32">
+                            <Sequence DisplayName="ForrigeAdragsOrdning" sap2010:WorkflowViewState.IdRef="Sequence_72">
+                              <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" DisplayName="Attach Window 'PredatorN Tfrmpreda'" sap2010:WorkflowViewState.IdRef="WindowScope_52" InformativeScreenshot="89c26a956d0e546954a3d0cfa3d4eecc" Selector="&lt;wnd app='predator.exe' cls='TfrmPredator' title='PredatorNO - [Debitor]' /&gt;">
                                 <ui:WindowScope.Body>
                                   <ActivityAction x:TypeArguments="x:Object">
                                     <ActivityAction.Argument>
                                       <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
                                     </ActivityAction.Argument>
-                                    <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_208">
-                                      <Sequence DisplayName="Find relative image" sap2010:WorkflowViewState.IdRef="Sequence_207">
-                                        <ui:WaitImageAppear FoundElement="{x:Null}" DisplayName="Find Image 'TTabSheet'" sap2010:WorkflowViewState.IdRef="WaitImageAppear_5">
-                                          <ui:WaitImageAppear.Image>
-                                            <ui:ImageTarget Image="{x:Null}" Accuracy="0.8" TargetImageBase64="iVBORw0KGgoAAAANSUhEUgAAAGcAAAAVCAYAAABbq/AzAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFCSURBVGhD7ZM7DsMwDENz/8N1KdDrpPAggGUpyU4MRIOGh0gknQ/YHp/362xq0uUUpsspTJdTmC6nMF1OYbqcwnQ5hfkr5zyOH9j38LIr99jN6rN3fsOO75blRLtHltvxsqvseuYT7z5Iy/E0Jss88YG7nvnEuw8ulTN2Q2mso6/yrHk7Y753Bn3TOIc6z14Gdy/LV8zibLA25uVy2Lc909HPstHskd0D90yfOTebzfxIv1QOwxnclZ9lWfcYPmIa+jbjbnmEfTvDe+Thrs6wxnDm9j/H023nK8+4s+5pSlf3mMkgnh/tnqcy0Tmlp+XM7pmOfpaNZk/L7oF7ps+cW8mu7KjLchD2OaM01r05ymIGNcR8zGFe+cpDTflKt93LqgzupuEZ02z+K6e5hyrhKl3OTfDXv7OYQZdTmC6nLK/zCwDCwzBR72csAAAAAElFTkSuQmCC" />
-                                          </ui:WaitImageAppear.Image>
-                                          <ui:WaitImageAppear.Target>
-                                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" WaitForReady="INTERACTIVE" />
-                                          </ui:WaitImageAppear.Target>
-                                        </ui:WaitImageAppear>
-                                        <ui:SetClippingRegion Element="{x:Null}" Region="{x:Null}" Direction="TRANSLATE" DisplayName="Translate clipping region" sap2010:WorkflowViewState.IdRef="SetClippingRegion_9">
-                                          <ui:SetClippingRegion.Size>
-                                            <ui:Region Rectangle="90, -7, -217, 2" />
-                                          </ui:SetClippingRegion.Size>
-                                        </ui:SetClippingRegion>
-                                      </Sequence>
-                                      <ui:GetVisibleText WordsInfo="{x:Null}" ContinueOnError="True" DisplayName="Get visible text 'TButtonedEdit'" FormattedText="False" sap2010:WorkflowViewState.IdRef="GetVisibleText_3">
-                                        <ui:GetVisibleText.Target>
-                                          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="836a6ffe1cf8d6d56cc2cbb6acfa34c5" WaitForReady="INTERACTIVE" />
-                                        </ui:GetVisibleText.Target>
-                                        <ui:GetVisibleText.Text>
-                                          <OutArgument x:TypeArguments="ui:GenericValue">[DebitorsArbeidsgiverOrgNo]</OutArgument>
-                                        </ui:GetVisibleText.Text>
-                                      </ui:GetVisibleText>
-                                      <ui:SetClippingRegion Element="{x:Null}" Region="{x:Null}" Direction="RECTANGLE" DisplayName="Reset clipping region" sap2010:WorkflowViewState.IdRef="SetClippingRegion_10">
-                                        <ui:SetClippingRegion.Size>
-                                          <ui:Region Rectangle="0, 0, 0, 0" />
-                                        </ui:SetClippingRegion.Size>
-                                      </ui:SetClippingRegion>
+                                    <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_73">
+                                      <ui:TypeInto DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Type into 'TTabSheet'" EmptyField="False" sap2010:WorkflowViewState.IdRef="TypeInto_10" SendWindowMessages="False" SimulateType="False" Text="%[k(f8)]">
+                                        <ui:TypeInto.Target>
+                                          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="89bb00b0b3abb16bd51bce2349468f5a" Selector="&lt;wnd aaname='Arbeidsområde' cls='MDIClient' /&gt;&lt;wnd cls='TfrmDebitor' title='Debitor' /&gt;&lt;wnd aaname='Arbeidsgiver' cls='TTabSheet' title='Arbeids&amp;amp;giver' /&gt;" WaitForReady="INTERACTIVE" />
+                                        </ui:TypeInto.Target>
+                                      </ui:TypeInto>
+                                      <ui:TypeInto DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" ContinueOnError="True" DisplayName="Type into 'TfrmAvdrag'" EmptyField="False" sap2010:WorkflowViewState.IdRef="TypeInto_11" SendWindowMessages="False" SimulateType="False" Text="%[k(end)d(shift)d(home)u(shift)u(home)]">
+                                        <ui:TypeInto.Target>
+                                          <ui:Target Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="480d9a5d8f52f3d12693c835b12ebde9" Selector="&lt;wnd aaname='Arbeidsområde' cls='MDIClient' /&gt;&lt;wnd cls='TfrmAvdrag' title='Avdrag' /&gt;" WaitForReady="INTERACTIVE">
+                                            <ui:Target.ClippingRegion>
+                                              <ui:Region Rectangle="14, 220, 82, 22" />
+                                            </ui:Target.ClippingRegion>
+                                          </ui:Target>
+                                        </ui:TypeInto.Target>
+                                      </ui:TypeInto>
+                                      <ui:CopySelectedText ContinueOnError="True" DisplayName="Copy selected text" sap2010:WorkflowViewState.IdRef="CopySelectedText_4" SendWindowMessages="False" TimeoutMS="5000">
+                                        <ui:CopySelectedText.Result>
+                                          <OutArgument x:TypeArguments="ui:GenericValue">[ForrigeAvdgragsOrdningAvtale]</OutArgument>
+                                        </ui:CopySelectedText.Result>
+                                      </ui:CopySelectedText>
                                     </Sequence>
                                   </ActivityAction>
                                 </ui:WindowScope.Body>
                               </ui:WindowScope>
-                              <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_5" Text="[&quot;DebitorsArbeidsgiverOrgNo&quot;+DebitorsArbeidsgiverOrgNo]" />
                             </Sequence>
-                          </Sequence>
-                        </ActivityAction>
-                      </ui:WindowScope.Body>
-                    </ui:WindowScope>
-                  </Sequence>
-                  <FlowStep.Next>
-                    <FlowStep x:Name="__ReferenceID7" sap2010:WorkflowViewState.IdRef="FlowStep_52">
-                      <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke workflow for debtor" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Del4\Del4ArbeidsGiver.xaml">
-                        <ui:InvokeWorkflowFile.Arguments>
-                          <InArgument x:TypeArguments="x:String" x:Key="orgNoFraMain">[orgNo]</InArgument>
-                          <InArgument x:TypeArguments="x:String" x:Key="PersonIdent" />
-                          <InArgument x:TypeArguments="x:String" x:Key="sakNoFraMain">[saksNo]</InArgument>
-                        </ui:InvokeWorkflowFile.Arguments>
-                      </ui:InvokeWorkflowFile>
-                      <FlowStep.Next>
-                        <FlowStep x:Name="__ReferenceID2" sap2010:WorkflowViewState.IdRef="FlowStep_32">
-                          <Sequence DisplayName="ForrigeAdragsOrdning" sap2010:WorkflowViewState.IdRef="Sequence_72">
-                            <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" DisplayName="Attach Window 'PredatorN Tfrmpreda'" sap2010:WorkflowViewState.IdRef="WindowScope_52" InformativeScreenshot="89c26a956d0e546954a3d0cfa3d4eecc" Selector="&lt;wnd app='predator.exe' cls='TfrmPredator' title='PredatorNO - [Debitor]' /&gt;">
-                              <ui:WindowScope.Body>
-                                <ActivityAction x:TypeArguments="x:Object">
-                                  <ActivityAction.Argument>
-                                    <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
-                                  </ActivityAction.Argument>
-                                  <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_73">
-                                    <ui:TypeInto DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Type into 'TTabSheet'" EmptyField="False" sap2010:WorkflowViewState.IdRef="TypeInto_10" SendWindowMessages="False" SimulateType="False" Text="%[k(f8)]">
-                                      <ui:TypeInto.Target>
-                                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="89bb00b0b3abb16bd51bce2349468f5a" Selector="&lt;wnd aaname='Arbeidsområde' cls='MDIClient' /&gt;&lt;wnd cls='TfrmDebitor' title='Debitor' /&gt;&lt;wnd aaname='Arbeidsgiver' cls='TTabSheet' title='Arbeids&amp;amp;giver' /&gt;" WaitForReady="INTERACTIVE" />
-                                      </ui:TypeInto.Target>
-                                    </ui:TypeInto>
-                                    <ui:TypeInto DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" ContinueOnError="True" DisplayName="Type into 'TfrmAvdrag'" EmptyField="False" sap2010:WorkflowViewState.IdRef="TypeInto_11" SendWindowMessages="False" SimulateType="False" Text="%[k(end)d(shift)d(home)u(shift)u(home)]">
-                                      <ui:TypeInto.Target>
-                                        <ui:Target Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="480d9a5d8f52f3d12693c835b12ebde9" Selector="&lt;wnd aaname='Arbeidsområde' cls='MDIClient' /&gt;&lt;wnd cls='TfrmAvdrag' title='Avdrag' /&gt;" WaitForReady="INTERACTIVE">
-                                          <ui:Target.ClippingRegion>
-                                            <ui:Region Rectangle="14, 220, 82, 22" />
-                                          </ui:Target.ClippingRegion>
-                                        </ui:Target>
-                                      </ui:TypeInto.Target>
-                                    </ui:TypeInto>
-                                    <ui:CopySelectedText ContinueOnError="True" DisplayName="Copy selected text" sap2010:WorkflowViewState.IdRef="CopySelectedText_4" SendWindowMessages="False" TimeoutMS="5000">
-                                      <ui:CopySelectedText.Result>
-                                        <OutArgument x:TypeArguments="ui:GenericValue">[ForrigeAvdgragsOrdningAvtale]</OutArgument>
-                                      </ui:CopySelectedText.Result>
-                                    </ui:CopySelectedText>
-                                  </Sequence>
-                                </ActivityAction>
-                              </ui:WindowScope.Body>
-                            </ui:WindowScope>
-                          </Sequence>
-                          <FlowStep.Next>
-                            <FlowStep x:Name="__ReferenceID3" sap2010:WorkflowViewState.IdRef="FlowStep_33">
-                              <If Condition="[ForrigeAvdgragsOrdningAvtale = String.Empty]" DisplayName="AvdragsAvtaleFinnesfraFør" sap2010:WorkflowViewState.IdRef="If_2">
-                                <If.Then>
-                                  <Sequence DisplayName="LageNyAvdrag" sap2010:WorkflowViewState.IdRef="Sequence_79">
-                                    <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" DisplayName="Attach Window 'PredatorN Tfrmpreda'" sap2010:WorkflowViewState.IdRef="WindowScope_55" InformativeScreenshot="cbb174f995a2573373752b41d583db19" Selector="&lt;wnd app='predator.exe' cls='TfrmPredator' title='PredatorNO - [Avdrag]' /&gt;">
-                                      <ui:WindowScope.Body>
-                                        <ActivityAction x:TypeArguments="x:Object">
-                                          <ActivityAction.Argument>
-                                            <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
-                                          </ActivityAction.Argument>
-                                          <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_119">
-                                            <ui:SendHotkey DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Send hotkey 'TfrmAvdrag'" EmptyField="False" sap2010:WorkflowViewState.IdRef="SendHotkey_8" Key="n" KeyModifiers="Ctrl" SendWindowMessages="False" SpecialKey="False">
-                                              <ui:SendHotkey.Target>
-                                                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="aa25b3e42c02130b8c3545fa3071a351" Selector="&lt;wnd aaname='Arbeidsområde' cls='MDIClient' /&gt;&lt;wnd cls='TfrmAvdrag' title='Avdrag' /&gt;" WaitForReady="INTERACTIVE" />
-                                              </ui:SendHotkey.Target>
-                                            </ui:SendHotkey>
-                                          </Sequence>
-                                        </ActivityAction>
-                                      </ui:WindowScope.Body>
-                                    </ui:WindowScope>
-                                    <Sequence DisplayName="Velg850Kode" sap2010:WorkflowViewState.IdRef="Sequence_80">
-                                      <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" DisplayName="Attach Window 'Avdragsor Tfrmavdra'" sap2010:WorkflowViewState.IdRef="WindowScope_68" InformativeScreenshot="d06a660b2cf705d07a780254e15648a4" Selector="&lt;wnd app='predator.exe' cls='TfrmAvdragsOrdning' title='Avdragsordning' /&gt;">
+                            <FlowStep.Next>
+                              <FlowStep x:Name="__ReferenceID4" sap2010:WorkflowViewState.IdRef="FlowStep_33">
+                                <If Condition="[ForrigeAvdgragsOrdningAvtale = String.Empty]" DisplayName="AvdragsAvtaleFinnesfraFør" sap2010:WorkflowViewState.IdRef="If_2">
+                                  <If.Then>
+                                    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke OpprettAvdragsAvtale workflow" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="Del4\OpprettAvdragsAvtale.xaml">
+                                      <ui:InvokeWorkflowFile.Arguments>
+                                        <InArgument x:TypeArguments="x:String" x:Key="terminBeløp">[terminBeløp]</InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="trekkkilde">[Trekkkilde]</InArgument>
+                                      </ui:InvokeWorkflowFile.Arguments>
+                                    </ui:InvokeWorkflowFile>
+                                  </If.Then>
+                                  <If.Else>
+                                    <Sequence DisplayName="SlettForrigeAvdragsAvtale" sap2010:WorkflowViewState.IdRef="Sequence_75">
+                                      <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" DisplayName="Attach Window 'PredatorN Tfrmpreda'" sap2010:WorkflowViewState.IdRef="WindowScope_53" InformativeScreenshot="f4bae705209a3cb4acec8e4896e8f939" Selector="&lt;wnd app='predator.exe' cls='TfrmPredator' title='PredatorNO - [Avdrag]' /&gt;">
                                         <ui:WindowScope.Body>
                                           <ActivityAction x:TypeArguments="x:Object">
                                             <ActivityAction.Argument>
                                               <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
                                             </ActivityAction.Argument>
-                                            <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_108">
-                                              <Sequence DisplayName="Clickingpå850kode" sap2010:WorkflowViewState.IdRef="Sequence_115">
-                                                <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" DisplayName="Attach Window 'Avdragsor Tfrmavdra'" sap2010:WorkflowViewState.IdRef="WindowScope_74" InformativeScreenshot="d06a660b2cf705d07a780254e15648a4" Selector="&lt;wnd app='predator.exe' cls='TfrmAvdragsOrdning' title='Avdragsordning' /&gt;">
-                                                  <ui:WindowScope.Body>
-                                                    <ActivityAction x:TypeArguments="x:Object">
-                                                      <ActivityAction.Argument>
-                                                        <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
-                                                      </ActivityAction.Argument>
-                                                      <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_117">
-                                                        <ui:ClickImage ContinueOnError="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click image 'list item  850'" sap2010:WorkflowViewState.IdRef="ClickImage_2" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False">
-                                                          <ui:ClickImage.CursorPosition>
-                                                            <ui:CursorPosition OffsetX="0" OffsetY="0" Position="Center" />
-                                                          </ui:ClickImage.CursorPosition>
-                                                          <ui:ClickImage.Image>
-                                                            <ui:ImageTarget Image="{x:Null}" Accuracy="0.8" TargetImageBase64="iVBORw0KGgoAAAANSUhEUgAAAIcAAAANCAYAAACDzH20AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAE/SURBVFhH7ZZBakNBDEO77EF6u9x/nZLFK6qwPf6ZFJcwBiHr2SGmDCUfn1+3O9KKGFXt/xft3LTz2VdrdctqvqOfx+FfQsZdzj1Pa+eenc++WpO3vOXj4Bb8qp793F9o8pbW49DyeZYnxS248yh7KYt2YM4f5Tzbzfa8YNluNVdG6axS6zeH71R8Wn6HZu014yuuYoZXnB6vuPaaqYh35s47Wv7ncMFx59PyO7KMe68ZV66V7UR9lXHvNeMZx7O5847e8nF4+Vzde82495px51HWXjPuvWY843g2d97R5R+kZNz5pLIbnHcz7r1mvOL0eMW114xnHM/mzjta/uZ4hk8pu8O5Z5hWtOfV5WTfVZbtPCrbidzn9Fq6V+nX4zja15U//oSu3Hcex6a8op1JeUU7mc7jOEp1HsdRotv9G5udTUgOj48KAAAAAElFTkSuQmCC" />
-                                                          </ui:ClickImage.Image>
-                                                          <ui:ClickImage.Target>
-                                                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" WaitForReady="INTERACTIVE" />
-                                                          </ui:ClickImage.Target>
-                                                        </ui:ClickImage>
-                                                      </Sequence>
-                                                    </ActivityAction>
-                                                  </ui:WindowScope.Body>
-                                                </ui:WindowScope>
-                                              </Sequence>
-                                            </Sequence>
-                                          </ActivityAction>
-                                        </ui:WindowScope.Body>
-                                      </ui:WindowScope>
-                                    </Sequence>
-                                    <Sequence DisplayName="VelgAvdrgasTypeSomLønnstrkk" sap2010:WorkflowViewState.IdRef="Sequence_92">
-                                      <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" DisplayName="Attach Window 'PredatorN Tfrmpreda'" sap2010:WorkflowViewState.IdRef="WindowScope_63" InformativeScreenshot="d10f9994d037ebdf31768c6f8f9439c6" Selector="&lt;wnd app='predator.exe' cls='TfrmPredator' title='PredatorNO - [Avdrag]' /&gt;">
-                                        <ui:WindowScope.Body>
-                                          <ActivityAction x:TypeArguments="x:Object">
-                                            <ActivityAction.Argument>
-                                              <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
-                                            </ActivityAction.Argument>
-                                            <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_91">
-                                              <ui:SelectItem ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Select item 'TTabSheet'" sap2010:WorkflowViewState.IdRef="SelectItem_4" Item="Lønnstrekk">
-                                                <ui:SelectItem.Items>
-                                                  <scg:List x:TypeArguments="x:String" Capacity="16">
-                                                    <x:String>Frivillig</x:String>
-                                                    <x:String>Lønnstrekk</x:String>
-                                                    <x:String>Trygdetrekk</x:String>
-                                                    <x:String>Aetat</x:String>
-                                                    <x:String>Militæret</x:String>
-                                                    <x:String>Avregning etteroppgjør</x:String>
-                                                    <x:String>15</x:String>
-                                                    <x:String>30</x:String>
-                                                    <x:String>60</x:String>
-                                                    <x:String>90</x:String>
-                                                  </scg:List>
-                                                </ui:SelectItem.Items>
-                                                <ui:SelectItem.Target>
-                                                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="8ecd7bd4fdc095eda918e32b85f43da7" Selector="&lt;wnd aaname='Arbeidsområde' cls='MDIClient' /&gt;&lt;wnd cls='TfrmAvdrag' title='Avdrag' /&gt;&lt;wnd cls='TGroupBox' title='Avdragsordning ' /&gt;&lt;wnd aaname='Avdrag' cls='TTabSheet' title='A&amp;amp;vdrag' /&gt;" WaitForReady="INTERACTIVE" />
-                                                </ui:SelectItem.Target>
-                                              </ui:SelectItem>
-                                            </Sequence>
-                                          </ActivityAction>
-                                        </ui:WindowScope.Body>
-                                      </ui:WindowScope>
-                                    </Sequence>
-                                    <Sequence DisplayName="BrukeTabForHenteInformasjonOmTrekkKilde" sap2010:WorkflowViewState.IdRef="Sequence_111">
-                                      <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" DisplayName="Attach Window 'PredatorN Tfrmpreda'" sap2010:WorkflowViewState.IdRef="WindowScope_72" InformativeScreenshot="d8f3e37098502bc2f2af671dbbcb0652" Selector="&lt;wnd app='predator.exe' cls='TfrmPredator' title='PredatorNO - [Avdrag]' /&gt;">
-                                        <ui:WindowScope.Body>
-                                          <ActivityAction x:TypeArguments="x:Object">
-                                            <ActivityAction.Argument>
-                                              <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
-                                            </ActivityAction.Argument>
-                                            <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_112">
-                                              <ui:TypeInto DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Type into 'TGroupBox'" EmptyField="False" sap2010:WorkflowViewState.IdRef="TypeInto_15" SendWindowMessages="False" SimulateType="False" Text="tab[k(tab)]">
-                                                <ui:TypeInto.Target>
-                                                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="0f74462a596c1c7fab8c483d02d346e1" Selector="&lt;wnd aaname='Arbeidsområde' cls='MDIClient' /&gt;&lt;wnd cls='TfrmAvdrag' title='Avdrag' /&gt;&lt;wnd cls='TGroupBox' title='Avdragsordning ' /&gt;" WaitForReady="INTERACTIVE" />
-                                                </ui:TypeInto.Target>
-                                              </ui:TypeInto>
-                                            </Sequence>
-                                          </ActivityAction>
-                                        </ui:WindowScope.Body>
-                                      </ui:WindowScope>
-                                    </Sequence>
-                                    <Sequence DisplayName="VelgForfallsdato" sap2010:WorkflowViewState.IdRef="Sequence_96">
-                                      <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" DisplayName="Attach Window 'PredatorN Tfrmpreda'" sap2010:WorkflowViewState.IdRef="WindowScope_73" InformativeScreenshot="de4a0569bce54807380f5001dbc8b73e" Selector="&lt;wnd app='predator.exe' cls='TfrmPredator' title='PredatorNO - [Avdrag]' /&gt;">
-                                        <ui:WindowScope.Body>
-                                          <ActivityAction x:TypeArguments="x:Object">
-                                            <ActivityAction.Argument>
-                                              <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
-                                            </ActivityAction.Argument>
-                                            <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_114">
-                                              <ui:ClickOCRText ContinueOnError="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click OCR text 'TGroupBox'" sap2010:WorkflowViewState.IdRef="ClickOCRText_8" KeyModifiers="None" MouseButton="BTN_LEFT" Occurrence="1" SendWindowMessages="False" Text="Nesta forfallsdato">
-                                                <ui:ClickOCRText.CursorPosition>
-                                                  <ui:CursorPosition OffsetX="39" OffsetY="1" Position="TopRight" />
-                                                </ui:ClickOCRText.CursorPosition>
-                                                <ui:ClickOCRText.OCREngine>
-                                                  <ActivityFunc x:TypeArguments="sd:Image, scg:IEnumerable(scg:KeyValuePair(sd:Rectangle, x:String))">
-                                                    <ActivityFunc.Argument>
-                                                      <DelegateInArgument x:TypeArguments="sd:Image" Name="Image" />
-                                                    </ActivityFunc.Argument>
-                                                    <ui:GoogleOCR FilterRegion="{x:Null}" Text="{x:Null}" AllowedCharacters="" DeniedCharacters="" DisplayName="Google OCR" ExtractWords="True" sap2010:WorkflowViewState.IdRef="GoogleOCR_10" Image="[Image]" Invert="False" Language="eng" Scale="2" />
-                                                  </ActivityFunc>
-                                                </ui:ClickOCRText.OCREngine>
-                                                <ui:ClickOCRText.Target>
-                                                  <ui:Target Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="da87c1b78e61101402825717d10a9f62" Selector="&lt;wnd aaname='Arbeidsområde' cls='MDIClient' /&gt;&lt;wnd cls='TfrmAvdrag' title='Avdrag' /&gt;&lt;wnd cls='TGroupBox' title='Avdragsordning ' /&gt;&lt;wnd aaname='Avdrag' cls='TTabSheet' title='A&amp;amp;vdrag' /&gt;&lt;wnd aaname='Giro' cls='TGroupBox' title='&amp;amp;Giro' /&gt;" WaitForReady="INTERACTIVE">
-                                                    <ui:Target.ClippingRegion>
-                                                      <ui:Region Rectangle="173, 10, 82, 27" />
-                                                    </ui:Target.ClippingRegion>
-                                                  </ui:Target>
-                                                </ui:ClickOCRText.Target>
-                                              </ui:ClickOCRText>
-                                            </Sequence>
-                                          </ActivityAction>
-                                        </ui:WindowScope.Body>
-                                      </ui:WindowScope>
-                                    </Sequence>
-                                    <Sequence DisplayName="TasteInnForfallsdato" sap2010:WorkflowViewState.IdRef="Sequence_97">
-                                      <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" DisplayName="Attach Window 'PredatorN Tfrmpreda'" sap2010:WorkflowViewState.IdRef="WindowScope_64" InformativeScreenshot="de4a0569bce54807380f5001dbc8b73e" Selector="&lt;wnd app='predator.exe' cls='TfrmPredator' title='PredatorNO - [Avdrag]' /&gt;">
-                                        <ui:WindowScope.Body>
-                                          <ActivityAction x:TypeArguments="x:Object">
-                                            <ActivityAction.Argument>
-                                              <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
-                                            </ActivityAction.Argument>
-                                            <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_98">
-                                              <ui:SetValue ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Set Text 'TDatoEdit'" sap2010:WorkflowViewState.IdRef="SetValue_1" Text="[new DateTime(DateTime.Today.Year,DateTime.Today.AddMonths(2).Month,1).ToString(&quot;dd.MM.yyyy&quot;)]">
-                                                <ui:SetValue.Target>
-                                                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="215185641f72de10ee283ebbb0ea1079" Selector="&lt;wnd aaname='Arbeidsområde' cls='MDIClient' /&gt;&lt;wnd cls='TfrmAvdrag' title='Avdrag' /&gt;&lt;wnd cls='TGroupBox' title='Avdragsordning ' /&gt;&lt;wnd aaname='Avdrag' cls='TTabSheet' title='A&amp;amp;vdrag' /&gt;&lt;wnd aaname='Giro' cls='TGroupBox' title='&amp;amp;Giro' /&gt;&lt;wnd cls='TDatoEdit' idx='3' /&gt;" WaitForReady="INTERACTIVE" />
-                                                </ui:SetValue.Target>
-                                              </ui:SetValue>
-                                            </Sequence>
-                                          </ActivityAction>
-                                        </ui:WindowScope.Body>
-                                      </ui:WindowScope>
-                                    </Sequence>
-                                    <Sequence DisplayName="SetTerminBeløp" sap2010:WorkflowViewState.IdRef="Sequence_103">
-                                      <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" DisplayName="Attach Window 'PredatorN Tfrmpreda'" sap2010:WorkflowViewState.IdRef="WindowScope_66" InformativeScreenshot="abd91e7fa074dda7b264962b159c0a3a" Selector="&lt;wnd app='predator.exe' cls='TfrmPredator' title='PredatorNO - [Avdrag]' /&gt;">
-                                        <ui:WindowScope.Body>
-                                          <ActivityAction x:TypeArguments="x:Object">
-                                            <ActivityAction.Argument>
-                                              <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
-                                            </ActivityAction.Argument>
-                                            <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_104">
-                                              <ui:TypeInto DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Type into 'TTabSheet'" EmptyField="False" sap2010:WorkflowViewState.IdRef="TypeInto_12" SendWindowMessages="False" SimulateType="False" Text="%[k(tab)]">
-                                                <ui:TypeInto.Target>
-                                                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="f9a8db647eede25e3382a0740f34795b" Selector="&lt;wnd aaname='Arbeidsområde' cls='MDIClient' /&gt;&lt;wnd cls='TfrmAvdrag' title='Avdrag' /&gt;&lt;wnd cls='TGroupBox' title='Avdragsordning ' /&gt;&lt;wnd aaname='Avdrag' cls='TTabSheet' title='A&amp;amp;vdrag' /&gt;" WaitForReady="INTERACTIVE" />
-                                                </ui:TypeInto.Target>
-                                              </ui:TypeInto>
-                                              <ui:SetValue ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Set Text 'TFloatEdit'" sap2010:WorkflowViewState.IdRef="SetValue_3" Text="[terminBeløp]">
-                                                <ui:SetValue.Target>
-                                                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="01837164b7d3656d301fb4d2f376327e" Selector="&lt;wnd aaname='Arbeidsområde' cls='MDIClient' /&gt;&lt;wnd cls='TfrmAvdrag' title='Avdrag' /&gt;&lt;wnd cls='TGroupBox' title='Avdragsordning ' /&gt;&lt;wnd aaname='Avdrag' cls='TTabSheet' title='A&amp;amp;vdrag' /&gt;&lt;wnd aaname='Termin' cls='TGroupBox' title='T&amp;amp;ermin' /&gt;&lt;wnd cls='TFloatEdit' idx='3' /&gt;" WaitForReady="INTERACTIVE" />
-                                                </ui:SetValue.Target>
-                                              </ui:SetValue>
-                                            </Sequence>
-                                          </ActivityAction>
-                                        </ui:WindowScope.Body>
-                                      </ui:WindowScope>
-                                    </Sequence>
-                                    <Sequence DisplayName="NyttTerminBeløpGjelderFraDato" sap2010:WorkflowViewState.IdRef="Sequence_106">
-                                      <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" DisplayName="Attach Window 'PredatorN Tfrmpreda'" sap2010:WorkflowViewState.IdRef="WindowScope_67" InformativeScreenshot="d10f9994d037ebdf31768c6f8f9439c6" Selector="&lt;wnd app='predator.exe' cls='TfrmPredator' title='PredatorNO - [Avdrag]' /&gt;">
-                                        <ui:WindowScope.Body>
-                                          <ActivityAction x:TypeArguments="x:Object">
-                                            <ActivityAction.Argument>
-                                              <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
-                                            </ActivityAction.Argument>
-                                            <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_107">
-                                              <ui:TypeInto DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Type into 'TFloatEdit'" EmptyField="False" sap2010:WorkflowViewState.IdRef="TypeInto_13" SendWindowMessages="False" SimulateType="False" Text="%[k(tab)]">
-                                                <ui:TypeInto.Target>
-                                                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="22a2102afccb169397924b890b605faa" Selector="&lt;wnd aaname='Arbeidsområde' cls='MDIClient' /&gt;&lt;wnd cls='TfrmAvdrag' title='Avdrag' /&gt;&lt;wnd cls='TGroupBox' title='Avdragsordning ' /&gt;&lt;wnd aaname='Avdrag' cls='TTabSheet' title='A&amp;amp;vdrag' /&gt;&lt;wnd aaname='Termin' cls='TGroupBox' title='T&amp;amp;ermin' /&gt;&lt;wnd cls='TFloatEdit' idx='3' /&gt;" WaitForReady="INTERACTIVE" />
-                                                </ui:TypeInto.Target>
-                                              </ui:TypeInto>
-                                              <ui:TypeInto DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Type into 'TFloatEdit'" EmptyField="False" sap2010:WorkflowViewState.IdRef="TypeInto_14" SendWindowMessages="False" SimulateType="False" Text="%[k(tab)]">
-                                                <ui:TypeInto.Target>
-                                                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="f9de81e5aae9a721d89514e8e91c3ae8" Selector="&lt;wnd aaname='Arbeidsområde' cls='MDIClient' /&gt;&lt;wnd cls='TfrmAvdrag' title='Avdrag' /&gt;&lt;wnd cls='TGroupBox' title='Avdragsordning ' /&gt;&lt;wnd aaname='Avdrag' cls='TTabSheet' title='A&amp;amp;vdrag' /&gt;&lt;wnd aaname='Termin' cls='TGroupBox' title='T&amp;amp;ermin' /&gt;&lt;wnd cls='TFloatEdit' idx='1' /&gt;" WaitForReady="INTERACTIVE" />
-                                                </ui:TypeInto.Target>
-                                              </ui:TypeInto>
-                                              <ui:SendHotkey DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Send hotkey 'TfrmAvdrag'" EmptyField="False" sap2010:WorkflowViewState.IdRef="SendHotkey_5" Key="s" KeyModifiers="Ctrl" SendWindowMessages="False" SpecialKey="False">
+                                            <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_77">
+                                              <ui:SendHotkey DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Send hotkey 'TfrmAvdrag'" EmptyField="False" sap2010:WorkflowViewState.IdRef="SendHotkey_3" Key="d" KeyModifiers="Ctrl" SendWindowMessages="False" SpecialKey="False">
                                                 <ui:SendHotkey.Target>
-                                                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="44cd61895b9469907675a12d61a6562b" Selector="&lt;wnd aaname='Arbeidsområde' cls='MDIClient' /&gt;&lt;wnd cls='TfrmAvdrag' title='Avdrag' /&gt;" WaitForReady="INTERACTIVE" />
+                                                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="d092b432d4f114bf8c4df221b0fd5066" Selector="&lt;wnd aaname='Arbeidsområde' cls='MDIClient' /&gt;&lt;wnd cls='TfrmAvdrag' title='Avdrag' /&gt;" WaitForReady="INTERACTIVE" />
+                                                </ui:SendHotkey.Target>
+                                              </ui:SendHotkey>
+                                            </Sequence>
+                                          </ActivityAction>
+                                        </ui:WindowScope.Body>
+                                      </ui:WindowScope>
+                                      <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" DisplayName="Attach Window 'Advarsel Dialog'" sap2010:WorkflowViewState.IdRef="WindowScope_54" InformativeScreenshot="3f15f90c6b02ddb8e5cfbbd83c30c1a9" Selector="&lt;wnd app='predator.exe' cls='#32770' title='Advarsel' /&gt;">
+                                        <ui:WindowScope.Body>
+                                          <ActivityAction x:TypeArguments="x:Object">
+                                            <ActivityAction.Argument>
+                                              <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+                                            </ActivityAction.Argument>
+                                            <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_78">
+                                              <ui:SendHotkey DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Send hotkey 'Predator.exe  Advarsel'" EmptyField="False" sap2010:WorkflowViewState.IdRef="SendHotkey_4" Key="j" KeyModifiers="Alt" SendWindowMessages="False" SpecialKey="False">
+                                                <ui:SendHotkey.Target>
+                                                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="89d094ef16ff8207f51978f70185d23e" WaitForReady="INTERACTIVE" />
                                                 </ui:SendHotkey.Target>
                                               </ui:SendHotkey>
                                             </Sequence>
@@ -556,375 +342,440 @@
                                         </ui:WindowScope.Body>
                                       </ui:WindowScope>
                                     </Sequence>
-                                  </Sequence>
-                                </If.Then>
-                                <If.Else>
-                                  <Sequence DisplayName="SlettForrigeAvdragsAvtale" sap2010:WorkflowViewState.IdRef="Sequence_75">
-                                    <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" DisplayName="Attach Window 'PredatorN Tfrmpreda'" sap2010:WorkflowViewState.IdRef="WindowScope_53" InformativeScreenshot="f4bae705209a3cb4acec8e4896e8f939" Selector="&lt;wnd app='predator.exe' cls='TfrmPredator' title='PredatorNO - [Avdrag]' /&gt;">
-                                      <ui:WindowScope.Body>
-                                        <ActivityAction x:TypeArguments="x:Object">
-                                          <ActivityAction.Argument>
-                                            <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
-                                          </ActivityAction.Argument>
-                                          <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_77">
-                                            <ui:SendHotkey DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Send hotkey 'TfrmAvdrag'" EmptyField="False" sap2010:WorkflowViewState.IdRef="SendHotkey_3" Key="d" KeyModifiers="Ctrl" SendWindowMessages="False" SpecialKey="False">
-                                              <ui:SendHotkey.Target>
-                                                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="d092b432d4f114bf8c4df221b0fd5066" Selector="&lt;wnd aaname='Arbeidsområde' cls='MDIClient' /&gt;&lt;wnd cls='TfrmAvdrag' title='Avdrag' /&gt;" WaitForReady="INTERACTIVE" />
-                                              </ui:SendHotkey.Target>
-                                            </ui:SendHotkey>
-                                          </Sequence>
-                                        </ActivityAction>
-                                      </ui:WindowScope.Body>
-                                    </ui:WindowScope>
-                                    <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" DisplayName="Attach Window 'Advarsel Dialog'" sap2010:WorkflowViewState.IdRef="WindowScope_54" InformativeScreenshot="3f15f90c6b02ddb8e5cfbbd83c30c1a9" Selector="&lt;wnd app='predator.exe' cls='#32770' title='Advarsel' /&gt;">
-                                      <ui:WindowScope.Body>
-                                        <ActivityAction x:TypeArguments="x:Object">
-                                          <ActivityAction.Argument>
-                                            <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
-                                          </ActivityAction.Argument>
-                                          <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_78">
-                                            <ui:SendHotkey DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Send hotkey 'Predator.exe  Advarsel'" EmptyField="False" sap2010:WorkflowViewState.IdRef="SendHotkey_4" Key="j" KeyModifiers="Alt" SendWindowMessages="False" SpecialKey="False">
-                                              <ui:SendHotkey.Target>
-                                                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="89d094ef16ff8207f51978f70185d23e" WaitForReady="INTERACTIVE" />
-                                              </ui:SendHotkey.Target>
-                                            </ui:SendHotkey>
-                                          </Sequence>
-                                        </ActivityAction>
-                                      </ui:WindowScope.Body>
-                                    </ui:WindowScope>
-                                  </Sequence>
-                                </If.Else>
-                              </If>
-                              <FlowStep.Next>
-                                <FlowStep x:Name="__ReferenceID4" sap2010:WorkflowViewState.IdRef="FlowStep_38">
-                                  <Sequence DisplayName="FlytteTilTvangSkjerm" sap2010:WorkflowViewState.IdRef="Sequence_120">
-                                    <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" DisplayName="Attach Window 'PredatorN Tfrmpreda'" sap2010:WorkflowViewState.IdRef="WindowScope_75" InformativeScreenshot="431c1dc239563242224029f9b820b5f3" Selector="&lt;wnd app='predator.exe' cls='TfrmPredator' title='PredatorNO - [Avdrag]' /&gt;">
-                                      <ui:WindowScope.Body>
-                                        <ActivityAction x:TypeArguments="x:Object">
-                                          <ActivityAction.Argument>
-                                            <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
-                                          </ActivityAction.Argument>
-                                          <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_121">
-                                            <ui:TypeInto DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Type into 'TGroupBox'" EmptyField="False" sap2010:WorkflowViewState.IdRef="TypeInto_19" SendWindowMessages="False" SimulateType="False" Text="%[k(f5)]">
-                                              <ui:TypeInto.Target>
-                                                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="185d1d5a7d99627f6db4915f1368704f" Selector="&lt;wnd aaname='Arbeidsområde' cls='MDIClient' /&gt;&lt;wnd cls='TfrmAvdrag' title='Avdrag' /&gt;&lt;wnd cls='TGroupBox' title='Avdragsordning ' /&gt;" WaitForReady="INTERACTIVE" />
-                                              </ui:TypeInto.Target>
-                                            </ui:TypeInto>
-                                          </Sequence>
-                                        </ActivityAction>
-                                      </ui:WindowScope.Body>
-                                    </ui:WindowScope>
-                                    <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" DisplayName="Attach Window 'PredatorN Tfrmpreda'" sap2010:WorkflowViewState.IdRef="WindowScope_117" InformativeScreenshot="431c1dc239563242224029f9b820b5f3" Selector="&lt;wnd app='predator.exe' cls='TfrmPredator' title='PredatorNO - [Kreditor]' /&gt;">
-                                      <ui:WindowScope.Body>
-                                        <ActivityAction x:TypeArguments="x:Object">
-                                          <ActivityAction.Argument>
-                                            <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
-                                          </ActivityAction.Argument>
-                                          <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_193">
-                                            <ui:TypeInto DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Type into 'TGroupBox'" EmptyField="False" sap2010:WorkflowViewState.IdRef="TypeInto_26" SendWindowMessages="False" SimulateType="False" Text="%[k(f7)]">
-                                              <ui:TypeInto.Target>
-                                                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="185d1d5a7d99627f6db4915f1368704f" Selector="&lt;wnd aaname='Arbeidsområde' cls='MDIClient' /&gt;&lt;wnd cls='TfrmAvdrag' title='Avdrag' /&gt;&lt;wnd cls='TGroupBox' title='Avdragsordning ' /&gt;" WaitForReady="INTERACTIVE" />
-                                              </ui:TypeInto.Target>
-                                            </ui:TypeInto>
-                                          </Sequence>
-                                        </ActivityAction>
-                                      </ui:WindowScope.Body>
-                                    </ui:WindowScope>
-                                  </Sequence>
-                                  <FlowStep.Next>
-                                    <FlowStep x:Name="__ReferenceID6" sap2010:WorkflowViewState.IdRef="FlowStep_51">
-                                      <Sequence DisplayName="TvangAvtale" sap2010:WorkflowViewState.IdRef="Sequence_191">
-                                        <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" DisplayName="Attach Window 'PredatorN Tfrmpreda'" sap2010:WorkflowViewState.IdRef="WindowScope_114" InformativeScreenshot="76b20176ee64c1e35839730837f5054c" Selector="&lt;wnd app='predator.exe' cls='TfrmPredator' title='PredatorNO - [Tvang]' /&gt;">
-                                          <ui:WindowScope.Body>
-                                            <ActivityAction x:TypeArguments="x:Object">
-                                              <ActivityAction.Argument>
-                                                <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
-                                              </ActivityAction.Argument>
-                                              <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_210">
-                                                <ui:SendHotkey DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Send hotkey 'TfrmTvang'" EmptyField="False" sap2010:WorkflowViewState.IdRef="SendHotkey_49" Key="n" KeyModifiers="Ctrl" SendWindowMessages="False" SpecialKey="False">
-                                                  <ui:SendHotkey.Target>
-                                                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="a9d6c019d26916bc77e064c4963b75c5" Selector="&lt;wnd aaname='Arbeidsområde' cls='MDIClient' /&gt;&lt;wnd cls='TfrmTvang' title='Tvang' /&gt;" WaitForReady="INTERACTIVE" />
-                                                  </ui:SendHotkey.Target>
-                                                </ui:SendHotkey>
-                                              </Sequence>
-                                            </ActivityAction>
-                                          </ui:WindowScope.Body>
-                                        </ui:WindowScope>
-                                        <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" DisplayName="Attach Window 'Nytttvang Tfrmtvang'" sap2010:WorkflowViewState.IdRef="WindowScope_115" InformativeScreenshot="d7949bee60b7181b844d3b3d1d0d7f37" Selector="&lt;wnd app='predator.exe' cls='TfrmTvangsGrunnlag' title='Nytt tvangsgrunnlag' /&gt;">
-                                          <ui:WindowScope.Body>
-                                            <ActivityAction x:TypeArguments="x:Object">
-                                              <ActivityAction.Argument>
-                                                <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
-                                              </ActivityAction.Argument>
-                                              <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_211">
-                                                <ui:ClickImage ContinueOnError="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click image 'list item  812 Trekk AG'" sap2010:WorkflowViewState.IdRef="ClickImage_43" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False">
-                                                  <ui:ClickImage.CursorPosition>
-                                                    <ui:CursorPosition OffsetX="0" OffsetY="0" Position="Center" />
-                                                  </ui:ClickImage.CursorPosition>
-                                                  <ui:ClickImage.Image>
-                                                    <ui:ImageTarget Image="{x:Null}" Accuracy="0.8" TargetImageBase64="iVBORw0KGgoAAAANSUhEUgAAAFAAAAALCAYAAADoWAqZAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADxSURBVEhL7ZBBDgMxDALz/09vxYHKYY0dp9eOFG2MgVRdz5+feP2Ba63vUZzm/BUxd5vPmPRUHfFUbFs1c3Zl3XzCTQa43KQv855qZNuosZuVbp9xkwEud9pHn/qnv2dzd2Vd+fRxkGWgRZ2zauTkrnCnniqT8XKjgEepyqcPk+4d3XPWL3F6xGWA3nkc20aN3UyqBzqybNRw1xN1xekR3cfZdTq2TVUMpuUndJ2un7runR7BTg+Jd5JpZNuocTrfkHVEzb3pPFUWZBqgrnvMLgNeGwaykGrRyzMly6iW9Wee+CXdTKKOOw9nh9/8OeB5PiRE4LqXX6KoAAAAAElFTkSuQmCC" />
-                                                  </ui:ClickImage.Image>
-                                                  <ui:ClickImage.Target>
-                                                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" WaitForReady="INTERACTIVE" />
-                                                  </ui:ClickImage.Target>
-                                                </ui:ClickImage>
-                                              </Sequence>
-                                            </ActivityAction>
-                                          </ui:WindowScope.Body>
-                                        </ui:WindowScope>
-                                        <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" DisplayName="Attach Window 'PredatorN Tfrmpreda'" sap2010:WorkflowViewState.IdRef="WindowScope_116" InformativeScreenshot="208340c81a6cd98d96422f184d19c9a9" Selector="&lt;wnd app='predator.exe' cls='TfrmPredator' title='PredatorNO - [Tvang]' /&gt;">
-                                          <ui:WindowScope.Body>
-                                            <ActivityAction x:TypeArguments="x:Object">
-                                              <ActivityAction.Argument>
-                                                <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
-                                              </ActivityAction.Argument>
-                                              <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_192">
-                                                <ui:ClickImage ContinueOnError="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click image 'TGroupBox'" sap2010:WorkflowViewState.IdRef="ClickImage_38" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False">
-                                                  <ui:ClickImage.CursorPosition>
-                                                    <ui:CursorPosition OffsetX="46" OffsetY="5" Position="TopRight" />
-                                                  </ui:ClickImage.CursorPosition>
-                                                  <ui:ClickImage.Image>
-                                                    <ui:ImageTarget Image="{x:Null}" Accuracy="0.8" TargetImageBase64="iVBORw0KGgoAAAANSUhEUgAAAEgAAAAPCAYAAABHsImTAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADQSURBVFhH7ZNBCsQwDAPz/8f1stDvdOnB4KpS5EAW9uDDEFuW0yDoOD/H1Wg6IEMHZJABjTGozljx3ij/rnt28pcBVe9zvtV3MWhAux+KKP/u766+i7EUkOrzyTyoY42eXCPZmz0zbeZxvALCZfwAm90n8838lTmi/Ai7p7qLLAWU+6xXPEyv7gXKH3WGzaNmvYIGhOA8n1jn3unVvaDqZ7ryOB4BqSV3ueqdXt0Lqn6mK4/jpwFFHbi58mRmfqUzT2iO1y/WPOmADB3QlOP6ArkvHId8iD5JAAAAAElFTkSuQmCC" />
-                                                  </ui:ClickImage.Image>
-                                                  <ui:ClickImage.Target>
-                                                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" WaitForReady="INTERACTIVE" />
-                                                  </ui:ClickImage.Target>
-                                                </ui:ClickImage>
-                                                <ui:SetValue ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Set Text 'TDatoEdit'" sap2010:WorkflowViewState.IdRef="SetValue_22" Text="27.02.2017">
-                                                  <ui:SetValue.Target>
-                                                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="35787c0876dabd0f332adb4a5991a543" Selector="&lt;wnd aaname='Arbeidsområde' cls='MDIClient' /&gt;&lt;wnd cls='TfrmTvang' title='Tvang' /&gt;&lt;wnd cls='TGroupBox' title='Trekk AG' /&gt;&lt;wnd cls='TDatoEdit' idx='1' /&gt;" WaitForReady="INTERACTIVE" />
-                                                  </ui:SetValue.Target>
-                                                </ui:SetValue>
-                                                <ui:ClickText ContinueOnError="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click text 'TGroupBox'" FormattedText="False" sap2010:WorkflowViewState.IdRef="ClickText_10" KeyModifiers="None" MouseButton="BTN_LEFT" Occurrence="1" SendWindowMessages="False" Text="Foreldelsesdato">
-                                                  <ui:ClickText.CursorPosition>
-                                                    <ui:CursorPosition OffsetX="74" OffsetY="11" Position="TopRight" />
-                                                  </ui:ClickText.CursorPosition>
-                                                  <ui:ClickText.Target>
-                                                    <ui:Target Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="76ebfb441ef596b02d08368327d6de1a" Selector="&lt;wnd aaname='Arbeidsområde' cls='MDIClient' /&gt;&lt;wnd cls='TfrmTvang' title='Tvang' /&gt;&lt;wnd cls='TGroupBox' title='Trekk AG' /&gt;" WaitForReady="INTERACTIVE">
-                                                      <ui:Target.ClippingRegion>
-                                                        <ui:Region Rectangle="5, 78, 83, 25" />
-                                                      </ui:Target.ClippingRegion>
-                                                    </ui:Target>
-                                                  </ui:ClickText.Target>
-                                                </ui:ClickText>
-                                                <ui:SendHotkey DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Send hotkey 'TfrmTvang'" EmptyField="False" sap2010:WorkflowViewState.IdRef="SendHotkey_46" Key="s" KeyModifiers="Ctrl" SendWindowMessages="False" SpecialKey="False">
-                                                  <ui:SendHotkey.Target>
-                                                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="cf971baac39fba7c3d00a7205c12fd2c" Selector="&lt;wnd aaname='Arbeidsområde' cls='MDIClient' /&gt;&lt;wnd cls='TfrmTvang' title='Tvang' /&gt;" WaitForReady="INTERACTIVE" />
-                                                  </ui:SendHotkey.Target>
-                                                </ui:SendHotkey>
-                                                <ui:ClickImage ContinueOnError="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click image 'list'" sap2010:WorkflowViewState.IdRef="ClickImage_39" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False">
-                                                  <ui:ClickImage.CursorPosition>
-                                                    <ui:CursorPosition OffsetX="0" OffsetY="0" Position="Center" />
-                                                  </ui:ClickImage.CursorPosition>
-                                                  <ui:ClickImage.Image>
-                                                    <ui:ImageTarget Image="{x:Null}" Accuracy="0.8" TargetImageBase64="iVBORw0KGgoAAAANSUhEUgAAAEQAAAAXCAYAAACyCenrAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACASURBVFhH7ZJRCoAgEAX3anm08Hz9BF1nww+xHvnrLjQDA5ofspN2nYfjkCCi1b06Dq1sxXFoDi8IIhBEIIgQGsQs3/8giEAQIVWQtu9GkfaFREVJFaS/jm4Ey299DjpbNwjy1yCNNuzXwP377HwFMbcmhiACQQSCCAQRCPLC/QYaCsSTSst35wAAAABJRU5ErkJggg==" />
-                                                  </ui:ClickImage.Image>
-                                                  <ui:ClickImage.Target>
-                                                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" WaitForReady="INTERACTIVE" />
-                                                  </ui:ClickImage.Target>
-                                                </ui:ClickImage>
-                                                <ui:ClickImage ContinueOnError="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click image 'TfrmTvang'" sap2010:WorkflowViewState.IdRef="ClickImage_40" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False">
-                                                  <ui:ClickImage.CursorPosition>
-                                                    <ui:CursorPosition OffsetX="0" OffsetY="0" Position="Center" />
-                                                  </ui:ClickImage.CursorPosition>
-                                                  <ui:ClickImage.Image>
-                                                    <ui:ImageTarget Image="{x:Null}" Accuracy="0.8" TargetImageBase64="iVBORw0KGgoAAAANSUhEUgAAAE8AAAAXCAYAAABK6RIcAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADoSURBVFhH7ZNhCsIwDEZzNXc02fn2R/A6lQqBEJO2STYF+QrPti/pJh8rNYz0oOfjaCAHwiuAa1sY+PKS7Pcd4WUJh0dEH1h9Hl7/ynOsnuj7zyT95WX/dCU8C4Q38DP+JrzupOe9dpG1xPL6nETWpRv5CKeHZ63lXs9e3cKqWef6WnpdG/kIl4ankZ77dL/2Eu/cyszMfISvfXna67rnJVZNn/NmZuYj/Ozarq4llmfXZ+sZ+szMR7gsPN4zo56RX3V9lui63ns+Qjo8gPBKILwC7/D6D8hB221rIAeubQGEVwDhpTnaCyVtyBDbtRBwAAAAAElFTkSuQmCC" />
-                                                  </ui:ClickImage.Image>
-                                                  <ui:ClickImage.Target>
-                                                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" WaitForReady="INTERACTIVE" />
-                                                  </ui:ClickImage.Target>
-                                                </ui:ClickImage>
-                                                <ui:ClickText ContinueOnError="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click text 'TGroupBox'" FormattedText="False" sap2010:WorkflowViewState.IdRef="ClickText_11" KeyModifiers="None" MouseButton="BTN_LEFT" Occurrence="1" SendWindowMessages="False" Text="Beløp">
-                                                  <ui:ClickText.CursorPosition>
-                                                    <ui:CursorPosition OffsetX="135" OffsetY="8" Position="TopRight" />
-                                                  </ui:ClickText.CursorPosition>
-                                                  <ui:ClickText.Target>
-                                                    <ui:Target Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="0cb0ab11be94240ae287e1dcbecd979f" Selector="&lt;wnd aaname='Arbeidsområde' cls='MDIClient' /&gt;&lt;wnd cls='TfrmTvang' title='Tvang' /&gt;&lt;wnd cls='TGroupBox' title='Trekk i lønn' /&gt;" WaitForReady="INTERACTIVE">
-                                                      <ui:Target.ClippingRegion>
-                                                        <ui:Region Rectangle="5, 182, 48, 30" />
-                                                      </ui:Target.ClippingRegion>
-                                                    </ui:Target>
-                                                  </ui:ClickText.Target>
-                                                </ui:ClickText>
-                                                <ui:ClickImage ContinueOnError="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click image 'TGroupBox'" sap2010:WorkflowViewState.IdRef="ClickImage_41" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False">
-                                                  <ui:ClickImage.CursorPosition>
-                                                    <ui:CursorPosition OffsetX="133" OffsetY="16" Position="TopRight" />
-                                                  </ui:ClickImage.CursorPosition>
-                                                  <ui:ClickImage.Image>
-                                                    <ui:ImageTarget Image="{x:Null}" Accuracy="0.8" TargetImageBase64="iVBORw0KGgoAAAANSUhEUgAAADEAAAAYCAYAAABTPxXiAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACbSURBVFhH7ZNBCoAwDAT7dun7ehH8TqWHQFxWbWyFiBGGdJMcOkhTXnJt37aWzxISXggJL4SEF0LCC/+RSCkdYDtI794MuiWuMiMkjEyRaFlgO3oufdZ7yvCbOMtY5cz6LFsY/hPtjOiduypgtjBFQs+wf1cFzBamS0jWle3rHssWht8EznUPZzhn/Sd0SbzB6MU1IeGFkPBBqTu2zAbZbc1PGgAAAABJRU5ErkJggg==" />
-                                                  </ui:ClickImage.Image>
-                                                  <ui:ClickImage.Target>
-                                                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" WaitForReady="INTERACTIVE" />
-                                                  </ui:ClickImage.Target>
-                                                </ui:ClickImage>
-                                                <ui:SetValue ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Set Text 'TFloatEdit'" sap2010:WorkflowViewState.IdRef="SetValue_23" Text="[terminBeløp]">
-                                                  <ui:SetValue.Target>
-                                                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="77d5e6c6cf9da0bb6bb3f55e672e6439" Selector="&lt;wnd aaname='Arbeidsområde' cls='MDIClient' /&gt;&lt;wnd cls='TfrmTvang' title='Tvang' /&gt;&lt;wnd cls='TGroupBox' title='Trekk i lønn' /&gt;&lt;wnd cls='TFloatEdit' idx='3' /&gt;" WaitForReady="INTERACTIVE" />
-                                                  </ui:SetValue.Target>
-                                                </ui:SetValue>
-                                                <ui:SendHotkey DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Send hotkey 'TfrmTvang'" EmptyField="False" sap2010:WorkflowViewState.IdRef="SendHotkey_47" Key="s" KeyModifiers="Ctrl" SendWindowMessages="False" SpecialKey="False">
-                                                  <ui:SendHotkey.Target>
-                                                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="4828e53dc318113e914142a86ec1e04d" Selector="&lt;wnd aaname='Arbeidsområde' cls='MDIClient' /&gt;&lt;wnd cls='TfrmTvang' title='Tvang' /&gt;" WaitForReady="INTERACTIVE" />
-                                                  </ui:SendHotkey.Target>
-                                                </ui:SendHotkey>
-                                              </Sequence>
-                                            </ActivityAction>
-                                          </ui:WindowScope.Body>
-                                        </ui:WindowScope>
-                                      </Sequence>
-                                      <FlowStep.Next>
-                                        <FlowStep x:Name="__ReferenceID8" sap2010:WorkflowViewState.IdRef="FlowStep_56">
-                                          <Sequence DisplayName="Set 003 AG Trekk" sap2010:WorkflowViewState.IdRef="Sequence_219">
-                                            <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" DisplayName="Attach Window 'PredatorN Tfrmpreda'" sap2010:WorkflowViewState.IdRef="WindowScope_127" InformativeScreenshot="2c9860b932a73b053ed2d2526c2e2275" Selector="&lt;wnd app='predator.exe' cls='TfrmPredator' title='PredatorNO - [Saksbehandling]' /&gt;">
-                                              <ui:WindowScope.Body>
-                                                <ActivityAction x:TypeArguments="x:Object">
-                                                  <ActivityAction.Argument>
-                                                    <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
-                                                  </ActivityAction.Argument>
-                                                  <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_220">
-                                                    <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'TGroupBox'" sap2010:WorkflowViewState.IdRef="Click_4" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
-                                                      <ui:Click.CursorPosition>
-                                                        <ui:CursorPosition OffsetX="38" OffsetY="42" Position="TopLeft" />
-                                                      </ui:Click.CursorPosition>
-                                                      <ui:Click.Target>
-                                                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="ba8edcb55ca30f248c5f5ddf301382e6" Selector="&lt;wnd aaname='Arbeidsområde' cls='MDIClient' /&gt;&lt;wnd cls='TfrmSaksbeh' title='Saksbehandling' /&gt;&lt;wnd cls='TGroupBox' title='Sak' /&gt;" WaitForReady="INTERACTIVE" />
-                                                      </ui:Click.Target>
-                                                    </ui:Click>
-                                                  </Sequence>
-                                                </ActivityAction>
-                                              </ui:WindowScope.Body>
-                                            </ui:WindowScope>
-                                            <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" DisplayName="Attach Window 'Sakstyper Tfrmsakst'" sap2010:WorkflowViewState.IdRef="WindowScope_128" InformativeScreenshot="bd07594e911e75576ce82f144f315266" Selector="&lt;wnd app='predator.exe' cls='TfrmSaksTypeListe' title='Sakstyper' /&gt;">
-                                              <ui:WindowScope.Body>
-                                                <ActivityAction x:TypeArguments="x:Object">
-                                                  <ActivityAction.Argument>
-                                                    <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
-                                                  </ActivityAction.Argument>
-                                                  <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_221">
-                                                    <ui:SelectItem ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Select item 'list'" sap2010:WorkflowViewState.IdRef="SelectItem_8" Item="003">
-                                                      <ui:SelectItem.Items>
-                                                        <scg:List x:TypeArguments="x:String" Capacity="128">
-                                                          <x:String>001</x:String>
-                                                          <x:String>002</x:String>
-                                                          <x:String>003</x:String>
-                                                          <x:String>004</x:String>
-                                                          <x:String>005</x:String>
-                                                          <x:String>006</x:String>
-                                                          <x:String>007</x:String>
-                                                          <x:String>008</x:String>
-                                                          <x:String>009</x:String>
-                                                          <x:String>010</x:String>
-                                                          <x:String>011</x:String>
-                                                          <x:String>012</x:String>
-                                                          <x:String>013</x:String>
-                                                          <x:String>014</x:String>
-                                                          <x:String>015</x:String>
-                                                          <x:String>016</x:String>
-                                                          <x:String>017</x:String>
-                                                          <x:String>018</x:String>
-                                                          <x:String>019</x:String>
-                                                          <x:String>020</x:String>
-                                                          <x:String>021</x:String>
-                                                          <x:String>022</x:String>
-                                                          <x:String>023</x:String>
-                                                          <x:String>024</x:String>
-                                                          <x:String>025</x:String>
-                                                          <x:String>026</x:String>
-                                                          <x:String>027</x:String>
-                                                          <x:String>028</x:String>
-                                                          <x:String>029</x:String>
-                                                          <x:String>030</x:String>
-                                                          <x:String>031</x:String>
-                                                          <x:String>032</x:String>
-                                                          <x:String>035</x:String>
-                                                          <x:String>036</x:String>
-                                                          <x:String>037</x:String>
-                                                          <x:String>038</x:String>
-                                                          <x:String>039</x:String>
-                                                          <x:String>040</x:String>
-                                                          <x:String>041</x:String>
-                                                          <x:String>042</x:String>
-                                                          <x:String>043</x:String>
-                                                          <x:String>044</x:String>
-                                                          <x:String>045</x:String>
-                                                          <x:String>046</x:String>
-                                                          <x:String>047</x:String>
-                                                          <x:String>048</x:String>
-                                                          <x:String>049</x:String>
-                                                          <x:String>050</x:String>
-                                                          <x:String>051</x:String>
-                                                          <x:String>052</x:String>
-                                                          <x:String>053</x:String>
-                                                          <x:String>054</x:String>
-                                                          <x:String>055</x:String>
-                                                          <x:String>056</x:String>
-                                                          <x:String>057</x:String>
-                                                          <x:String>058</x:String>
-                                                          <x:String>059</x:String>
-                                                          <x:String>060</x:String>
-                                                          <x:String>061</x:String>
-                                                          <x:String>062</x:String>
-                                                          <x:String>063</x:String>
-                                                          <x:String>064</x:String>
-                                                          <x:String>065</x:String>
-                                                          <x:String>066</x:String>
-                                                          <x:String>067</x:String>
-                                                          <x:String>068</x:String>
-                                                          <x:String>069</x:String>
-                                                          <x:String>070</x:String>
-                                                          <x:String>071</x:String>
-                                                          <x:String>072</x:String>
-                                                          <x:String>073</x:String>
-                                                          <x:String>074</x:String>
-                                                          <x:String>075</x:String>
-                                                          <x:String>076</x:String>
-                                                          <x:String>077</x:String>
-                                                          <x:String>999</x:String>
-                                                        </scg:List>
-                                                      </ui:SelectItem.Items>
-                                                      <ui:SelectItem.Target>
-                                                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="cd68f0022c6378ff8ebd7147bdca797f" Selector="&lt;wnd cls='TListView' /&gt;&lt;ctrl role='list' /&gt;" WaitForReady="INTERACTIVE" />
-                                                      </ui:SelectItem.Target>
-                                                    </ui:SelectItem>
-                                                    <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_DOUBLE" DisplayName="Double Click" sap2010:WorkflowViewState.IdRef="Click_5" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
-                                                      <ui:Click.CursorPosition>
-                                                        <ui:CursorPosition Position="Center">
-                                                          <ui:CursorPosition.OffsetX>
-                                                            <InArgument x:TypeArguments="x:Int32" />
-                                                          </ui:CursorPosition.OffsetX>
-                                                          <ui:CursorPosition.OffsetY>
-                                                            <InArgument x:TypeArguments="x:Int32" />
-                                                          </ui:CursorPosition.OffsetY>
-                                                        </ui:CursorPosition>
-                                                      </ui:Click.CursorPosition>
-                                                      <ui:Click.Target>
-                                                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="66c054ac93a006cec12e962b89c43436" Selector="&lt;wnd cls='TListView' /&gt;&lt;ctrl name='003' role='list item' /&gt;" WaitForReady="INTERACTIVE" />
-                                                      </ui:Click.Target>
-                                                    </ui:Click>
-                                                  </Sequence>
-                                                </ActivityAction>
-                                              </ui:WindowScope.Body>
-                                            </ui:WindowScope>
-                                          </Sequence>
-                                        </FlowStep>
-                                      </FlowStep.Next>
-                                    </FlowStep>
-                                  </FlowStep.Next>
-                                </FlowStep>
-                              </FlowStep.Next>
-                            </FlowStep>
-                          </FlowStep.Next>
-                        </FlowStep>
-                      </FlowStep.Next>
-                    </FlowStep>
-                  </FlowStep.Next>
-                </FlowStep>
-              </FlowStep.Next>
-            </FlowStep>
-          </FlowStep.Next>
-        </FlowStep>
-      </FlowStep.Next>
-    </FlowStep>
+                                  </If.Else>
+                                </If>
+                                <FlowStep.Next>
+                                  <FlowStep x:Name="__ReferenceID5" sap2010:WorkflowViewState.IdRef="FlowStep_38">
+                                    <Sequence DisplayName="FlytteTilTvangSkjerm" sap2010:WorkflowViewState.IdRef="Sequence_120">
+                                      <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" DisplayName="Attach Window 'PredatorN Tfrmpreda'" sap2010:WorkflowViewState.IdRef="WindowScope_117" InformativeScreenshot="431c1dc239563242224029f9b820b5f3" Selector="&lt;wnd app='predator.exe' cls='TfrmPredator' title='PredatorNO - [Avdrag]' /&gt;">
+                                        <ui:WindowScope.Body>
+                                          <ActivityAction x:TypeArguments="x:Object">
+                                            <ActivityAction.Argument>
+                                              <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+                                            </ActivityAction.Argument>
+                                            <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_193">
+                                              <ui:TypeInto DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Type into 'TGroupBox'" EmptyField="False" sap2010:WorkflowViewState.IdRef="TypeInto_26" SendWindowMessages="False" SimulateType="False" Text="%[k(f7)]">
+                                                <ui:TypeInto.Target>
+                                                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="185d1d5a7d99627f6db4915f1368704f" Selector="&lt;wnd aaname='Arbeidsområde' cls='MDIClient' /&gt;&lt;wnd cls='TfrmAvdrag' title='Avdrag' /&gt;&lt;wnd cls='TGroupBox' title='Avdragsordning ' /&gt;" WaitForReady="INTERACTIVE" />
+                                                </ui:TypeInto.Target>
+                                              </ui:TypeInto>
+                                              <ui:SendHotkey DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Send hotkey 'Predator.exe PredatorNO'" EmptyField="False" sap2010:WorkflowViewState.IdRef="SendHotkey_54" Key="f5" KeyModifiers="Ctrl, Shift" SendWindowMessages="False" SpecialKey="True">
+                                                <ui:SendHotkey.Target>
+                                                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="c06df0f6acf674cde1b31aa77dc0c6e4" WaitForReady="INTERACTIVE" />
+                                                </ui:SendHotkey.Target>
+                                              </ui:SendHotkey>
+                                            </Sequence>
+                                          </ActivityAction>
+                                        </ui:WindowScope.Body>
+                                      </ui:WindowScope>
+                                    </Sequence>
+                                    <FlowStep.Next>
+                                      <FlowStep x:Name="__ReferenceID7" sap2010:WorkflowViewState.IdRef="FlowStep_51">
+                                        <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke Tvangavtale workflow" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="Del4\Tvangavtale.xaml">
+                                          <ui:InvokeWorkflowFile.Arguments>
+                                            <InArgument x:TypeArguments="x:String" x:Key="terminBeløp">[terminBeløp]</InArgument>
+                                          </ui:InvokeWorkflowFile.Arguments>
+                                        </ui:InvokeWorkflowFile>
+                                        <FlowStep.Next>
+                                          <FlowStep x:Name="__ReferenceID10" sap2010:WorkflowViewState.IdRef="FlowStep_61">
+                                            <Sequence DisplayName="flytte til saksbehandling skjerm" sap2010:WorkflowViewState.IdRef="Sequence_230">
+                                              <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" DisplayName="Attach Window 'PredatorN Tfrmpreda'" sap2010:WorkflowViewState.IdRef="WindowScope_131" InformativeScreenshot="0bf75585c2b555580fe220f044468be0" Selector="&lt;wnd app='predator.exe' cls='TfrmPredator' title='PredatorNO - [Tvang]' /&gt;">
+                                                <ui:WindowScope.Body>
+                                                  <ActivityAction x:TypeArguments="x:Object">
+                                                    <ActivityAction.Argument>
+                                                      <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+                                                    </ActivityAction.Argument>
+                                                    <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_231">
+                                                      <ui:SendHotkey DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Send hotkey 'TfrmTvang'" EmptyField="False" sap2010:WorkflowViewState.IdRef="SendHotkey_53" Key="f6" KeyModifiers="None" SendWindowMessages="True" SpecialKey="True">
+                                                        <ui:SendHotkey.Target>
+                                                          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="c54626792af0225c5eb778fd9f7b364f" Selector="&lt;wnd aaname='Arbeidsområde' cls='MDIClient' /&gt;&lt;wnd cls='TfrmTvang' title='Tvang' /&gt;" WaitForReady="INTERACTIVE" />
+                                                        </ui:SendHotkey.Target>
+                                                      </ui:SendHotkey>
+                                                    </Sequence>
+                                                  </ActivityAction>
+                                                </ui:WindowScope.Body>
+                                              </ui:WindowScope>
+                                            </Sequence>
+                                            <FlowStep.Next>
+                                              <FlowStep x:Name="__ReferenceID9" sap2010:WorkflowViewState.IdRef="FlowStep_56">
+                                                <Sequence DisplayName="Set Sakstype" sap2010:WorkflowViewState.IdRef="Sequence_219">
+                                                  <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" DisplayName="Attach Window 'PredatorN Tfrmpreda'" sap2010:WorkflowViewState.IdRef="WindowScope_127" InformativeScreenshot="147fdbf968d4e9237b1c5e4e1fbc7ec3" Selector="&lt;wnd app='predator.exe' cls='TfrmPredator' title='PredatorNO - [Saksbehandling]' /&gt;">
+                                                    <ui:WindowScope.Body>
+                                                      <ActivityAction x:TypeArguments="x:Object">
+                                                        <ActivityAction.Argument>
+                                                          <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+                                                        </ActivityAction.Argument>
+                                                        <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_220">
+                                                          <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'TGroupBox'" sap2010:WorkflowViewState.IdRef="Click_4" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="True" SimulateClick="False">
+                                                            <ui:Click.CursorPosition>
+                                                              <ui:CursorPosition OffsetX="38" OffsetY="42" Position="TopLeft" />
+                                                            </ui:Click.CursorPosition>
+                                                            <ui:Click.Target>
+                                                              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="ba8edcb55ca30f248c5f5ddf301382e6" Selector="&lt;wnd app='predator.exe' cls='TfrmPredator' title='PredatorNO - [Saksbehandling]' /&gt;&lt;wnd aaname='Arbeidsområde' cls='MDIClient' /&gt;&lt;wnd cls='TfrmSaksbeh' title='Saksbehandling' /&gt;&lt;wnd cls='TGroupBox' title='Sak' /&gt;" WaitForReady="INTERACTIVE" />
+                                                            </ui:Click.Target>
+                                                          </ui:Click>
+                                                        </Sequence>
+                                                      </ActivityAction>
+                                                    </ui:WindowScope.Body>
+                                                  </ui:WindowScope>
+                                                  <Switch x:TypeArguments="x:String" DisplayName="Switch&lt;string&gt;" Expression="[trekkkilde]" sap2010:WorkflowViewState.IdRef="Switch`1_1">
+                                                    <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" x:Key="AG" DisplayName="Attach Window 'Sakstyper Tfrmsakst'" sap2010:WorkflowViewState.IdRef="WindowScope_132" InformativeScreenshot="d780d8ea371b07dee992814014583693" Selector="&lt;wnd app='predator.exe' cls='TfrmSaksTypeListe' title='Sakstyper' /&gt;">
+                                                      <ui:WindowScope.Body>
+                                                        <ActivityAction x:TypeArguments="x:Object">
+                                                          <ActivityAction.Argument>
+                                                            <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+                                                          </ActivityAction.Argument>
+                                                          <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_232">
+                                                            <ui:SelectItem ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Select item 'list'" sap2010:WorkflowViewState.IdRef="SelectItem_11" Item="003">
+                                                              <ui:SelectItem.Items>
+                                                                <scg:List x:TypeArguments="x:String" Capacity="128">
+                                                                  <x:String>001</x:String>
+                                                                  <x:String>002</x:String>
+                                                                  <x:String>003</x:String>
+                                                                  <x:String>004</x:String>
+                                                                  <x:String>005</x:String>
+                                                                  <x:String>006</x:String>
+                                                                  <x:String>007</x:String>
+                                                                  <x:String>008</x:String>
+                                                                  <x:String>009</x:String>
+                                                                  <x:String>010</x:String>
+                                                                  <x:String>011</x:String>
+                                                                  <x:String>012</x:String>
+                                                                  <x:String>013</x:String>
+                                                                  <x:String>014</x:String>
+                                                                  <x:String>015</x:String>
+                                                                  <x:String>016</x:String>
+                                                                  <x:String>017</x:String>
+                                                                  <x:String>018</x:String>
+                                                                  <x:String>019</x:String>
+                                                                  <x:String>020</x:String>
+                                                                  <x:String>021</x:String>
+                                                                  <x:String>022</x:String>
+                                                                  <x:String>023</x:String>
+                                                                  <x:String>024</x:String>
+                                                                  <x:String>025</x:String>
+                                                                  <x:String>026</x:String>
+                                                                  <x:String>027</x:String>
+                                                                  <x:String>028</x:String>
+                                                                  <x:String>029</x:String>
+                                                                  <x:String>030</x:String>
+                                                                  <x:String>031</x:String>
+                                                                  <x:String>032</x:String>
+                                                                  <x:String>035</x:String>
+                                                                  <x:String>036</x:String>
+                                                                  <x:String>037</x:String>
+                                                                  <x:String>038</x:String>
+                                                                  <x:String>039</x:String>
+                                                                  <x:String>040</x:String>
+                                                                  <x:String>041</x:String>
+                                                                  <x:String>042</x:String>
+                                                                  <x:String>043</x:String>
+                                                                  <x:String>044</x:String>
+                                                                  <x:String>045</x:String>
+                                                                  <x:String>046</x:String>
+                                                                  <x:String>047</x:String>
+                                                                  <x:String>048</x:String>
+                                                                  <x:String>049</x:String>
+                                                                  <x:String>050</x:String>
+                                                                  <x:String>051</x:String>
+                                                                  <x:String>052</x:String>
+                                                                  <x:String>053</x:String>
+                                                                  <x:String>054</x:String>
+                                                                  <x:String>055</x:String>
+                                                                  <x:String>056</x:String>
+                                                                  <x:String>057</x:String>
+                                                                  <x:String>058</x:String>
+                                                                  <x:String>059</x:String>
+                                                                  <x:String>060</x:String>
+                                                                  <x:String>061</x:String>
+                                                                  <x:String>062</x:String>
+                                                                  <x:String>063</x:String>
+                                                                  <x:String>064</x:String>
+                                                                  <x:String>065</x:String>
+                                                                  <x:String>066</x:String>
+                                                                  <x:String>067</x:String>
+                                                                  <x:String>068</x:String>
+                                                                  <x:String>069</x:String>
+                                                                  <x:String>070</x:String>
+                                                                  <x:String>071</x:String>
+                                                                  <x:String>072</x:String>
+                                                                  <x:String>073</x:String>
+                                                                  <x:String>074</x:String>
+                                                                  <x:String>075</x:String>
+                                                                  <x:String>076</x:String>
+                                                                  <x:String>077</x:String>
+                                                                  <x:String>999</x:String>
+                                                                </scg:List>
+                                                              </ui:SelectItem.Items>
+                                                              <ui:SelectItem.Target>
+                                                                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="e066eb78685221a96af2182d84784d30" Selector="&lt;wnd app='predator.exe' cls='TfrmSaksTypeListe' title='Sakstyper' /&gt;&lt;wnd cls='TListView' /&gt;&lt;ctrl name='003' role='list item' text='003' /&gt;" WaitForReady="INTERACTIVE" />
+                                                              </ui:SelectItem.Target>
+                                                            </ui:SelectItem>
+                                                            <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_DOUBLE" DisplayName="Double Click" sap2010:WorkflowViewState.IdRef="Click_6" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="True">
+                                                              <ui:Click.CursorPosition>
+                                                                <ui:CursorPosition Position="Center">
+                                                                  <ui:CursorPosition.OffsetX>
+                                                                    <InArgument x:TypeArguments="x:Int32" />
+                                                                  </ui:CursorPosition.OffsetX>
+                                                                  <ui:CursorPosition.OffsetY>
+                                                                    <InArgument x:TypeArguments="x:Int32" />
+                                                                  </ui:CursorPosition.OffsetY>
+                                                                </ui:CursorPosition>
+                                                              </ui:Click.CursorPosition>
+                                                              <ui:Click.Target>
+                                                                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="e066eb78685221a96af2182d84784d30" Selector="&lt;wnd app='predator.exe' cls='TfrmSaksTypeListe' title='Sakstyper' /&gt;&lt;wnd cls='TListView' /&gt;&lt;ctrl name='003' role='list item' text='003' /&gt;" WaitForReady="INTERACTIVE" />
+                                                              </ui:Click.Target>
+                                                            </ui:Click>
+                                                          </Sequence>
+                                                        </ActivityAction>
+                                                      </ui:WindowScope.Body>
+                                                    </ui:WindowScope>
+                                                    <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" x:Key="AETAT" DisplayName="Attach Window 'Sakstyper Tfrmsakst'" sap2010:WorkflowViewState.IdRef="WindowScope_133" InformativeScreenshot="d780d8ea371b07dee992814014583693" Selector="&lt;wnd app='predator.exe' cls='TfrmSaksTypeListe' title='Sakstyper' /&gt;">
+                                                      <ui:WindowScope.Body>
+                                                        <ActivityAction x:TypeArguments="x:Object">
+                                                          <ActivityAction.Argument>
+                                                            <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+                                                          </ActivityAction.Argument>
+                                                          <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_233">
+                                                            <ui:SelectItem ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Select item 'list'" sap2010:WorkflowViewState.IdRef="SelectItem_12" Item="004">
+                                                              <ui:SelectItem.Items>
+                                                                <scg:List x:TypeArguments="x:String" Capacity="128">
+                                                                  <x:String>001</x:String>
+                                                                  <x:String>002</x:String>
+                                                                  <x:String>003</x:String>
+                                                                  <x:String>004</x:String>
+                                                                  <x:String>005</x:String>
+                                                                  <x:String>006</x:String>
+                                                                  <x:String>007</x:String>
+                                                                  <x:String>008</x:String>
+                                                                  <x:String>009</x:String>
+                                                                  <x:String>010</x:String>
+                                                                  <x:String>011</x:String>
+                                                                  <x:String>012</x:String>
+                                                                  <x:String>013</x:String>
+                                                                  <x:String>014</x:String>
+                                                                  <x:String>015</x:String>
+                                                                  <x:String>016</x:String>
+                                                                  <x:String>017</x:String>
+                                                                  <x:String>018</x:String>
+                                                                  <x:String>019</x:String>
+                                                                  <x:String>020</x:String>
+                                                                  <x:String>021</x:String>
+                                                                  <x:String>022</x:String>
+                                                                  <x:String>023</x:String>
+                                                                  <x:String>024</x:String>
+                                                                  <x:String>025</x:String>
+                                                                  <x:String>026</x:String>
+                                                                  <x:String>027</x:String>
+                                                                  <x:String>028</x:String>
+                                                                  <x:String>029</x:String>
+                                                                  <x:String>030</x:String>
+                                                                  <x:String>031</x:String>
+                                                                  <x:String>032</x:String>
+                                                                  <x:String>035</x:String>
+                                                                  <x:String>036</x:String>
+                                                                  <x:String>037</x:String>
+                                                                  <x:String>038</x:String>
+                                                                  <x:String>039</x:String>
+                                                                  <x:String>040</x:String>
+                                                                  <x:String>041</x:String>
+                                                                  <x:String>042</x:String>
+                                                                  <x:String>043</x:String>
+                                                                  <x:String>044</x:String>
+                                                                  <x:String>045</x:String>
+                                                                  <x:String>046</x:String>
+                                                                  <x:String>047</x:String>
+                                                                  <x:String>048</x:String>
+                                                                  <x:String>049</x:String>
+                                                                  <x:String>050</x:String>
+                                                                  <x:String>051</x:String>
+                                                                  <x:String>052</x:String>
+                                                                  <x:String>053</x:String>
+                                                                  <x:String>054</x:String>
+                                                                  <x:String>055</x:String>
+                                                                  <x:String>056</x:String>
+                                                                  <x:String>057</x:String>
+                                                                  <x:String>058</x:String>
+                                                                  <x:String>059</x:String>
+                                                                  <x:String>060</x:String>
+                                                                  <x:String>061</x:String>
+                                                                  <x:String>062</x:String>
+                                                                  <x:String>063</x:String>
+                                                                  <x:String>064</x:String>
+                                                                  <x:String>065</x:String>
+                                                                  <x:String>066</x:String>
+                                                                  <x:String>067</x:String>
+                                                                  <x:String>068</x:String>
+                                                                  <x:String>069</x:String>
+                                                                  <x:String>070</x:String>
+                                                                  <x:String>071</x:String>
+                                                                  <x:String>072</x:String>
+                                                                  <x:String>073</x:String>
+                                                                  <x:String>074</x:String>
+                                                                  <x:String>075</x:String>
+                                                                  <x:String>076</x:String>
+                                                                  <x:String>077</x:String>
+                                                                  <x:String>999</x:String>
+                                                                </scg:List>
+                                                              </ui:SelectItem.Items>
+                                                              <ui:SelectItem.Target>
+                                                                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="e066eb78685221a96af2182d84784d30" Selector="&lt;wnd app='predator.exe' cls='TfrmSaksTypeListe' title='Sakstyper' /&gt;&lt;wnd cls='TListView' /&gt;&lt;ctrl name='004' role='list item' text='004' /&gt;" WaitForReady="INTERACTIVE" />
+                                                              </ui:SelectItem.Target>
+                                                            </ui:SelectItem>
+                                                            <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_DOUBLE" DisplayName="Double Click" sap2010:WorkflowViewState.IdRef="Click_7" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="True">
+                                                              <ui:Click.CursorPosition>
+                                                                <ui:CursorPosition Position="Center">
+                                                                  <ui:CursorPosition.OffsetX>
+                                                                    <InArgument x:TypeArguments="x:Int32" />
+                                                                  </ui:CursorPosition.OffsetX>
+                                                                  <ui:CursorPosition.OffsetY>
+                                                                    <InArgument x:TypeArguments="x:Int32" />
+                                                                  </ui:CursorPosition.OffsetY>
+                                                                </ui:CursorPosition>
+                                                              </ui:Click.CursorPosition>
+                                                              <ui:Click.Target>
+                                                                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="e066eb78685221a96af2182d84784d30" Selector="&lt;wnd app='predator.exe' cls='TfrmSaksTypeListe' title='Sakstyper' /&gt;&lt;wnd cls='TListView' /&gt;&lt;ctrl name='004' role='list item' text='004' /&gt;" WaitForReady="INTERACTIVE" />
+                                                              </ui:Click.Target>
+                                                            </ui:Click>
+                                                          </Sequence>
+                                                        </ActivityAction>
+                                                      </ui:WindowScope.Body>
+                                                    </ui:WindowScope>
+                                                    <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" x:Key="TK" DisplayName="Attach Window 'Sakstyper Tfrmsakst'" sap2010:WorkflowViewState.IdRef="WindowScope_134" InformativeScreenshot="d780d8ea371b07dee992814014583693" Selector="&lt;wnd app='predator.exe' cls='TfrmSaksTypeListe' title='Sakstyper' /&gt;">
+                                                      <ui:WindowScope.Body>
+                                                        <ActivityAction x:TypeArguments="x:Object">
+                                                          <ActivityAction.Argument>
+                                                            <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+                                                          </ActivityAction.Argument>
+                                                          <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_234">
+                                                            <ui:SelectItem ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Select item 'list'" sap2010:WorkflowViewState.IdRef="SelectItem_13" Item="002">
+                                                              <ui:SelectItem.Items>
+                                                                <scg:List x:TypeArguments="x:String" Capacity="128">
+                                                                  <x:String>001</x:String>
+                                                                  <x:String>002</x:String>
+                                                                  <x:String>003</x:String>
+                                                                  <x:String>004</x:String>
+                                                                  <x:String>005</x:String>
+                                                                  <x:String>006</x:String>
+                                                                  <x:String>007</x:String>
+                                                                  <x:String>008</x:String>
+                                                                  <x:String>009</x:String>
+                                                                  <x:String>010</x:String>
+                                                                  <x:String>011</x:String>
+                                                                  <x:String>012</x:String>
+                                                                  <x:String>013</x:String>
+                                                                  <x:String>014</x:String>
+                                                                  <x:String>015</x:String>
+                                                                  <x:String>016</x:String>
+                                                                  <x:String>017</x:String>
+                                                                  <x:String>018</x:String>
+                                                                  <x:String>019</x:String>
+                                                                  <x:String>020</x:String>
+                                                                  <x:String>021</x:String>
+                                                                  <x:String>022</x:String>
+                                                                  <x:String>023</x:String>
+                                                                  <x:String>024</x:String>
+                                                                  <x:String>025</x:String>
+                                                                  <x:String>026</x:String>
+                                                                  <x:String>027</x:String>
+                                                                  <x:String>028</x:String>
+                                                                  <x:String>029</x:String>
+                                                                  <x:String>030</x:String>
+                                                                  <x:String>031</x:String>
+                                                                  <x:String>032</x:String>
+                                                                  <x:String>035</x:String>
+                                                                  <x:String>036</x:String>
+                                                                  <x:String>037</x:String>
+                                                                  <x:String>038</x:String>
+                                                                  <x:String>039</x:String>
+                                                                  <x:String>040</x:String>
+                                                                  <x:String>041</x:String>
+                                                                  <x:String>042</x:String>
+                                                                  <x:String>043</x:String>
+                                                                  <x:String>044</x:String>
+                                                                  <x:String>045</x:String>
+                                                                  <x:String>046</x:String>
+                                                                  <x:String>047</x:String>
+                                                                  <x:String>048</x:String>
+                                                                  <x:String>049</x:String>
+                                                                  <x:String>050</x:String>
+                                                                  <x:String>051</x:String>
+                                                                  <x:String>052</x:String>
+                                                                  <x:String>053</x:String>
+                                                                  <x:String>054</x:String>
+                                                                  <x:String>055</x:String>
+                                                                  <x:String>056</x:String>
+                                                                  <x:String>057</x:String>
+                                                                  <x:String>058</x:String>
+                                                                  <x:String>059</x:String>
+                                                                  <x:String>060</x:String>
+                                                                  <x:String>061</x:String>
+                                                                  <x:String>062</x:String>
+                                                                  <x:String>063</x:String>
+                                                                  <x:String>064</x:String>
+                                                                  <x:String>065</x:String>
+                                                                  <x:String>066</x:String>
+                                                                  <x:String>067</x:String>
+                                                                  <x:String>068</x:String>
+                                                                  <x:String>069</x:String>
+                                                                  <x:String>070</x:String>
+                                                                  <x:String>071</x:String>
+                                                                  <x:String>072</x:String>
+                                                                  <x:String>073</x:String>
+                                                                  <x:String>074</x:String>
+                                                                  <x:String>075</x:String>
+                                                                  <x:String>076</x:String>
+                                                                  <x:String>077</x:String>
+                                                                  <x:String>999</x:String>
+                                                                </scg:List>
+                                                              </ui:SelectItem.Items>
+                                                              <ui:SelectItem.Target>
+                                                                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="e066eb78685221a96af2182d84784d30" Selector="&lt;wnd app='predator.exe' cls='TfrmSaksTypeListe' title='Sakstyper' /&gt;&lt;wnd cls='TListView' /&gt;&lt;ctrl name='002' role='list item' text='002' /&gt;" WaitForReady="INTERACTIVE" />
+                                                              </ui:SelectItem.Target>
+                                                            </ui:SelectItem>
+                                                            <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_DOUBLE" DisplayName="Double Click" sap2010:WorkflowViewState.IdRef="Click_8" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="True">
+                                                              <ui:Click.CursorPosition>
+                                                                <ui:CursorPosition Position="Center">
+                                                                  <ui:CursorPosition.OffsetX>
+                                                                    <InArgument x:TypeArguments="x:Int32" />
+                                                                  </ui:CursorPosition.OffsetX>
+                                                                  <ui:CursorPosition.OffsetY>
+                                                                    <InArgument x:TypeArguments="x:Int32" />
+                                                                  </ui:CursorPosition.OffsetY>
+                                                                </ui:CursorPosition>
+                                                              </ui:Click.CursorPosition>
+                                                              <ui:Click.Target>
+                                                                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="e066eb78685221a96af2182d84784d30" Selector="&lt;wnd app='predator.exe' cls='TfrmSaksTypeListe' title='Sakstyper' /&gt;&lt;wnd cls='TListView' /&gt;&lt;ctrl name='002' role='list item' text='002' /&gt;" WaitForReady="INTERACTIVE" />
+                                                              </ui:Click.Target>
+                                                            </ui:Click>
+                                                          </Sequence>
+                                                        </ActivityAction>
+                                                      </ui:WindowScope.Body>
+                                                    </ui:WindowScope>
+                                                  </Switch>
+                                                </Sequence>
+                                              </FlowStep>
+                                            </FlowStep.Next>
+                                          </FlowStep>
+                                        </FlowStep.Next>
+                                      </FlowStep>
+                                    </FlowStep.Next>
+                                  </FlowStep>
+                                </FlowStep.Next>
+                              </FlowStep>
+                            </FlowStep.Next>
+                          </FlowStep>
+                        </FlowStep.Next>
+                      </FlowStep>
+                    </FlowStep.Next>
+                  </FlowStep>
+                </FlowStep.Next>
+              </FlowStep>
+            </FlowStep.Next>
+          </FlowStep>
+        </FlowStep.Next>
+      </FlowStep>
+    </Flowchart.StartNode>
     <x:Reference>__ReferenceID0</x:Reference>
     <x:Reference>__ReferenceID1</x:Reference>
     <x:Reference>__ReferenceID2</x:Reference>
@@ -935,47 +786,11 @@
     <x:Reference>__ReferenceID7</x:Reference>
     <x:Reference>__ReferenceID8</x:Reference>
     <x:Reference>__ReferenceID9</x:Reference>
-    <sads:DebugSymbol.Symbol>d0VcXENsaWVudFxDJFxycGFcVmFza2xpc3RlclxEZWw0XFJlZ2lzdHJlcmluZyBhdiB1bGlrZSB0cmVra3R5cGVyLnhhbWwTPgOrBw8CAQFCNEI4AgEEQzRDPAIBA0U0RT8CAQJJCXgUAgEFTQtaGwIBF1sLYh8CARNjC2OIAQIBEGQLax8CAQxsC2yIAQIBCW0LbUACAQhuC3cYAgEGXZ4BXa8DAgEWYDdgQgIBFGNiY4UBAgERZp4BZq8DAgEPaTdpQgIBDWxibIUBAgEKdBF0XwIBBw==</sads:DebugSymbol.Symbol>
+    <x:Reference>__ReferenceID10</x:Reference>
+    <sads:DebugSymbol.Symbol>dzxXOlxycGFcVmFza2xpc3RlclxEZWw0XFJlZ2lzdHJlcmluZyBhdiB1bGlrZSB0cmVra3R5cGVyLnhhbWyZAT4DlwYPAgEBQjRCOAIBBUM0QzwCAQRFNEU/AgEDRjRGOAIBAkoJWxQDAZ8BXg2WARgDAYcBmQERqgEcAwGAAa0BFf8BIAIBY4ICGYgCMQIBXYsCHaoCKAIBTa0CIdoCJgIBO90CJfMCMAIBM/YCKfoCQQIBL/0CLY4DOAIBKZEDMfQFPAIBBksLWhwDAaABXw92GgMBlwF3D5UBIAMBiAGaAROpASQDAYEBrgEXsgEnAgF/swEX/gEoAgFkhgJZhgJhAgFhhAJZhAJgAgFfggLLAYIC5wECAV6MAh+pAjACAU6tAi+tAl4CATyvAiW0Aj0CAUe3AiXYAjACAT3eAifyAjgCATT2AtwB9gLzAQIBMvgCaPgCdQIBMP4CL40DQAIBKpIDM6QDRAIBIqUDM/MFPAIBB0ucAkvkAgMBowFREVccAwGhAWARdSIDAZgBd5cCd9MCAwGWAX0VkgEgAwGJAZoBowKaAf4CAwGGAaABGaYBJAMBggGzAacCswH7AgIBfrkBHfsBKAIBZYwCrwKMAoMDAgFckgIlpgIwAgFPsgJjsgJvAgFLrwLhAa8CgQICAUqxAmSxAnECAUi4AifHAjgCAULIAifXAjgCAT7eArgC3gKLAwIBOuQCLe8COAIBNf4CwAL+ApIDAgEuhAM1igNAAgErkgPEApIDnwMCASiYAzmhA0QCASOlA4QBpQOSAQIBCKYDNZQERgIBGpUENYMFRgIBEoQFNfIFRgIBClITViMDAaIBYKICYP0CAwGeAWYXciIDAZkBgQEXkQEiAwGKAaEBG6UBKQMBgwG6AR/NATECAXXOAR/6ASoCAWaTAieXAjUCAVmYAiegAjUCAVWhAielAj0CAVC4ArcCuAKKAwIBRr4CLcQCOAIBQ8gCswLIAvMCAgFBzgIt1AI4AgE/5QIv6QI9AgE36gIv7gI/AgE2hQM3iQNHAgEsmQM7oANGAgEkpgPRAqYDnQMCASGsAzuRBEYCARuVBNQClQSgAwIBGZsEO4AFRgIBE4QF0QKEBZ0DAgERigU77wVGAgELZxlxKQMBmgGCARmGAScDAZIBhwEZiwEnAwGPAYwBGZABJwMBiwGjAa4BowHPAQMBhQGhAbQCoQG+AgMBhAG6AdACugHgAgIBeroBrAK6Aa8CAgF5xwGYAccBzwICAX28AT68AUECAXu8AUq8AU0CAXzDASXDAZoCAgF20gEh+AEyAgFp+QEh+QG+AQIBZ5UCugGVAvACAgFbkwK+ApMCyAICAVqaAqABmgKDAgIBWJgCtAGYAroBAgFXmALWApgC/wICAVahAs4BoQLUAQIBVKECTKECUgIBU6MCWqMCeAIBUb8CL8MCPwIBRM8CL9MCPwIBQOcCwgHnAtoCAgE55QLGAuUC0AICATiHA8oBhwOrAgIBLZ4DzgGeA7wDAgEnmwNnmwNrAgEmmwNamwNeAgElrQM9gQRNAgEeggQ9kARIAgEcnAQ98ARNAgEW8QQ9/wRIAgEUiwU93wVNAgEO4AU97gVIAgEMbEdsTAMBnQFpOGk7AwGbAWlEaUcDAZwBhAGsAYQBxwEDAZUBggGsAoIBtgIDAZMBiQGsAYkBxwEDAZEBhwGsAocBtwIDAZABjgGsAY4B1QEDAY4BjAGmAYwBrAEDAY0BjAHFAowB0gIDAYwBwwHmAcMB7wECAXfSAbIC0gGGAwIBdNgBJ/UBMgIBavkBePkBuwECAWjBAsIBwQKlAgIBRa0D6gGtA+8BAgEf/wPQAf8D7gICASCOBNABjgTuAgIBHZwE6gGcBO8BAgEX7gTQAe4E7gICARj9BNAB/QTuAgIBFYsF6gGLBe8BAgEP3QXQAd0F7gICARDsBdAB7AXuAgIBDdkBKecBNAIBcOgBKe8BPQIBbPABKfQBQAIBa9oBK+EBQAIBcuIBK+YBQgIBcegBYegBZwIBb+0BXO0BdwIBbdwBWdwBXgIBcw==</sads:DebugSymbol.Symbol>
   </Flowchart>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
-      <sap2010:ViewStateData Id="SelectItem_9" sap:VirtualizedContainerService.HintSize="314,134" />
-      <sap2010:ViewStateData Id="Sequence_223" sap:VirtualizedContainerService.HintSize="336,258">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="CommentOut_1" sap:VirtualizedContainerService.HintSize="416,336" />
-      <sap2010:ViewStateData Id="GetVisibleText_4" sap:VirtualizedContainerService.HintSize="416,106" />
-      <sap2010:ViewStateData Id="WriteLine_6" sap:VirtualizedContainerService.HintSize="416,59" />
-      <sap2010:ViewStateData Id="GetVisibleText_5" sap:VirtualizedContainerService.HintSize="416,106" />
-      <sap2010:ViewStateData Id="WriteLine_7" sap:VirtualizedContainerService.HintSize="416,59" />
-      <sap2010:ViewStateData Id="Assign_1" sap:VirtualizedContainerService.HintSize="416,59" />
-      <sap2010:ViewStateData Id="Sequence_224" sap:VirtualizedContainerService.HintSize="200,97">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="ForEach`1_1" sap:VirtualizedContainerService.HintSize="416,228" />
-      <sap2010:ViewStateData Id="Sequence_222" sap:VirtualizedContainerService.HintSize="438,1317">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="FlowStep_57">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <av:Point x:Key="ShapeLocation">150,1135.36166666667</av:Point>
-            <av:Size x:Key="ShapeSize">200,49</av:Size>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="SendHotkey_48" sap:VirtualizedContainerService.HintSize="314,114" />
       <sap2010:ViewStateData Id="Sequence_54" sap:VirtualizedContainerService.HintSize="336,238">
         <sap:WorkflowViewStateService.ViewState>
@@ -1113,153 +928,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="SendHotkey_8" sap:VirtualizedContainerService.HintSize="314,152" />
-      <sap2010:ViewStateData Id="Sequence_119" sap:VirtualizedContainerService.HintSize="336,276">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="WindowScope_55" sap:VirtualizedContainerService.HintSize="494,422" />
-      <sap2010:ViewStateData Id="ClickImage_2" sap:VirtualizedContainerService.HintSize="314,106" />
-      <sap2010:ViewStateData Id="Sequence_117" sap:VirtualizedContainerService.HintSize="336,230">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="WindowScope_74" sap:VirtualizedContainerService.HintSize="414,376" />
-      <sap2010:ViewStateData Id="Sequence_115" sap:VirtualizedContainerService.HintSize="436,500">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Sequence_108" sap:VirtualizedContainerService.HintSize="458,624">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="WindowScope_68" sap:VirtualizedContainerService.HintSize="472,770" />
-      <sap2010:ViewStateData Id="Sequence_80" sap:VirtualizedContainerService.HintSize="494,894">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="SelectItem_4" sap:VirtualizedContainerService.HintSize="314,134" />
-      <sap2010:ViewStateData Id="Sequence_91" sap:VirtualizedContainerService.HintSize="336,258">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="WindowScope_63" sap:VirtualizedContainerService.HintSize="414,404" />
-      <sap2010:ViewStateData Id="Sequence_92" sap:VirtualizedContainerService.HintSize="494,528">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="TypeInto_15" sap:VirtualizedContainerService.HintSize="314,134" />
-      <sap2010:ViewStateData Id="Sequence_112" sap:VirtualizedContainerService.HintSize="336,258">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="WindowScope_72" sap:VirtualizedContainerService.HintSize="414,404" />
-      <sap2010:ViewStateData Id="Sequence_111" sap:VirtualizedContainerService.HintSize="494,528">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="GoogleOCR_10" sap:VirtualizedContainerService.HintSize="200,22" />
-      <sap2010:ViewStateData Id="ClickOCRText_8" sap:VirtualizedContainerService.HintSize="314,201" />
-      <sap2010:ViewStateData Id="Sequence_114" sap:VirtualizedContainerService.HintSize="336,325">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="WindowScope_73" sap:VirtualizedContainerService.HintSize="414,471" />
-      <sap2010:ViewStateData Id="Sequence_96" sap:VirtualizedContainerService.HintSize="494,595">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="SetValue_1" sap:VirtualizedContainerService.HintSize="314,134" />
-      <sap2010:ViewStateData Id="Sequence_98" sap:VirtualizedContainerService.HintSize="336,258">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="WindowScope_64" sap:VirtualizedContainerService.HintSize="414,404" />
-      <sap2010:ViewStateData Id="Sequence_97" sap:VirtualizedContainerService.HintSize="494,528">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="TypeInto_12" sap:VirtualizedContainerService.HintSize="314,134" />
-      <sap2010:ViewStateData Id="SetValue_3" sap:VirtualizedContainerService.HintSize="314,134" />
-      <sap2010:ViewStateData Id="Sequence_104" sap:VirtualizedContainerService.HintSize="336,432">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="WindowScope_66" sap:VirtualizedContainerService.HintSize="414,578" />
-      <sap2010:ViewStateData Id="Sequence_103" sap:VirtualizedContainerService.HintSize="494,702">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="TypeInto_13" sap:VirtualizedContainerService.HintSize="314,134" />
-      <sap2010:ViewStateData Id="TypeInto_14" sap:VirtualizedContainerService.HintSize="314,134" />
-      <sap2010:ViewStateData Id="SendHotkey_5" sap:VirtualizedContainerService.HintSize="314,152" />
-      <sap2010:ViewStateData Id="Sequence_107" sap:VirtualizedContainerService.HintSize="336,624">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="WindowScope_67" sap:VirtualizedContainerService.HintSize="414,770" />
-      <sap2010:ViewStateData Id="Sequence_106" sap:VirtualizedContainerService.HintSize="494,894">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Sequence_79" sap:VirtualizedContainerService.HintSize="516,5495">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="InvokeWorkflowFile_4" sap:VirtualizedContainerService.HintSize="314,87" />
       <sap2010:ViewStateData Id="SendHotkey_3" sap:VirtualizedContainerService.HintSize="314,152" />
       <sap2010:ViewStateData Id="Sequence_77" sap:VirtualizedContainerService.HintSize="336,276">
         <sap:WorkflowViewStateService.ViewState>
@@ -1292,68 +961,34 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="TypeInto_19" sap:VirtualizedContainerService.HintSize="314,134" />
-      <sap2010:ViewStateData Id="Sequence_121" sap:VirtualizedContainerService.HintSize="336,258">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="WindowScope_75" sap:VirtualizedContainerService.HintSize="414,404" />
       <sap2010:ViewStateData Id="TypeInto_26" sap:VirtualizedContainerService.HintSize="314,134" />
-      <sap2010:ViewStateData Id="Sequence_193" sap:VirtualizedContainerService.HintSize="336,258">
+      <sap2010:ViewStateData Id="SendHotkey_54" sap:VirtualizedContainerService.HintSize="314,152" />
+      <sap2010:ViewStateData Id="Sequence_193" sap:VirtualizedContainerService.HintSize="336,450">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="WindowScope_117" sap:VirtualizedContainerService.HintSize="414,404" />
-      <sap2010:ViewStateData Id="Sequence_120" sap:VirtualizedContainerService.HintSize="200,49">
+      <sap2010:ViewStateData Id="WindowScope_117" sap:VirtualizedContainerService.HintSize="414,596" />
+      <sap2010:ViewStateData Id="Sequence_120" sap:VirtualizedContainerService.HintSize="436,720">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="SendHotkey_49" sap:VirtualizedContainerService.HintSize="314,152" />
-      <sap2010:ViewStateData Id="Sequence_210" sap:VirtualizedContainerService.HintSize="336,276">
+      <sap2010:ViewStateData Id="InvokeWorkflowFile_3" sap:VirtualizedContainerService.HintSize="200,49" />
+      <sap2010:ViewStateData Id="SendHotkey_53" sap:VirtualizedContainerService.HintSize="314,152" />
+      <sap2010:ViewStateData Id="Sequence_231" sap:VirtualizedContainerService.HintSize="336,276">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="WindowScope_114" sap:VirtualizedContainerService.HintSize="414,422" />
-      <sap2010:ViewStateData Id="ClickImage_43" sap:VirtualizedContainerService.HintSize="314,106" />
-      <sap2010:ViewStateData Id="Sequence_211" sap:VirtualizedContainerService.HintSize="336,230">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="WindowScope_115" sap:VirtualizedContainerService.HintSize="414,376" />
-      <sap2010:ViewStateData Id="ClickImage_38" sap:VirtualizedContainerService.HintSize="314,106" />
-      <sap2010:ViewStateData Id="SetValue_22" sap:VirtualizedContainerService.HintSize="314,134" />
-      <sap2010:ViewStateData Id="ClickText_10" sap:VirtualizedContainerService.HintSize="314,134" />
-      <sap2010:ViewStateData Id="SendHotkey_46" sap:VirtualizedContainerService.HintSize="314,152" />
-      <sap2010:ViewStateData Id="ClickImage_39" sap:VirtualizedContainerService.HintSize="314,106" />
-      <sap2010:ViewStateData Id="ClickImage_40" sap:VirtualizedContainerService.HintSize="314,106" />
-      <sap2010:ViewStateData Id="ClickText_11" sap:VirtualizedContainerService.HintSize="314,134" />
-      <sap2010:ViewStateData Id="ClickImage_41" sap:VirtualizedContainerService.HintSize="314,106" />
-      <sap2010:ViewStateData Id="SetValue_23" sap:VirtualizedContainerService.HintSize="314,134" />
-      <sap2010:ViewStateData Id="SendHotkey_47" sap:VirtualizedContainerService.HintSize="314,152" />
-      <sap2010:ViewStateData Id="Sequence_192" sap:VirtualizedContainerService.HintSize="336,1748">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="WindowScope_116" sap:VirtualizedContainerService.HintSize="414,1894" />
-      <sap2010:ViewStateData Id="Sequence_191" sap:VirtualizedContainerService.HintSize="200,49">
+      <sap2010:ViewStateData Id="WindowScope_131" sap:VirtualizedContainerService.HintSize="414,422" />
+      <sap2010:ViewStateData Id="Sequence_230" sap:VirtualizedContainerService.HintSize="200,49">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -1368,17 +1003,38 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="WindowScope_127" sap:VirtualizedContainerService.HintSize="414,376" />
-      <sap2010:ViewStateData Id="SelectItem_8" sap:VirtualizedContainerService.HintSize="314,134" />
-      <sap2010:ViewStateData Id="Click_5" sap:VirtualizedContainerService.HintSize="314,106" />
-      <sap2010:ViewStateData Id="Sequence_221" sap:VirtualizedContainerService.HintSize="336,404">
+      <sap2010:ViewStateData Id="WindowScope_127" sap:VirtualizedContainerService.HintSize="473,376" />
+      <sap2010:ViewStateData Id="SelectItem_11" sap:VirtualizedContainerService.HintSize="314,134" />
+      <sap2010:ViewStateData Id="Click_6" sap:VirtualizedContainerService.HintSize="314,106" />
+      <sap2010:ViewStateData Id="Sequence_232" sap:VirtualizedContainerService.HintSize="336,404">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="WindowScope_128" sap:VirtualizedContainerService.HintSize="414,550" />
+      <sap2010:ViewStateData Id="WindowScope_132" sap:VirtualizedContainerService.HintSize="414,550" />
+      <sap2010:ViewStateData Id="SelectItem_12" sap:VirtualizedContainerService.HintSize="314,134" />
+      <sap2010:ViewStateData Id="Click_7" sap:VirtualizedContainerService.HintSize="314,106" />
+      <sap2010:ViewStateData Id="Sequence_233" sap:VirtualizedContainerService.HintSize="336,404">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="WindowScope_133" sap:VirtualizedContainerService.HintSize="414,550" />
+      <sap2010:ViewStateData Id="SelectItem_13" sap:VirtualizedContainerService.HintSize="314,134" />
+      <sap2010:ViewStateData Id="Click_8" sap:VirtualizedContainerService.HintSize="314,106" />
+      <sap2010:ViewStateData Id="Sequence_234" sap:VirtualizedContainerService.HintSize="336,404">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="WindowScope_134" sap:VirtualizedContainerService.HintSize="414,550" />
+      <sap2010:ViewStateData Id="Switch`1_1" sap:VirtualizedContainerService.HintSize="473,174" />
       <sap2010:ViewStateData Id="Sequence_219" sap:VirtualizedContainerService.HintSize="200,49">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -1389,8 +1045,17 @@
       <sap2010:ViewStateData Id="FlowStep_56">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <av:Point x:Key="ShapeLocation">50,1055.5</av:Point>
+            <av:Point x:Key="ShapeLocation">70,1155.5</av:Point>
             <av:Size x:Key="ShapeSize">200,49</av:Size>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="FlowStep_61">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <av:Point x:Key="ShapeLocation">30,1055.5</av:Point>
+            <av:Size x:Key="ShapeSize">200,49</av:Size>
+            <av:PointCollection x:Key="ConnectorLocation">130,1104.5 130,1134.5 170,1134.5 170,1155.5</av:PointCollection>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
@@ -1399,7 +1064,7 @@
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <av:Point x:Key="ShapeLocation">50,955.5</av:Point>
             <av:Size x:Key="ShapeSize">200,49</av:Size>
-            <av:PointCollection x:Key="ConnectorLocation">150,1004.5 150,1055.5</av:PointCollection>
+            <av:PointCollection x:Key="ConnectorLocation">150,1004.5 150,1034.5 130,1034.5 130,1055.5</av:PointCollection>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
@@ -1475,18 +1140,18 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Flowchart_1" sap:VirtualizedContainerService.HintSize="614,1230">
+      <sap2010:ViewStateData Id="Flowchart_1" sap:VirtualizedContainerService.HintSize="614,1440">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">False</x:Boolean>
             <av:Point x:Key="ShapeLocation">270,2.5</av:Point>
             <av:Size x:Key="ShapeSize">60,75</av:Size>
-            <av:PointCollection x:Key="ConnectorLocation">300,77.5 300,1105.36166666667 250,1105.36166666667 250,1135.36166666667</av:PointCollection>
-            <x:Double x:Key="Height">1194.3616666666667</x:Double>
+            <av:PointCollection x:Key="ConnectorLocation">300,77.5 300,124.5 230,124.5</av:PointCollection>
+            <x:Double x:Key="Height">1404.5</x:Double>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Registrering_av_ulike_trekktyper_1" sap:VirtualizedContainerService.HintSize="654,1310">
+      <sap2010:ViewStateData Id="Registrering_av_ulike_trekktyper_1" sap:VirtualizedContainerService.HintSize="654,1520">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="ShouldCollapseAll">False</x:Boolean>
