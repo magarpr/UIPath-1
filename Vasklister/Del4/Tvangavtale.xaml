@@ -15,6 +15,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
+  <sap2010:WorkflowViewState.IdRef>Tvangavtale_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
       <x:String>System.Activities</x:String>
@@ -88,6 +89,9 @@
       <AssemblyReference>WindowsBase</AssemblyReference>
       <AssemblyReference>PresentationCore</AssemblyReference>
       <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>TimeSpan2</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
   <Sequence DisplayName="TvangAvtale" sap2010:WorkflowViewState.IdRef="Sequence_191">
@@ -147,7 +151,7 @@
                 <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" WaitForReady="INTERACTIVE" />
               </ui:ClickImage.Target>
             </ui:ClickImage>
-            <ui:SetValue ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Set Text 'TDatoEdit'" sap2010:WorkflowViewState.IdRef="SetValue_22" Text="27.02.2017">
+            <ui:SetValue ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Set Text 'TDatoEdit'" sap2010:WorkflowViewState.IdRef="SetValue_22" Text="[DateTime.Now.ToString(&quot;dd.MM.yyyy&quot;)]">
               <ui:SetValue.Target>
                 <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="35787c0876dabd0f332adb4a5991a543" Selector="&lt;wnd aaname='Arbeidsområde' cls='MDIClient' /&gt;&lt;wnd cls='TfrmTvang' title='Tvang' /&gt;&lt;wnd cls='TGroupBox' title='Trekk AG' /&gt;&lt;wnd cls='TDatoEdit' idx='1' /&gt;" WaitForReady="INTERACTIVE" />
               </ui:SetValue.Target>
@@ -228,7 +232,7 @@
         </ActivityAction>
       </ui:WindowScope.Body>
     </ui:WindowScope>
-    <sads:DebugSymbol.Symbol>dyJXOlxycGFcVmFza2xpc3RlclxUdmFuZ2F2dGFsZS54YW1sNl0D6AEOAgEBXgVtFgIBM24FgwEWAgEshAEF5gEWAgECXpYCXugCAgE3ZAtqFgIBNG6WAm7tAgIBMnQLgAEWAgEthAGWAoQB6AICASuKAQvjARYCAQNlDWkdAgE1dQ1/HQIBLosBDZUBHQIBJ5YBDZoBGwIBJJsBDaYBHAIBHqcBDasBHQIBHKwBDbYBHQIBGLcBDcEBHQIBFMIBDc0BHAIBDs4BDdgBHQIBCtkBDd0BGwIBBt4BDeIBHQIBBGegAWeBAgIBNno7ekACATF3LHcvAgEvdzh3OwIBMJABO5ABQAIBKo0BLI0BMAIBKI0BOY0BPAIBKZYBuAGWAcQBAgElmAGgAZgB1AICASabAb0CmwHOAgIBIJsBmQKbAZwCAgEfoAGGAaABlQICASOdASydATACASGdATmdAT0CASKpAaABqQGBAgIBHbEBO7EBQAIBG64BLK4BLwIBGa4BOK4BOwIBGrwBO7wBQAIBF7kBLLkBLwIBFbkBOLkBOwIBFsIBvQLCAcQCAgEQwgGZAsIBnAICAQ/HAYYBxwGZAgIBE8QBLMQBMQIBEcQBOsQBPQIBEtMBO9MBQAIBDdABLNABMQIBC9ABOtABPgIBDNkBuQHZAcgBAgEH2wGgAdsB2QICAQngAaAB4AGBAgIBBQ==</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>dydXOlxycGFcVmFza2xpc3RlclxEZWw0XFR2YW5nYXZ0YWxlLnhhbWw2YQPsAQ4CAQFiBXEWAgEzcgWHARYCASyIAQXqARYCAQJilgJi6AICATdoC24WAgE0cpYCcu0CAgEyeAuEARYCAS2IAZYCiAHoAgIBK44BC+cBFgIBA2kNbR0CATV5DYMBHQIBLo8BDZkBHQIBJ5oBDZ4BGwIBJJ8BDaoBHAIBHqsBDa8BHQIBHLABDboBHQIBGLsBDcUBHQIBFMYBDdEBHAIBDtIBDdwBHQIBCt0BDeEBGwIBBuIBDeYBHQIBBGugAWuBAgIBNn47fkACATF7LHsvAgEvezh7OwIBMJQBO5QBQAIBKpEBLJEBMAIBKJEBOZEBPAIBKZoBuAGaAekBAgElnAGgAZwB1AICASafAb0CnwHOAgIBIJ8BmQKfAZwCAgEfpAGGAaQBlQICASOhASyhATACASGhATmhAT0CASKtAaABrQGBAgIBHbUBO7UBQAIBG7IBLLIBLwIBGbIBOLIBOwIBGsABO8ABQAIBF70BLL0BLwIBFb0BOL0BOwIBFsYBvQLGAcQCAgEQxgGZAsYBnAICAQ/LAYYBywGZAgIBE8gBLMgBMQIBEcgBOsgBPQIBEtcBO9cBQAIBDdQBLNQBMQIBC9QBOtQBPgIBDN0BuQHdAcgBAgEH3wGgAd8B2QICAQnkAaAB5AGBAgIBBQ==</sads:DebugSymbol.Symbol>
   </Sequence>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
@@ -268,13 +272,14 @@
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="WindowScope_116" sap:VirtualizedContainerService.HintSize="414,1894" />
-      <sap2010:ViewStateData Id="Sequence_191" sap:VirtualizedContainerService.HintSize="200,49">
+      <sap2010:ViewStateData Id="Sequence_191" sap:VirtualizedContainerService.HintSize="436,2896">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Tvangavtale_1" sap:VirtualizedContainerService.HintSize="476,3016" />
     </sap2010:ViewStateManager>
   </sap2010:WorkflowViewState.ViewStateManager>
 </Activity>
