@@ -63,10 +63,10 @@
     <Flowchart.Variables>
       <Variable x:TypeArguments="ui:GenericValue" Name="DebitorsArbeidsgiverOrgNo" />
       <Variable x:TypeArguments="ui:GenericValue" Name="ForrigeAvdgragsOrdningAvtale" />
-      <Variable x:TypeArguments="x:String" Default="12" Name="terminBeløp" />
-      <Variable x:TypeArguments="x:String" Default="260904" Name="saksNo" />
+      <Variable x:TypeArguments="x:String" Default="13" Name="terminBeløp" />
+      <Variable x:TypeArguments="x:String" Default="260971" Name="saksNo" />
       <Variable x:TypeArguments="ui:GenericValue" Name="SakNoFraSkjerm" />
-      <Variable x:TypeArguments="x:String" Default="971802502" Name="orgNo" />
+      <Variable x:TypeArguments="x:String" Default="879639662" Name="orgNo" />
       <Variable x:TypeArguments="x:String" Default="AG" Name="Trekkkilde" />
     </Flowchart.Variables>
     <Flowchart.StartNode>
@@ -374,6 +374,7 @@
                                         <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke Tvangavtale workflow" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="Del4\Tvangavtale.xaml">
                                           <ui:InvokeWorkflowFile.Arguments>
                                             <InArgument x:TypeArguments="x:String" x:Key="terminBeløp">[terminBeløp]</InArgument>
+                                            <InArgument x:TypeArguments="x:String" x:Key="trekkkilde">[Trekkkilde]</InArgument>
                                           </ui:InvokeWorkflowFile.Arguments>
                                         </ui:InvokeWorkflowFile>
                                         <FlowStep.Next>
@@ -787,7 +788,7 @@
     <x:Reference>__ReferenceID8</x:Reference>
     <x:Reference>__ReferenceID9</x:Reference>
     <x:Reference>__ReferenceID10</x:Reference>
-    <sads:DebugSymbol.Symbol>dzxXOlxycGFcVmFza2xpc3RlclxEZWw0XFJlZ2lzdHJlcmluZyBhdiB1bGlrZSB0cmVra3R5cGVyLnhhbWyZAT4DlwYPAgEBQjRCOAIBBUM0QzwCAQRFNEU/AgEDRjRGOAIBAkoJWxQDAZ8BXg2WARgDAYcBmQERqgEcAwGAAa0BFf8BIAIBY4ICGYgCMQIBXYsCHaoCKAIBTa0CIdoCJgIBO90CJfMCMAIBM/YCKfoCQQIBL/0CLY4DOAIBKZEDMfQFPAIBBksLWhwDAaABXw92GgMBlwF3D5UBIAMBiAGaAROpASQDAYEBrgEXsgEnAgF/swEX/gEoAgFkhgJZhgJhAgFhhAJZhAJgAgFfggLLAYIC5wECAV6MAh+pAjACAU6tAi+tAl4CATyvAiW0Aj0CAUe3AiXYAjACAT3eAifyAjgCATT2AtwB9gLzAQIBMvgCaPgCdQIBMP4CL40DQAIBKpIDM6QDRAIBIqUDM/MFPAIBB0ucAkvkAgMBowFREVccAwGhAWARdSIDAZgBd5cCd9MCAwGWAX0VkgEgAwGJAZoBowKaAf4CAwGGAaABGaYBJAMBggGzAacCswH7AgIBfrkBHfsBKAIBZYwCrwKMAoMDAgFckgIlpgIwAgFPsgJjsgJvAgFLrwLhAa8CgQICAUqxAmSxAnECAUi4AifHAjgCAULIAifXAjgCAT7eArgC3gKLAwIBOuQCLe8COAIBNf4CwAL+ApIDAgEuhAM1igNAAgErkgPEApIDnwMCASiYAzmhA0QCASOlA4QBpQOSAQIBCKYDNZQERgIBGpUENYMFRgIBEoQFNfIFRgIBClITViMDAaIBYKICYP0CAwGeAWYXciIDAZkBgQEXkQEiAwGKAaEBG6UBKQMBgwG6AR/NATECAXXOAR/6ASoCAWaTAieXAjUCAVmYAiegAjUCAVWhAielAj0CAVC4ArcCuAKKAwIBRr4CLcQCOAIBQ8gCswLIAvMCAgFBzgIt1AI4AgE/5QIv6QI9AgE36gIv7gI/AgE2hQM3iQNHAgEsmQM7oANGAgEkpgPRAqYDnQMCASGsAzuRBEYCARuVBNQClQSgAwIBGZsEO4AFRgIBE4QF0QKEBZ0DAgERigU77wVGAgELZxlxKQMBmgGCARmGAScDAZIBhwEZiwEnAwGPAYwBGZABJwMBiwGjAa4BowHPAQMBhQGhAbQCoQG+AgMBhAG6AdACugHgAgIBeroBrAK6Aa8CAgF5xwGYAccBzwICAX28AT68AUECAXu8AUq8AU0CAXzDASXDAZoCAgF20gEh+AEyAgFp+QEh+QG+AQIBZ5UCugGVAvACAgFbkwK+ApMCyAICAVqaAqABmgKDAgIBWJgCtAGYAroBAgFXmALWApgC/wICAVahAs4BoQLUAQIBVKECTKECUgIBU6MCWqMCeAIBUb8CL8MCPwIBRM8CL9MCPwIBQOcCwgHnAtoCAgE55QLGAuUC0AICATiHA8oBhwOrAgIBLZ4DzgGeA7wDAgEnmwNnmwNrAgEmmwNamwNeAgElrQM9gQRNAgEeggQ9kARIAgEcnAQ98ARNAgEW8QQ9/wRIAgEUiwU93wVNAgEO4AU97gVIAgEMbEdsTAMBnQFpOGk7AwGbAWlEaUcDAZwBhAGsAYQBxwEDAZUBggGsAoIBtgIDAZMBiQGsAYkBxwEDAZEBhwGsAocBtwIDAZABjgGsAY4B1QEDAY4BjAGmAYwBrAEDAY0BjAHFAowB0gIDAYwBwwHmAcMB7wECAXfSAbIC0gGGAwIBdNgBJ/UBMgIBavkBePkBuwECAWjBAsIBwQKlAgIBRa0D6gGtA+8BAgEf/wPQAf8D7gICASCOBNABjgTuAgIBHZwE6gGcBO8BAgEX7gTQAe4E7gICARj9BNAB/QTuAgIBFYsF6gGLBe8BAgEP3QXQAd0F7gICARDsBdAB7AXuAgIBDdkBKecBNAIBcOgBKe8BPQIBbPABKfQBQAIBa9oBK+EBQAIBcuIBK+YBQgIBcegBYegBZwIBb+0BXO0BdwIBbdwBWdwBXgIBcw==</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>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</sads:DebugSymbol.Symbol>
   </Flowchart>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
@@ -971,7 +972,7 @@
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="WindowScope_117" sap:VirtualizedContainerService.HintSize="414,596" />
-      <sap2010:ViewStateData Id="Sequence_120" sap:VirtualizedContainerService.HintSize="436,720">
+      <sap2010:ViewStateData Id="Sequence_120" sap:VirtualizedContainerService.HintSize="200,49">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -1151,7 +1152,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Registrering_av_ulike_trekktyper_1" sap:VirtualizedContainerService.HintSize="654,1520">
+      <sap2010:ViewStateData Id="Registrering_av_ulike_trekktyper_1" sap:VirtualizedContainerService.HintSize="654,2560">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="ShouldCollapseAll">False</x:Boolean>
