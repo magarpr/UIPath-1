@@ -65,7 +65,7 @@
         <Variable x:TypeArguments="ui:UiElement" Name="ContainerElement" />
         <Variable x:TypeArguments="scg:IEnumerable(ui:UiElement)" Name="tableRows" />
         <Variable x:TypeArguments="ui:Selector" Name="cellSelector" />
-        <Variable x:TypeArguments="s:String[]" Default="[{&quot;Sjekk lønn/trygd&quot;, &quot;Legg inn trekk&quot; ,&quot;Mislighold - vurder utlegg&quot;,&quot;Post&quot;}]" Name="saktypeslettes" />
+        <Variable x:TypeArguments="s:String[]" Default="[{&quot;Sjekk lønn/trygd&quot;, &quot;Legg inn trekk&quot; ,&quot;Mislighold - vurder utlegg&quot;}]" Name="saktypeslettes" />
       </Sequence.Variables>
       <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" DisplayName="Attach Window 'TfrmSaksbeh'" sap2010:WorkflowViewState.IdRef="WindowScope_1" InformativeScreenshot="f91d9e098831c5fd13e20a341f472b6d" Selector="&lt;wnd app='predator.exe' cls='TfrmPredator' title='PredatorNO - [Saksbehandling]' /&gt;&lt;wnd aaname='Arbeidsområde' cls='MDIClient' /&gt;&lt;wnd cls='TfrmSaksbeh' title='Saksbehandling' /&gt;">
         <ui:WindowScope.Body>
@@ -101,7 +101,7 @@
                         <Variable x:TypeArguments="ui:GenericValue" Name="tablerowtext" />
                         <Variable x:TypeArguments="ui:GenericValue" Name="itemidtext" />
                       </Sequence.Variables>
-                      <ui:GetValue ContinueOnError="{x:Null}" DisplayName="Get Text 'list item&quot;'" sap2010:WorkflowViewState.IdRef="GetValue_1">
+                      <ui:GetValue ContinueOnError="{x:Null}" DisplayName="Get Text 'list item  1363097'" sap2010:WorkflowViewState.IdRef="GetValue_1">
                         <ui:GetValue.Target>
                           <ui:Target ClippingRegion="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" Element="[tablerow]" InformativeScreenshot="17ed2571c56c79944d6b1b025a97a7b8" WaitForReady="INTERACTIVE" />
                         </ui:GetValue.Target>
@@ -129,7 +129,18 @@
                               <If Condition="[tablerowtext.ToString.IndexOf(item) &gt; 0]" sap2010:WorkflowViewState.IdRef="If_1">
                                 <If.Then>
                                   <Sequence sap2010:WorkflowViewState.IdRef="Sequence_7">
+                                    <Sequence.Variables>
+                                      <Variable x:TypeArguments="x:String" Name="Selectorfordoubleclick" />
+                                    </Sequence.Variables>
                                     <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_3" Text="[&quot;going to delete&quot;+tablerowtext.ToString]" />
+                                    <Assign sap2010:WorkflowViewState.IdRef="Assign_1">
+                                      <Assign.To>
+                                        <OutArgument x:TypeArguments="x:String">[Selectorfordoubleclick]</OutArgument>
+                                      </Assign.To>
+                                      <Assign.Value>
+                                        <InArgument x:TypeArguments="x:String">["&lt;wnd cls='TGroupBox' title='Oppfølgninger på saken' /&gt;&lt;wnd cls='TListView' /&gt;&lt;ctrl name='"+itemidtext+"' role='list item' /&gt;"]</InArgument>
+                                      </Assign.Value>
+                                    </Assign>
                                     <ui:SelectItem ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Select item 'list item  1363097'" sap2010:WorkflowViewState.IdRef="SelectItem_1" Item="[itemidtext]">
                                       <ui:SelectItem.Items>
                                         <scg:List x:TypeArguments="x:String" Capacity="4">
@@ -139,7 +150,7 @@
                                         </scg:List>
                                       </ui:SelectItem.Items>
                                       <ui:SelectItem.Target>
-                                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="d7b2edc5933e5ce7740b11e9bcb64fbd" Selector="&lt;wnd cls='TGroupBox' title='Oppfølgninger på saken' /&gt;&lt;wnd cls='TListView' /&gt;&lt;ctrl name='*' role='list item' /&gt;" WaitForReady="INTERACTIVE" />
+                                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="d7b2edc5933e5ce7740b11e9bcb64fbd" Selector="[Selectorfordoubleclick]" WaitForReady="INTERACTIVE" />
                                       </ui:SelectItem.Target>
                                     </ui:SelectItem>
                                     <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_DOUBLE" DisplayName="Double Click" sap2010:WorkflowViewState.IdRef="Click_1" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
@@ -154,7 +165,7 @@
                                         </ui:CursorPosition>
                                       </ui:Click.CursorPosition>
                                       <ui:Click.Target>
-                                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="48385ce4d39f4824ef633b6602fac4ad" Selector="&lt;wnd cls='TGroupBox' title='Oppfølgninger på saken' /&gt;&lt;wnd cls='TListView' /&gt;" WaitForReady="INTERACTIVE" />
+                                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="195e76ce4ac1bbb53d806e482f3fd6d5" Selector="[Selectorfordoubleclick]" WaitForReady="INTERACTIVE" />
                                       </ui:Click.Target>
                                     </ui:Click>
                                     <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'push button'" sap2010:WorkflowViewState.IdRef="Click_2" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="True">
@@ -169,9 +180,14 @@
                                         </ui:CursorPosition>
                                       </ui:Click.CursorPosition>
                                       <ui:Click.Target>
-                                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="5f176205f41b97bfe7fd5daa2dbd0cd8" Selector="&lt;wnd app='inboxclient.exe' ctrlname='FollowUpForm' /&gt;&lt;wnd ctrlname='_btnDelete' /&gt;" WaitForReady="INTERACTIVE" />
+                                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="5f176205f41b97bfe7fd5daa2dbd0cd8" Selector="&lt;wnd app='inboxclient.exe' ctrlname='FollowUpForm' /&gt;&lt;wnd ctrlname='ButtonComplete' /&gt;" WaitForReady="INTERACTIVE" />
                                       </ui:Click.Target>
                                     </ui:Click>
+                                    <ui:SendHotkey DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Send hotkey" EmptyField="False" sap2010:WorkflowViewState.IdRef="SendHotkey_2" Key="J" KeyModifiers="Alt" SendWindowMessages="False" SpecialKey="False">
+                                      <ui:SendHotkey.Target>
+                                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" Selector="&lt;wnd app='inboxclient.exe' title='Bekreft ferdigstilling'/&gt;" WaitForReady="INTERACTIVE" />
+                                      </ui:SendHotkey.Target>
+                                    </ui:SendHotkey>
                                   </Sequence>
                                 </If.Then>
                               </If>
@@ -188,7 +204,7 @@
         </ui:WindowScope.Body>
       </ui:WindowScope>
     </Sequence>
-    <sads:DebugSymbol.Symbol>dy1XOlxycGFcVmFza2xpc3RlclxzYW5kYm94XGxpc3RpdGVtYXJlYmlkLnhhbWwqPgPAAQ4CAQE/Bb4BEAIBAkQ4RK8BAgEDRge9ARgCAQRGjgJG0wMCATFMDboBGAIBBVAPWxoCASdcD7kBHAIBBlERVSoCAS1WEVojAgEoXJgBXKUBAgEmYhW2ASACAQdRX1FzAgEvU6QBU8IDAgEuVmhWkQECASxYa1h/AgEqVitWOAIBKWgXbyUCASFwF3CWAQIBH3EXeCsCARp5F3maAQIBGHoXtQEkAgEIbUptVgIBImpxan0CASRwbnCTAQIBIHZKdlgCAR1zcXN9AgEbeW55lwECARl6mAF6qgECARaAAR2yASgCAQmBAR+xASQCAQqBAS2BAVsCAQuDASOvAS4CAQyEASWEAbQBAgEUhQElkAE1AgERkQElnwEwAgEPoAElrgEwAgENhAF8hAGxAQIBFYUB3wGFAe0BAgESjgG4AY4BuwICAROdAbgBnQGTAgIBEKwBuAGsAZgCAgEO</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>dy1XOlxycGFcVmFza2xpc3RlclxzYW5kYm94XGxpc3RpdGVtYXJlYmlkLnhhbWwvPgPQAQ4CAQE/Bc4BEAIBAkQ4RJ4BAgEDRgfNARgCAQRGjgJG0wMCATlMDcoBGAIBBVAPWxoCAS9cD8kBHAIBBlERVSoCATVWEVojAgEwXJgBXKUBAgEuYhXGASACAQdRX1FzAgE3U6QBU8IDAgE2VmhWkQECATRYa1h/AgEyVitWOAIBMWgXbyUCASlwF3CWAQIBJ3EXeCsCASJ5F3maAQIBIHoXxQEkAgEIbUptVgIBKmpxan0CASxwbnCTAQIBKHZKdlgCASVzcXN9AgEjeW55lwECASF6mAF6qgECAR6AAR3CASgCAQmBAR/BASQCAQqBAS2BAVsCAQuDASO/AS4CAQyHASWHAbQBAgEciAEljwEuAgEYkAElmwE1AgEUnAElqgEwAgERqwEluQEwAgEPugElvgE1AgENhwF8hwGxAQIBHY0BUI0B4gECARuKAVGKAWkCARmQAd8BkAHtAQIBFZkBuAGZAdIBAgEWqAG4AagB0gECARK3AbgBtwGcAgIBELwBf7wBwgECAQ4=</sads:DebugSymbol.Symbol>
   </Sequence>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
@@ -206,56 +222,58 @@
       <sap2010:ViewStateData Id="GetVisibleText_1" sap:VirtualizedContainerService.HintSize="502,106" />
       <sap2010:ViewStateData Id="WriteLine_2" sap:VirtualizedContainerService.HintSize="502,59" />
       <sap2010:ViewStateData Id="WriteLine_3" sap:VirtualizedContainerService.HintSize="314,59" />
+      <sap2010:ViewStateData Id="Assign_1" sap:VirtualizedContainerService.HintSize="314,59" />
       <sap2010:ViewStateData Id="SelectItem_1" sap:VirtualizedContainerService.HintSize="314,134" />
       <sap2010:ViewStateData Id="Click_1" sap:VirtualizedContainerService.HintSize="314,106" />
       <sap2010:ViewStateData Id="Click_2" sap:VirtualizedContainerService.HintSize="314,106" />
-      <sap2010:ViewStateData Id="Sequence_7" sap:VirtualizedContainerService.HintSize="336,649">
+      <sap2010:ViewStateData Id="SendHotkey_2" sap:VirtualizedContainerService.HintSize="314,114" />
+      <sap2010:ViewStateData Id="Sequence_7" sap:VirtualizedContainerService.HintSize="336,902">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="If_1" sap:VirtualizedContainerService.HintSize="464,792" />
-      <sap2010:ViewStateData Id="Sequence_6" sap:VirtualizedContainerService.HintSize="486,916">
+      <sap2010:ViewStateData Id="If_1" sap:VirtualizedContainerService.HintSize="464,1045" />
+      <sap2010:ViewStateData Id="Sequence_6" sap:VirtualizedContainerService.HintSize="486,1169">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="ForEach`1_3" sap:VirtualizedContainerService.HintSize="502,1047" />
-      <sap2010:ViewStateData Id="Sequence_2" sap:VirtualizedContainerService.HintSize="524,1661">
+      <sap2010:ViewStateData Id="ForEach`1_3" sap:VirtualizedContainerService.HintSize="502,1300" />
+      <sap2010:ViewStateData Id="Sequence_2" sap:VirtualizedContainerService.HintSize="524,1914">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="ForEach`1_1" sap:VirtualizedContainerService.HintSize="540,1792" />
-      <sap2010:ViewStateData Id="Sequence_3" sap:VirtualizedContainerService.HintSize="562,2332">
+      <sap2010:ViewStateData Id="ForEach`1_1" sap:VirtualizedContainerService.HintSize="540,2045" />
+      <sap2010:ViewStateData Id="Sequence_3" sap:VirtualizedContainerService.HintSize="562,2585">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="WindowScope_1" sap:VirtualizedContainerService.HintSize="576,2478" />
-      <sap2010:ViewStateData Id="Sequence_4" sap:VirtualizedContainerService.HintSize="598,2602">
+      <sap2010:ViewStateData Id="WindowScope_1" sap:VirtualizedContainerService.HintSize="576,2731" />
+      <sap2010:ViewStateData Id="Sequence_4" sap:VirtualizedContainerService.HintSize="598,2855">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Sequence_5" sap:VirtualizedContainerService.HintSize="620,2726">
+      <sap2010:ViewStateData Id="Sequence_5" sap:VirtualizedContainerService.HintSize="620,2979">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="listitemarebid_1" sap:VirtualizedContainerService.HintSize="660,2806" />
+      <sap2010:ViewStateData Id="listitemarebid_1" sap:VirtualizedContainerService.HintSize="660,3059" />
     </sap2010:ViewStateManager>
   </sap2010:WorkflowViewState.ViewStateManager>
 </Activity>
