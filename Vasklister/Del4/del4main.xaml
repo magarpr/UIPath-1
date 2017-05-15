@@ -78,10 +78,17 @@
       <Variable x:TypeArguments="sd:DataTable" Name="TopRow" />
       <Variable x:TypeArguments="x:Boolean" Name="IsDel4MainIsException" />
       <Variable x:TypeArguments="x:String" Name="Del4MainIsExceptionText" />
+      <Variable x:TypeArguments="x:String" Default="[System.Environment.CurrentDirectory+ &quot;\Excel\vaskeliste_v4.0.xlsx&quot;]" Name="xslDel4OutPut" />
     </Flowchart.Variables>
     <Flowchart.StartNode>
       <FlowStep x:Name="__ReferenceID1" sap2010:WorkflowViewState.IdRef="FlowStep_1">
-        <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_1" Text="[&quot;Out Path: &quot; +  System.Environment.CurrentDirectory.ToString() + &quot;\ExcelTest\test.xlsx&quot;]" />
+        <ui:CommentOut sap2010:WorkflowViewState.IdRef="CommentOut_1">
+          <ui:CommentOut.Body>
+            <Sequence DisplayName="Ignored Activities">
+              <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_1" Text="[&quot;Out Path: &quot; +  System.Environment.CurrentDirectory.ToString() + System.Environment.CurrentDirectory+ &quot;\Excel\vaskeliste_v3.0_sample.xlsx&quot;]" />
+            </Sequence>
+          </ui:CommentOut.Body>
+        </ui:CommentOut>
         <FlowStep.Next>
           <FlowStep x:Name="__ReferenceID2" sap2010:WorkflowViewState.IdRef="FlowStep_5">
             <TryCatch DisplayName="LeseExcelFilfraDel3" sap2010:WorkflowViewState.IdRef="TryCatch_1">
@@ -177,10 +184,45 @@
                                     </ui:InvokeWorkflowFile.Arguments>
                                   </ui:InvokeWorkflowFile>
                                   <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_10" Text="[&quot;FNR: &quot;+Status+&quot;:&quot;+Message]" />
+                                  <Assign sap2010:WorkflowViewState.IdRef="Assign_5">
+                                    <Assign.To>
+                                      <OutArgument x:TypeArguments="x:Object">[row.Item("_4_Status")]</OutArgument>
+                                    </Assign.To>
+                                    <Assign.Value>
+                                      <InArgument x:TypeArguments="x:Object">[Status]</InArgument>
+                                    </Assign.Value>
+                                  </Assign>
+                                  <Assign sap2010:WorkflowViewState.IdRef="Assign_6">
+                                    <Assign.To>
+                                      <OutArgument x:TypeArguments="x:Object">[row.Item("_4_Message")]</OutArgument>
+                                    </Assign.To>
+                                    <Assign.Value>
+                                      <InArgument x:TypeArguments="x:Object">[Message]</InArgument>
+                                    </Assign.Value>
+                                  </Assign>
                                 </Sequence>
                               </ActivityAction>
                             </ui:ForEach.Body>
                           </ui:ForEach>
+                          <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Write data to the output excel file" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_1" WorkbookPath="[xslDel4OutPut]">
+                            <ui:ExcelApplicationScope.Body>
+                              <ActivityAction x:TypeArguments="ui:WorkbookApplication">
+                                <ActivityAction.Argument>
+                                  <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
+                                </ActivityAction.Argument>
+                                <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_7">
+                                  <ui:ExcelWriteCell Cell="A2:C300" DisplayName="Write Value" sap2010:WorkflowViewState.IdRef="ExcelWriteCell_1" SheetName="Ark1">
+                                    <ui:ExcelWriteCell.Text>
+                                      <InArgument x:TypeArguments="x:String">
+                                        <Literal x:TypeArguments="x:String" Value="" />
+                                      </InArgument>
+                                    </ui:ExcelWriteCell.Text>
+                                  </ui:ExcelWriteCell>
+                                  <ui:ExcelWriteRange AddHeaders="True" DataTable="[Del3DT]" DisplayName="Write Range" sap2010:WorkflowViewState.IdRef="ExcelWriteRange_1" SheetName="Ark1" StartingCell="A1" />
+                                </Sequence>
+                              </ActivityAction>
+                            </ui:ExcelApplicationScope.Body>
+                          </ui:ExcelApplicationScope>
                         </Sequence>
                       </TryCatch.Try>
                       <TryCatch.Catches>
@@ -229,16 +271,17 @@
     <x:Reference>__ReferenceID0</x:Reference>
     <x:Reference>__ReferenceID4</x:Reference>
     <x:Reference>__ReferenceID5</x:Reference>
-    <sads:DebugSymbol.Symbol>dyRXOlxycGFcVmFza2xpc3RlclxEZWw0XGRlbDRtYWluLnhhbWw6SgPpAQ8CAQFMNEyLAQIBAlQJVNIBAgFUVw1+GAIBOYABP4ABWAIBN5YBFdYBIAIBDNgBR9gBYAIBCoMBFZEBIAIBA1RgVM8BAgFVWRFgKQIBS2gVeiACATqYARm4ASQCAR7AAR3SASgCAQ2FARmFAaUBAgEHjQEdjQGwAQIBBF5QXlgCAVJbSVtdAgFQXU5dUgIBT1nFAVndAQIBTlxSXFoCAUxpF3AgAgFHcRd4IAIBQHkXeeABAgE7mQEbtwEoAgEfwQEfyAEoAgEayQEf0AEoAgET0QEf0QHoAQIBDoUBhwGFAaIBAgEIjQF0jQGtAQIBBW5DbkcCAUprRGtbAgFIdkJ2gwECAUNzQ3NcAgFBeW553QECATyZAaABmQG5AQIBNp8BIbQBLAIBIMYBS8YBTwIBHcMBTMMBYwIBG84BSs4BiwECARbLAUvLAWQCARTRAXbRAeUBAgEPpAEjpAHDBQIBNKUBI6UBtQECATKmASOyATsCASWzASOzAbABAgEhpAF6pAHABQIBNaUBeqUBsgECATOpAVypAXsCATGsAV+sAYIBAgEwsAFfsAFoAgEurwFerwFmAgEsqAFdqAF6AgErrQFirQGNAQIBKqYBzwGmAfsBAgEpqwFhqwGFAQIBKKoBYqoBgQECASeuAV2uAYIBAgEmswF7swGtAQIBIg==</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>dyRXOlxycGFcVmFza2xpc3RlclxEZWw0XGRlbDRtYWluLnhhbWxLSgOTAg8CAQFMNEyLAQIBA1E0UYQBAgECVQlbGQIBal4NhQEYAgFPhwE/hwFYAgFNnQEVgAIgAgENggJHggJgAgELigEVmAEgAgEEYBFnKQIBYW8VgQEgAgFQnwEZ4gEkAgEf6gEd/AEoAgEOjAEZjAGlAQIBCJQBHZQBsAECAQVlUGVYAgFoYkliXQIBZmROZFICAWVgxQFg3QECAWRjUmNaAgFicBd3IAIBXXgXfyACAVaAAReAAeABAgFRoAEbzgEoAgEtzwEb4QE2AgEg6wEf8gEoAgEb8wEf+gEoAgEU+wEf+wHoAQIBD4wBhwGMAaIBAgEJlAF0lAGtAQIBBnVDdUcCAWByRHJbAgFefUJ9gwECAVl6Q3pcAgFXgAFugAHdAQIBUqABoAGgAbkBAgFMpgEhywEsAgEuzwHCAc8B0wECASvVASHeASwCASHwAUvwAU8CAR7tAUztAWMCARz4AUr4AYsBAgEX9QFL9QFkAgEV+wF2+wHlAQIBEKsBI6sBwwUCAUqsASOsAbUBAgFIrQEjuQE7AgE7ugEjugGwAQIBN7sBI8IBLAIBM8MBI8oBLAIBL9YBI9wBNwIBJ90BI90B0QECASKrAXqrAcAFAgFLrAF6rAGyAQIBSbABXLABewIBR7MBX7MBggECAUa3AV+3AWgCAUS2AV62AWYCAUKvAV2vAXoCAUG0AWK0AY0BAgFArQHPAa0B+wECAT+yAWGyAYUBAgE+sQFisQGBAQIBPbUBXbUBggECATy6AXu6Aa0BAgE4wAFOwAFWAgE1vQFPvQFmAgE0yAFOyAFXAgExxQFPxQFnAgEw1gE71gFEAgEq2QEp2QFYAgEp1gGcAdYBogECASjdAcoB3QHOAQIBJt0BU90BXQIBJN0BtgHdAbwBAgEj</sads:DebugSymbol.Symbol>
   </Flowchart>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
       <sap2010:ViewStateData Id="WriteLine_1" sap:VirtualizedContainerService.HintSize="211,59" />
+      <sap2010:ViewStateData Id="CommentOut_1" sap:VirtualizedContainerService.HintSize="200,49" />
       <sap2010:ViewStateData Id="InvokeWorkflowFile_2" sap:VirtualizedContainerService.HintSize="314,87" />
       <sap2010:ViewStateData Id="Assign_1" sap:VirtualizedContainerService.HintSize="242,59" />
       <sap2010:ViewStateData Id="Assign_2" sap:VirtualizedContainerService.HintSize="242,59" />
       <sap2010:ViewStateData Id="WriteLine_5" sap:VirtualizedContainerService.HintSize="242,59" />
-      <sap2010:ViewStateData Id="Sequence_3" sap:VirtualizedContainerService.HintSize="264,377">
+      <sap2010:ViewStateData Id="Sequence_3" sap:VirtualizedContainerService.HintSize="264,373">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -289,15 +332,34 @@
       <sap2010:ViewStateData Id="WriteLine_8" sap:VirtualizedContainerService.HintSize="314,59" />
       <sap2010:ViewStateData Id="InvokeWorkflowFile_3" sap:VirtualizedContainerService.HintSize="314,87" />
       <sap2010:ViewStateData Id="WriteLine_10" sap:VirtualizedContainerService.HintSize="314,59" />
-      <sap2010:ViewStateData Id="Sequence_4" sap:VirtualizedContainerService.HintSize="336,508">
+      <sap2010:ViewStateData Id="Assign_5" sap:VirtualizedContainerService.HintSize="314,59" />
+      <sap2010:ViewStateData Id="Assign_6" sap:VirtualizedContainerService.HintSize="314,59" />
+      <sap2010:ViewStateData Id="Sequence_4" sap:VirtualizedContainerService.HintSize="336,706">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="ForEach`1_2" sap:VirtualizedContainerService.HintSize="352,639" />
-      <sap2010:ViewStateData Id="Sequence_5" sap:VirtualizedContainerService.HintSize="374,763">
+      <sap2010:ViewStateData Id="ForEach`1_2" sap:VirtualizedContainerService.HintSize="414,837" />
+      <sap2010:ViewStateData Id="ExcelWriteCell_1" sap:VirtualizedContainerService.HintSize="314,87" />
+      <sap2010:ViewStateData Id="ExcelWriteRange_1" sap:VirtualizedContainerService.HintSize="314,87" />
+      <sap2010:ViewStateData Id="Sequence_7" sap:VirtualizedContainerService.HintSize="336,338">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="ExcelApplicationScope_1" sap:VirtualizedContainerService.HintSize="414,447">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_5" sap:VirtualizedContainerService.HintSize="436,1448">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -314,7 +376,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Catch`1_3" sap:VirtualizedContainerService.HintSize="404,20">
+      <sap2010:ViewStateData Id="Catch`1_3" sap:VirtualizedContainerService.HintSize="440,20">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -372,8 +434,8 @@
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <av:Point x:Key="ShapeLocation">194.5,120.5</av:Point>
-            <av:Size x:Key="ShapeSize">211,59</av:Size>
-            <av:PointCollection x:Key="ConnectorLocation">300,179.5 300,235.5</av:PointCollection>
+            <av:Size x:Key="ShapeSize">200,49</av:Size>
+            <av:PointCollection x:Key="ConnectorLocation">294.5,169.5 294.5,199.5 300,199.5 300,235.5</av:PointCollection>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
@@ -383,12 +445,12 @@
             <x:Boolean x:Key="IsExpanded">False</x:Boolean>
             <av:Point x:Key="ShapeLocation">270,2.5</av:Point>
             <av:Size x:Key="ShapeSize">60,75</av:Size>
-            <av:PointCollection x:Key="ConnectorLocation">300,77.5 300,120.5</av:PointCollection>
+            <av:PointCollection x:Key="ConnectorLocation">300,77.5 300,107.5 294.5,107.5 294.5,120.5</av:PointCollection>
             <x:Double x:Key="Height">1394.5</x:Double>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="del4main_1" sap:VirtualizedContainerService.HintSize="654,1550" />
+      <sap2010:ViewStateData Id="del4main_1" sap:VirtualizedContainerService.HintSize="654,1590" />
     </sap2010:ViewStateManager>
   </sap2010:WorkflowViewState.ViewStateManager>
 </Activity>
