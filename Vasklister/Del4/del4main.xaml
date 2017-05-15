@@ -81,202 +81,188 @@
       <Variable x:TypeArguments="x:String" Default="[System.Environment.CurrentDirectory+ &quot;\Excel\vaskeliste_v4.0.xlsx&quot;]" Name="xslDel4OutPut" />
     </Flowchart.Variables>
     <Flowchart.StartNode>
-      <FlowStep x:Name="__ReferenceID1" sap2010:WorkflowViewState.IdRef="FlowStep_1">
-        <ui:CommentOut sap2010:WorkflowViewState.IdRef="CommentOut_1">
-          <ui:CommentOut.Body>
-            <Sequence DisplayName="Ignored Activities">
-              <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_1" Text="[&quot;Out Path: &quot; +  System.Environment.CurrentDirectory.ToString() + System.Environment.CurrentDirectory+ &quot;\Excel\vaskeliste_v3.0_sample.xlsx&quot;]" />
-            </Sequence>
-          </ui:CommentOut.Body>
-        </ui:CommentOut>
+      <FlowStep x:Name="__ReferenceID1" sap2010:WorkflowViewState.IdRef="FlowStep_5">
+        <TryCatch DisplayName="LeseExcelFilfraDel3" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+          <TryCatch.Try>
+            <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke readXlsTable workflow" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Del2\readXlsTable.xaml">
+              <ui:InvokeWorkflowFile.Arguments>
+                <InArgument x:TypeArguments="x:String" x:Key="path">[vaskelistepathdel3]</InArgument>
+                <OutArgument x:TypeArguments="sd:DataTable" x:Key="outTable">[Del3DT]</OutArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="SheetName">Ark1</InArgument>
+                <OutArgument x:TypeArguments="sd:DataTable" x:Key="topRow">[TopRow]</OutArgument>
+              </ui:InvokeWorkflowFile.Arguments>
+            </ui:InvokeWorkflowFile>
+          </TryCatch.Try>
+          <TryCatch.Catches>
+            <Catch x:TypeArguments="s:Exception" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+              <ActivityAction x:TypeArguments="s:Exception">
+                <ActivityAction.Argument>
+                  <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                </ActivityAction.Argument>
+                <Sequence sap2010:WorkflowViewState.IdRef="Sequence_3">
+                  <Assign sap2010:WorkflowViewState.IdRef="Assign_1">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:Boolean">[IsDel4MainIsException]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:Boolean">True</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <Assign sap2010:WorkflowViewState.IdRef="Assign_2">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:String">[Del4MainIsExceptionText]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:String">[exception.Source+":"+exception.Message+":"+exception.StackTrace]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_5" Text="[&quot;Exception :&quot;+exception.Source+&quot;:&quot;+exception.Message+&quot;:&quot;+exception.StackTrace]" />
+                </Sequence>
+              </ActivityAction>
+            </Catch>
+          </TryCatch.Catches>
+        </TryCatch>
         <FlowStep.Next>
-          <FlowStep x:Name="__ReferenceID2" sap2010:WorkflowViewState.IdRef="FlowStep_5">
-            <TryCatch DisplayName="LeseExcelFilfraDel3" sap2010:WorkflowViewState.IdRef="TryCatch_1">
-              <TryCatch.Try>
-                <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke readXlsTable workflow" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Del2\readXlsTable.xaml">
-                  <ui:InvokeWorkflowFile.Arguments>
-                    <InArgument x:TypeArguments="x:String" x:Key="path">[vaskelistepathdel3]</InArgument>
-                    <OutArgument x:TypeArguments="sd:DataTable" x:Key="outTable">[Del3DT]</OutArgument>
-                    <InArgument x:TypeArguments="x:String" x:Key="SheetName">Ark1</InArgument>
-                    <OutArgument x:TypeArguments="sd:DataTable" x:Key="topRow">[TopRow]</OutArgument>
-                  </ui:InvokeWorkflowFile.Arguments>
-                </ui:InvokeWorkflowFile>
-              </TryCatch.Try>
-              <TryCatch.Catches>
-                <Catch x:TypeArguments="s:Exception" sap2010:WorkflowViewState.IdRef="Catch`1_1">
-                  <ActivityAction x:TypeArguments="s:Exception">
-                    <ActivityAction.Argument>
-                      <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
-                    </ActivityAction.Argument>
-                    <Sequence sap2010:WorkflowViewState.IdRef="Sequence_3">
-                      <Assign sap2010:WorkflowViewState.IdRef="Assign_1">
-                        <Assign.To>
-                          <OutArgument x:TypeArguments="x:Boolean">[IsDel4MainIsException]</OutArgument>
-                        </Assign.To>
-                        <Assign.Value>
-                          <InArgument x:TypeArguments="x:Boolean">True</InArgument>
-                        </Assign.Value>
-                      </Assign>
-                      <Assign sap2010:WorkflowViewState.IdRef="Assign_2">
-                        <Assign.To>
-                          <OutArgument x:TypeArguments="x:String">[Del4MainIsExceptionText]</OutArgument>
-                        </Assign.To>
-                        <Assign.Value>
-                          <InArgument x:TypeArguments="x:String">[exception.Source+":"+exception.Message+":"+exception.StackTrace]</InArgument>
-                        </Assign.Value>
-                      </Assign>
-                      <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_5" Text="[&quot;Exception :&quot;+exception.Source+&quot;:&quot;+exception.Message+&quot;:&quot;+exception.StackTrace]" />
-                    </Sequence>
-                  </ActivityAction>
-                </Catch>
-              </TryCatch.Catches>
-            </TryCatch>
-            <FlowStep.Next>
-              <FlowDecision x:Name="__ReferenceID3" Condition="[IsDel4MainIsException]" sap2010:WorkflowViewState.IdRef="FlowDecision_1">
-                <FlowDecision.True>
-                  <FlowStep x:Name="__ReferenceID0" sap2010:WorkflowViewState.IdRef="FlowStep_6">
-                    <TryCatch DisplayName="HåndtereException" sap2010:WorkflowViewState.IdRef="TryCatch_2">
-                      <TryCatch.Try>
-                        <ui:LogMessage DisplayName="Log message" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Error" Message="[Del4MainIsExceptionText]" />
-                      </TryCatch.Try>
-                      <TryCatch.Catches>
-                        <Catch x:TypeArguments="s:Exception" sap2010:WorkflowViewState.IdRef="Catch`1_2">
-                          <ActivityAction x:TypeArguments="s:Exception">
+          <FlowDecision x:Name="__ReferenceID2" Condition="[IsDel4MainIsException]" sap2010:WorkflowViewState.IdRef="FlowDecision_1">
+            <FlowDecision.True>
+              <FlowStep x:Name="__ReferenceID0" sap2010:WorkflowViewState.IdRef="FlowStep_6">
+                <TryCatch DisplayName="HåndtereException" sap2010:WorkflowViewState.IdRef="TryCatch_2">
+                  <TryCatch.Try>
+                    <ui:LogMessage DisplayName="Log message" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Error" Message="[Del4MainIsExceptionText]" />
+                  </TryCatch.Try>
+                  <TryCatch.Catches>
+                    <Catch x:TypeArguments="s:Exception" sap2010:WorkflowViewState.IdRef="Catch`1_2">
+                      <ActivityAction x:TypeArguments="s:Exception">
+                        <ActivityAction.Argument>
+                          <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                        </ActivityAction.Argument>
+                        <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_6" Text="[&quot;ExceptionMessage:&quot;+Del4MainIsExceptionText]" />
+                      </ActivityAction>
+                    </Catch>
+                  </TryCatch.Catches>
+                </TryCatch>
+              </FlowStep>
+            </FlowDecision.True>
+            <FlowDecision.False>
+              <FlowStep x:Name="__ReferenceID4" sap2010:WorkflowViewState.IdRef="FlowStep_7">
+                <TryCatch DisplayName="Del4 - Register Trekk" sap2010:WorkflowViewState.IdRef="TryCatch_3">
+                  <TryCatch.Try>
+                    <Sequence DisplayName="Registering av trekk" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                      <ui:ForEach x:TypeArguments="sd:DataRow" DisplayName="For each&lt;data row&gt;" sap2010:WorkflowViewState.IdRef="ForEach`1_2" Values="[Del3DT.AsEnumerable()]">
+                        <ui:ForEach.Body>
+                          <ActivityAction x:TypeArguments="sd:DataRow">
                             <ActivityAction.Argument>
-                              <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                              <DelegateInArgument x:TypeArguments="sd:DataRow" Name="row" />
                             </ActivityAction.Argument>
-                            <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_6" Text="[&quot;ExceptionMessage:&quot;+Del4MainIsExceptionText]" />
-                          </ActivityAction>
-                        </Catch>
-                      </TryCatch.Catches>
-                    </TryCatch>
-                  </FlowStep>
-                </FlowDecision.True>
-                <FlowDecision.False>
-                  <FlowStep x:Name="__ReferenceID5" sap2010:WorkflowViewState.IdRef="FlowStep_7">
-                    <TryCatch DisplayName="Del4 - Register Trekk" sap2010:WorkflowViewState.IdRef="TryCatch_3">
-                      <TryCatch.Try>
-                        <Sequence DisplayName="Registering av trekk" sap2010:WorkflowViewState.IdRef="Sequence_5">
-                          <ui:ForEach x:TypeArguments="sd:DataRow" DisplayName="For each&lt;data row&gt;" sap2010:WorkflowViewState.IdRef="ForEach`1_2" Values="[Del3DT.AsEnumerable()]">
-                            <ui:ForEach.Body>
-                              <ActivityAction x:TypeArguments="sd:DataRow">
-                                <ActivityAction.Argument>
-                                  <DelegateInArgument x:TypeArguments="sd:DataRow" Name="row" />
-                                </ActivityAction.Argument>
-                                <Sequence DisplayName="Body" sap2010:WorkflowViewState.IdRef="Sequence_4">
-                                  <Sequence.Variables>
-                                    <Variable x:TypeArguments="x:String" Name="Status" />
-                                    <Variable x:TypeArguments="x:String" Name="Message" />
-                                  </Sequence.Variables>
-                                  <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_7" Text="[&quot;Final state of Row: &quot;+row.Item(0).ToString +&quot; : &quot; +row.Item(1).ToString+&quot; : &quot; +row.Item(2).ToString+&quot; : &quot; +row.Item(3).ToString+&quot; : &quot; +row.Item(4).ToString+&quot; : &quot; +row.Item(5).ToString+&quot; : &quot; +row.Item(6).ToString+&quot; : &quot; +row.Item(8).ToString+&quot; : &quot; +row.Item(9).ToString+&quot; : &quot; +row.Item(10).ToString +&quot;:&quot;+row.Item(11).ToString+&quot;:&quot;+row.Item(12).ToString+&quot;:&quot;+row.Item(13).ToString+&quot;:&quot;+row.Item(14).ToString+&quot;:&quot;+row.Item(15).ToString]" />
-                                  <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_8" Text="[&quot;FNR: &quot;+row.Item(&quot;FNR&quot;).ToString]" />
-                                  <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke workflow file" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="Del4\Registrering av ulike trekktyper.xaml">
-                                    <ui:InvokeWorkflowFile.Arguments>
-                                      <InArgument x:TypeArguments="x:String" x:Key="saksNo">[row.Item("Sak_Nr").ToString]</InArgument>
-                                      <InArgument x:TypeArguments="x:String" x:Key="orgNo">[row.Item("_4_orgNr").ToString]</InArgument>
-                                      <InArgument x:TypeArguments="x:String" x:Key="terminBeløp">[row.Item("_4_beløp").ToString]</InArgument>
-                                      <InArgument x:TypeArguments="x:String" x:Key="TrekkKilde">[row.Item("_4_Trekkkilde").ToString]</InArgument>
-                                      <InArgument x:TypeArguments="x:String" x:Key="FirmNavn">[row.Item("_4_firmaNavn").ToString]</InArgument>
-                                      <InArgument x:TypeArguments="x:String" x:Key="PostAddress">[row.Item("_4_firmaPostAddresse").ToString]</InArgument>
-                                      <InArgument x:TypeArguments="x:String" x:Key="PostNr">[row.Item("_4_firmaPostNr").ToString]</InArgument>
-                                      <OutArgument x:TypeArguments="x:String" x:Key="Status">[Status]</OutArgument>
-                                      <OutArgument x:TypeArguments="x:String" x:Key="Message">[Message]</OutArgument>
-                                    </ui:InvokeWorkflowFile.Arguments>
-                                  </ui:InvokeWorkflowFile>
-                                  <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_10" Text="[&quot;FNR: &quot;+Status+&quot;:&quot;+Message]" />
-                                  <Assign sap2010:WorkflowViewState.IdRef="Assign_5">
-                                    <Assign.To>
-                                      <OutArgument x:TypeArguments="x:Object">[row.Item("_4_Status")]</OutArgument>
-                                    </Assign.To>
-                                    <Assign.Value>
-                                      <InArgument x:TypeArguments="x:Object">[Status]</InArgument>
-                                    </Assign.Value>
-                                  </Assign>
-                                  <Assign sap2010:WorkflowViewState.IdRef="Assign_6">
-                                    <Assign.To>
-                                      <OutArgument x:TypeArguments="x:Object">[row.Item("_4_Message")]</OutArgument>
-                                    </Assign.To>
-                                    <Assign.Value>
-                                      <InArgument x:TypeArguments="x:Object">[Message]</InArgument>
-                                    </Assign.Value>
-                                  </Assign>
-                                </Sequence>
-                              </ActivityAction>
-                            </ui:ForEach.Body>
-                          </ui:ForEach>
-                          <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Write data to the output excel file" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_1" WorkbookPath="[xslDel4OutPut]">
-                            <ui:ExcelApplicationScope.Body>
-                              <ActivityAction x:TypeArguments="ui:WorkbookApplication">
-                                <ActivityAction.Argument>
-                                  <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
-                                </ActivityAction.Argument>
-                                <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_7">
-                                  <ui:ExcelWriteCell Cell="A2:C300" DisplayName="Write Value" sap2010:WorkflowViewState.IdRef="ExcelWriteCell_1" SheetName="Ark1">
-                                    <ui:ExcelWriteCell.Text>
-                                      <InArgument x:TypeArguments="x:String">
-                                        <Literal x:TypeArguments="x:String" Value="" />
-                                      </InArgument>
-                                    </ui:ExcelWriteCell.Text>
-                                  </ui:ExcelWriteCell>
-                                  <ui:ExcelWriteRange AddHeaders="True" DataTable="[Del3DT]" DisplayName="Write Range" sap2010:WorkflowViewState.IdRef="ExcelWriteRange_1" SheetName="Ark1" StartingCell="A1" />
-                                </Sequence>
-                              </ActivityAction>
-                            </ui:ExcelApplicationScope.Body>
-                          </ui:ExcelApplicationScope>
-                        </Sequence>
-                      </TryCatch.Try>
-                      <TryCatch.Catches>
-                        <Catch x:TypeArguments="s:Exception" sap2010:WorkflowViewState.IdRef="Catch`1_3">
-                          <ActivityAction x:TypeArguments="s:Exception">
-                            <ActivityAction.Argument>
-                              <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
-                            </ActivityAction.Argument>
-                            <Sequence sap2010:WorkflowViewState.IdRef="Sequence_6">
-                              <Assign sap2010:WorkflowViewState.IdRef="Assign_3">
+                            <Sequence DisplayName="Body" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                              <Sequence.Variables>
+                                <Variable x:TypeArguments="x:String" Name="Status" />
+                                <Variable x:TypeArguments="x:String" Name="Message" />
+                              </Sequence.Variables>
+                              <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_7" Text="[&quot;Final state of Row: &quot;+row.Item(0).ToString +&quot; : &quot; +row.Item(1).ToString+&quot; : &quot; +row.Item(2).ToString+&quot; : &quot; +row.Item(3).ToString+&quot; : &quot; +row.Item(4).ToString+&quot; : &quot; +row.Item(5).ToString+&quot; : &quot; +row.Item(6).ToString+&quot; : &quot; +row.Item(8).ToString+&quot; : &quot; +row.Item(9).ToString+&quot; : &quot; +row.Item(10).ToString +&quot;:&quot;+row.Item(11).ToString+&quot;:&quot;+row.Item(12).ToString+&quot;:&quot;+row.Item(13).ToString+&quot;:&quot;+row.Item(14).ToString+&quot;:&quot;+row.Item(15).ToString]" />
+                              <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_8" Text="[&quot;FNR: &quot;+row.Item(&quot;FNR&quot;).ToString]" />
+                              <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke workflow file" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="Del4\Registrering av ulike trekktyper.xaml">
+                                <ui:InvokeWorkflowFile.Arguments>
+                                  <InArgument x:TypeArguments="x:String" x:Key="saksNo">[row.Item("Sak_Nr").ToString]</InArgument>
+                                  <InArgument x:TypeArguments="x:String" x:Key="orgNo">[row.Item("_4_orgNr").ToString]</InArgument>
+                                  <InArgument x:TypeArguments="x:String" x:Key="terminBeløp">[row.Item("_4_beløp").ToString]</InArgument>
+                                  <InArgument x:TypeArguments="x:String" x:Key="TrekkKilde">[row.Item("_4_Trekkkilde").ToString]</InArgument>
+                                  <InArgument x:TypeArguments="x:String" x:Key="FirmNavn">[row.Item("_4_firmaNavn").ToString]</InArgument>
+                                  <InArgument x:TypeArguments="x:String" x:Key="PostAddress">[row.Item("_4_firmaPostAddresse").ToString]</InArgument>
+                                  <InArgument x:TypeArguments="x:String" x:Key="PostNr">[row.Item("_4_firmaPostNr").ToString]</InArgument>
+                                  <OutArgument x:TypeArguments="x:String" x:Key="Status">[Status]</OutArgument>
+                                  <OutArgument x:TypeArguments="x:String" x:Key="Message">[Message]</OutArgument>
+                                </ui:InvokeWorkflowFile.Arguments>
+                              </ui:InvokeWorkflowFile>
+                              <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_10" Text="[&quot;FNR: &quot;+Status+&quot;:&quot;+Message]" />
+                              <Assign sap2010:WorkflowViewState.IdRef="Assign_5">
                                 <Assign.To>
-                                  <OutArgument x:TypeArguments="x:Boolean">[IsDel4MainIsException]</OutArgument>
+                                  <OutArgument x:TypeArguments="x:Object">[row.Item("_4_Status")]</OutArgument>
                                 </Assign.To>
                                 <Assign.Value>
-                                  <InArgument x:TypeArguments="x:Boolean">True</InArgument>
+                                  <InArgument x:TypeArguments="x:Object">[Status]</InArgument>
                                 </Assign.Value>
                               </Assign>
-                              <Assign sap2010:WorkflowViewState.IdRef="Assign_4">
+                              <Assign sap2010:WorkflowViewState.IdRef="Assign_6">
                                 <Assign.To>
-                                  <OutArgument x:TypeArguments="x:String">[Del4MainIsExceptionText]</OutArgument>
+                                  <OutArgument x:TypeArguments="x:Object">[row.Item("_4_Message")]</OutArgument>
                                 </Assign.To>
                                 <Assign.Value>
-                                  <InArgument x:TypeArguments="x:String">[exception.Source+":"+exception.Message+":"+exception.StackTrace]</InArgument>
+                                  <InArgument x:TypeArguments="x:Object">[Message]</InArgument>
                                 </Assign.Value>
                               </Assign>
-                              <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_9" Text="[&quot;Exception :&quot;+exception.Source+&quot;:&quot;+exception.Message+&quot;:&quot;+exception.StackTrace]" />
                             </Sequence>
                           </ActivityAction>
-                        </Catch>
-                      </TryCatch.Catches>
-                    </TryCatch>
-                    <FlowStep.Next>
-                      <FlowDecision x:Name="__ReferenceID4" Condition="[IsDel4MainIsException]" sap2010:WorkflowViewState.IdRef="FlowDecision_2" True="{x:Reference __ReferenceID0}" />
-                    </FlowStep.Next>
-                  </FlowStep>
-                </FlowDecision.False>
-              </FlowDecision>
-            </FlowStep.Next>
-          </FlowStep>
+                        </ui:ForEach.Body>
+                      </ui:ForEach>
+                      <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Write data to the output excel file" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_1" WorkbookPath="[xslDel4OutPut]">
+                        <ui:ExcelApplicationScope.Body>
+                          <ActivityAction x:TypeArguments="ui:WorkbookApplication">
+                            <ActivityAction.Argument>
+                              <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
+                            </ActivityAction.Argument>
+                            <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_7">
+                              <ui:ExcelWriteCell Cell="A2:C300" DisplayName="Write Value" sap2010:WorkflowViewState.IdRef="ExcelWriteCell_1" SheetName="Ark1">
+                                <ui:ExcelWriteCell.Text>
+                                  <InArgument x:TypeArguments="x:String">
+                                    <Literal x:TypeArguments="x:String" Value="" />
+                                  </InArgument>
+                                </ui:ExcelWriteCell.Text>
+                              </ui:ExcelWriteCell>
+                              <ui:ExcelWriteRange AddHeaders="True" DataTable="[Del3DT]" DisplayName="Write Range" sap2010:WorkflowViewState.IdRef="ExcelWriteRange_1" SheetName="Ark1" StartingCell="A1" />
+                            </Sequence>
+                          </ActivityAction>
+                        </ui:ExcelApplicationScope.Body>
+                      </ui:ExcelApplicationScope>
+                    </Sequence>
+                  </TryCatch.Try>
+                  <TryCatch.Catches>
+                    <Catch x:TypeArguments="s:Exception" sap2010:WorkflowViewState.IdRef="Catch`1_3">
+                      <ActivityAction x:TypeArguments="s:Exception">
+                        <ActivityAction.Argument>
+                          <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                        </ActivityAction.Argument>
+                        <Sequence sap2010:WorkflowViewState.IdRef="Sequence_6">
+                          <Assign sap2010:WorkflowViewState.IdRef="Assign_3">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="x:Boolean">[IsDel4MainIsException]</OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:Boolean">True</InArgument>
+                            </Assign.Value>
+                          </Assign>
+                          <Assign sap2010:WorkflowViewState.IdRef="Assign_4">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="x:String">[Del4MainIsExceptionText]</OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:String">[exception.Source+":"+exception.Message+":"+exception.StackTrace]</InArgument>
+                            </Assign.Value>
+                          </Assign>
+                          <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_9" Text="[&quot;Exception :&quot;+exception.Source+&quot;:&quot;+exception.Message+&quot;:&quot;+exception.StackTrace]" />
+                        </Sequence>
+                      </ActivityAction>
+                    </Catch>
+                  </TryCatch.Catches>
+                </TryCatch>
+                <FlowStep.Next>
+                  <FlowDecision x:Name="__ReferenceID3" Condition="[IsDel4MainIsException]" sap2010:WorkflowViewState.IdRef="FlowDecision_2" True="{x:Reference __ReferenceID0}" />
+                </FlowStep.Next>
+              </FlowStep>
+            </FlowDecision.False>
+          </FlowDecision>
         </FlowStep.Next>
       </FlowStep>
     </Flowchart.StartNode>
     <x:Reference>__ReferenceID1</x:Reference>
     <x:Reference>__ReferenceID2</x:Reference>
-    <x:Reference>__ReferenceID3</x:Reference>
     <x:Reference>__ReferenceID0</x:Reference>
+    <x:Reference>__ReferenceID3</x:Reference>
     <x:Reference>__ReferenceID4</x:Reference>
-    <x:Reference>__ReferenceID5</x:Reference>
-    <sads:DebugSymbol.Symbol>dyRXOlxycGFcVmFza2xpc3RlclxEZWw0XGRlbDRtYWluLnhhbWxLSgOTAg8CAQFMNEyLAQIBA1E0UYQBAgECVQlbGQIBal4NhQEYAgFPhwE/hwFYAgFNnQEVgAIgAgENggJHggJgAgELigEVmAEgAgEEYBFnKQIBYW8VgQEgAgFQnwEZ4gEkAgEf6gEd/AEoAgEOjAEZjAGlAQIBCJQBHZQBsAECAQVlUGVYAgFoYkliXQIBZmROZFICAWVgxQFg3QECAWRjUmNaAgFicBd3IAIBXXgXfyACAVaAAReAAeABAgFRoAEbzgEoAgEtzwEb4QE2AgEg6wEf8gEoAgEb8wEf+gEoAgEU+wEf+wHoAQIBD4wBhwGMAaIBAgEJlAF0lAGtAQIBBnVDdUcCAWByRHJbAgFefUJ9gwECAVl6Q3pcAgFXgAFugAHdAQIBUqABoAGgAbkBAgFMpgEhywEsAgEuzwHCAc8B0wECASvVASHeASwCASHwAUvwAU8CAR7tAUztAWMCARz4AUr4AYsBAgEX9QFL9QFkAgEV+wF2+wHlAQIBEKsBI6sBwwUCAUqsASOsAbUBAgFIrQEjuQE7AgE7ugEjugGwAQIBN7sBI8IBLAIBM8MBI8oBLAIBL9YBI9wBNwIBJ90BI90B0QECASKrAXqrAcAFAgFLrAF6rAGyAQIBSbABXLABewIBR7MBX7MBggECAUa3AV+3AWgCAUS2AV62AWYCAUKvAV2vAXoCAUG0AWK0AY0BAgFArQHPAa0B+wECAT+yAWGyAYUBAgE+sQFisQGBAQIBPbUBXbUBggECATy6AXu6Aa0BAgE4wAFOwAFWAgE1vQFPvQFmAgE0yAFOyAFXAgExxQFPxQFnAgEw1gE71gFEAgEq2QEp2QFYAgEp1gGcAdYBogECASjdAcoB3QHOAQIBJt0BU90BXQIBJN0BtgHdAbwBAgEj</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>dyRXOlxycGFcVmFza2xpc3RlclxEZWw0XGRlbDRtYWluLnhhbWxKSgOHAg8CAQFMNEyLAQIBA1E0UYQBAgECVQl8FAIBT347flQCAU2UARH3ARwCAQ35AUP5AVwCAQuBARGPARwCAQRXDV4lAgFhZhF4HAIBUJYBFdkBIAIBH+EBGfMBJAIBDoMBFYMBoQECAQiLARmLAawBAgEFXExcVAIBaFlFWVkCAWZbSltOAgFlV8EBV9kBAgFkWk5aVgIBYmcTbhwCAV1vE3YcAgFWdxN33AECAVGXARfFASQCAS3GARfYATICASDiARvpASQCARvqARvxASQCARTyARvyAeQBAgEPgwGDAYMBngECAQmLAXCLAakBAgEGbD9sQwIBYGlAaVcCAV50PnR/AgFZcT9xWAIBV3dqd9kBAgFSlwGcAZcBtQECAUydAR3CASgCAS7GAb4BxgHPAQIBK8wBHdUBKAIBIecBR+cBSwIBHuQBSOQBXwIBHO8BRu8BhwECARfsAUfsAWACARXyAXLyAeEBAgEQogEfogG/BQIBSqMBH6MBsQECAUikAR+wATcCATuxAR+xAawBAgE3sgEfuQEoAgEzugEfwQEoAgEvzQEf0wEzAgEn1AEf1AHNAQIBIqIBdqIBvAUCAUujAXajAa4BAgFJpwFYpwF3AgFHqgFbqgF+AgFGrgFbrgFkAgFErQFarQFiAgFCpgFZpgF2AgFBqwFeqwGJAQIBQKQBywGkAfcBAgE/qQFdqQGBAQIBPqgBXqgBfQIBPawBWawBfgIBPLEBd7EBqQECATi3AUq3AVICATW0AUu0AWICATS/AUq/AVMCATG8AUu8AWMCATDNATfNAUACASrQASXQAVQCASnNAZgBzQGeAQIBKNQBxgHUAcoBAgEm1AFP1AFZAgEk1AGyAdQBuAECASM=</sads:DebugSymbol.Symbol>
   </Flowchart>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
-      <sap2010:ViewStateData Id="WriteLine_1" sap:VirtualizedContainerService.HintSize="211,59" />
-      <sap2010:ViewStateData Id="CommentOut_1" sap:VirtualizedContainerService.HintSize="200,49" />
       <sap2010:ViewStateData Id="InvokeWorkflowFile_2" sap:VirtualizedContainerService.HintSize="314,87" />
       <sap2010:ViewStateData Id="Assign_1" sap:VirtualizedContainerService.HintSize="242,59" />
       <sap2010:ViewStateData Id="Assign_2" sap:VirtualizedContainerService.HintSize="242,59" />
@@ -398,6 +384,7 @@
             <av:Point x:Key="ShapeLocation">215,526.5</av:Point>
             <av:Size x:Key="ShapeSize">70,87</av:Size>
             <av:PointCollection x:Key="TrueConnector">215,570 100,570 100,755.5</av:PointCollection>
+            <av:PointCollection x:Key="FalseConnector">215,570 200,570 200,725.5 230,725.5 230,780 200,780</av:PointCollection>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
@@ -430,27 +417,18 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="FlowStep_1">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <av:Point x:Key="ShapeLocation">194.5,120.5</av:Point>
-            <av:Size x:Key="ShapeSize">200,49</av:Size>
-            <av:PointCollection x:Key="ConnectorLocation">294.5,169.5 294.5,199.5 300,199.5 300,235.5</av:PointCollection>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="Flowchart_1" sap:VirtualizedContainerService.HintSize="614,1430">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">False</x:Boolean>
             <av:Point x:Key="ShapeLocation">270,2.5</av:Point>
             <av:Size x:Key="ShapeSize">60,75</av:Size>
-            <av:PointCollection x:Key="ConnectorLocation">300,77.5 300,107.5 294.5,107.5 294.5,120.5</av:PointCollection>
+            <av:PointCollection x:Key="ConnectorLocation">300,77.5 300,235.5</av:PointCollection>
             <x:Double x:Key="Height">1394.5</x:Double>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="del4main_1" sap:VirtualizedContainerService.HintSize="654,1590" />
+      <sap2010:ViewStateData Id="del4main_1" sap:VirtualizedContainerService.HintSize="654,1510" />
     </sap2010:ViewStateManager>
   </sap2010:WorkflowViewState.ViewStateManager>
 </Activity>

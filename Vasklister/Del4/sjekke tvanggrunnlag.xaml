@@ -1,4 +1,4 @@
-﻿<Activity mc:Ignorable="sap sap2010 sads" x:Class="listitemarebid" this:listitemarebid.TrekkKilde="AT"
+﻿<Activity mc:Ignorable="sap sap2010 sads" x:Class="listitemarebid"
  xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities"
  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
  xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities"
@@ -9,12 +9,10 @@
  xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib"
  xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib"
  xmlns:sd="clr-namespace:System.Data;assembly=System.Data"
- xmlns:this="clr-namespace:"
  xmlns:ui="http://schemas.uipath.com/workflow/activities"
  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="TrekkKilde" Type="InArgument(x:String)" />
-    <x:Property Name="argument1" Type="InArgument(x:String)" />
   </x:Members>
   <mva:VisualBasic.Settings>
     <x:Null />
@@ -146,7 +144,7 @@
                       </ui:GetVisibleText>
                       <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_2" Text="[&quot;tablerowtext&quot;+tablerowtext]" />
                       <Switch x:TypeArguments="x:String" DisplayName="Riktig Trekk" Expression="[TrekkKilde]" sap2010:WorkflowViewState.IdRef="Switch`1_2">
-                        <Assign x:Key="AT" sap2010:WorkflowViewState.IdRef="Assign_1">
+                        <Assign x:Key="AG" sap2010:WorkflowViewState.IdRef="Assign_1">
                           <Assign.To>
                             <OutArgument x:TypeArguments="x:String">[code]</OutArgument>
                           </Assign.To>
@@ -178,28 +176,29 @@
                             <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_4" Text="[&quot;Inside &quot;+code+&quot; Trekk&quot;]" />
                             <ui:SelectItem ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Select item 'client  Tvang'" sap2010:WorkflowViewState.IdRef="SelectItem_2" Item="[itemidtext]">
                               <ui:SelectItem.Items>
-                                <scg:List x:TypeArguments="x:String" Capacity="16">
-                                  <x:String>350701</x:String>
-                                  <x:String>0 - Tvang</x:String>
-                                  <x:String>1 - Frivillig</x:String>
-                                  <x:String>2 - Refin. egen bank</x:String>
-                                  <x:String>3 - Refin. annen bank</x:String>
-                                  <x:String>4 - Annet</x:String>
-                                  <x:String>Ingen</x:String>
-                                  <x:String>Realregistrert formuesgode</x:String>
-                                  <x:String>VPS</x:String>
-                                  <x:String>Beslag</x:String>
-                                  <x:String>Enkle krav</x:String>
-                                  <x:String>Bankinnskudd</x:String>
-                                  <x:String>Annet løsøre</x:String>
-                                  <x:String>Kjøretøy</x:String>
-                                  <x:String>Manuelt trekkpålegg</x:String>
+                                <scg:List x:TypeArguments="x:String" Capacity="4">
+                                  <x:String>267794</x:String>
                                 </scg:List>
                               </ui:SelectItem.Items>
                               <ui:SelectItem.Target>
-                                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="b4138723ed1ac36fdf19237c864b1b41" Selector="&lt;wnd aaname='Arbeidsområde' cls='MDIClient' /&gt;&lt;wnd cls='TfrmTvang' title='Tvang' /&gt;&lt;ctrl name='Tvang' role='client' /&gt;" WaitForReady="INTERACTIVE" />
+                                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="7033f36778cfb4c0b76bbb7df12584fb" Selector="&lt;wnd aaname='Arbeidsområde' cls='MDIClient' /&gt;&lt;wnd cls='TfrmTvang' title='Tvang' /&gt;&lt;wnd cls='TListView' idx='2' /&gt;&lt;ctrl role='list' /&gt;" WaitForReady="INTERACTIVE" />
                               </ui:SelectItem.Target>
                             </ui:SelectItem>
+                            <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'list item  267795'" sap2010:WorkflowViewState.IdRef="Click_1" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="True">
+                              <ui:Click.CursorPosition>
+                                <ui:CursorPosition Position="Center">
+                                  <ui:CursorPosition.OffsetX>
+                                    <InArgument x:TypeArguments="x:Int32" />
+                                  </ui:CursorPosition.OffsetX>
+                                  <ui:CursorPosition.OffsetY>
+                                    <InArgument x:TypeArguments="x:Int32" />
+                                  </ui:CursorPosition.OffsetY>
+                                </ui:CursorPosition>
+                              </ui:Click.CursorPosition>
+                              <ui:Click.Target>
+                                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="3ffe853e5a85d5641e1c710aa450ac4f" Selector="[&quot;&lt;wnd aaname='Arbeidsområde' cls='MDIClient' /&gt;&lt;wnd cls='TfrmTvang' title='Tvang' /&gt;&lt;wnd cls='TListView' idx='2' /&gt;&lt;ctrl name='&quot;+itemidtext+&quot;' role='list item' /&gt;&quot;]" WaitForReady="INTERACTIVE" />
+                              </ui:Click.Target>
+                            </ui:Click>
                             <ui:Break sap2010:WorkflowViewState.IdRef="Break_1" />
                           </Sequence>
                         </If.Then>
@@ -213,7 +212,7 @@
         </ui:WindowScope.Body>
       </ui:WindowScope>
     </Sequence>
-    <sads:DebugSymbol.Symbol>dzNXOlxycGFcVmFza2xpc3RlclxzYW5kYm94XHNqZWtrZSB0dmFuZ2dydW5ubGFnLnhhbWw0AWMBZgECRwPZAQ4CAQFIBdcBEAIBAk04Ta8BAgEDTwdqGAIBNGsH1gEYAgEET4wCT94CAgE/VQ1nGAIBNWuOAmvgAgIBM3EN0wEYAgEFWQ9hKAIBO2IPZiECATZ1D9IBHAIBBllbWXACAT1biAFbqAICATxiaGKRAQIBOmRpZH4CAThiKWI2AgE3dZgBdaUBAgEyexXPASACAQeCAReJASUCAS2KAReKAZYBAgEriwEXkgErAgEmkwEXkwGaAQIBJJQBF60BIAIBFa4BF64BigECARKvARfOARwCAQiHAUqHAVYCAS6EAXGEAX0CATCKAW6KAZMBAgEskAFKkAFYAgEpjQFxjQF9AgEnkwFukwGXAQIBJZQBYJQBbgIBFpUBGZwBIgIBIJ0BGaQBIgIBHKUBGawBIgIBGK4Bbq4BhwECAROvASWvAZYBAgEJsQEbzAEmAgEKmgFEmgFHAgEjlwFFlwFLAgEhogFEogFHAgEfnwFFnwFLAgEdqgFEqgFHAgEbpwFFpwFLAgEZsgEdsgGmAQIBD7MBHcoBLQIBDMsBHcsBUwIBC7IBdLIBowECARCzAdIBswHgAQIBDcgBsAHIAboCAgEO</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>dzBXOlxycGFcVmFza2xpc3RlclxEZWw0XHNqZWtrZSB0dmFuZ2dydW5ubGFnLnhhbWw1RQPYAQ4CAQFGBdYBEAIBAks4S68BAgEDTQdoGAIBNmkH1QEYAgEETYwCTd4CAgFBUw1lGAIBN2mOAmngAgIBNW8N0gEYAgEFVw9fKAIBPWAPZCECAThzD9EBHAIBBldbV3ACAT9ZiAFZqAICAT5gaGCRAQIBPGJpYn4CATpgKWA2AgE5c5gBc6UBAgE0eRXOASACAQeAAReHASUCAS+IAReIAZYBAgEtiQEXkAErAgEokQEXkQGaAQIBJpIBF6sBIAIBF6wBF6wBigECARStARfNARwCAQiFAUqFAVYCATCCAXGCAX0CATKIAW6IAZMBAgEujgFKjgFYAgEriwFxiwF9AgEpkQFukQGXAQIBJ5IBYJIBbgIBGJMBGZoBIgIBIpsBGaIBIgIBHqMBGaoBIgIBGqwBbqwBhwECARWtASWtAZYBAgEJrwEbywEmAgEKmAFEmAFHAgEllQFFlQFLAgEjoAFEoAFHAgEhnQFFnQFLAgEfqAFEqAFHAgEdpQFFpQFLAgEbsAEdsAGmAQIBEbEBHboBLQIBDrsBHckBKAIBDMoBHcoBUwIBC7ABdLABowECARKxAdIBsQHgAQIBD7gBsAG4AdACAgEQxwGwAccBgwMCAQ0=</sads:DebugSymbol.Symbol>
   </Sequence>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
@@ -234,50 +233,51 @@
       <sap2010:ViewStateData Id="Assign_1" sap:VirtualizedContainerService.HintSize="242,59" />
       <sap2010:ViewStateData Id="Assign_2" sap:VirtualizedContainerService.HintSize="242,59" />
       <sap2010:ViewStateData Id="Assign_3" sap:VirtualizedContainerService.HintSize="242,59" />
-      <sap2010:ViewStateData Id="Switch`1_2" sap:VirtualizedContainerService.HintSize="473,279" />
+      <sap2010:ViewStateData Id="Switch`1_2" sap:VirtualizedContainerService.HintSize="473,174" />
       <sap2010:ViewStateData Id="WriteLine_5" sap:VirtualizedContainerService.HintSize="473,59" />
       <sap2010:ViewStateData Id="WriteLine_4" sap:VirtualizedContainerService.HintSize="314,59" />
       <sap2010:ViewStateData Id="SelectItem_2" sap:VirtualizedContainerService.HintSize="314,134" />
+      <sap2010:ViewStateData Id="Click_1" sap:VirtualizedContainerService.HintSize="314,106" />
       <sap2010:ViewStateData Id="Break_1" sap:VirtualizedContainerService.HintSize="314,22" />
-      <sap2010:ViewStateData Id="Sequence_12" sap:VirtualizedContainerService.HintSize="336,419">
+      <sap2010:ViewStateData Id="Sequence_12" sap:VirtualizedContainerService.HintSize="336,565">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="If_2" sap:VirtualizedContainerService.HintSize="473,562" />
-      <sap2010:ViewStateData Id="Sequence_2" sap:VirtualizedContainerService.HintSize="495,1594">
+      <sap2010:ViewStateData Id="If_2" sap:VirtualizedContainerService.HintSize="473,708" />
+      <sap2010:ViewStateData Id="Sequence_2" sap:VirtualizedContainerService.HintSize="495,1635">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="ForEach`1_1" sap:VirtualizedContainerService.HintSize="511,1725" />
-      <sap2010:ViewStateData Id="Sequence_3" sap:VirtualizedContainerService.HintSize="533,1849">
+      <sap2010:ViewStateData Id="ForEach`1_1" sap:VirtualizedContainerService.HintSize="511,1766" />
+      <sap2010:ViewStateData Id="Sequence_3" sap:VirtualizedContainerService.HintSize="533,1890">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="WindowScope_1" sap:VirtualizedContainerService.HintSize="547,1995" />
-      <sap2010:ViewStateData Id="Sequence_4" sap:VirtualizedContainerService.HintSize="569,2681">
+      <sap2010:ViewStateData Id="WindowScope_1" sap:VirtualizedContainerService.HintSize="547,2036" />
+      <sap2010:ViewStateData Id="Sequence_4" sap:VirtualizedContainerService.HintSize="569,2722">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Sequence_5" sap:VirtualizedContainerService.HintSize="591,2805">
+      <sap2010:ViewStateData Id="Sequence_5" sap:VirtualizedContainerService.HintSize="591,2846">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="listitemarebid_1" sap:VirtualizedContainerService.HintSize="631,3245" />
+      <sap2010:ViewStateData Id="listitemarebid_1" sap:VirtualizedContainerService.HintSize="631,6406" />
     </sap2010:ViewStateManager>
   </sap2010:WorkflowViewState.ViewStateManager>
 </Activity>
