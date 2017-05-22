@@ -16,7 +16,6 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap2010:WorkflowViewState.IdRef>LageDatabaseBrev_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
       <x:String>System.Activities</x:String>
@@ -90,9 +89,6 @@
       <AssemblyReference>WindowsBase</AssemblyReference>
       <AssemblyReference>PresentationCore</AssemblyReference>
       <AssemblyReference>System.Xaml</AssemblyReference>
-      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
-      <AssemblyReference>System.ServiceModel</AssemblyReference>
-      <AssemblyReference>TimeSpan2</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
   <Sequence DisplayName="1.4a Lag datatable brev" sap2010:WorkflowViewState.IdRef="Sequence_24">
@@ -100,8 +96,7 @@
       <Variable x:TypeArguments="x:String" Name="outDtStr" />
       <Variable x:TypeArguments="ui:GenericValue" Name="oldStr" />
       <Variable x:TypeArguments="ui:GenericValue" Name="newStr" />
-      <Variable x:TypeArguments="x:String" Default="[&quot;Nr;Dato;Kode;Tekst;Betalt;S.Salær;Gebyr;T.Salær;R.Salær;Hovedstol;Renter;Omk.rente;Overbetalt;Reg.Dato;A...;B...&quot;+Environment.NewLine]" Name="Tlistview" />
-      <Variable x:TypeArguments="x:Int32" Name="count" />
+      <Variable x:TypeArguments="ui:GenericValue" Name="Tlistview" />
     </Sequence.Variables>
     <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_41" Text="1.4a Lag datatable brev" />
     <Delay Duration="00:00:01" sap2010:WorkflowViewState.IdRef="Delay_1" />
@@ -112,78 +107,14 @@
             <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
           </ActivityAction.Argument>
           <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_26">
-            <Sequence.Variables>
-              <Variable x:TypeArguments="ui:UiElement" Name="ContainerElement" />
-              <Variable x:TypeArguments="scg:IEnumerable(ui:UiElement)" Name="tableRows" />
-            </Sequence.Variables>
-            <ui:SendHotkey DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Send hotkey 'TListView'" EmptyField="False" sap2010:WorkflowViewState.IdRef="SendHotkey_2" Key="home" KeyModifiers="None" SendWindowMessages="False" SpecialKey="True">
-              <ui:SendHotkey.Target>
-                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="0d6d2bb34b852fceb97de8bd9ea3a43b" Selector="&lt;wnd aaname='Arbeidsområde' cls='MDIClient' /&gt;&lt;wnd cls='TfrmSaksbeh' title='Saksbehandling' /&gt;&lt;wnd cls='TListView' idx='2' /&gt;" WaitForReady="INTERACTIVE" />
-              </ui:SendHotkey.Target>
-            </ui:SendHotkey>
-            <ui:WaitUiElementAppear DisplayName="Find Element for Activites Table'" FoundElement="[ContainerElement]" sap2010:WorkflowViewState.IdRef="WaitUiElementAppear_1" WaitActive="False" WaitVisible="False">
-              <ui:WaitUiElementAppear.Target>
-                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="43bc5451b53b0c76148b89f42f0255ba" Selector="&lt;wnd app='predator.exe' cls='TfrmPredator' title='PredatorNO - [Saksbehandling]' /&gt;&lt;wnd aaname='Arbeidsområde' cls='MDIClient' /&gt;&lt;wnd cls='TfrmSaksbeh' title='Saksbehandling' /&gt;&lt;wnd cls='TListView' idx='2' /&gt;" WaitForReady="INTERACTIVE" />
-              </ui:WaitUiElementAppear.Target>
-            </ui:WaitUiElementAppear>
-            <ui:FindChildren Children="[tableRows]" DisplayName="Find children 'TGroupBox'" Filter="&lt;ctrl idx='*' role='list item'/&gt;" sap2010:WorkflowViewState.IdRef="FindChildren_1" Scope="FIND_DESCENDANTS">
-              <ui:FindChildren.Target>
-                <ui:Target ClippingRegion="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" Element="[ContainerElement]" InformativeScreenshot="57dd8305cff0383a5003055ff2b6fa89" WaitForReady="INTERACTIVE" />
-              </ui:FindChildren.Target>
-            </ui:FindChildren>
-            <ui:ForEach x:TypeArguments="ui:UiElement" DisplayName="For each&lt;ui element&gt;" sap2010:WorkflowViewState.IdRef="ForEach`1_2" Values="[tableRows]">
-              <ui:ForEach.Body>
-                <ActivityAction x:TypeArguments="ui:UiElement">
-                  <ActivityAction.Argument>
-                    <DelegateInArgument x:TypeArguments="ui:UiElement" Name="tablerow" />
-                  </ActivityAction.Argument>
-                  <Sequence sap2010:WorkflowViewState.IdRef="Sequence_34">
-                    <Sequence.Variables>
-                      <Variable x:TypeArguments="sd:DataRow" Name="newRow" />
-                      <Variable x:TypeArguments="ui:GenericValue" Name="tablerowtext" />
-                      <Variable x:TypeArguments="ui:GenericValue" Name="itemidtext" />
-                      <Variable x:TypeArguments="x:String" Name="itemselector" />
-                      <Variable x:TypeArguments="ui:GenericValue" Name="aanameforList" />
-                    </Sequence.Variables>
-                    <ui:SendHotkey DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Send hotkey 'column header'" EmptyField="False" sap2010:WorkflowViewState.IdRef="SendHotkey_3" Key="down" KeyModifiers="None" SendWindowMessages="False" SpecialKey="True">
-                      <ui:SendHotkey.Target>
-                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="1140e500efd9e7ae2ed702efddff2d5f" Selector="&lt;wnd aaname='Arbeidsområde' cls='MDIClient' /&gt;&lt;wnd cls='TfrmSaksbeh' title='Saksbehandling' /&gt;&lt;wnd cls='TListView' idx='2' /&gt;" WaitForReady="INTERACTIVE" />
-                      </ui:SendHotkey.Target>
-                    </ui:SendHotkey>
-                    <ui:GetValue ContinueOnError="{x:Null}" DisplayName="Get Text 'list item'" sap2010:WorkflowViewState.IdRef="GetValue_2">
-                      <ui:GetValue.Target>
-                        <ui:Target ClippingRegion="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" Element="[tablerow]" InformativeScreenshot="a8fa1fc94b89bff91ad41835567cb0b2" WaitForReady="INTERACTIVE" />
-                      </ui:GetValue.Target>
-                      <ui:GetValue.Value>
-                        <OutArgument x:TypeArguments="ui:GenericValue">[itemidtext]</OutArgument>
-                      </ui:GetValue.Value>
-                    </ui:GetValue>
-                    <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_46" Text="[&quot;itemidtext&quot;+itemidtext]" />
-                    <ui:GetVisibleText WordsInfo="{x:Null}" DisplayName="Get visible text 'list item  1363097'" FormattedText="False" sap2010:WorkflowViewState.IdRef="GetVisibleText_6">
-                      <ui:GetVisibleText.Target>
-                        <ui:Target ClippingRegion="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" Element="[tablerow]" InformativeScreenshot="397bc9381aea7d15c993a6676d8a8f5f" WaitForReady="INTERACTIVE" />
-                      </ui:GetVisibleText.Target>
-                      <ui:GetVisibleText.Text>
-                        <OutArgument x:TypeArguments="ui:GenericValue">[tablerowtext]</OutArgument>
-                      </ui:GetVisibleText.Text>
-                    </ui:GetVisibleText>
-                    <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_43" Text="[&quot;tablerowtext&quot;+tablerowtext]" />
-                    <If Condition="[not tablerowtext = String.Empty]" sap2010:WorkflowViewState.IdRef="If_2">
-                      <If.Then>
-                        <Assign sap2010:WorkflowViewState.IdRef="Assign_8">
-                          <Assign.To>
-                            <OutArgument x:TypeArguments="x:String">[Tlistview]</OutArgument>
-                          </Assign.To>
-                          <Assign.Value>
-                            <InArgument x:TypeArguments="x:String">[Tlistview+tablerowtext+Environment.NewLine]</InArgument>
-                          </Assign.Value>
-                        </Assign>
-                      </If.Then>
-                    </If>
-                  </Sequence>
-                </ActivityAction>
-              </ui:ForEach.Body>
-            </ui:ForEach>
+            <ui:GetVisibleText WordsInfo="{x:Null}" DisplayName="Get visible text 'TListView'" FormattedText="False" sap2010:WorkflowViewState.IdRef="GetVisibleText_5">
+              <ui:GetVisibleText.Target>
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="f3228920d08847c4897396ceb0fdd706" Selector="&lt;wnd aaname='Arbeidsområde' cls='MDIClient' /&gt;&lt;wnd cls='TfrmSaksbeh' title='Saksbehandling' /&gt;&lt;wnd cls='TListView' idx='2' /&gt;&lt;ctrl role='list' /&gt;" WaitForReady="INTERACTIVE" />
+              </ui:GetVisibleText.Target>
+              <ui:GetVisibleText.Text>
+                <OutArgument x:TypeArguments="ui:GenericValue">[Tlistview]</OutArgument>
+              </ui:GetVisibleText.Text>
+            </ui:GetVisibleText>
           </Sequence>
         </ActivityAction>
       </ui:WindowScope.Body>
@@ -232,45 +163,28 @@
         </Sequence>
       </ui:CommentOut.Body>
     </ui:CommentOut>
-    <sads:DebugSymbol.Symbol>dyxXOlxycGFcVmFza2xpc3RlclxEZWwxXExhZ2VEYXRhYmFzZUJyZXYueGFtbDhiA+wBDgIBAWc0Z8gBAgECagVqeQIBQ2sFa0wCAUFsBb4BFgIBGr8BBdQBEAIBBNUBBeoBFQIBA2pdanYCAURrFWsfAgFCbJUCbPACAgFAcgu7ARYCARvAAQfHARACARXIAQfIAWwCARPJAQfQARACAQ7RAQfRAWsCAQzSAQfSAY8BAgEJ0wEH0wGkAQIBBXcNex0CAT58DYABJgIBOoEBDYUBHwIBNYYBDboBGgIBHMUBOcUBTQIBGMIBOsIBQgIBFsgBX8gBaQIBFM4BOc4BfAIBEcsBOssBQgIBD9EBXtEBaAIBDdIBggHSAYwBAgEL0gFA0gFKAgEK0wEh0wEuAgEH0wFn0wFxAgEGeaABebECAgE/fGJ8dgIBPH6gAX6KAwIBO4EBZIEBjAECATmDAWeDAXsCATeBASeBATQCATaGAZYBhgGjAQIBNIwBE7cBHgIBHZQBFZgBJQIBMpkBFaABIwIBLaEBFaEBlQECASuiARWpASkCASaqARWqAZkBAgEkqwEVtgEaAgEelgGoAZYBuQICATOeAUieAVQCAS6bAW+bAXsCATChAW2hAZIBAgEspwFIpwFWAgEppAFvpAF7AgEnqgFtqgGWAQIBJasBI6sBRgIBH60BGbQBIgIBILIBRLIBcAIBI68BRa8BUAIBIQ==</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>dydXOlxycGFcVmFza2xpc3RlclxMYWdlRGF0YWJhc2VCcmV2LnhhbWwdXgOnAQ4CAQFlBWV5AgEiZgVmTAIBIGcFeRYCARl6BY8BEAIBA5ABBaUBFQIBAmVdZXYCASNmFWYfAgEhZ5UCZ/ACAgEfbQt2FgIBGnsHggEQAgEUgwEHgwFsAgEShAEHiwEQAgENjAEHjAFrAgELjQEHjQGPAQIBCI4BB44BpAECAQRuDXUhAgEbgAE5gAFNAgEXfTp9QgIBFYMBX4MBaQIBE4kBOYkBfAIBEIYBOoYBQgIBDowBXowBaAIBDI0BggGNAYwBAgEKjQFAjQFKAgEJjgEhjgEuAgEGjgFnjgFxAgEFcKABcMsCAgEec0BzSwIBHA==</sads:DebugSymbol.Symbol>
   </Sequence>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
-      <sap2010:ViewStateData Id="WriteLine_41" sap:VirtualizedContainerService.HintSize="538,59" />
-      <sap2010:ViewStateData Id="Delay_1" sap:VirtualizedContainerService.HintSize="538,22" />
-      <sap2010:ViewStateData Id="SendHotkey_2" sap:VirtualizedContainerService.HintSize="502,152" />
-      <sap2010:ViewStateData Id="WaitUiElementAppear_1" sap:VirtualizedContainerService.HintSize="502,106" />
-      <sap2010:ViewStateData Id="FindChildren_1" sap:VirtualizedContainerService.HintSize="502,106" />
-      <sap2010:ViewStateData Id="SendHotkey_3" sap:VirtualizedContainerService.HintSize="464,152" />
-      <sap2010:ViewStateData Id="GetValue_2" sap:VirtualizedContainerService.HintSize="464,106" />
-      <sap2010:ViewStateData Id="WriteLine_46" sap:VirtualizedContainerService.HintSize="464,59" />
-      <sap2010:ViewStateData Id="GetVisibleText_6" sap:VirtualizedContainerService.HintSize="464,106" />
-      <sap2010:ViewStateData Id="WriteLine_43" sap:VirtualizedContainerService.HintSize="464,59" />
-      <sap2010:ViewStateData Id="Assign_8" sap:VirtualizedContainerService.HintSize="242,59" />
-      <sap2010:ViewStateData Id="If_2" sap:VirtualizedContainerService.HintSize="464,203" />
-      <sap2010:ViewStateData Id="Sequence_34" sap:VirtualizedContainerService.HintSize="486,1009">
+      <sap2010:ViewStateData Id="WriteLine_41" sap:VirtualizedContainerService.HintSize="416,59" />
+      <sap2010:ViewStateData Id="Delay_1" sap:VirtualizedContainerService.HintSize="416,22" />
+      <sap2010:ViewStateData Id="GetVisibleText_5" sap:VirtualizedContainerService.HintSize="314,106" />
+      <sap2010:ViewStateData Id="Sequence_26" sap:VirtualizedContainerService.HintSize="336,230">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="ForEach`1_2" sap:VirtualizedContainerService.HintSize="502,1140" />
-      <sap2010:ViewStateData Id="Sequence_26" sap:VirtualizedContainerService.HintSize="524,1748">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="WindowScope_11" sap:VirtualizedContainerService.HintSize="538,1894" />
+      <sap2010:ViewStateData Id="WindowScope_11" sap:VirtualizedContainerService.HintSize="416,376" />
       <sap2010:ViewStateData Id="Assign_5" sap:VirtualizedContainerService.HintSize="314,59" />
       <sap2010:ViewStateData Id="WriteLine_12" sap:VirtualizedContainerService.HintSize="314,59" />
       <sap2010:ViewStateData Id="Assign_6" sap:VirtualizedContainerService.HintSize="314,59" />
       <sap2010:ViewStateData Id="WriteLine_9" sap:VirtualizedContainerService.HintSize="314,59" />
       <sap2010:ViewStateData Id="WriteTextFile_2" sap:VirtualizedContainerService.HintSize="314,87" />
       <sap2010:ViewStateData Id="ReadCsvFile_3" sap:VirtualizedContainerService.HintSize="314,59" />
-      <sap2010:ViewStateData Id="Sequence_28" sap:VirtualizedContainerService.HintSize="538,706">
+      <sap2010:ViewStateData Id="Sequence_28" sap:VirtualizedContainerService.HintSize="416,706">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -311,7 +225,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="CommentOut_1" sap:VirtualizedContainerService.HintSize="538,815">
+      <sap2010:ViewStateData Id="CommentOut_1" sap:VirtualizedContainerService.HintSize="416,815">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -319,14 +233,13 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Sequence_24" sap:VirtualizedContainerService.HintSize="560,3780">
+      <sap2010:ViewStateData Id="Sequence_24" sap:VirtualizedContainerService.HintSize="438,2262">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="LageDatabaseBrev_1" sap:VirtualizedContainerService.HintSize="600,3860" />
     </sap2010:ViewStateManager>
   </sap2010:WorkflowViewState.ViewStateManager>
 </Activity>
