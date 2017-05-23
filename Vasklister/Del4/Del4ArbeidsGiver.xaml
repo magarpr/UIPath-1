@@ -1,4 +1,4 @@
-﻿<Activity mc:Ignorable="sap sap2010 sads" x:Class="Del4ArbeidsGiver" this:Del4ArbeidsGiver.orgNoFraMain="972047384" this:Del4ArbeidsGiver.PersonIdent="03057924909" this:Del4ArbeidsGiver.sakNoFraMain="291895"
+﻿<Activity mc:Ignorable="sap sap2010 sads" x:Class="Del4ArbeidsGiver"
  xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities"
  xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -10,13 +10,15 @@
  xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib"
  xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib"
  xmlns:sd="clr-namespace:System.Drawing;assembly=System.Drawing"
- xmlns:this="clr-namespace:"
  xmlns:ui="http://schemas.uipath.com/workflow/activities"
  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="orgNoFraMain" Type="InArgument(x:String)" />
     <x:Property Name="PersonIdent" Type="InArgument(x:String)" />
     <x:Property Name="sakNoFraMain" Type="InArgument(x:String)" />
+    <x:Property Name="firmNavn" Type="InArgument(x:String)" />
+    <x:Property Name="PostAdresse" Type="InArgument(x:String)" />
+    <x:Property Name="PostNr" Type="InArgument(x:String)" />
   </x:Members>
   <mva:VisualBasic.Settings>
     <x:Null />
@@ -87,9 +89,6 @@
     <Flowchart.Variables>
       <Variable x:TypeArguments="x:String" Name="identfrasok" />
       <Variable x:TypeArguments="x:String" Default="V/LØNN" Name="ForNavn" />
-      <Variable x:TypeArguments="x:String" Default="BARG LARS MALERMESTER AS" Name="firmNavn" />
-      <Variable x:TypeArguments="x:String" Default="Høyenhallveien 2" Name="PostAdresse" />
-      <Variable x:TypeArguments="x:String" Default="0667" Name="PostNr" />
       <Variable x:TypeArguments="x:Boolean" Name="FoundOrgNo" />
       <Variable x:TypeArguments="x:String" Name="Db2DebitorNo" />
       <Variable x:TypeArguments="x:String" Name="orgNoFraList" />
@@ -567,7 +566,7 @@
       </Sequence>
     </FlowStep>
     <x:Reference>__ReferenceID7</x:Reference>
-    <sads:DebugSymbol.Symbol>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</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>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</sads:DebugSymbol.Symbol>
   </Flowchart>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
@@ -953,7 +952,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Del4ArbeidsGiver_1" sap:VirtualizedContainerService.HintSize="774,1350" />
+      <sap2010:ViewStateData Id="Del4ArbeidsGiver_1" sap:VirtualizedContainerService.HintSize="774,1430" />
     </sap2010:ViewStateManager>
   </sap2010:WorkflowViewState.ViewStateManager>
 </Activity>
