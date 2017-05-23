@@ -67,97 +67,91 @@
       <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <ui:CommentOut sap2010:WorkflowViewState.IdRef="CommentOut_1">
-    <ui:CommentOut.Body>
-      <Sequence DisplayName="Ignored Activities" sap2010:WorkflowViewState.IdRef="Sequence_7">
-        <Sequence DisplayName="main" sap2010:WorkflowViewState.IdRef="Sequence_5">
-          <Sequence.Variables>
-            <Variable x:TypeArguments="x:Int32" Name="posisjon" />
-            <Variable x:TypeArguments="x:String" Name="line" />
-          </Sequence.Variables>
-          <Assign sap2010:WorkflowViewState.IdRef="Assign_9">
-            <Assign.To>
-              <OutArgument x:TypeArguments="scg:List(x:String)">[result]</OutArgument>
-            </Assign.To>
-            <Assign.Value>
-              <InArgument x:TypeArguments="scg:List(x:String)">[New List(Of String)]</InArgument>
-            </Assign.Value>
-          </Assign>
-          <Assign sap2010:WorkflowViewState.IdRef="Assign_1">
-            <Assign.To>
-              <OutArgument x:TypeArguments="x:Int32">[posisjon]</OutArgument>
-            </Assign.To>
-            <Assign.Value>
-              <InArgument x:TypeArguments="x:Int32">0</InArgument>
-            </Assign.Value>
-          </Assign>
-          <Assign sap2010:WorkflowViewState.IdRef="Assign_2">
-            <Assign.To>
-              <OutArgument x:TypeArguments="x:String">[line]</OutArgument>
-            </Assign.To>
-            <Assign.Value>
-              <InArgument x:TypeArguments="x:String">
-                <Literal x:TypeArguments="x:String" Value="" />
-              </InArgument>
-            </Assign.Value>
-          </Assign>
-          <ui:ForEach x:TypeArguments="x:Char" DisplayName="for each character" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[input]">
-            <ui:ForEach.Body>
-              <ActivityAction x:TypeArguments="x:Char">
-                <ActivityAction.Argument>
-                  <DelegateInArgument x:TypeArguments="x:Char" Name="character" />
-                </ActivityAction.Argument>
-                <Sequence DisplayName="Body" sap2010:WorkflowViewState.IdRef="Sequence_2">
-                  <If Condition="[character = Chr(10)]" DisplayName="is lineshift" sap2010:WorkflowViewState.IdRef="If_1">
-                    <If.Then>
-                      <Sequence sap2010:WorkflowViewState.IdRef="Sequence_1">
-                        <Sequence.Variables>
-                          <Variable x:TypeArguments="s:String[]" Name="a" />
-                        </Sequence.Variables>
-                        <AddToCollection x:TypeArguments="x:String" Collection="[result]" DisplayName="Add to collection&lt;string&gt;" sap2010:WorkflowViewState.IdRef="AddToCollection`1_1" Item="[line]" />
-                        <Assign sap2010:WorkflowViewState.IdRef="Assign_3">
-                          <Assign.To>
-                            <OutArgument x:TypeArguments="x:String">[line]</OutArgument>
-                          </Assign.To>
-                          <Assign.Value>
-                            <InArgument x:TypeArguments="x:String">
-                              <Literal x:TypeArguments="x:String" Value="" />
-                            </InArgument>
-                          </Assign.Value>
-                        </Assign>
-                      </Sequence>
-                    </If.Then>
-                    <If.Else>
-                      <Sequence sap2010:WorkflowViewState.IdRef="Sequence_6">
-                        <Assign sap2010:WorkflowViewState.IdRef="Assign_4">
-                          <Assign.To>
-                            <OutArgument x:TypeArguments="x:String">[line]</OutArgument>
-                          </Assign.To>
-                          <Assign.Value>
-                            <InArgument x:TypeArguments="x:String">[String.Concat(line, character)]</InArgument>
-                          </Assign.Value>
-                        </Assign>
-                      </Sequence>
-                    </If.Else>
-                  </If>
-                  <Assign sap2010:WorkflowViewState.IdRef="Assign_5">
+  <Sequence DisplayName="main" sap2010:WorkflowViewState.IdRef="Sequence_5">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:Int32" Name="posisjon" />
+      <Variable x:TypeArguments="x:String" Name="line" />
+    </Sequence.Variables>
+    <Assign sap2010:WorkflowViewState.IdRef="Assign_9">
+      <Assign.To>
+        <OutArgument x:TypeArguments="scg:List(x:String)">[result]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="scg:List(x:String)">[New List(Of String)]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign sap2010:WorkflowViewState.IdRef="Assign_1">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:Int32">[posisjon]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:Int32">0</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign sap2010:WorkflowViewState.IdRef="Assign_2">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[line]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">
+          <Literal x:TypeArguments="x:String" Value="" />
+        </InArgument>
+      </Assign.Value>
+    </Assign>
+    <ui:ForEach x:TypeArguments="x:Char" DisplayName="for each character" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[input]">
+      <ui:ForEach.Body>
+        <ActivityAction x:TypeArguments="x:Char">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="x:Char" Name="character" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Body" sap2010:WorkflowViewState.IdRef="Sequence_2">
+            <If Condition="[character = Chr(10)]" DisplayName="is lineshift" sap2010:WorkflowViewState.IdRef="If_1">
+              <If.Then>
+                <Sequence sap2010:WorkflowViewState.IdRef="Sequence_1">
+                  <Sequence.Variables>
+                    <Variable x:TypeArguments="s:String[]" Name="a" />
+                  </Sequence.Variables>
+                  <AddToCollection x:TypeArguments="x:String" Collection="[result]" DisplayName="Add to collection&lt;string&gt;" sap2010:WorkflowViewState.IdRef="AddToCollection`1_1" Item="[line]" />
+                  <Assign sap2010:WorkflowViewState.IdRef="Assign_3">
                     <Assign.To>
-                      <OutArgument x:TypeArguments="x:Int32">[posisjon]</OutArgument>
+                      <OutArgument x:TypeArguments="x:String">[line]</OutArgument>
                     </Assign.To>
                     <Assign.Value>
-                      <InArgument x:TypeArguments="x:Int32">[posisjon + 1]</InArgument>
+                      <InArgument x:TypeArguments="x:String">
+                        <Literal x:TypeArguments="x:String" Value="" />
+                      </InArgument>
                     </Assign.Value>
                   </Assign>
                 </Sequence>
-              </ActivityAction>
-            </ui:ForEach.Body>
-          </ui:ForEach>
-          <AddToCollection x:TypeArguments="x:String" Collection="[result]" DisplayName="add last" sap2010:WorkflowViewState.IdRef="AddToCollection`1_2" Item="[line]" />
-        </Sequence>
-      </Sequence>
-    </ui:CommentOut.Body>
-    <sads:DebugSymbol.Symbol>dyFXOlxycGFcVmFza2xpc3RlclxEZWwyXHNwbGl0LnhhbWwCAUwBxQEBAkYDoAETAgEB</sads:DebugSymbol.Symbol>
-  </ui:CommentOut>
+              </If.Then>
+              <If.Else>
+                <Sequence sap2010:WorkflowViewState.IdRef="Sequence_6">
+                  <Assign sap2010:WorkflowViewState.IdRef="Assign_4">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:String">[line]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:String">[String.Concat(line, character)]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                </Sequence>
+              </If.Else>
+            </If>
+            <Assign sap2010:WorkflowViewState.IdRef="Assign_5">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:Int32">[posisjon]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:Int32">[posisjon + 1]</InArgument>
+              </Assign.Value>
+            </Assign>
+          </Sequence>
+        </ActivityAction>
+      </ui:ForEach.Body>
+    </ui:ForEach>
+    <AddToCollection x:TypeArguments="x:String" Collection="[result]" DisplayName="add last" sap2010:WorkflowViewState.IdRef="AddToCollection`1_2" Item="[line]" />
+    <sads:DebugSymbol.Symbol>dyFXOlxycGFcVmFza2xpc3RlclxEZWwyXHNwbGl0LnhhbWwhAUwBxQEBAkYDmgEOAgEBSwVSDgIBK1MFWg4CASdbBWQOAgEjZQWXARICAQeYAQWYAaQBAgECUDpQTwIBLk07TUMCASxYL1gwAgEqVTBVOgIBKGELYToCASZdMV03AgEkZYABZYkBAgEhawuUARYCAQiYATyYAUYCAQWYAZkBmAGhAQIBA2wNiwESAgEOjAENkwEWAgEJbBtsMgIBD24RfRwCAReAARGJARwCARCRATeRAUUCAQyOATiOAUICAQpyE3LJAQIBHHMTfBwCARiBAROIARwCARFySnJUAgEfcr4BcsYBAgEdeRl5SAIBG3U/dUUCARmGAT6GAV4CARSDAT+DAUUCARI=</sads:DebugSymbol.Symbol>
+  </Sequence>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
       <sap2010:ViewStateData Id="Assign_9" sap:VirtualizedContainerService.HintSize="591,59" />
@@ -191,22 +185,14 @@
       </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="ForEach`1_1" sap:VirtualizedContainerService.HintSize="591,742" />
       <sap2010:ViewStateData Id="AddToCollection`1_2" sap:VirtualizedContainerService.HintSize="591,22" />
-      <sap2010:ViewStateData Id="Sequence_5" sap:VirtualizedContainerService.HintSize="200,49">
+      <sap2010:ViewStateData Id="Sequence_5" sap:VirtualizedContainerService.HintSize="613,1225">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">False</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Sequence_7" sap:VirtualizedContainerService.HintSize="222,173">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="CommentOut_1" sap:VirtualizedContainerService.HintSize="416,251" />
-      <sap2010:ViewStateData Id="split_1" sap:VirtualizedContainerService.HintSize="456,371" />
+      <sap2010:ViewStateData Id="split_1" sap:VirtualizedContainerService.HintSize="653,1305" />
     </sap2010:ViewStateManager>
   </sap2010:WorkflowViewState.ViewStateManager>
 </Activity>
