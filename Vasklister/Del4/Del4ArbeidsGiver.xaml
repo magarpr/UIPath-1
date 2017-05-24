@@ -334,6 +334,11 @@
                                                 <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" WaitForReady="INTERACTIVE" />
                                               </ui:SendHotkey.Target>
                                             </ui:SendHotkey>
+                                            <ui:SendHotkey DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Send hotkey" EmptyField="False" sap2010:WorkflowViewState.IdRef="SendHotkey_65" Key="f5" KeyModifiers="Ctrl, Shift" SendWindowMessages="False" SpecialKey="False">
+                                              <ui:SendHotkey.Target>
+                                                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" WaitForReady="INTERACTIVE" />
+                                              </ui:SendHotkey.Target>
+                                            </ui:SendHotkey>
                                           </Sequence>
                                         </ActivityAction>
                                       </ui:WindowScope.Body>
@@ -534,39 +539,8 @@
     <x:Reference>__ReferenceID4</x:Reference>
     <x:Reference>__ReferenceID5</x:Reference>
     <x:Reference>__ReferenceID6</x:Reference>
-    <FlowStep sap2010:WorkflowViewState.IdRef="FlowStep_59">
-      <Sequence DisplayName="Screen scraping" sap2010:WorkflowViewState.IdRef="Sequence_184">
-        <Sequence.Variables>
-          <Variable x:TypeArguments="ui:GenericValue" Name="ListItem" />
-        </Sequence.Variables>
-        <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" DisplayName="Attach Window 'S k Tfrmsearch'" sap2010:WorkflowViewState.IdRef="WindowScope_74" InformativeScreenshot="0f56482ca30779ff45f7df8c8e63d293" Selector="&lt;wnd app='predator.exe' cls='TfrmSearch' idx='1' title='Søk' /&gt;">
-          <ui:WindowScope.Body>
-            <ActivityAction x:TypeArguments="x:Object">
-              <ActivityAction.Argument>
-                <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
-              </ActivityAction.Argument>
-              <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_185">
-                <ui:GetVisibleText WordsInfo="{x:Null}" DisplayName="Get visible text 'list item  161973'" FormattedText="False" sap2010:WorkflowViewState.IdRef="GetVisibleText_12">
-                  <ui:GetVisibleText.Target>
-                    <ui:Target Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="8dfcf6e1191e2813b35adcad0f9eda83" Selector="&lt;wnd app='predator.exe' cls='TfrmSearch' idx='1' title='Søk' /&gt;&lt;wnd cls='TListView' idx='2' /&gt;&lt;ctrl idx='1' role='list item' /&gt;" WaitForReady="INTERACTIVE">
-                      <ui:Target.ClippingRegion>
-                        <ui:Region Rectangle="7, 8, 749, 3" />
-                      </ui:Target.ClippingRegion>
-                    </ui:Target>
-                  </ui:GetVisibleText.Target>
-                  <ui:GetVisibleText.Text>
-                    <OutArgument x:TypeArguments="ui:GenericValue">[ListItem]</OutArgument>
-                  </ui:GetVisibleText.Text>
-                </ui:GetVisibleText>
-              </Sequence>
-            </ActivityAction>
-          </ui:WindowScope.Body>
-        </ui:WindowScope>
-        <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_31" Text="[&quot;ListItem&quot;+ListItem]" />
-      </Sequence>
-    </FlowStep>
     <x:Reference>__ReferenceID7</x:Reference>
-    <sads:DebugSymbol.Symbol>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</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>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</sads:DebugSymbol.Symbol>
   </Flowchart>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
@@ -714,22 +688,23 @@
       <sap2010:ViewStateData Id="ClickText_3" sap:VirtualizedContainerService.HintSize="314,134" />
       <sap2010:ViewStateData Id="SetValue_20" sap:VirtualizedContainerService.HintSize="314,134" />
       <sap2010:ViewStateData Id="SendHotkey_57" sap:VirtualizedContainerService.HintSize="314,114" />
-      <sap2010:ViewStateData Id="Sequence_133" sap:VirtualizedContainerService.HintSize="336,586">
+      <sap2010:ViewStateData Id="SendHotkey_65" sap:VirtualizedContainerService.HintSize="314,114" />
+      <sap2010:ViewStateData Id="Sequence_133" sap:VirtualizedContainerService.HintSize="336,740">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="WindowScope_55" sap:VirtualizedContainerService.HintSize="416,732" />
-      <sap2010:ViewStateData Id="Sequence_129" sap:VirtualizedContainerService.HintSize="438,1693">
+      <sap2010:ViewStateData Id="WindowScope_55" sap:VirtualizedContainerService.HintSize="416,886" />
+      <sap2010:ViewStateData Id="Sequence_129" sap:VirtualizedContainerService.HintSize="438,1847">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Sequence_128" sap:VirtualizedContainerService.HintSize="200,49">
+      <sap2010:ViewStateData Id="Sequence_128" sap:VirtualizedContainerService.HintSize="460,1971">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -843,7 +818,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Sequence_43" sap:VirtualizedContainerService.HintSize="484,5329">
+      <sap2010:ViewStateData Id="Sequence_43" sap:VirtualizedContainerService.HintSize="200,49">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -915,31 +890,6 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="GetVisibleText_12" sap:VirtualizedContainerService.HintSize="314,106" />
-      <sap2010:ViewStateData Id="Sequence_185" sap:VirtualizedContainerService.HintSize="336,230">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="WindowScope_74" sap:VirtualizedContainerService.HintSize="414,376" />
-      <sap2010:ViewStateData Id="WriteLine_31" sap:VirtualizedContainerService.HintSize="414,59" />
-      <sap2010:ViewStateData Id="Sequence_184" sap:VirtualizedContainerService.HintSize="200,49">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="FlowStep_59">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <av:Point x:Key="ShapeLocation">0,805.5</av:Point>
-            <av:Size x:Key="ShapeSize">200,49</av:Size>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="Flowchart_1" sap:VirtualizedContainerService.HintSize="734,1270">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -952,7 +902,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Del4ArbeidsGiver_1" sap:VirtualizedContainerService.HintSize="774,1430" />
+      <sap2010:ViewStateData Id="Del4ArbeidsGiver_1" sap:VirtualizedContainerService.HintSize="774,1350" />
     </sap2010:ViewStateManager>
   </sap2010:WorkflowViewState.ViewStateManager>
 </Activity>
