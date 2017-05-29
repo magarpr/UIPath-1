@@ -114,6 +114,12 @@
                           <Variable x:TypeArguments="x:String" Name="test_ut" />
                           <Variable x:TypeArguments="ui:GenericValue" Name="kommuneNr" />
                         </Sequence.Variables>
+                        <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_31">
+                          <InArgument x:TypeArguments="x:String">
+                            <Literal x:TypeArguments="x:String" Value="" />
+                          </InArgument>
+                        </WriteLine>
+                        <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_28" Text="NY SAK HENTET:" />
                         <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke workflow file" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_8" UnSafe="False" WorkflowFileName="aInntekt.xaml">
                           <ui:InvokeWorkflowFile.Arguments>
                             <InOutArgument x:TypeArguments="sd:DataRow" x:Key="row">[row]</InOutArgument>
@@ -150,6 +156,7 @@
                           </ui:CommentOut.Body>
                         </ui:CommentOut>
                         <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_27" Text="[&quot;Final state of Row: &quot;+row.Item(0).ToString +&quot; : &quot; +row.Item(1).ToString+&quot; : &quot; +row.Item(2).ToString+&quot; : &quot; +row.Item(3).ToString+&quot; : &quot; +row.Item(4).ToString+&quot; : &quot; +row.Item(5).ToString+&quot; : &quot; +row.Item(6).ToString+&quot; : &quot; +row.Item(8).ToString+&quot; : &quot; +row.Item(9).ToString+&quot; : &quot; +row.Item(10).ToString]" />
+                        <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_29" Text="SAK FERDIG BEHANDLET" />
                       </Sequence>
                     </ActivityAction>
                   </ui:ForEach.Body>
@@ -213,7 +220,7 @@
       <x:Reference>__ReferenceID1</x:Reference>
       <x:Reference>__ReferenceID2</x:Reference>
     </Flowchart>
-    <sads:DebugSymbol.Symbol>dyBXOlxycGFcVmFza2xpc3RlclxEZWwyXE1haW4ueGFtbD5AA9kBDgIBAUI0QmICAQJHBdcBEQIBA0oLZhYCATJpD50BGgIBFqABE7YBHgIBBE4NTpABAgFMTw1WJQIBQ1cNV9cBAgFBWA1YqRwCAT5ZDVmMAQIBO1oNZSgCATNqEZwBHgIBF6QBFaQBvwECARKlARWpARoCAQ2qARW1ATACAQVOZU6NAQIBTVRMVFQCAUpRRVFVAgFIU0pTTgIBR0/BAU/UAQIBRlJOUl8CAURXZVfUAQIBQlgqWDcCAT9ZKlk3AgE8WqgBWssBAgE6YBNiHgIBNGqXAWq5AQIBMXAXmQEiAgEYpAFFpAFUAgEUpAGJAaQBrAECAROlASOlATICAQ6nARmnAZUBAgEQqgGwAaoB0wECAQywARuyASYCAQZhFWHNAQIBNXUZejECASt7GYwBHgIBHI0BGZcBKQIBG5gBGZgBhQQCARmnAW+nAZIBAgERsQEdsQHOAQIBB2HGAWHKAQIBOWFGYVkCATdhsgFhuAECATZ3VXdaAgEveGF4bAIBLXXFAXXUAQIBLHsne3ECAR19HYoBKAIBHpgBcZgBggQCARqxAccBsQHLAQIBC7EBTbEBWgIBCbEBswGxAbkBAgEIfh+DATcCASWEAR+JATcCAR+AAVuAAWACASmBAWOBAW4CASd+ywF+3AECASaGAVuGAWACASOHAWeHAXICASGEAcsBhAHfAQIBIA==</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>dyBXOlxycGFcVmFza2xpc3RlclxEZWwyXE1haW4ueGFtbERAA+ABDgIBAUI0QmICAQJHBd4BEQIBA0oLZhYCAThpD6QBGgIBFqcBE70BHgIBBE4NTpABAgFSTw1WJQIBSVcNV9cBAgFHWA1YqRwCAURZDVmMAQIBQVoNZSgCATlqEaMBHgIBF6sBFasBvwECARKsARWwARoCAQ2xARW8ATACAQVOZU6NAQIBU1RMVFQCAVBRRVFVAgFOU0pTTgIBTU/BAU/UAQIBTFJOUl8CAUpXZVfUAQIBSFgqWDcCAUVZKlk3AgFCWqgBWssBAgFAYBNiHgIBOmqXAWq5AQIBN3AXoAEiAgEYqwFFqwFUAgEUqwGJAasBrAECAROsASOsATICAQ6uARmuAZUBAgEQsQGwAbEB0wECAQy3ARu5ASYCAQZhFWHNAQIBO3UZeSUCATV6GXqEAQIBM3sZgAExAgEtgQEZkgEeAgEekwEZnQEpAgEdngEZngGFBAIBG58BGZ8BigECARmuAW+uAZIBAgERuAEduAHOAQIBB2HGAWHKAQIBP2FGYVkCAT1hsgFhuAECATx3HXdMAgE2enF6gQECATR9VX1aAgExfmF+bAIBL3vFAXvUAQIBLoEBJ4EBcQIBH4MBHZABKAIBIJ4BcZ4BggQCARyfAXGfAYcBAgEauAHHAbgBywECAQu4AU24AVoCAQm4AbMBuAG5AQIBCIQBH4kBNwIBJ4oBH48BNwIBIYYBW4YBYAIBK4cBY4cBbgIBKYQBywGEAdwBAgEojAFbjAFgAgEljQFnjQFyAgEjigHLAYoB3wECASI=</sads:DebugSymbol.Symbol>
   </Sequence>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
@@ -231,13 +238,15 @@
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="ExcelApplicationScope_2" sap:VirtualizedContainerService.HintSize="414,320" />
-      <sap2010:ViewStateData Id="Sequence_51" sap:VirtualizedContainerService.HintSize="436,930">
+      <sap2010:ViewStateData Id="Sequence_51" sap:VirtualizedContainerService.HintSize="200,49">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="WriteLine_31" sap:VirtualizedContainerService.HintSize="464,59" />
+      <sap2010:ViewStateData Id="WriteLine_28" sap:VirtualizedContainerService.HintSize="464,59" />
       <sap2010:ViewStateData Id="InvokeWorkflowFile_8" sap:VirtualizedContainerService.HintSize="464,87" />
       <sap2010:ViewStateData Id="InvokeWorkflowFile_9" sap:VirtualizedContainerService.HintSize="314,87" />
       <sap2010:ViewStateData Id="InvokeWorkflowFile_6" sap:VirtualizedContainerService.HintSize="314,87" />
@@ -259,14 +268,15 @@
       </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="CommentOut_1" sap:VirtualizedContainerService.HintSize="464,289" />
       <sap2010:ViewStateData Id="WriteLine_27" sap:VirtualizedContainerService.HintSize="464,59" />
-      <sap2010:ViewStateData Id="Sequence_85" sap:VirtualizedContainerService.HintSize="486,1160">
+      <sap2010:ViewStateData Id="WriteLine_29" sap:VirtualizedContainerService.HintSize="464,59" />
+      <sap2010:ViewStateData Id="Sequence_85" sap:VirtualizedContainerService.HintSize="486,1457">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="ForEach`1_12" sap:VirtualizedContainerService.HintSize="502,1291" />
+      <sap2010:ViewStateData Id="ForEach`1_12" sap:VirtualizedContainerService.HintSize="502,1588" />
       <sap2010:ViewStateData Id="Sequence_84" sap:VirtualizedContainerService.HintSize="200,49">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
