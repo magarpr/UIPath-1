@@ -1,4 +1,4 @@
-﻿<Activity mc:Ignorable="sap sap2010 sads" x:Class="Main" this:Main.dataTable="[new DataTable]" this:Main.iRow="0" this:Main.xlsPath1="[System.Environment.CurrentDirectory +&quot;\Excel\Økonomisk oppsett med skatt 2016.xls&quot;]" this:Main.docPath="[System.Environment.CurrentDirectory +&quot;\OppsettWord\&quot;]"
+﻿<Activity mc:Ignorable="sap sap2010 sads" x:Class="Main"
  xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities"
  xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -10,13 +10,11 @@
  xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib"
  xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib"
  xmlns:sd="clr-namespace:System.Data;assembly=System.Data"
- xmlns:this="clr-namespace:"
  xmlns:ui="http://schemas.uipath.com/workflow/activities"
  xmlns:uw="clr-namespace:UiPath.Word;assembly=UiPath.Word"
  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
-    <x:Property Name="dataTable" Type="InArgument(sd:DataTable)" />
-    <x:Property Name="iRow" Type="InArgument(x:Int32)" />
+    <x:Property Name="row" Type="InArgument(sd:DataRow)" />
     <x:Property Name="xlsPath1" Type="InArgument(x:String)" />
     <x:Property Name="docPath" Type="InArgument(x:String)" />
   </x:Members>
@@ -111,78 +109,93 @@
       </Variable>
       <Variable x:TypeArguments="x:String" Default="10057542751" Name="FNR" />
       <Variable x:TypeArguments="x:String" Default="W:\Vaske_Liste_fra_Z990489\" Name="prosjPath" />
-      <Variable x:TypeArguments="x:String" Default="[dataTable.Rows(iRow).Item(&quot;Sak_Nr&quot;).ToString]" Name="sakNr" />
+      <Variable x:TypeArguments="x:String" Default="[row(1).ToString]" Name="sakNr" />
+      <Variable x:TypeArguments="sd:DataTable" Name="Inn_tabell" />
+      <Variable x:TypeArguments="sd:DataTable" Name="Vaskeliste_tabell" />
       <Variable x:TypeArguments="x:String" Name="kommuneNR" />
       <Variable x:TypeArguments="x:String" Name="KommuneGr1" />
       <Variable x:TypeArguments="x:String" Name="KommuneGr2" />
       <Variable x:TypeArguments="x:String" Name="KommuneGr3" />
     </Flowchart.Variables>
     <Flowchart.StartNode>
-      <FlowStep x:Name="__ReferenceID9" sap2010:WorkflowViewState.IdRef="FlowStep_29">
-        <Sequence DisplayName="Initialize_ny" sap2010:WorkflowViewState.IdRef="Sequence_108">
-          <Sequence DisplayName="Assign variables" sap2010:WorkflowViewState.IdRef="Sequence_106">
+      <FlowStep x:Name="__ReferenceID10" sap2010:WorkflowViewState.IdRef="FlowStep_34">
+        <Sequence DisplayName="Sett variabler" sap2010:WorkflowViewState.IdRef="Sequence_143">
+          <Sequence DisplayName="Assign variables" sap2010:WorkflowViewState.IdRef="Sequence_148">
             <Sequence.Variables>
               <Variable x:TypeArguments="x:String" Name="pattern" />
               <Variable x:TypeArguments="x:String" Name="str_1_tbNrEllerPct" />
             </Sequence.Variables>
-            <Assign sap2010:WorkflowViewState.IdRef="Assign_59">
+            <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_40" Text="#Startet" />
+            <Assign sap2010:WorkflowViewState.IdRef="Assign_72">
               <Assign.To>
                 <OutArgument x:TypeArguments="x:String">[sakNr]</OutArgument>
               </Assign.To>
               <Assign.Value>
-                <InArgument x:TypeArguments="x:String">[dataTable.Rows(iRow).Item("Sak_Nr").ToString]</InArgument>
+                <InArgument x:TypeArguments="x:String">[row(1).ToString]</InArgument>
               </Assign.Value>
             </Assign>
-            <Assign sap2010:WorkflowViewState.IdRef="Assign_61">
-              <Assign.To>
-                <OutArgument x:TypeArguments="x:String">[xlsPath]</OutArgument>
-              </Assign.To>
-              <Assign.Value>
-                <InArgument x:TypeArguments="x:String">["""" &amp; (xlsPath1) &amp; """"]</InArgument>
-              </Assign.Value>
-            </Assign>
-            <Assign sap2010:WorkflowViewState.IdRef="Assign_58">
+            <Assign sap2010:WorkflowViewState.IdRef="Assign_99">
               <Assign.To>
                 <OutArgument x:TypeArguments="x:String">[kommuneNR]</OutArgument>
               </Assign.To>
               <Assign.Value>
-                <InArgument x:TypeArguments="x:String">[dataTable.Rows(iRow).Item("Kommune_Nr").ToString]</InArgument>
+                <InArgument x:TypeArguments="x:String">[row.Item("Kommune_Nr").ToString]</InArgument>
               </Assign.Value>
             </Assign>
-            <If Condition="[not dataTable.Rows(iRow).Item(&quot;_1_inntekt&quot;).Equals(&quot;&quot;)]" DisplayName="assign inntekt" sap2010:WorkflowViewState.IdRef="If_18">
+            <If Condition="[not row(3).Equals(&quot;&quot;)]" DisplayName="assign inntekt" sap2010:WorkflowViewState.IdRef="If_25">
               <If.Then>
-                <Sequence sap2010:WorkflowViewState.IdRef="Sequence_111">
-                  <Assign sap2010:WorkflowViewState.IdRef="Assign_39">
+                <Sequence sap2010:WorkflowViewState.IdRef="Sequence_144">
+                  <Assign sap2010:WorkflowViewState.IdRef="Assign_74">
                     <Assign.To>
                       <OutArgument x:TypeArguments="x:String">[_1_inntekt]</OutArgument>
                     </Assign.To>
                     <Assign.Value>
-                      <InArgument x:TypeArguments="x:String">[dataTable.Rows(iRow).Item("_1_inntekt").ToString]</InArgument>
+                      <InArgument x:TypeArguments="x:String">[row(3).ToString]</InArgument>
                     </Assign.Value>
                   </Assign>
-                  <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_29" Text="[_1_inntekt.IndexOf(&quot;,&quot;).ToString]" />
-                  <Assign sap2010:WorkflowViewState.IdRef="Assign_40">
+                  <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_36" Text="[row(3).ToString]" />
+                  <ui:CommentOut DisplayName="Comment out" sap2010:WorkflowViewState.IdRef="CommentOut_26">
+                    <ui:CommentOut.Body>
+                      <Sequence DisplayName="Ignored Activities" sap2010:WorkflowViewState.IdRef="Sequence_155">
+                        <Assign sap2010:WorkflowViewState.IdRef="Assign_75">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:String">[_1_inntekt]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:String">[_1_inntekt.Substring(0,_1_inntekt.IndexOf(".")).Replace(" ", "")]</InArgument>
+                          </Assign.Value>
+                        </Assign>
+                      </Sequence>
+                    </ui:CommentOut.Body>
+                  </ui:CommentOut>
+                  <Assign sap2010:WorkflowViewState.IdRef="Assign_100">
                     <Assign.To>
                       <OutArgument x:TypeArguments="x:String">[_1_inntekt]</OutArgument>
                     </Assign.To>
                     <Assign.Value>
-                      <InArgument x:TypeArguments="x:String">[_1_inntekt.Substring(0,_1_inntekt.IndexOf(",")).Replace(" ", "")]</InArgument>
+                      <InArgument x:TypeArguments="x:String">[_1_inntekt.Replace(" ", "")]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <Assign sap2010:WorkflowViewState.IdRef="Assign_101">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:String">[_1_inntekt]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:String">[_1_inntekt.Replace(".", ",")]</InArgument>
                     </Assign.Value>
                   </Assign>
                 </Sequence>
               </If.Then>
             </If>
-            <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_30" Text="[dataTable.Rows(iRow).Item(&quot;_1_isProcentTrekk&quot;).ToString]" />
-            <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_36" Text="[&quot;KommuneNR:      &quot; + kommuneNR]" />
-            <Assign sap2010:WorkflowViewState.IdRef="Assign_41">
+            <Assign sap2010:WorkflowViewState.IdRef="Assign_76">
               <Assign.To>
                 <OutArgument x:TypeArguments="x:Boolean">[_1_isProcentTrekk]</OutArgument>
               </Assign.To>
               <Assign.Value>
-                <InArgument x:TypeArguments="x:Boolean">[Boolean.Parse(dataTable.Rows(iRow).Item("_1_isProcentTrekk").ToString)]</InArgument>
+                <InArgument x:TypeArguments="x:Boolean">[Boolean.Parse(Row(4).ToString)]</InArgument>
               </Assign.Value>
             </Assign>
-            <Assign sap2010:WorkflowViewState.IdRef="Assign_42">
+            <Assign sap2010:WorkflowViewState.IdRef="Assign_77">
               <Assign.To>
                 <OutArgument x:TypeArguments="x:String">[pattern]</OutArgument>
               </Assign.To>
@@ -190,21 +203,20 @@
                 <InArgument x:TypeArguments="x:String">(\d+)</InArgument>
               </Assign.Value>
             </Assign>
-            <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_31" Text="[dataTable.Rows(iRow).Item(&quot;_1_tbNrEllerPct&quot;).ToString]" />
-            <Assign sap2010:WorkflowViewState.IdRef="Assign_43">
+            <Assign sap2010:WorkflowViewState.IdRef="Assign_78">
               <Assign.To>
                 <OutArgument x:TypeArguments="x:String">[str_1_tbNrEllerPct]</OutArgument>
               </Assign.To>
               <Assign.Value>
-                <InArgument x:TypeArguments="x:String">[System.Text.RegularExpressions.Regex.Match(dataTable.Rows(iRow).Item("_1_tbNrEllerPct").ToString, pattern).Value]</InArgument>
+                <InArgument x:TypeArguments="x:String">[System.Text.RegularExpressions.Regex.Match(row(5).ToString, pattern).Value]</InArgument>
               </Assign.Value>
             </Assign>
-            <ui:CommentOut DisplayName="Comment out" sap2010:WorkflowViewState.IdRef="CommentOut_18">
+            <ui:CommentOut DisplayName="Comment out" sap2010:WorkflowViewState.IdRef="CommentOut_24">
               <ui:CommentOut.Body>
-                <Sequence DisplayName="Ignored Activities" sap2010:WorkflowViewState.IdRef="Sequence_105">
-                  <If Condition="[_1_isProcentTrekk]" sap2010:WorkflowViewState.IdRef="If_14">
+                <Sequence DisplayName="Ignored Activities" sap2010:WorkflowViewState.IdRef="Sequence_145">
+                  <If Condition="[_1_isProcentTrekk]" sap2010:WorkflowViewState.IdRef="If_26">
                     <If.Else>
-                      <Assign sap2010:WorkflowViewState.IdRef="Assign_44">
+                      <Assign sap2010:WorkflowViewState.IdRef="Assign_79">
                         <Assign.To>
                           <OutArgument x:TypeArguments="x:Int32">[_1_tbNrEllerPct]</OutArgument>
                         </Assign.To>
@@ -217,7 +229,7 @@
                 </Sequence>
               </ui:CommentOut.Body>
             </ui:CommentOut>
-            <Assign sap2010:WorkflowViewState.IdRef="Assign_45">
+            <Assign sap2010:WorkflowViewState.IdRef="Assign_80">
               <Assign.To>
                 <OutArgument x:TypeArguments="x:Int32">[_1_tbNrEllerPct]</OutArgument>
               </Assign.To>
@@ -225,55 +237,56 @@
                 <InArgument x:TypeArguments="x:Int32">[Integer.Parse(str_1_tbNrEllerPct)]</InArgument>
               </Assign.Value>
             </Assign>
-            <Assign sap2010:WorkflowViewState.IdRef="Assign_46">
+            <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_42" Text="[&quot;Rad 6: &quot; +row(6).ToString]" />
+            <Assign sap2010:WorkflowViewState.IdRef="Assign_81">
               <Assign.To>
                 <OutArgument x:TypeArguments="x:Int32">[_2_numVoksne]</OutArgument>
               </Assign.To>
               <Assign.Value>
-                <InArgument x:TypeArguments="x:Int32">[Integer.Parse(dataTable.Rows(iRow).Item("_2_numVoksne").ToString)]</InArgument>
+                <InArgument x:TypeArguments="x:Int32">[Integer.Parse(row(6).ToString)]</InArgument>
               </Assign.Value>
             </Assign>
-            <Assign sap2010:WorkflowViewState.IdRef="Assign_47">
+            <Assign sap2010:WorkflowViewState.IdRef="Assign_82">
               <Assign.To>
                 <OutArgument x:TypeArguments="x:Boolean">[_2_isDelUtgift]</OutArgument>
               </Assign.To>
               <Assign.Value>
-                <InArgument x:TypeArguments="x:Boolean">[Boolean.Parse(dataTable.Rows(iRow).Item("_23_isDelUtgift").ToString)]</InArgument>
+                <InArgument x:TypeArguments="x:Boolean">[Boolean.Parse(row(7).ToString)]</InArgument>
               </Assign.Value>
             </Assign>
-            <Assign sap2010:WorkflowViewState.IdRef="Assign_48">
+            <Assign sap2010:WorkflowViewState.IdRef="Assign_83">
               <Assign.To>
                 <OutArgument x:TypeArguments="x:Int32">[_2_barn05]</OutArgument>
               </Assign.To>
               <Assign.Value>
-                <InArgument x:TypeArguments="x:Int32">[Integer.Parse(dataTable.Rows(iRow).Item("_2_barn05").ToString)]</InArgument>
+                <InArgument x:TypeArguments="x:Int32">[Integer.Parse(row(8).ToString)]</InArgument>
               </Assign.Value>
             </Assign>
-            <Assign sap2010:WorkflowViewState.IdRef="Assign_49">
+            <Assign sap2010:WorkflowViewState.IdRef="Assign_84">
               <Assign.To>
                 <OutArgument x:TypeArguments="x:Int32">[_2_barn610]</OutArgument>
               </Assign.To>
               <Assign.Value>
-                <InArgument x:TypeArguments="x:Int32">[Integer.Parse(dataTable.Rows(iRow).Item("_2_barn610").ToString)]</InArgument>
+                <InArgument x:TypeArguments="x:Int32">[Integer.Parse(row(9).ToString)]</InArgument>
               </Assign.Value>
             </Assign>
-            <Assign sap2010:WorkflowViewState.IdRef="Assign_50">
+            <Assign sap2010:WorkflowViewState.IdRef="Assign_85">
               <Assign.To>
                 <OutArgument x:TypeArguments="x:Int32">[_2_barn1118]</OutArgument>
               </Assign.To>
               <Assign.Value>
-                <InArgument x:TypeArguments="x:Int32">[Integer.Parse(dataTable.Rows(iRow).Item("_2_barn1118").ToString)]</InArgument>
+                <InArgument x:TypeArguments="x:Int32">[Integer.Parse(row(10).ToString)]</InArgument>
               </Assign.Value>
             </Assign>
-            <Assign sap2010:WorkflowViewState.IdRef="Assign_51">
+            <Assign sap2010:WorkflowViewState.IdRef="Assign_86">
               <Assign.To>
                 <OutArgument x:TypeArguments="x:String">[_3_komNavn]</OutArgument>
               </Assign.To>
               <Assign.Value>
-                <InArgument x:TypeArguments="x:String">[dataTable.Rows(iRow).Item("_3_region").ToString.ToLower]</InArgument>
+                <InArgument x:TypeArguments="x:String">[row(11).ToString.ToLower]</InArgument>
               </Assign.Value>
             </Assign>
-            <Assign sap2010:WorkflowViewState.IdRef="Assign_52">
+            <Assign sap2010:WorkflowViewState.IdRef="Assign_87">
               <Assign.To>
                 <OutArgument x:TypeArguments="x:Int32">[_3_husstand]</OutArgument>
               </Assign.To>
@@ -281,9 +294,9 @@
                 <InArgument x:TypeArguments="x:Int32">[_2_barn05 + _2_barn610 + _2_barn1118 + _2_numVoksne]</InArgument>
               </Assign.Value>
             </Assign>
-            <If Condition="[_3_husstand &gt; 5]" sap2010:WorkflowViewState.IdRef="If_15">
+            <If Condition="[_3_husstand &gt; 5]" sap2010:WorkflowViewState.IdRef="If_27">
               <If.Then>
-                <Assign sap2010:WorkflowViewState.IdRef="Assign_53">
+                <Assign sap2010:WorkflowViewState.IdRef="Assign_88">
                   <Assign.To>
                     <OutArgument x:TypeArguments="x:Int32">[_3_husstand]</OutArgument>
                   </Assign.To>
@@ -293,18 +306,18 @@
                 </Assign>
               </If.Then>
             </If>
-            <If Condition="[not dataTable.Rows(iRow).Item(&quot;_4_kontantstøtte&quot;).ToString.Equals(&quot;&quot;)]" sap2010:WorkflowViewState.IdRef="If_16">
+            <If Condition="[not row(12).ToString.Equals(&quot;&quot;)]" sap2010:WorkflowViewState.IdRef="If_28">
               <If.Then>
-                <Sequence sap2010:WorkflowViewState.IdRef="Sequence_109">
-                  <Assign sap2010:WorkflowViewState.IdRef="Assign_54">
+                <Sequence sap2010:WorkflowViewState.IdRef="Sequence_146">
+                  <Assign sap2010:WorkflowViewState.IdRef="Assign_89">
                     <Assign.To>
                       <OutArgument x:TypeArguments="x:String">[_4_kontantstøtte]</OutArgument>
                     </Assign.To>
                     <Assign.Value>
-                      <InArgument x:TypeArguments="x:String">[dataTable.Rows(iRow).Item("_4_kontantstøtte").ToString]</InArgument>
+                      <InArgument x:TypeArguments="x:String">[row(12).ToString]</InArgument>
                     </Assign.Value>
                   </Assign>
-                  <Assign sap2010:WorkflowViewState.IdRef="Assign_55">
+                  <Assign sap2010:WorkflowViewState.IdRef="Assign_90">
                     <Assign.To>
                       <OutArgument x:TypeArguments="x:String">[_4_kontantstøtte]</OutArgument>
                     </Assign.To>
@@ -315,18 +328,18 @@
                 </Sequence>
               </If.Then>
             </If>
-            <If Condition="[not dataTable.Rows(iRow).Item(&quot;_4_barnetrygd&quot;).ToString.Equals(&quot;&quot;)]" sap2010:WorkflowViewState.IdRef="If_17">
+            <If Condition="[not row(13).ToString.Equals(&quot;&quot;)]" sap2010:WorkflowViewState.IdRef="If_29">
               <If.Then>
-                <Sequence sap2010:WorkflowViewState.IdRef="Sequence_110">
-                  <Assign sap2010:WorkflowViewState.IdRef="Assign_56">
+                <Sequence sap2010:WorkflowViewState.IdRef="Sequence_147">
+                  <Assign sap2010:WorkflowViewState.IdRef="Assign_91">
                     <Assign.To>
                       <OutArgument x:TypeArguments="x:String">[_4_barnetrygd]</OutArgument>
                     </Assign.To>
                     <Assign.Value>
-                      <InArgument x:TypeArguments="x:String">[dataTable.Rows(iRow).Item("_4_barnetrygd").ToString]</InArgument>
+                      <InArgument x:TypeArguments="x:String">[row(13).ToString]</InArgument>
                     </Assign.Value>
                   </Assign>
-                  <Assign sap2010:WorkflowViewState.IdRef="Assign_57">
+                  <Assign sap2010:WorkflowViewState.IdRef="Assign_92">
                     <Assign.To>
                       <OutArgument x:TypeArguments="x:String">[_4_barnetrygd]</OutArgument>
                     </Assign.To>
@@ -338,15 +351,15 @@
               </If.Then>
             </If>
           </Sequence>
-          <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_32" Text="[xlsPath]" />
-          <ui:OpenApplication ApplicationWindow="{x:Null}" TimeoutMS="{x:Null}" WorkingDirectory="{x:Null}" Arguments="[xlsPath]" DisplayName="Open application 'EXCEL.EXE Microsoft'" FileName="C:\Program Files (x86)\Microsoft Office\Office14\EXCEL.EXE" sap2010:WorkflowViewState.IdRef="OpenApplication_4" InformativeScreenshot="a54460b2454de04ed0879d88bf359251" Selector="&lt;wnd app='excel.exe' cls='XLMAIN' omit:title='Microsoft Excel - Bok1' /&gt;">
+          <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_39" Text="[xlsPath1]" />
+          <ui:OpenApplication ApplicationWindow="{x:Null}" TimeoutMS="{x:Null}" WorkingDirectory="{x:Null}" Arguments="W:\rpa\Vasklister\Excel\Økonomisk_oppsett_med_skatt_2017" DisplayName="Open application 'EXCEL.EXE Microsoft'" FileName="C:\Program Files (x86)\Microsoft Office\Office14\EXCEL.EXE" sap2010:WorkflowViewState.IdRef="OpenApplication_5" InformativeScreenshot="a54460b2454de04ed0879d88bf359251" Selector="&lt;wnd app='excel.exe' cls='XLMAIN' /&gt;">
             <ui:OpenApplication.Body>
               <ActivityAction x:TypeArguments="x:Object">
                 <ActivityAction.Argument>
                   <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
                 </ActivityAction.Argument>
-                <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_107">
-                  <ui:MaximizeWindow Window="{x:Null}" DisplayName="Maximize window" sap2010:WorkflowViewState.IdRef="MaximizeWindow_1" />
+                <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_149">
+                  <ui:MaximizeWindow Window="{x:Null}" DisplayName="Maximize window" sap2010:WorkflowViewState.IdRef="MaximizeWindow_3" />
                 </Sequence>
               </ActivityAction>
             </ui:OpenApplication.Body>
@@ -355,7 +368,7 @@
         <FlowStep.Next>
           <FlowStep x:Name="__ReferenceID8" sap2010:WorkflowViewState.IdRef="FlowStep_28">
             <Sequence DisplayName="Klikk Gjenopprett" sap2010:WorkflowViewState.IdRef="Sequence_90">
-              <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" DisplayName="Attach Window 'Microsoft Xlmain'" sap2010:WorkflowViewState.IdRef="WindowScope_25" InformativeScreenshot="9c0f3f8d8e0ed7db48f5dc6107c94b9b" Selector="&lt;wnd app='excel.exe' cls='XLMAIN' title='Microsoft Excel - Økonomisk oppsett med skatt 2016*' /&gt;">
+              <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" DisplayName="Attach Window 'Microsoft Xlmain'" sap2010:WorkflowViewState.IdRef="WindowScope_25" InformativeScreenshot="9c0f3f8d8e0ed7db48f5dc6107c94b9b" Selector="&lt;wnd app='excel.exe' cls='XLMAIN' title='Microsoft Excel - Økonomisk_oppsett_med_skatt_2017*' /&gt;">
                 <ui:WindowScope.Body>
                   <ActivityAction x:TypeArguments="x:Object">
                     <ActivityAction.Argument>
@@ -374,7 +387,7 @@
                           </ui:CursorPosition>
                         </ui:Click.CursorPosition>
                         <ui:Click.Target>
-                          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="e1f084186fd857f078edbe4efc7c88d5" Selector="&lt;wnd cls='EXCEL7' title='Økonomisk oppsett med skatt 2016  [Kompatibilitetsmodus]' /&gt;&lt;ctrl name='Økonomisk oppsett med skatt 2016  [Kompatibilitetsmodus]' role='client' /&gt;&lt;ctrl name='Arknavigeringsfelt' role='client' /&gt;&lt;ctrl name='Arkfaner' role='page tab list' /&gt;&lt;ctrl name='Oppsett' role='page tab' /&gt;" WaitForReady="INTERACTIVE" />
+                          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="97b9419889fcc65b1e809a7103922c5b" Selector="&lt;wnd cls='EXCEL7' title='Økonomisk_oppsett_med_skatt_2017  [Kompatibilitetsmodus]' /&gt;&lt;ctrl name='Økonomisk_oppsett_med_skatt_2017  [Kompatibilitetsmodus]' role='client' /&gt;&lt;ctrl name='Arknavigeringsfelt' role='client' /&gt;&lt;ctrl name='Arkfaner' role='page tab list' /&gt;&lt;ctrl name='Oppsett' role='page tab' /&gt;" WaitForReady="INTERACTIVE" />
                         </ui:Click.Target>
                       </ui:Click>
                       <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'client Økonomisk'" sap2010:WorkflowViewState.IdRef="Click_41" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
@@ -389,7 +402,7 @@
                           </ui:CursorPosition>
                         </ui:Click.CursorPosition>
                         <ui:Click.Target>
-                          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="aa2bfff1b73d93052c8c3fcfd1884c50" Selector="&lt;wnd cls='EXCEL7' title='Økonomisk oppsett med skatt 2016  [Kompatibilitetsmodus]' /&gt;&lt;ctrl name='Økonomisk oppsett med skatt 2016  [Kompatibilitetsmodus]' role='client' /&gt;" WaitForReady="INTERACTIVE" />
+                          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="aa2bfff1b73d93052c8c3fcfd1884c50" Selector="&lt;wnd cls='EXCEL7' title='Økonomisk_oppsett_med_skatt_2017  [Kompatibilitetsmodus]' /&gt;&lt;ctrl name='Økonomisk_oppsett_med_skatt_2017  [Kompatibilitetsmodus]' role='client' /&gt;" WaitForReady="INTERACTIVE" />
                         </ui:Click.Target>
                       </ui:Click>
                       <ui:ClickImage ContinueOnError="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click image 'EXCEL.EXE Microsoft'" sap2010:WorkflowViewState.IdRef="ClickImage_6" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False">
@@ -404,7 +417,7 @@
                           </ui:CursorPosition>
                         </ui:ClickImage.CursorPosition>
                         <ui:ClickImage.Image>
-                          <ui:ImageTarget Image="{x:Null}" Accuracy="0.8" TargetImageBase64="iVBORw0KGgoAAAANSUhEUgAAAGgAAAATCAYAAAB8+UijAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADySURBVFhH7ZVLCsQwDENz/8N1M9DrdMgioBFunI/TeKgXDyJLoQ5aNJ2f4wr8EgU5JwpyThTknCjIOUsKSin9IPk8C2TMC3pzIfhOqzebFlRb6g0l/XVBCOeyLuC8eJiR/JqHmRkfZ1Ie5whmRtheEN+R9F1+5q6Vf6fZG2VpQVkjUg7PvXrm7mrN3ihb/kF8ZorHWdY9WSvNsC+dZ3BRUDlLsF+7+7Rm0NeyrZgWlJEWqz205mm6JavlNX9UszeKeUGZvBwi+ax7sqy1u7M+z2r5Mr/L9LKkIA2LxVvQvvPUHjNEQcLcE1sKCtqJglxzXF+SaAZ4jRj21AAAAABJRU5ErkJggg==" />
+                          <ui:ImageTarget Image="{x:Null}" Accuracy="0.8" TargetImageBase64="iVBORw0KGgoAAAANSUhEUgAAAGUAAAARCAYAAADEz2IYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAHLSURBVFhH7VZBboMwEMQPgqRPQYKHcED8ojk0ah7RnlK1X2hurdT+Z4NtjMfGdmmAFiQfRsJer707wxiS788LRawLUZQVIoqyQkRRVogoygqxnCjHnBhLKEk6FPf01cefqdml1JzfzZyt4KWiO5bT6cN6dq29AcuIIgTJ6bEvlIvAaF8/gTAbxvZEkQKUR8sFvPhdRa+ieHTKgUrGOkehkDqnKbTjyge1ry+Pz+fU1GkXQ0cGYuKsnMoM93OdgXMIq/YJmF+UUW+OFuVUaAe91Rmx4qDdJPZKtMO4AzMpLObhfE+aGhuuDcS6s7To5hlGbdjjqH5/h2VE6R3hgxKFkzR8k/sG7Yb7sbVO5Kl9JPGa3KErnbEBubinGndxXDvIm47lnSLGyuKqSRTFvgqACOde7fhc0d4gwiYeyZRvvLxOA7EBuYHacO0gbzr+7ptiEIKiBBryifKjU5D4kGAQc4riqW17orQQdzU2b89pMvzfhhZeUUZ8U9Qv+NiYg1zvGZsUhUMUi9bHvxP77VXXhCWk3bAxxjzcm8+nVBa+vy9PzEmurzZeP5/n5+Iz5t6O5UQJQpJjCDAbQnsvee58+CdRIkKIoqwOF7oCvHRDQgQ3RJ8AAAAASUVORK5CYII=" />
                         </ui:ClickImage.Image>
                         <ui:ClickImage.Target>
                           <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" WaitForReady="INTERACTIVE" />
@@ -437,7 +450,7 @@
             <FlowStep.Next>
               <FlowStep x:Name="__ReferenceID0" sap2010:WorkflowViewState.IdRef="FlowStep_8">
                 <Sequence DisplayName="Klikk Skatt" sap2010:WorkflowViewState.IdRef="Sequence_7">
-                  <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" DisplayName="Attach Window 'Microsoft Xlmain'" sap2010:WorkflowViewState.IdRef="WindowScope_4" InformativeScreenshot="9c0f3f8d8e0ed7db48f5dc6107c94b9b" Selector="&lt;wnd app='excel.exe' cls='XLMAIN' title='Microsoft Excel - Økonomisk oppsett med skatt 2016*' /&gt;">
+                  <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" DisplayName="Attach Window 'Microsoft Xlmain'" sap2010:WorkflowViewState.IdRef="WindowScope_4" InformativeScreenshot="9c0f3f8d8e0ed7db48f5dc6107c94b9b" Selector="&lt;wnd app='excel.exe' cls='XLMAIN' title='Microsoft Excel - Økonomisk_oppsett_med_skatt_2017*' /&gt;">
                     <ui:WindowScope.Body>
                       <ActivityAction x:TypeArguments="x:Object">
                         <ActivityAction.Argument>
@@ -456,7 +469,7 @@
                               </ui:CursorPosition>
                             </ui:Click.CursorPosition>
                             <ui:Click.Target>
-                              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="e1f084186fd857f078edbe4efc7c88d5" Selector="&lt;wnd cls='EXCEL7' title='Økonomisk oppsett med skatt 2016  [Kompatibilitetsmodus]' /&gt;&lt;ctrl name='Økonomisk oppsett med skatt 2016  [Kompatibilitetsmodus]' role='client' /&gt;&lt;ctrl name='Arknavigeringsfelt' role='client' /&gt;&lt;ctrl name='Arkfaner' role='page tab list' /&gt;&lt;ctrl name='Oppsett' role='page tab' /&gt;" WaitForReady="INTERACTIVE" />
+                              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="e1f084186fd857f078edbe4efc7c88d5" Selector="&lt;wnd cls='EXCEL7' title='Økonomisk_oppsett_med_skatt_2017  [Kompatibilitetsmodus]' /&gt;&lt;ctrl name='Økonomisk_oppsett_med_skatt_2017  [Kompatibilitetsmodus]' role='client' /&gt;&lt;ctrl name='Arknavigeringsfelt' role='client' /&gt;&lt;ctrl name='Arkfaner' role='page tab list' /&gt;&lt;ctrl name='Oppsett' role='page tab' /&gt;" WaitForReady="INTERACTIVE" />
                             </ui:Click.Target>
                           </ui:Click>
                           <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'client Økonomisk'" sap2010:WorkflowViewState.IdRef="Click_8" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
@@ -471,7 +484,7 @@
                               </ui:CursorPosition>
                             </ui:Click.CursorPosition>
                             <ui:Click.Target>
-                              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="aa2bfff1b73d93052c8c3fcfd1884c50" Selector="&lt;wnd cls='EXCEL7' title='Økonomisk oppsett med skatt 2016  [Kompatibilitetsmodus]' /&gt;&lt;ctrl name='Økonomisk oppsett med skatt 2016  [Kompatibilitetsmodus]' role='client' /&gt;" WaitForReady="INTERACTIVE" />
+                              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="aa2bfff1b73d93052c8c3fcfd1884c50" Selector="&lt;wnd cls='EXCEL7' title='Økonomisk_oppsett_med_skatt_2017  [Kompatibilitetsmodus]' /&gt;&lt;ctrl name='Økonomisk_oppsett_med_skatt_2017  [Kompatibilitetsmodus]' role='client' /&gt;" WaitForReady="INTERACTIVE" />
                             </ui:Click.Target>
                           </ui:Click>
                           <ui:ClickImage ContinueOnError="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click image 'EXCEL.EXE Microsoft'" sap2010:WorkflowViewState.IdRef="ClickImage_1" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False">
@@ -486,7 +499,7 @@
                               </ui:CursorPosition>
                             </ui:ClickImage.CursorPosition>
                             <ui:ClickImage.Image>
-                              <ui:ImageTarget Image="{x:Null}" Accuracy="0.8" TargetImageBase64="iVBORw0KGgoAAAANSUhEUgAAAG4AAAAUCAYAAABs4ghcAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAC0SURBVGhD7ZZLCoAwDER7/8O5EbyOIhgIY0MVP2TaWTxoMtFF3qItyzytgg+JI0XiSJE4UiSOFIkjhUpcKeUE5r7uGRpxkRTffyLurf/8hcQdSNxHXFkmztRqI+p7/Ew2aO+4KK+d79aYZYRKnGdfbrT8K4uPvq1lGaEVZ+DCDT9Ty3HG15hlpNvHCc7fqTHLyJDi9nMr91lGaB8nBuat2nqtDPNs0N9xoyJxpEgcKRJHybRuhWnuMngKDIYAAAAASUVORK5CYII=" />
+                              <ui:ImageTarget Image="{x:Null}" Accuracy="0.8" TargetImageBase64="iVBORw0KGgoAAAANSUhEUgAAAGQAAAAXCAYAAAD9VOo7AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAGvSURBVGhD7ZdRSsNAEIY3ex/b2JsEmoPkIfQWFmyxd5C+WGmPYPtkxHqfcWZ3Jw5LRKxCRpzAD5Pd2RTmyz+TOrBL1eXeXk5g0iMDokwGRJkMiDIZEGUyIMpkQJTJgCiTciBLqL2HoiiSKrjreG8Li3ICi91R5H+hxwZmvoINPUPGQ7kjSTGQCKO+fYJzdwzatxPw0wb2oYgIZHr1bSDXCJWB9PFQ7kjSC2SwYAipYAgSCLkFncSwwtvPriqgXlEOAS7AOZfWXYql68aXYodQwbFwvSOS0Ckf+xHIZu6hbO/hNeRR4XH9ITlrh2C5NVFMAJ7TeojTc5VI9wyhgq4r8P3bLmdGBFIitAAjO9fHwVUDbcpa1uXiGRLfdoYSHVS2DdSTBg5ZYck1PrUs51JbMiA/EDljvoRztr6Z40xYM5DYsg447GftNuWmj4GVaFnmkN8QtRoqbN5+PhnqHOeFDvcDewbkAnU32f8QLCwO67gvgeC9GN7h85jPTCtsaU64itaphclY/ObI0j9DeH4k5Xvy/twXVp7J8ngtj5XoTwz1/yQDokwGRJkMiCqd4B39WSgWwYUfvAAAAABJRU5ErkJggg==" />
                             </ui:ClickImage.Image>
                             <ui:ClickImage.Target>
                               <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" WaitForReady="INTERACTIVE" />
@@ -496,7 +509,7 @@
                       </ActivityAction>
                     </ui:WindowScope.Body>
                   </ui:WindowScope>
-                  <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" DisplayName="Attach Window 'Skattekal Thunderdf'" sap2010:WorkflowViewState.IdRef="WindowScope_5" InformativeScreenshot="6ef472a242d495e4ea67537b83cf851c" Selector="&lt;wnd app='excel.exe' cls='ThunderDFrame' title='Skattekalkulator 2016' /&gt;">
+                  <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" DisplayName="Attach Window 'Skattekal Thunderdf'" sap2010:WorkflowViewState.IdRef="WindowScope_5" InformativeScreenshot="c4293bf08bf70b8d2eec087fff561cdc" Selector="&lt;wnd app='excel.exe' cls='ThunderDFrame' title='Skattekalkulator 2017' /&gt;">
                     <ui:WindowScope.Body>
                       <ActivityAction x:TypeArguments="x:Object">
                         <ActivityAction.Argument>
@@ -562,7 +575,7 @@
                 <FlowStep.Next>
                   <FlowStep x:Name="__ReferenceID1" sap2010:WorkflowViewState.IdRef="FlowStep_9">
                     <Sequence DisplayName="Klikk Livsopphold" sap2010:WorkflowViewState.IdRef="Sequence_8">
-                      <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" DisplayName="Attach Window 'Microsoft Xlmain'" sap2010:WorkflowViewState.IdRef="WindowScope_10" InformativeScreenshot="9c0f3f8d8e0ed7db48f5dc6107c94b9b" Selector="&lt;wnd app='excel.exe' cls='XLMAIN' title='Microsoft Excel - Økonomisk oppsett med skatt 2016*' /&gt;">
+                      <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" DisplayName="Attach Window 'Microsoft Xlmain'" sap2010:WorkflowViewState.IdRef="WindowScope_10" InformativeScreenshot="9c0f3f8d8e0ed7db48f5dc6107c94b9b" Selector="&lt;wnd app='excel.exe' cls='XLMAIN' title='Microsoft Excel - Økonomisk_oppsett_med_skatt_2017*' /&gt;">
                         <ui:WindowScope.Body>
                           <ActivityAction x:TypeArguments="x:Object">
                             <ActivityAction.Argument>
@@ -581,7 +594,7 @@
                                   </ui:CursorPosition>
                                 </ui:Click.CursorPosition>
                                 <ui:Click.Target>
-                                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="e1f084186fd857f078edbe4efc7c88d5" Selector="&lt;wnd cls='EXCEL7' title='Økonomisk oppsett med skatt 2016  [Kompatibilitetsmodus]' /&gt;&lt;ctrl name='Økonomisk oppsett med skatt 2016  [Kompatibilitetsmodus]' role='client' /&gt;&lt;ctrl name='Arknavigeringsfelt' role='client' /&gt;&lt;ctrl name='Arkfaner' role='page tab list' /&gt;&lt;ctrl name='Oppsett' role='page tab' /&gt;" WaitForReady="INTERACTIVE" />
+                                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="2c3f103e2d686b9499570f8eac14cff0" Selector="&lt;wnd cls='EXCEL7' title='Økonomisk_oppsett_med_skatt_2017  [Kompatibilitetsmodus]' /&gt;&lt;ctrl name='Økonomisk_oppsett_med_skatt_2017  [Kompatibilitetsmodus]' role='client' /&gt;&lt;ctrl name='Arknavigeringsfelt' role='client' /&gt;&lt;ctrl name='Arkfaner' role='page tab list' /&gt;&lt;ctrl name='Oppsett' role='page tab' /&gt;" WaitForReady="INTERACTIVE" />
                                 </ui:Click.Target>
                               </ui:Click>
                               <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'client Økonomisk'" sap2010:WorkflowViewState.IdRef="Click_11" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
@@ -596,7 +609,7 @@
                                   </ui:CursorPosition>
                                 </ui:Click.CursorPosition>
                                 <ui:Click.Target>
-                                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="aa2bfff1b73d93052c8c3fcfd1884c50" Selector="&lt;wnd cls='EXCEL7' title='Økonomisk oppsett med skatt 2016  [Kompatibilitetsmodus]' /&gt;&lt;ctrl name='Økonomisk oppsett med skatt 2016  [Kompatibilitetsmodus]' role='client' /&gt;" WaitForReady="INTERACTIVE" />
+                                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="f95b52bbbe65157c6e7b887838a9078a" Selector="&lt;wnd cls='EXCEL7' title='Økonomisk_oppsett_med_skatt_2017  [Kompatibilitetsmodus]' /&gt;&lt;ctrl name='Økonomisk_oppsett_med_skatt_2017  [Kompatibilitetsmodus]' role='client' /&gt;" WaitForReady="INTERACTIVE" />
                                 </ui:Click.Target>
                               </ui:Click>
                               <ui:ClickImage ContinueOnError="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click image 'EXCEL.EXE Microsoft'" sap2010:WorkflowViewState.IdRef="ClickImage_2" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False">
@@ -611,7 +624,7 @@
                                   </ui:CursorPosition>
                                 </ui:ClickImage.CursorPosition>
                                 <ui:ClickImage.Image>
-                                  <ui:ImageTarget Image="{x:Null}" Accuracy="0.8" TargetImageBase64="iVBORw0KGgoAAAANSUhEUgAAAFgAAAATCAYAAAAUCsqbAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADOSURBVFhH7ZVBCsUgDES9/+G6KfzrtLgIhDDGWBP9QhYPnMxE6mxafvf1JHFkwcFkwcFkwcFkwcGYCi6lwHlF8/6FmW+cfft0wSeQBQdzdMHkyQzaqTNi1OOZCF/zpKYZykuWFaxpS7aX/+qjbEvLs8wiXH9ydEZ56x2rtWcWsaxgmhNyvkt7ZhFLC+agvR3aM4twLRjp1pzr3h1V9/I9v6U9swhzwQjyZJZrjtwd8Xjmq6/pkV0tLzEVvJveQywP3UUWHMwRBZ9MFhzK9bx6tPPp03bzHwAAAABJRU5ErkJggg==" />
+                                  <ui:ImageTarget Image="{x:Null}" Accuracy="0.8" TargetImageBase64="iVBORw0KGgoAAAANSUhEUgAAAFwAAAASCAYAAADWvblEAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAI6SURBVFhH7VdLUsJAEM3MfQzRm6QqHIQFxS1kIcIdlI0oHkFYISXep+3OfNKZJC1gEWJVFq8q0/9+02lC9L3fQo/20BPeMnrCW0ZPeMvoCW8ZPeEt4zzCX0dwp1NYfB4pvybOqUn0WcIk0TCcbWp0v+Nswm9VfUGHLpFNEGpthOiDhA9URwh3k7FCfTKCtdfTVMQwWdkiZylorUApQgpzbzeFodY1cqdLYTKOrZ7Fk3S21mHm8iFZD9yvJl+lP2Y3wFhx1B3CjZym4Kbc9MBdgCFnvtvg27CBNZKksykc0G6RaUjGT/CF8sMDXor3sX7YcBSP4I18Ua8ojovZpMtrikpxFdpR3MZ8QX8lOxwWhfGKSzsNFyJ8C+9I5O14mRPJnw057DL22ISX85ihnSG1aJRfqqALa/VnIV/JJ7Tr2ErxcnrOJyaYdgKtHL9S7OtfiRn6MUJsnAWuCdO4oAvjujPWkDTlC/so2fG8hexYXI5w18AMG7OvMLeldZKDXvH8YoSJqz3zCxF0Ya3+LOQr+YR2FLuThJtVQvsuGT/btYGgH0y+m2kn+p2qClsmN/GpcdzT2X2NXtA1Ei7kC3wqdtfZ4ZFdCQw4VUkUNscnz2CODWjvl8Ljzunukbjiq6GQE8wEDrMbq8e4Ly6uoBMIb8wX+uyfcaqtXXyNrxSEXwkVVO342aDZ/rtJbkmdrD6873G66n+D0tnaizYEbhfEPwVnE94+HKl1zUq6buEfEY6QJusPU9cetvADvF5yEiev4O0AAAAASUVORK5CYII=" />
                                 </ui:ClickImage.Image>
                                 <ui:ClickImage.Target>
                                   <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" WaitForReady="INTERACTIVE" />
@@ -826,7 +839,7 @@
                                         <ActivityAction.Argument>
                                           <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
                                         </ActivityAction.Argument>
-                                        <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_132">
+                                        <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_150">
                                           <Sequence.Variables>
                                             <Variable x:TypeArguments="ui:GenericValue" Name="Kommune" />
                                             <Variable x:TypeArguments="x:String" Name="outDTkommune" />
@@ -839,7 +852,7 @@
                                             </ui:ExcelReadRange.Range>
                                           </ui:ExcelReadRange>
                                           <ui:OutputDataTable DataTable="[dtKommune]" DisplayName="Output data table" sap2010:WorkflowViewState.IdRef="OutputDataTable_6" Text="[outDTkommune]" />
-                                          <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_38" Text="[&quot;DTKommune:   &quot; +outDTkommune]" />
+                                          <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_41" Text="[&quot;DTKommune:   &quot; +outDTkommune]" />
                                           <ui:ExcelReadCell Cell="A17" DisplayName="Read Cell" sap2010:WorkflowViewState.IdRef="ExcelReadCell_4" SheetName="Satser">
                                             <ui:ExcelReadCell.Result>
                                               <OutArgument x:TypeArguments="x:String">[KommuneGr1]</OutArgument>
@@ -859,7 +872,7 @@
                                       </ActivityAction>
                                     </ui:ExcelApplicationScope.Body>
                                   </ui:ExcelApplicationScope>
-                                  <Assign sap2010:WorkflowViewState.IdRef="Assign_69">
+                                  <Assign sap2010:WorkflowViewState.IdRef="Assign_93">
                                     <Assign.To>
                                       <OutArgument x:TypeArguments="x:String">[kommuneNavn]</OutArgument>
                                     </Assign.To>
@@ -873,12 +886,12 @@
                                         <ActivityAction.Argument>
                                           <DelegateInArgument x:TypeArguments="sd:DataRow" Name="row" />
                                         </ActivityAction.Argument>
-                                        <Sequence sap2010:WorkflowViewState.IdRef="Sequence_135">
-                                          <Sequence DisplayName="Body" sap2010:WorkflowViewState.IdRef="Sequence_133">
-                                            <If Condition="[kommuneNR.Equals(row(0))]" sap2010:WorkflowViewState.IdRef="If_20">
+                                        <Sequence sap2010:WorkflowViewState.IdRef="Sequence_153">
+                                          <Sequence DisplayName="Body" sap2010:WorkflowViewState.IdRef="Sequence_152">
+                                            <If Condition="[kommuneNR.Equals(row(0))]" sap2010:WorkflowViewState.IdRef="If_30">
                                               <If.Then>
-                                                <Sequence sap2010:WorkflowViewState.IdRef="Sequence_134">
-                                                  <Assign sap2010:WorkflowViewState.IdRef="Assign_62">
+                                                <Sequence sap2010:WorkflowViewState.IdRef="Sequence_151">
+                                                  <Assign sap2010:WorkflowViewState.IdRef="Assign_94">
                                                     <Assign.To>
                                                       <OutArgument x:TypeArguments="x:String">[kommuneNavn]</OutArgument>
                                                     </Assign.To>
@@ -886,7 +899,7 @@
                                                       <InArgument x:TypeArguments="x:String">[row(1).ToString]</InArgument>
                                                     </Assign.Value>
                                                   </Assign>
-                                                  <ui:Break sap2010:WorkflowViewState.IdRef="Break_2" />
+                                                  <ui:Break sap2010:WorkflowViewState.IdRef="Break_1" />
                                                 </Sequence>
                                               </If.Then>
                                             </If>
@@ -895,10 +908,9 @@
                                       </ActivityAction>
                                     </ui:ForEachRow.Body>
                                   </ui:ForEachRow>
-                                  <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_37" Text="[&quot;KommuneNavn Klikk boutgifter:  &quot;+kommuneNavn]" />
-                                  <If Condition="[KommuneGr1.ToLower.Contains(kommuneNavn.ToLower)]" sap2010:WorkflowViewState.IdRef="If_21">
+                                  <If Condition="[KommuneGr1.ToLower.Contains(kommuneNavn.ToLower)]" sap2010:WorkflowViewState.IdRef="If_33">
                                     <If.Then>
-                                      <Assign sap2010:WorkflowViewState.IdRef="Assign_63">
+                                      <Assign sap2010:WorkflowViewState.IdRef="Assign_95">
                                         <Assign.To>
                                           <OutArgument x:TypeArguments="x:Int32">[_3_komGrp]</OutArgument>
                                         </Assign.To>
@@ -908,9 +920,9 @@
                                       </Assign>
                                     </If.Then>
                                     <If.Else>
-                                      <If Condition="[KommuneGr2.ToLower.Contains(kommuneNavn.ToLower)]" sap2010:WorkflowViewState.IdRef="If_22">
+                                      <If Condition="[KommuneGr2.ToLower.Contains(kommuneNavn.ToLower)]" sap2010:WorkflowViewState.IdRef="If_32">
                                         <If.Then>
-                                          <Assign sap2010:WorkflowViewState.IdRef="Assign_64">
+                                          <Assign sap2010:WorkflowViewState.IdRef="Assign_96">
                                             <Assign.To>
                                               <OutArgument x:TypeArguments="x:Int32">[_3_komGrp]</OutArgument>
                                             </Assign.To>
@@ -920,9 +932,9 @@
                                           </Assign>
                                         </If.Then>
                                         <If.Else>
-                                          <If Condition="[KommuneGr3.ToLower.Contains(kommuneNavn.ToLower)]" sap2010:WorkflowViewState.IdRef="If_23">
+                                          <If Condition="[KommuneGr3.ToLower.Contains(kommuneNavn.ToLower)]" sap2010:WorkflowViewState.IdRef="If_31">
                                             <If.Then>
-                                              <Assign sap2010:WorkflowViewState.IdRef="Assign_65">
+                                              <Assign sap2010:WorkflowViewState.IdRef="Assign_97">
                                                 <Assign.To>
                                                   <OutArgument x:TypeArguments="x:Int32">[_3_komGrp]</OutArgument>
                                                 </Assign.To>
@@ -932,7 +944,7 @@
                                               </Assign>
                                             </If.Then>
                                             <If.Else>
-                                              <Assign sap2010:WorkflowViewState.IdRef="Assign_66">
+                                              <Assign sap2010:WorkflowViewState.IdRef="Assign_98">
                                                 <Assign.To>
                                                   <OutArgument x:TypeArguments="x:Int32">[_3_komGrp]</OutArgument>
                                                 </Assign.To>
@@ -946,8 +958,7 @@
                                       </If>
                                     </If.Else>
                                   </If>
-                                  <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_42" Text="[&quot;KommuneGr:   &quot; + _3_komGrp.ToString]" />
-                                  <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" DisplayName="Attach Window 'Microsoft Xlmain'" sap2010:WorkflowViewState.IdRef="WindowScope_15" InformativeScreenshot="199e690e3f7dc697b55107a787351bba" Selector="&lt;wnd app='excel.exe' cls='XLMAIN' title='Microsoft Excel - Økonomisk oppsett med skatt 2016  [Kompatibili*' /&gt;">
+                                  <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" DisplayName="Attach Window 'Microsoft Xlmain'" sap2010:WorkflowViewState.IdRef="WindowScope_15" InformativeScreenshot="46e25a42076c90080b07ee093a62f9c9" Selector="&lt;wnd app='excel.exe' cls='XLMAIN' title='Microsoft Excel - Økonomisk_oppsett_med_skatt_2017  [Kompatibili*' /&gt;">
                                     <ui:WindowScope.Body>
                                       <ActivityAction x:TypeArguments="x:Object">
                                         <ActivityAction.Argument>
@@ -966,7 +977,7 @@
                                               </ui:CursorPosition>
                                             </ui:Click.CursorPosition>
                                             <ui:Click.Target>
-                                              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="e1f084186fd857f078edbe4efc7c88d5" Selector="&lt;wnd cls='EXCEL7' title='Økonomisk oppsett med skatt 2016  [Kompatibilitetsmodus]' /&gt;&lt;ctrl name='Økonomisk oppsett med skatt 2016  [Kompatibilitetsmodus]' role='client' /&gt;&lt;ctrl name='Arknavigeringsfelt' role='client' /&gt;&lt;ctrl name='Arkfaner' role='page tab list' /&gt;&lt;ctrl name='Oppsett' role='page tab' /&gt;" WaitForReady="INTERACTIVE" />
+                                              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="2c3f103e2d686b9499570f8eac14cff0" Selector="&lt;wnd cls='EXCEL7' title='Økonomisk_oppsett_med_skatt_2017  [Kompatibilitetsmodus]' /&gt;&lt;ctrl name='Økonomisk_oppsett_med_skatt_2017  [Kompatibilitetsmodus]' role='client' /&gt;&lt;ctrl name='Arknavigeringsfelt' role='client' /&gt;&lt;ctrl name='Arkfaner' role='page tab list' /&gt;&lt;ctrl name='Oppsett' role='page tab' /&gt;" WaitForReady="INTERACTIVE" />
                                             </ui:Click.Target>
                                           </ui:Click>
                                           <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'client Økonomisk'" sap2010:WorkflowViewState.IdRef="Click_19" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
@@ -981,7 +992,7 @@
                                               </ui:CursorPosition>
                                             </ui:Click.CursorPosition>
                                             <ui:Click.Target>
-                                              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="609ab58cc54c48fd2ab5158e1bb9db4a" Selector="&lt;wnd cls='EXCEL7' title='Økonomisk oppsett med skatt 2016  [Kompatibilitetsmodus]' /&gt;&lt;ctrl name='Økonomisk oppsett med skatt 2016  [Kompatibilitetsmodus]' role='client' /&gt;" WaitForReady="INTERACTIVE" />
+                                              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="5b0d85fde99c55c5436ea307bed5e9fe" Selector="&lt;wnd cls='EXCEL7' title='Økonomisk_oppsett_med_skatt_2017  [Kompatibilitetsmodus]' /&gt;&lt;ctrl name='Økonomisk_oppsett_med_skatt_2017  [Kompatibilitetsmodus]' role='client' /&gt;" WaitForReady="INTERACTIVE" />
                                             </ui:Click.Target>
                                           </ui:Click>
                                           <ui:ClickImage ContinueOnError="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click image 'EXCEL.EXE Microsoft'" sap2010:WorkflowViewState.IdRef="ClickImage_3" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False">
@@ -996,7 +1007,7 @@
                                               </ui:CursorPosition>
                                             </ui:ClickImage.CursorPosition>
                                             <ui:ClickImage.Image>
-                                              <ui:ImageTarget Image="{x:Null}" Accuracy="0.8" TargetImageBase64="iVBORw0KGgoAAAANSUhEUgAAAGYAAAAUCAYAAAB/NUioAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADYSURBVGhD7ZXBDoMwDEP7/x/HZdJ+h4lDJMtKC3RNMVUOT4udpLBZg/L9bHuiRwYjSgYjSgYjSgYjSgYjypRgSiku3mw0fN0n76XFtGDu+HfpPQf31MLJYJxaAalgDm2gbz1Pezuo0UdtMwzOsYc9/IxA5h3zj27VvXtW1zR7o5H5x3hf/qruPWfEGVFkMJWasR7PRpHBnNQeZ/0RLB3MUffuWX1FRyDz8uc57nEfZ1oafda1HdToYY+90UwJ5klm/IgRLBcMB5HBCHGEYXj9N7D8o+ydbPsPl0ELd1YR2QwAAAAASUVORK5CYII=" />
+                                              <ui:ImageTarget Image="{x:Null}" Accuracy="0.8" TargetImageBase64="iVBORw0KGgoAAAANSUhEUgAAAF4AAAAVCAYAAADPTVnBAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAIRSURBVFhH7ZdRbsIwDIbT3mdt2U0qtQfpA+IWQxoM7jD2MiZ2BOCJorH7eHabFDcEwbQ2gSkPv0Ri/0n5Yqcgvvdb8LIvD96RPHhH8uAdyYN3JA/ekfoD/1HAYxhAELSVTzbm/GtVrZvCvDTElFo5bzBKwmrvQZbCILjgtaRewdOXnO02cCilljgXRjBa/gG+XPcSvIOK8+e40mtDvYNvf0msvviBgR9DHtbVGBAcBqtV1c2Y8gMQQsh85o9TyGN5qMZ82kOYvXxvtV9C6xliHckueJqLC1jJuXkWQjJ8hS/qhkkKoYrpXj6mriEYO80/TRGSPFRjvuw4g3c1jCDMxnDgz4mHlE/Wx87pWD2DV5WmhBUXKfBYcQpO5aGxAVyzlhw3n3U/6yZjvu7VOo+vxT1VvHvZvePLBcLBF+zUAPccOLZWCx5Wb8K65/fg8QpiRSEEOwjuqdbuXpbveGpxCd55xetFIaHr+6m5jmUZPIOLYzqEZLio71a6o1vX0DHvE+/gQCAoDeSJ33RwZz7r3ub9QmPjs3cry3c8VvvzmuU9IeDjL4sXfOmpWAVbegbDAnIEX4Ogyq7zZyXzZwWMogvgz3npwN7/S8WjeBuftLNSE9Pm98xX5bEYz1c5Giy+XmttkxfVxKVOn6db9Qq+X2H1yn+kxqq9cd0xeBSrWFPV3rLuG/wdy4N3JA/eibbwA0f73C/7DeE6AAAAAElFTkSuQmCC" />
                                             </ui:ClickImage.Image>
                                             <ui:ClickImage.Target>
                                               <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" WaitForReady="INTERACTIVE" />
@@ -1079,7 +1090,7 @@
                                 <FlowStep.Next>
                                   <FlowStep x:Name="__ReferenceID5" sap2010:WorkflowViewState.IdRef="FlowStep_18">
                                     <Sequence DisplayName="Fylle ut annet" sap2010:WorkflowViewState.IdRef="Sequence_43">
-                                      <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" DisplayName="Close excel" sap2010:WorkflowViewState.IdRef="WindowScope_28" InformativeScreenshot="6be5b660bb61f50bc88b3a3fd3caeb06" Selector="&lt;wnd app='excel.exe' cls='XLMAIN' title='Microsoft Excel - Økonomisk oppsett med skatt 2016  [Kompatibili*' /&gt;">
+                                      <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" DisplayName="Close excel" sap2010:WorkflowViewState.IdRef="WindowScope_28" InformativeScreenshot="bf07046a4a9311aab94f6b6b573d9ecf" Selector="&lt;wnd app='excel.exe' cls='XLMAIN' title='Microsoft Excel - Økonomisk_oppsett_med_skatt_2017  [Kompatibili*' /&gt;">
                                         <ui:WindowScope.Body>
                                           <ActivityAction x:TypeArguments="x:Object">
                                             <ActivityAction.Argument>
@@ -1106,7 +1117,7 @@
                                           </ActivityAction>
                                         </ui:WindowScope.Body>
                                       </ui:WindowScope>
-                                      <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" DisplayName="Attach Window 'Microsoft Xlmain'" sap2010:WorkflowViewState.IdRef="WindowScope_39" InformativeScreenshot="06906d582a307d80103a72d6c4021aee" Selector="&lt;wnd app='excel.exe' cls='XLMAIN' title='Microsoft Excel - Økonomisk oppsett med skatt 2016  [Kompatibili*' /&gt;">
+                                      <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" DisplayName="Attach Window 'Microsoft Xlmain'" sap2010:WorkflowViewState.IdRef="WindowScope_39" InformativeScreenshot="06906d582a307d80103a72d6c4021aee" Selector="&lt;wnd app='excel.exe' cls='XLMAIN' title='Microsoft Excel - Økonomisk_oppsett_med_skatt_2017  [Kompatibili*' /&gt;">
                                         <ui:WindowScope.Body>
                                           <ActivityAction x:TypeArguments="x:Object">
                                             <ActivityAction.Argument>
@@ -1141,7 +1152,7 @@
                                           </ActivityAction>
                                         </ui:ExcelApplicationScope.Body>
                                       </ui:ExcelApplicationScope>
-                                      <ui:OpenApplication ApplicationWindow="{x:Null}" TimeoutMS="{x:Null}" WorkingDirectory="{x:Null}" Arguments="[xlsPath]" DisplayName="Open application 'EXCEL.EXE Microsoft'" FileName="C:\Program Files (x86)\Microsoft Office\Office14\EXCEL.EXE" sap2010:WorkflowViewState.IdRef="OpenApplication_3" InformativeScreenshot="a54460b2454de04ed0879d88bf359251" Selector="&lt;wnd app='excel.exe' cls='XLMAIN' omit:title='Microsoft Excel - Bok1' /&gt;">
+                                      <ui:OpenApplication ApplicationWindow="{x:Null}" TimeoutMS="{x:Null}" WorkingDirectory="{x:Null}" Arguments="[xlsPath1]" DisplayName="Open application 'EXCEL.EXE Microsoft'" FileName="C:\Program Files (x86)\Microsoft Office\Office14\EXCEL.EXE" sap2010:WorkflowViewState.IdRef="OpenApplication_3" InformativeScreenshot="a54460b2454de04ed0879d88bf359251" Selector="&lt;wnd app='excel.exe' cls='XLMAIN' /&gt;">
                                         <ui:OpenApplication.Body>
                                           <ActivityAction x:TypeArguments="x:Object">
                                             <ActivityAction.Argument>
@@ -1155,7 +1166,7 @@
                                     <FlowStep.Next>
                                       <FlowStep x:Name="__ReferenceID6" sap2010:WorkflowViewState.IdRef="FlowStep_19">
                                         <Sequence DisplayName="Copy oppsett" sap2010:WorkflowViewState.IdRef="Sequence_45">
-                                          <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" DisplayName="Attach Window 'Microsoft Xlmain'" sap2010:WorkflowViewState.IdRef="WindowScope_20" InformativeScreenshot="9c0f3f8d8e0ed7db48f5dc6107c94b9b" Selector="&lt;wnd app='excel.exe' cls='XLMAIN' title='Microsoft Excel - Økonomisk oppsett med skatt 2016*' /&gt;">
+                                          <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" DisplayName="Attach Window 'Microsoft Xlmain'" sap2010:WorkflowViewState.IdRef="WindowScope_20" InformativeScreenshot="bf07046a4a9311aab94f6b6b573d9ecf" Selector="&lt;wnd app='excel.exe' cls='XLMAIN' title='Microsoft Excel - Økonomisk_oppsett_med_skatt_2017  [Kompatibili*' /&gt;">
                                             <ui:WindowScope.Body>
                                               <ActivityAction x:TypeArguments="x:Object">
                                                 <ActivityAction.Argument>
@@ -1174,7 +1185,7 @@
                                                       </ui:CursorPosition>
                                                     </ui:Click.CursorPosition>
                                                     <ui:Click.Target>
-                                                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="e1f084186fd857f078edbe4efc7c88d5" Selector="&lt;wnd cls='EXCEL7' title='Økonomisk oppsett med skatt 2016  [Kompatibilitetsmodus]' /&gt;&lt;ctrl name='Økonomisk oppsett med skatt 2016  [Kompatibilitetsmodus]' role='client' /&gt;&lt;ctrl name='Arknavigeringsfelt' role='client' /&gt;&lt;ctrl name='Arkfaner' role='page tab list' /&gt;&lt;ctrl name='Oppsett' role='page tab' /&gt;" WaitForReady="INTERACTIVE" />
+                                                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="2c3f103e2d686b9499570f8eac14cff0" Selector="&lt;wnd cls='EXCEL7' title='Økonomisk_oppsett_med_skatt_2017  [Kompatibilitetsmodus]' /&gt;&lt;ctrl name='Økonomisk_oppsett_med_skatt_2017  [Kompatibilitetsmodus]' role='client' /&gt;&lt;ctrl name='Arknavigeringsfelt' role='client' /&gt;&lt;ctrl name='Arkfaner' role='page tab list' /&gt;&lt;ctrl name='Oppsett' role='page tab' /&gt;" WaitForReady="INTERACTIVE" />
                                                     </ui:Click.Target>
                                                   </ui:Click>
                                                   <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'client Økonomisk'" sap2010:WorkflowViewState.IdRef="Click_33" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
@@ -1189,7 +1200,7 @@
                                                       </ui:CursorPosition>
                                                     </ui:Click.CursorPosition>
                                                     <ui:Click.Target>
-                                                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="aa2bfff1b73d93052c8c3fcfd1884c50" Selector="&lt;wnd cls='EXCEL7' title='Økonomisk oppsett med skatt 2016  [Kompatibilitetsmodus]' /&gt;&lt;ctrl name='Økonomisk oppsett med skatt 2016  [Kompatibilitetsmodus]' role='client' /&gt;" WaitForReady="INTERACTIVE" />
+                                                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="6fad3647ebc1f5bee77a89d3be7031be" Selector="&lt;wnd cls='EXCEL7' title='Økonomisk_oppsett_med_skatt_2017  [Kompatibilitetsmodus]' /&gt;&lt;ctrl name='Økonomisk_oppsett_med_skatt_2017  [Kompatibilitetsmodus]' role='client' /&gt;" WaitForReady="INTERACTIVE" />
                                                     </ui:Click.Target>
                                                   </ui:Click>
                                                   <ui:ClickImage ContinueOnError="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click image 'EXCEL.EXE Microsoft'" sap2010:WorkflowViewState.IdRef="ClickImage_4" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False">
@@ -1204,7 +1215,7 @@
                                                       </ui:CursorPosition>
                                                     </ui:ClickImage.CursorPosition>
                                                     <ui:ClickImage.Image>
-                                                      <ui:ImageTarget Image="{x:Null}" Accuracy="0.8" TargetImageBase64="iVBORw0KGgoAAAANSUhEUgAAAGgAAAARCAYAAAAxMemoAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADtSURBVFhH7ZbBCsMwDEPz/x/Xy2C/09GDQWi2k7RO8JgPj0WSU/B0aNv7dZxFXqqg5FRByamCklMFJWdpQa21LzhHjXgZMjo3y6rnzrKsIGtB9CP+hCroJlVQDNsLQngGtXXuZezzrCAegpk2I7mV4W8U295BVq6dn2Tojz6DNd/l3NLsRbC0IERbQLS2GHrWPS3r+YL3zAgdxbaCBFzkOgs4I5l27mWef3kIZz3NcI46ijQfCd7CM5nlR2uml9/lLwu6zl4eoaPY9pEgcG5pLUOsOc/Hu16Oc1auZexFsP0dNMqqhX+NKig1x/kBNrVspZlfXvwAAAAASUVORK5CYII=" />
+                                                      <ui:ImageTarget Image="{x:Null}" Accuracy="0.8" TargetImageBase64="iVBORw0KGgoAAAANSUhEUgAAAGEAAAAUCAYAAACd6VPRAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAHRSURBVFhH7VZBbsMgEIQH1XGeYil+iA9WnpFDreYRzalV84Xm1krtfzaGBbNg7KCENKThMJLDLpCd2QHY7/cBMm6LLEICyCIkgCxCAsgiJIAsQgKILMIGas6BMaZQwcuXju1gvXiC9dsnyQ+JKbw3sOQVbIf1LoXYk0Pdzez5R4goAgpQP5ui9m0BvGjgQxIXQPQcsggB8JIkhNHEUxGQAOYK1DVQ0jXomr71xdiigrogrpN52onMagrLqQXOMyJQFxMH+/YY1ouDiE5wifXFUYTtikPZvsKPGztHhJ5wQzQVfTzH2rergJO5NCYdvNpg3miP+Ih/MavisKMIIYrosu8oWwATO08EZ8yCEEXH6bcANg06wRGP5p7c43LEF4FCFqCLw6LLtumt3cDeKiquCKKruTqO7GPKzhV5RgT6oCANNLFHTMQTQThAW5jAFKqI7gsTdl+2O5IbSwQkczg6rPgpJzhra9yVCC4Bwxh1gu9b5OnfNF+dzTOdPBrz/jbrhd4JMqbvtvsSQQCFGFlaxhzireJMDInH+fLo6kWQOT4yPGN0/vgFJPYJeR1N/c/r4Lp3QjBsBzwabi7C0LmTT9v/j0Sc8NjIIiSALMLNcYAjHlN0exO1tVsAAAAASUVORK5CYII=" />
                                                     </ui:ClickImage.Image>
                                                     <ui:ClickImage.Target>
                                                       <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" WaitForReady="INTERACTIVE" />
@@ -1233,7 +1244,7 @@
                                               </ActivityAction>
                                             </ui:WindowScope.Body>
                                           </ui:WindowScope>
-                                          <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" DisplayName="Attach Window 'Microsoft Xlmain'" sap2010:WorkflowViewState.IdRef="WindowScope_23" InformativeScreenshot="9c0f3f8d8e0ed7db48f5dc6107c94b9b" Selector="&lt;wnd app='excel.exe' cls='XLMAIN' title='Microsoft Excel - Økonomisk oppsett med skatt 2016*' /&gt;">
+                                          <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" DisplayName="Attach Window 'Microsoft Xlmain'" sap2010:WorkflowViewState.IdRef="WindowScope_23" InformativeScreenshot="9c0f3f8d8e0ed7db48f5dc6107c94b9b" Selector="&lt;wnd app='excel.exe' cls='XLMAIN' title='Microsoft Excel - Økonomisk_oppsett_med_skatt_2017*' /&gt;">
                                             <ui:WindowScope.Body>
                                               <ActivityAction x:TypeArguments="x:Object">
                                                 <ActivityAction.Argument>
@@ -1252,7 +1263,7 @@
                                                       </ui:CursorPosition>
                                                     </ui:ClickImage.CursorPosition>
                                                     <ui:ClickImage.Image>
-                                                      <ui:ImageTarget Image="{x:Null}" Accuracy="0.8" TargetImageBase64="iVBORw0KGgoAAAANSUhEUgAAAGUAAAAQCAYAAAAPk7G9AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAEFSURBVFhH7ZVNCkIxDIR7/8O9jeB1lIKBIeQ/TymSxcfrZJJYOgvX83G9hrOYUA5kQjmQCeVA3FDWWmJ9Y3lR7tjxb5RDmceMg28VebdSKBNIjq+HooVESB72aD5qr1fyqB6ZrfjoSb7mYR3BHk4qFGkZr0na2hH1SPMaep7GWsXXdKdXIhzK/koLea2js7NIdrarkcystYcIhWItvVPvM0fr5Xi9XU01QqtrvnTWaP/RWxfIau5xLD/zOxXNQf/O3k0pFKxzX9JYs/otT9JIZBZrFV/TnV6Jcigb8vaX8Ho0H3W0lxOZrfroSX7E42cNN5Qu3gV+hfsQh9xzM6F8OCeU6/UGJ8XePFHe79YAAAAASUVORK5CYII=" />
+                                                      <ui:ImageTarget Image="{x:Null}" Accuracy="0.8" TargetImageBase64="iVBORw0KGgoAAAANSUhEUgAAAGQAAAATCAYAAABmxagtAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAJ7SURBVFhH7VdLctswDKV4n9hKb6IZ6yBeeHyLZGHXuUPbTd3mCo1XTafufVCAP8MQSSn01FY6WrwZmQCBBz6AktWfXweYMB5MgowMkyAjwyTIyDAJMjJMgowMbxfk2xI+6AaeXvn6F1jXGqrFAxy571BEY75T8FoK6ioS5L7iSawY7fZHmRgOx/9BDAI/n85Z9eNCQU5inHweodU4LVWFaGAXyNB6A+vVzNlmsN6/WFunkxIxyK9uoJ3L2Jk9ubxD7NsGtKb1WFyZj9YqUEq5deWeJdc0LhAkJsYBnhYa6tUn+P36AscNFjNfwrMniyTVbAnff1pbhQdhiIpO4jGe8aD04tFOn/FT0G5wGkWBRXnN3pydDhifaV1wSXLc21rMnvDsc/WjUJA7qLFLSX119t6g4kSno6/tOFt4u/Hdh4LOne1MEL5HxBTCnVCYN/im7DwO2fCQO/H97wjHJN80CgVRrjsekIiG+9Vn1sGcQK446jI8iC3+PttnD0gh7NiT8G5fqsDSvOZ3j526PFxZ/jobyDHFN4PLX+pmLHnxnAAvVhaem5DTNeERzR1QmLfjG7PTB4fjQdeZuQoHcryJIAi6Qy1R2121nxh8IVZ4N5/d5f6K4zYRU8YI74NMgUV5zd6MnecWtkEcbyWI7SocXUPKXmN2lBv4GF5othPbxZ2zYRd+jXSV8eUxcn4cBXkH2Hd48Nqsy7gJjv4s0HdHHz7RL8I03i4IIvqfwYwtf2a/DWzh6z19IbERd+jEDDF6/DjCHr6ez9tv9zFlXERYF3u4b2xfBkWClMEXLgv+1+jLeytecVxREITspGuhL++teEVwXUEm9OAAfwHel1kPm0Up3AAAAABJRU5ErkJggg==" />
                                                     </ui:ClickImage.Image>
                                                     <ui:ClickImage.Target>
                                                       <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" WaitForReady="INTERACTIVE" />
@@ -1525,9 +1536,9 @@
                                               </ui:CommentOut>
                                             </Sequence>
                                             <FlowStep.Next>
-                                              <FlowStep x:Name="__ReferenceID10" sap2010:WorkflowViewState.IdRef="FlowStep_31">
+                                              <FlowStep x:Name="__ReferenceID9" sap2010:WorkflowViewState.IdRef="FlowStep_31">
                                                 <Sequence DisplayName="Close excel" sap2010:WorkflowViewState.IdRef="Sequence_125">
-                                                  <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" DisplayName="Attach Window 'Microsoft Xlmain'" sap2010:WorkflowViewState.IdRef="WindowScope_36" InformativeScreenshot="06906d582a307d80103a72d6c4021aee" Selector="&lt;wnd app='excel.exe' cls='XLMAIN' title='Microsoft Excel - Økonomisk oppsett med skatt 2016  [Kompatibili*' /&gt;">
+                                                  <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" DisplayName="Attach Window 'Microsoft Xlmain'" sap2010:WorkflowViewState.IdRef="WindowScope_36" InformativeScreenshot="06906d582a307d80103a72d6c4021aee" Selector="&lt;wnd app='excel.exe' cls='XLMAIN' title='Microsoft Excel - Økonomisk_oppsett_med_skatt_2017  [Kompatibili*' /&gt;">
                                                     <ui:WindowScope.Body>
                                                       <ActivityAction x:TypeArguments="x:Object">
                                                         <ActivityAction.Argument>
@@ -1973,24 +1984,34 @@
     <x:Reference>__ReferenceID8</x:Reference>
     <x:Reference>__ReferenceID9</x:Reference>
     <x:Reference>__ReferenceID10</x:Reference>
-    <sads:DebugSymbol.Symbol>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</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>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</sads:DebugSymbol.Symbol>
   </Flowchart>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
-      <sap2010:ViewStateData Id="Assign_59" sap:VirtualizedContainerService.HintSize="464,59" />
-      <sap2010:ViewStateData Id="Assign_61" sap:VirtualizedContainerService.HintSize="464,59" />
-      <sap2010:ViewStateData Id="Assign_58" sap:VirtualizedContainerService.HintSize="464,59" />
-      <sap2010:ViewStateData Id="Assign_39" sap:VirtualizedContainerService.HintSize="242,59" />
-      <sap2010:ViewStateData Id="WriteLine_29" sap:VirtualizedContainerService.HintSize="242,59" />
-      <sap2010:ViewStateData Id="Assign_40" sap:VirtualizedContainerService.HintSize="242,59" />
-      <sap2010:ViewStateData Id="Sequence_111" sap:VirtualizedContainerService.HintSize="264,381">
+      <sap2010:ViewStateData Id="WriteLine_40" sap:VirtualizedContainerService.HintSize="464,59" />
+      <sap2010:ViewStateData Id="Assign_72" sap:VirtualizedContainerService.HintSize="464,59" />
+      <sap2010:ViewStateData Id="Assign_99" sap:VirtualizedContainerService.HintSize="464,59" />
+      <sap2010:ViewStateData Id="Assign_74" sap:VirtualizedContainerService.HintSize="416,59" />
+      <sap2010:ViewStateData Id="WriteLine_36" sap:VirtualizedContainerService.HintSize="416,59" />
+      <sap2010:ViewStateData Id="Assign_75" sap:VirtualizedContainerService.HintSize="242,59" />
+      <sap2010:ViewStateData Id="Sequence_155" sap:VirtualizedContainerService.HintSize="264,183">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="If_18" sap:VirtualizedContainerService.HintSize="464,49">
+      <sap2010:ViewStateData Id="CommentOut_26" sap:VirtualizedContainerService.HintSize="416,261" />
+      <sap2010:ViewStateData Id="Assign_100" sap:VirtualizedContainerService.HintSize="416,59" />
+      <sap2010:ViewStateData Id="Assign_101" sap:VirtualizedContainerService.HintSize="416,59" />
+      <sap2010:ViewStateData Id="Sequence_144" sap:VirtualizedContainerService.HintSize="438,781">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="If_25" sap:VirtualizedContainerService.HintSize="464,49">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -1998,14 +2019,11 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="WriteLine_30" sap:VirtualizedContainerService.HintSize="464,59" />
-      <sap2010:ViewStateData Id="WriteLine_36" sap:VirtualizedContainerService.HintSize="464,59" />
-      <sap2010:ViewStateData Id="Assign_41" sap:VirtualizedContainerService.HintSize="464,59" />
-      <sap2010:ViewStateData Id="Assign_42" sap:VirtualizedContainerService.HintSize="464,59" />
-      <sap2010:ViewStateData Id="WriteLine_31" sap:VirtualizedContainerService.HintSize="464,59" />
-      <sap2010:ViewStateData Id="Assign_43" sap:VirtualizedContainerService.HintSize="464,59" />
-      <sap2010:ViewStateData Id="Assign_44" sap:VirtualizedContainerService.HintSize="242,59" />
-      <sap2010:ViewStateData Id="If_14" sap:VirtualizedContainerService.HintSize="200,49">
+      <sap2010:ViewStateData Id="Assign_76" sap:VirtualizedContainerService.HintSize="464,59" />
+      <sap2010:ViewStateData Id="Assign_77" sap:VirtualizedContainerService.HintSize="464,59" />
+      <sap2010:ViewStateData Id="Assign_78" sap:VirtualizedContainerService.HintSize="464,59" />
+      <sap2010:ViewStateData Id="Assign_79" sap:VirtualizedContainerService.HintSize="242,59" />
+      <sap2010:ViewStateData Id="If_26" sap:VirtualizedContainerService.HintSize="200,49">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -2013,14 +2031,14 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Sequence_105" sap:VirtualizedContainerService.HintSize="486,173">
+      <sap2010:ViewStateData Id="Sequence_145" sap:VirtualizedContainerService.HintSize="486,173">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="CommentOut_18" sap:VirtualizedContainerService.HintSize="464,49">
+      <sap2010:ViewStateData Id="CommentOut_24" sap:VirtualizedContainerService.HintSize="464,49">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -2028,16 +2046,17 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Assign_45" sap:VirtualizedContainerService.HintSize="464,59" />
-      <sap2010:ViewStateData Id="Assign_46" sap:VirtualizedContainerService.HintSize="464,59" />
-      <sap2010:ViewStateData Id="Assign_47" sap:VirtualizedContainerService.HintSize="464,59" />
-      <sap2010:ViewStateData Id="Assign_48" sap:VirtualizedContainerService.HintSize="464,59" />
-      <sap2010:ViewStateData Id="Assign_49" sap:VirtualizedContainerService.HintSize="464,59" />
-      <sap2010:ViewStateData Id="Assign_50" sap:VirtualizedContainerService.HintSize="464,59" />
-      <sap2010:ViewStateData Id="Assign_51" sap:VirtualizedContainerService.HintSize="464,59" />
-      <sap2010:ViewStateData Id="Assign_52" sap:VirtualizedContainerService.HintSize="464,59" />
-      <sap2010:ViewStateData Id="Assign_53" sap:VirtualizedContainerService.HintSize="242,59" />
-      <sap2010:ViewStateData Id="If_15" sap:VirtualizedContainerService.HintSize="464,49">
+      <sap2010:ViewStateData Id="Assign_80" sap:VirtualizedContainerService.HintSize="464,59" />
+      <sap2010:ViewStateData Id="WriteLine_42" sap:VirtualizedContainerService.HintSize="464,59" />
+      <sap2010:ViewStateData Id="Assign_81" sap:VirtualizedContainerService.HintSize="464,59" />
+      <sap2010:ViewStateData Id="Assign_82" sap:VirtualizedContainerService.HintSize="464,59" />
+      <sap2010:ViewStateData Id="Assign_83" sap:VirtualizedContainerService.HintSize="464,59" />
+      <sap2010:ViewStateData Id="Assign_84" sap:VirtualizedContainerService.HintSize="464,59" />
+      <sap2010:ViewStateData Id="Assign_85" sap:VirtualizedContainerService.HintSize="464,59" />
+      <sap2010:ViewStateData Id="Assign_86" sap:VirtualizedContainerService.HintSize="464,59" />
+      <sap2010:ViewStateData Id="Assign_87" sap:VirtualizedContainerService.HintSize="464,59" />
+      <sap2010:ViewStateData Id="Assign_88" sap:VirtualizedContainerService.HintSize="242,59" />
+      <sap2010:ViewStateData Id="If_27" sap:VirtualizedContainerService.HintSize="464,49">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -2045,26 +2064,26 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Assign_54" sap:VirtualizedContainerService.HintSize="242,59" />
-      <sap2010:ViewStateData Id="Assign_55" sap:VirtualizedContainerService.HintSize="242,59" />
-      <sap2010:ViewStateData Id="Sequence_109" sap:VirtualizedContainerService.HintSize="264,282">
+      <sap2010:ViewStateData Id="Assign_89" sap:VirtualizedContainerService.HintSize="242,59" />
+      <sap2010:ViewStateData Id="Assign_90" sap:VirtualizedContainerService.HintSize="242,59" />
+      <sap2010:ViewStateData Id="Sequence_146" sap:VirtualizedContainerService.HintSize="264,282">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="If_16" sap:VirtualizedContainerService.HintSize="464,425" />
-      <sap2010:ViewStateData Id="Assign_56" sap:VirtualizedContainerService.HintSize="242,59" />
-      <sap2010:ViewStateData Id="Assign_57" sap:VirtualizedContainerService.HintSize="242,59" />
-      <sap2010:ViewStateData Id="Sequence_110" sap:VirtualizedContainerService.HintSize="264,282">
+      <sap2010:ViewStateData Id="If_28" sap:VirtualizedContainerService.HintSize="464,425" />
+      <sap2010:ViewStateData Id="Assign_91" sap:VirtualizedContainerService.HintSize="242,59" />
+      <sap2010:ViewStateData Id="Assign_92" sap:VirtualizedContainerService.HintSize="242,59" />
+      <sap2010:ViewStateData Id="Sequence_147" sap:VirtualizedContainerService.HintSize="264,282">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="If_17" sap:VirtualizedContainerService.HintSize="464,49">
+      <sap2010:ViewStateData Id="If_29" sap:VirtualizedContainerService.HintSize="464,49">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -2072,7 +2091,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Sequence_106" sap:VirtualizedContainerService.HintSize="486,2588">
+      <sap2010:ViewStateData Id="Sequence_148" sap:VirtualizedContainerService.HintSize="486,2390">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -2080,16 +2099,16 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="WriteLine_32" sap:VirtualizedContainerService.HintSize="486,59" />
-      <sap2010:ViewStateData Id="MaximizeWindow_1" sap:VirtualizedContainerService.HintSize="200,22" />
-      <sap2010:ViewStateData Id="Sequence_107" sap:VirtualizedContainerService.HintSize="222,146">
+      <sap2010:ViewStateData Id="WriteLine_39" sap:VirtualizedContainerService.HintSize="486,59" />
+      <sap2010:ViewStateData Id="MaximizeWindow_3" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="Sequence_149" sap:VirtualizedContainerService.HintSize="222,146">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="OpenApplication_4" sap:VirtualizedContainerService.HintSize="486,292">
+      <sap2010:ViewStateData Id="OpenApplication_5" sap:VirtualizedContainerService.HintSize="486,292">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -2097,7 +2116,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Sequence_108" sap:VirtualizedContainerService.HintSize="200,49">
+      <sap2010:ViewStateData Id="Sequence_143" sap:VirtualizedContainerService.HintSize="508,2945">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -2309,18 +2328,18 @@
       </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="ExcelReadRange_1" sap:VirtualizedContainerService.HintSize="314,59" />
       <sap2010:ViewStateData Id="OutputDataTable_6" sap:VirtualizedContainerService.HintSize="314,22" />
-      <sap2010:ViewStateData Id="WriteLine_38" sap:VirtualizedContainerService.HintSize="314,59" />
+      <sap2010:ViewStateData Id="WriteLine_41" sap:VirtualizedContainerService.HintSize="314,59" />
       <sap2010:ViewStateData Id="ExcelReadCell_4" sap:VirtualizedContainerService.HintSize="314,59" />
       <sap2010:ViewStateData Id="ExcelReadCell_5" sap:VirtualizedContainerService.HintSize="314,59" />
       <sap2010:ViewStateData Id="ExcelReadCell_6" sap:VirtualizedContainerService.HintSize="314,59" />
-      <sap2010:ViewStateData Id="Sequence_132" sap:VirtualizedContainerService.HintSize="336,641">
+      <sap2010:ViewStateData Id="Sequence_150" sap:VirtualizedContainerService.HintSize="336,641">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="ExcelApplicationScope_3" sap:VirtualizedContainerService.HintSize="1043,49">
+      <sap2010:ViewStateData Id="ExcelApplicationScope_3" sap:VirtualizedContainerService.HintSize="414,750">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -2328,32 +2347,32 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Assign_69" sap:VirtualizedContainerService.HintSize="1043,59" />
-      <sap2010:ViewStateData Id="Assign_62" sap:VirtualizedContainerService.HintSize="242,59" />
-      <sap2010:ViewStateData Id="Break_2" sap:VirtualizedContainerService.HintSize="242,22" />
-      <sap2010:ViewStateData Id="Sequence_134" sap:VirtualizedContainerService.HintSize="264,245">
+      <sap2010:ViewStateData Id="Assign_93" sap:VirtualizedContainerService.HintSize="509,59" />
+      <sap2010:ViewStateData Id="Assign_94" sap:VirtualizedContainerService.HintSize="242,59" />
+      <sap2010:ViewStateData Id="Break_1" sap:VirtualizedContainerService.HintSize="242,22" />
+      <sap2010:ViewStateData Id="Sequence_151" sap:VirtualizedContainerService.HintSize="264,245">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="If_20" sap:VirtualizedContainerService.HintSize="464,388" />
-      <sap2010:ViewStateData Id="Sequence_133" sap:VirtualizedContainerService.HintSize="486,512">
+      <sap2010:ViewStateData Id="If_30" sap:VirtualizedContainerService.HintSize="464,388" />
+      <sap2010:ViewStateData Id="Sequence_152" sap:VirtualizedContainerService.HintSize="486,512">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Sequence_135" sap:VirtualizedContainerService.HintSize="508,636">
+      <sap2010:ViewStateData Id="Sequence_153" sap:VirtualizedContainerService.HintSize="508,636">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="ForEachRow_2" sap:VirtualizedContainerService.HintSize="1043,49">
+      <sap2010:ViewStateData Id="ForEachRow_2" sap:VirtualizedContainerService.HintSize="509,49">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -2361,15 +2380,20 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="WriteLine_37" sap:VirtualizedContainerService.HintSize="1043,59" />
-      <sap2010:ViewStateData Id="Assign_63" sap:VirtualizedContainerService.HintSize="242,59" />
-      <sap2010:ViewStateData Id="Assign_64" sap:VirtualizedContainerService.HintSize="242,59" />
-      <sap2010:ViewStateData Id="Assign_65" sap:VirtualizedContainerService.HintSize="242,59" />
-      <sap2010:ViewStateData Id="Assign_66" sap:VirtualizedContainerService.HintSize="242,59" />
-      <sap2010:ViewStateData Id="If_23" sap:VirtualizedContainerService.HintSize="509,203" />
-      <sap2010:ViewStateData Id="If_22" sap:VirtualizedContainerService.HintSize="776,346" />
-      <sap2010:ViewStateData Id="If_21" sap:VirtualizedContainerService.HintSize="1043,489" />
-      <sap2010:ViewStateData Id="WriteLine_42" sap:VirtualizedContainerService.HintSize="1043,59" />
+      <sap2010:ViewStateData Id="Assign_95" sap:VirtualizedContainerService.HintSize="242,59" />
+      <sap2010:ViewStateData Id="Assign_96" sap:VirtualizedContainerService.HintSize="242,59" />
+      <sap2010:ViewStateData Id="Assign_97" sap:VirtualizedContainerService.HintSize="242,59" />
+      <sap2010:ViewStateData Id="Assign_98" sap:VirtualizedContainerService.HintSize="242,59" />
+      <sap2010:ViewStateData Id="If_31" sap:VirtualizedContainerService.HintSize="509,203" />
+      <sap2010:ViewStateData Id="If_32" sap:VirtualizedContainerService.HintSize="776,346" />
+      <sap2010:ViewStateData Id="If_33" sap:VirtualizedContainerService.HintSize="509,49">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="Click_23" sap:VirtualizedContainerService.HintSize="314,106" />
       <sap2010:ViewStateData Id="Click_19" sap:VirtualizedContainerService.HintSize="314,106" />
       <sap2010:ViewStateData Id="ClickImage_3" sap:VirtualizedContainerService.HintSize="314,106" />
@@ -2380,7 +2404,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="WindowScope_15" sap:VirtualizedContainerService.HintSize="1043,668" />
+      <sap2010:ViewStateData Id="WindowScope_15" sap:VirtualizedContainerService.HintSize="509,668" />
       <sap2010:ViewStateData Id="TypeInto_10" sap:VirtualizedContainerService.HintSize="473,134" />
       <sap2010:ViewStateData Id="MessageBox_1" sap:VirtualizedContainerService.HintSize="314,59" />
       <sap2010:ViewStateData Id="Check_10" sap:VirtualizedContainerService.HintSize="314,106" />
@@ -2399,7 +2423,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="WindowScope_16" sap:VirtualizedContainerService.HintSize="1043,1139">
+      <sap2010:ViewStateData Id="WindowScope_16" sap:VirtualizedContainerService.HintSize="509,1139">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -2407,7 +2431,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Sequence_31" sap:VirtualizedContainerService.HintSize="1065,2975">
+      <sap2010:ViewStateData Id="Sequence_31" sap:VirtualizedContainerService.HintSize="200,49">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -2498,7 +2522,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Sequence_43" sap:VirtualizedContainerService.HintSize="200,49">
+      <sap2010:ViewStateData Id="Sequence_43" sap:VirtualizedContainerService.HintSize="436,1754">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -2586,7 +2610,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="WordApplicationScope_1" sap:VirtualizedContainerService.HintSize="414,344">
+      <sap2010:ViewStateData Id="WordApplicationScope_1" sap:VirtualizedContainerService.HintSize="452,344">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -2662,7 +2686,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="OpenApplication_1" sap:VirtualizedContainerService.HintSize="200,49">
+      <sap2010:ViewStateData Id="OpenApplication_1" sap:VirtualizedContainerService.HintSize="575,2191">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -2750,7 +2774,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Sequence_129" sap:VirtualizedContainerService.HintSize="222,351">
+      <sap2010:ViewStateData Id="Sequence_129" sap:VirtualizedContainerService.HintSize="510,351">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -2916,7 +2940,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="FlowStep_29">
+      <sap2010:ViewStateData Id="FlowStep_34">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <av:Point x:Key="ShapeLocation">70,125.5</av:Point>
@@ -2989,7 +3013,7 @@
       <sap2010:ViewStateData Id="FlowStep_17">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <av:Point x:Key="ShapeLocation">20,5.5</av:Point>
+            <av:Point x:Key="ShapeLocation">440,5.5</av:Point>
             <av:Size x:Key="ShapeSize">200,49</av:Size>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
@@ -3209,7 +3233,7 @@
             <x:Boolean x:Key="IsExpanded">False</x:Boolean>
             <av:Point x:Key="ShapeLocation">340,0</av:Point>
             <av:Size x:Key="ShapeSize">60,75</av:Size>
-            <av:PointCollection x:Key="ConnectorLocation">370,75 370,105 170,105 170,125.5</av:PointCollection>
+            <av:PointCollection x:Key="ConnectorLocation">340,37.5 170,37.5 170,125.5</av:PointCollection>
             <x:Double x:Key="Width">724</x:Double>
             <x:Double x:Key="Height">884.5</x:Double>
           </scg:Dictionary>
