@@ -109,6 +109,7 @@
       <Variable x:TypeArguments="x:String" Name="kommuneNr" />
     </Sequence.Variables>
     <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_2" Text="BEGIN: aInntekt" />
+    <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_16" Text="[row.Item(&quot;FNR&quot;).ToString]" />
     <Assign sap2010:WorkflowViewState.IdRef="Assign_1">
       <Assign.To>
         <OutArgument x:TypeArguments="x:String">[fnr]</OutArgument>
@@ -383,97 +384,94 @@
                               <If Condition="[rad(1).ToString = &quot;&quot;]" sap2010:WorkflowViewState.IdRef="If_10">
                                 <If.Then>
                                   <Sequence sap2010:WorkflowViewState.IdRef="Sequence_129">
-                                    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke workflow file" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="sandbox\inntektPensjon.xaml">
+                                    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke workflow file" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="W:\rpa\Vasklister\Del2\inntektPensjon.xaml">
                                       <ui:InvokeWorkflowFile.Arguments>
-                                        <OutArgument x:TypeArguments="x:String" x:Key="arbeisgiver" />
-                                        <OutArgument x:TypeArguments="x:String" x:Key="orgNR" />
+                                        <OutArgument x:TypeArguments="x:String" x:Key="orgNRPensjon">[orgNR]</OutArgument>
+                                        <OutArgument x:TypeArguments="x:String" x:Key="arbeisgiverPensjon">[arbeidsgiver]</OutArgument>
+                                        <OutArgument x:TypeArguments="x:String" x:Key="arbeidsInntektPensjon">[arbeidsInntekt]</OutArgument>
                                       </ui:InvokeWorkflowFile.Arguments>
                                     </ui:InvokeWorkflowFile>
                                     <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_14" Text="Finner ikke arbeidsInntekt, starter aInntektEnInntektPensjon" />
                                   </Sequence>
                                 </If.Then>
-                              </If>
-                              <If Condition="[index = 0]" sap2010:WorkflowViewState.IdRef="If_9">
-                                <If.Then>
-                                  <Sequence sap2010:WorkflowViewState.IdRef="Sequence_118">
-                                    <Sequence.Variables>
-                                      <Variable x:TypeArguments="ui:GenericValue" Name="kommuneNr" />
-                                    </Sequence.Variables>
-                                    <Assign sap2010:WorkflowViewState.IdRef="Assign_38">
-                                      <Assign.To>
-                                        <OutArgument x:TypeArguments="x:String">[orgNR]</OutArgument>
-                                      </Assign.To>
-                                      <Assign.Value>
-                                        <InArgument x:TypeArguments="x:String">[rad(1).ToString.Substring(0,9)]</InArgument>
-                                      </Assign.Value>
-                                    </Assign>
-                                    <Assign sap2010:WorkflowViewState.IdRef="Assign_37">
-                                      <Assign.To>
-                                        <OutArgument x:TypeArguments="x:String">[sakNr]</OutArgument>
-                                      </Assign.To>
-                                      <Assign.Value>
-                                        <InArgument x:TypeArguments="x:String">[row(1).ToString]</InArgument>
-                                      </Assign.Value>
-                                    </Assign>
-                                  </Sequence>
-                                </If.Then>
                                 <If.Else>
-                                  <Sequence sap2010:WorkflowViewState.IdRef="Sequence_117">
-                                    <Assign sap2010:WorkflowViewState.IdRef="Assign_36">
-                                      <Assign.To>
-                                        <OutArgument x:TypeArguments="x:String">[fnr]</OutArgument>
-                                      </Assign.To>
-                                      <Assign.Value>
-                                        <InArgument x:TypeArguments="x:String">
-                                          <Literal x:TypeArguments="x:String" Value="" />
-                                        </InArgument>
-                                      </Assign.Value>
-                                    </Assign>
-                                    <Assign sap2010:WorkflowViewState.IdRef="Assign_39">
-                                      <Assign.To>
-                                        <OutArgument x:TypeArguments="x:String">[sakNr]</OutArgument>
-                                      </Assign.To>
-                                      <Assign.Value>
-                                        <InArgument x:TypeArguments="x:String">[row(1).ToString]</InArgument>
-                                      </Assign.Value>
-                                    </Assign>
-                                    <Assign sap2010:WorkflowViewState.IdRef="Assign_51">
-                                      <Assign.To>
-                                        <OutArgument x:TypeArguments="x:String">[kommuneNr]</OutArgument>
-                                      </Assign.To>
-                                      <Assign.Value>
-                                        <InArgument x:TypeArguments="x:String">
-                                          <Literal x:TypeArguments="x:String" Value="" />
-                                        </InArgument>
-                                      </Assign.Value>
-                                    </Assign>
+                                  <Sequence sap2010:WorkflowViewState.IdRef="Sequence_132">
+                                    <If Condition="[index = 0]" sap2010:WorkflowViewState.IdRef="If_9">
+                                      <If.Then>
+                                        <Sequence sap2010:WorkflowViewState.IdRef="Sequence_118">
+                                          <Sequence.Variables>
+                                            <Variable x:TypeArguments="ui:GenericValue" Name="kommuneNr" />
+                                          </Sequence.Variables>
+                                          <Assign sap2010:WorkflowViewState.IdRef="Assign_38">
+                                            <Assign.To>
+                                              <OutArgument x:TypeArguments="x:String">[orgNR]</OutArgument>
+                                            </Assign.To>
+                                            <Assign.Value>
+                                              <InArgument x:TypeArguments="x:String">[rad(1).ToString.Substring(0,9)]</InArgument>
+                                            </Assign.Value>
+                                          </Assign>
+                                        </Sequence>
+                                      </If.Then>
+                                      <If.Else>
+                                        <Sequence sap2010:WorkflowViewState.IdRef="Sequence_117">
+                                          <Assign sap2010:WorkflowViewState.IdRef="Assign_36">
+                                            <Assign.To>
+                                              <OutArgument x:TypeArguments="x:String">[fnr]</OutArgument>
+                                            </Assign.To>
+                                            <Assign.Value>
+                                              <InArgument x:TypeArguments="x:String">
+                                                <Literal x:TypeArguments="x:String" Value="" />
+                                              </InArgument>
+                                            </Assign.Value>
+                                          </Assign>
+                                          <Assign sap2010:WorkflowViewState.IdRef="Assign_51">
+                                            <Assign.To>
+                                              <OutArgument x:TypeArguments="x:String">[kommuneNr]</OutArgument>
+                                            </Assign.To>
+                                            <Assign.Value>
+                                              <InArgument x:TypeArguments="x:String">
+                                                <Literal x:TypeArguments="x:String" Value="" />
+                                              </InArgument>
+                                            </Assign.Value>
+                                          </Assign>
+                                        </Sequence>
+                                      </If.Else>
+                                    </If>
+                                    <If Condition="[rad(5).ToString.Equals(&quot;&quot;)]" DisplayName="Hvis pensjon (kolonne 5 er tom)" sap2010:WorkflowViewState.IdRef="If_6">
+                                      <If.Then>
+                                        <Sequence sap2010:WorkflowViewState.IdRef="Sequence_119">
+                                          <Assign sap2010:WorkflowViewState.IdRef="Assign_24">
+                                            <Assign.To>
+                                              <OutArgument x:TypeArguments="x:String">[arbeidsInntekt]</OutArgument>
+                                            </Assign.To>
+                                            <Assign.Value>
+                                              <InArgument x:TypeArguments="x:String">[rad(4).ToString]</InArgument>
+                                            </Assign.Value>
+                                          </Assign>
+                                        </Sequence>
+                                      </If.Then>
+                                      <If.Else>
+                                        <Assign sap2010:WorkflowViewState.IdRef="Assign_25">
+                                          <Assign.To>
+                                            <OutArgument x:TypeArguments="x:String">[arbeidsInntekt]</OutArgument>
+                                          </Assign.To>
+                                          <Assign.Value>
+                                            <InArgument x:TypeArguments="x:String">[rad(5).ToString]</InArgument>
+                                          </Assign.Value>
+                                        </Assign>
+                                      </If.Else>
+                                    </If>
                                   </Sequence>
                                 </If.Else>
                               </If>
-                              <If Condition="[rad(5).ToString.Equals(&quot;&quot;)]" DisplayName="Hvis pensjon (kolonne 5 er tom)" sap2010:WorkflowViewState.IdRef="If_6">
-                                <If.Then>
-                                  <Sequence sap2010:WorkflowViewState.IdRef="Sequence_119">
-                                    <Assign sap2010:WorkflowViewState.IdRef="Assign_24">
-                                      <Assign.To>
-                                        <OutArgument x:TypeArguments="x:String">[arbeidsInntekt]</OutArgument>
-                                      </Assign.To>
-                                      <Assign.Value>
-                                        <InArgument x:TypeArguments="x:String">[rad(4).ToString]</InArgument>
-                                      </Assign.Value>
-                                    </Assign>
-                                  </Sequence>
-                                </If.Then>
-                                <If.Else>
-                                  <Assign sap2010:WorkflowViewState.IdRef="Assign_25">
-                                    <Assign.To>
-                                      <OutArgument x:TypeArguments="x:String">[arbeidsInntekt]</OutArgument>
-                                    </Assign.To>
-                                    <Assign.Value>
-                                      <InArgument x:TypeArguments="x:String">[rad(5).ToString]</InArgument>
-                                    </Assign.Value>
-                                  </Assign>
-                                </If.Else>
-                              </If>
+                              <Assign sap2010:WorkflowViewState.IdRef="Assign_37">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:String">[sakNr]</OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:String">[row(1).ToString]</InArgument>
+                                </Assign.Value>
+                              </Assign>
                               <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_10" Text="[&quot;Test utskrift av data rows:  &quot; +System.Environment.NewLine +&#xA;&quot;FNR:  &quot;+fnr +System.Environment.NewLine +&#xA;&quot;Saksnummer:  &quot;+row(1).ToString + System.Environment.NewLine +&#xA;&quot;FNR: &quot; +fnr +System.Environment.NewLine +&#xA;&quot;Arbeidsinntekt&quot;+arbeidsinntekt + System.Environment.NewLine +&#xA;&quot;orgNR: &quot;+orgNR + System.Environment.NewLine +&#xA;&quot;Arbeidsgiver: &quot;+arbeidsgiver]" />
                               <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{fnr,sakNr,fnr,arbeidsinntekt,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,orgNR,arbeidsgiver,&quot;&quot;,&quot;&quot;,&quot;&quot;,kommuneNr}]" DataTable="[output_tabell]" DisplayName="Add data row" sap2010:WorkflowViewState.IdRef="AddDataRow_1" />
                             </Sequence>
@@ -800,11 +798,12 @@
         </ActivityAction>
       </ui:BrowserScope.Body>
     </ui:BrowserScope>
-    <sads:DebugSymbol.Symbol>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</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>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</sads:DebugSymbol.Symbol>
   </Sequence>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
       <sap2010:ViewStateData Id="WriteLine_2" sap:VirtualizedContainerService.HintSize="566,59" />
+      <sap2010:ViewStateData Id="WriteLine_16" sap:VirtualizedContainerService.HintSize="566,59" />
       <sap2010:ViewStateData Id="Assign_1" sap:VirtualizedContainerService.HintSize="566,59" />
       <sap2010:ViewStateData Id="Assign_43" sap:VirtualizedContainerService.HintSize="566,59" />
       <sap2010:ViewStateData Id="StartProcess_1" sap:VirtualizedContainerService.HintSize="414,87" />
@@ -972,11 +971,11 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="ExtractData_11" sap:VirtualizedContainerService.HintSize="730,106" />
-      <sap2010:ViewStateData Id="Assign_26" sap:VirtualizedContainerService.HintSize="553,59" />
-      <sap2010:ViewStateData Id="Assign_34" sap:VirtualizedContainerService.HintSize="553,59" />
-      <sap2010:ViewStateData Id="WriteLine_12" sap:VirtualizedContainerService.HintSize="553,59" />
-      <sap2010:ViewStateData Id="WriteLine_13" sap:VirtualizedContainerService.HintSize="553,59" />
+      <sap2010:ViewStateData Id="ExtractData_11" sap:VirtualizedContainerService.HintSize="1113,106" />
+      <sap2010:ViewStateData Id="Assign_26" sap:VirtualizedContainerService.HintSize="936,59" />
+      <sap2010:ViewStateData Id="Assign_34" sap:VirtualizedContainerService.HintSize="936,59" />
+      <sap2010:ViewStateData Id="WriteLine_12" sap:VirtualizedContainerService.HintSize="936,59" />
+      <sap2010:ViewStateData Id="WriteLine_13" sap:VirtualizedContainerService.HintSize="936,59" />
       <sap2010:ViewStateData Id="InvokeWorkflowFile_2" sap:VirtualizedContainerService.HintSize="314,87" />
       <sap2010:ViewStateData Id="WriteLine_14" sap:VirtualizedContainerService.HintSize="314,59" />
       <sap2010:ViewStateData Id="Sequence_129" sap:VirtualizedContainerService.HintSize="336,310">
@@ -986,10 +985,8 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="If_10" sap:VirtualizedContainerService.HintSize="553,453" />
       <sap2010:ViewStateData Id="Assign_38" sap:VirtualizedContainerService.HintSize="242,59" />
-      <sap2010:ViewStateData Id="Assign_37" sap:VirtualizedContainerService.HintSize="242,59" />
-      <sap2010:ViewStateData Id="Sequence_118" sap:VirtualizedContainerService.HintSize="264,282">
+      <sap2010:ViewStateData Id="Sequence_118" sap:VirtualizedContainerService.HintSize="264,183">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -997,16 +994,22 @@
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="Assign_36" sap:VirtualizedContainerService.HintSize="242,59" />
-      <sap2010:ViewStateData Id="Assign_39" sap:VirtualizedContainerService.HintSize="242,59" />
       <sap2010:ViewStateData Id="Assign_51" sap:VirtualizedContainerService.HintSize="242,59" />
-      <sap2010:ViewStateData Id="Sequence_117" sap:VirtualizedContainerService.HintSize="264,381">
+      <sap2010:ViewStateData Id="Sequence_117" sap:VirtualizedContainerService.HintSize="264,282">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="If_9" sap:VirtualizedContainerService.HintSize="553,524" />
+      <sap2010:ViewStateData Id="If_9" sap:VirtualizedContainerService.HintSize="553,425">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="Assign_24" sap:VirtualizedContainerService.HintSize="242,59" />
       <sap2010:ViewStateData Id="Sequence_119" sap:VirtualizedContainerService.HintSize="264,183">
         <sap:WorkflowViewStateService.ViewState>
@@ -1016,27 +1019,43 @@
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="Assign_25" sap:VirtualizedContainerService.HintSize="242,59" />
-      <sap2010:ViewStateData Id="If_6" sap:VirtualizedContainerService.HintSize="553,326" />
-      <sap2010:ViewStateData Id="WriteLine_10" sap:VirtualizedContainerService.HintSize="553,61" />
-      <sap2010:ViewStateData Id="AddDataRow_1" sap:VirtualizedContainerService.HintSize="553,22" />
-      <sap2010:ViewStateData Id="Sequence_109" sap:VirtualizedContainerService.HintSize="575,2066">
+      <sap2010:ViewStateData Id="If_6" sap:VirtualizedContainerService.HintSize="553,49">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_132" sap:VirtualizedContainerService.HintSize="575,638">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="If_7" sap:VirtualizedContainerService.HintSize="700,2209" />
-      <sap2010:ViewStateData Id="ForEachRow_1" sap:VirtualizedContainerService.HintSize="730,2354" />
-      <sap2010:ViewStateData Id="CloseWindow_1" sap:VirtualizedContainerService.HintSize="730,106" />
-      <sap2010:ViewStateData Id="Sequence_110" sap:VirtualizedContainerService.HintSize="752,2770">
+      <sap2010:ViewStateData Id="If_10" sap:VirtualizedContainerService.HintSize="936,781" />
+      <sap2010:ViewStateData Id="Assign_37" sap:VirtualizedContainerService.HintSize="936,59" />
+      <sap2010:ViewStateData Id="WriteLine_10" sap:VirtualizedContainerService.HintSize="936,61" />
+      <sap2010:ViewStateData Id="AddDataRow_1" sap:VirtualizedContainerService.HintSize="936,22" />
+      <sap2010:ViewStateData Id="Sequence_109" sap:VirtualizedContainerService.HintSize="958,1563">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="If_8" sap:VirtualizedContainerService.HintSize="877,3113">
+      <sap2010:ViewStateData Id="If_7" sap:VirtualizedContainerService.HintSize="1083,1706" />
+      <sap2010:ViewStateData Id="ForEachRow_1" sap:VirtualizedContainerService.HintSize="1113,1851" />
+      <sap2010:ViewStateData Id="CloseWindow_1" sap:VirtualizedContainerService.HintSize="1113,106" />
+      <sap2010:ViewStateData Id="Sequence_110" sap:VirtualizedContainerService.HintSize="1135,2267">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="If_8" sap:VirtualizedContainerService.HintSize="1260,2410">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -1272,14 +1291,14 @@
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="BrowserScope_8" sap:VirtualizedContainerService.HintSize="566,3597" />
-      <sap2010:ViewStateData Id="Sequence_64" sap:VirtualizedContainerService.HintSize="588,4875">
+      <sap2010:ViewStateData Id="Sequence_64" sap:VirtualizedContainerService.HintSize="588,4974">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="aInntekt_1" sap:VirtualizedContainerService.HintSize="628,4995" />
+      <sap2010:ViewStateData Id="aInntekt_1" sap:VirtualizedContainerService.HintSize="628,5174" />
     </sap2010:ViewStateManager>
   </sap2010:WorkflowViewState.ViewStateManager>
 </Activity>
