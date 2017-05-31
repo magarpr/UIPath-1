@@ -342,7 +342,6 @@
                     <Variable x:TypeArguments="x:String" Name="lønnMnd1" />
                     <Variable x:TypeArguments="x:String" Name="saknr" />
                   </Sequence.Variables>
-                  <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_17" Text="BEGIN: aInntekt.Hent inntekt" />
                   <ui:ExtractData NextLinkSelector="{x:Null}" ContinueOnError="True" DataTable="[ExtractDataTable2]" DelayBetweenPagesMS="300" DisplayName="Extract Structured Data 'TBODY'" ExtractMetadata="&lt;extract&gt;&lt;row exact='1'&gt;&lt;webctrl class='right-border' tag='tr' /&gt;&lt;/row&gt;&lt;column name='Arbeidsgiver' attr='text' exact='1'&gt;&lt;webctrl class='right-border' tag='tr' /&gt;&lt;webctrl class='first-child' tag='th' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl class='expandedArbeidsgiver' tag='div' idx='1' /&gt;&lt;webctrl class='stor-skrift' tag='span' idx='1' /&gt;&lt;/column&gt;&lt;column name='ORG NR.' attr='text' exact='1'&gt;&lt;webctrl class='right-border' tag='tr' /&gt;&lt;webctrl class='first-child' tag='th' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl class='expandedArbeidsgiver' tag='div' idx='1' /&gt;&lt;webctrl tag='ul' idx='1' /&gt;&lt;webctrl tag='li' idx='1' /&gt;&lt;webctrl tag='dl' idx='1' /&gt;&lt;webctrl tag='dd' idx='1' /&gt;&lt;/column&gt;&lt;column name='TotalLønnMnd1' attr='text' exact='1'&gt;&lt;webctrl class='right-border' tag='tr' /&gt;&lt;webctrl tag='td' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='dl' idx='1' /&gt;&lt;webctrl class='stor-skrift' tag='dd' idx='1' /&gt;&lt;/column&gt;&lt;column name='TotalLønnMnd2' attr='text' exact='1'&gt;&lt;webctrl class='right-border' tag='tr' /&gt;&lt;webctrl tag='td' idx='2' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='dl' idx='1' /&gt;&lt;webctrl class='stor-skrift' tag='dd' idx='1' /&gt;&lt;/column&gt;&lt;column name='TotalLønnMnd3' attr='text' exact='1'&gt;&lt;webctrl class='right-border' tag='tr' /&gt;&lt;webctrl tag='td' idx='3' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='dl' idx='1' /&gt;&lt;webctrl class='stor-skrift' tag='dd' idx='1' /&gt;&lt;/column&gt;&lt;column name='Gj.snitt/mnd' attr='text' exact='1'&gt;&lt;webctrl class='right-border' tag='tr' /&gt;&lt;webctrl class='last-child' tag='td' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl class='stor-skrift' tag='span' idx='1' /&gt;&lt;/column&gt;&lt;/extract&gt;" sap2010:WorkflowViewState.IdRef="ExtractData_11" MaxNumberOfResults="100">
                     <ui:ExtractData.Target>
                       <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="64495c9340ae2186be4e820d8b9fd55f" Selector="&lt;webctrl tag='TBODY' /&gt;" WaitForReady="COMPLETE" />
@@ -376,8 +375,8 @@
                                   <InArgument x:TypeArguments="ui:GenericValue">[rad.Table.Rows.IndexOf(rad)]</InArgument>
                                 </Assign.Value>
                               </Assign>
-                              <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_12" Text="[&quot;Rad nr (hvis flere inntekter): &quot; + index]" />
-                              <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_13" Text="[&quot;Org nummer:  &quot; +rad(1).ToString]" />
+                              <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_12" Text="[&quot;Inntekt nummer: &quot; + index]" />
+                              <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_13" Text="[&quot;Org nummer:  &quot; +rad(1).ToString.Substring(0,9)]" />
                               <If Condition="[rad(1).ToString = &quot;&quot;]" sap2010:WorkflowViewState.IdRef="If_10">
                                 <If.Then>
                                   <Sequence sap2010:WorkflowViewState.IdRef="Sequence_129">
@@ -683,11 +682,12 @@
                 </ui:WindowScope.Body>
               </ui:WindowScope>
             </Sequence>
+            <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_18" Text="COMPLETED: aInntekt" />
           </Sequence>
         </ActivityAction>
       </ui:BrowserScope.Body>
     </ui:BrowserScope>
-    <sads:DebugSymbol.Symbol>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</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>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</sads:DebugSymbol.Symbol>
   </Sequence>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
@@ -788,10 +788,10 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Click_12" sap:VirtualizedContainerService.HintSize="1260,49">
+      <sap2010:ViewStateData Id="Click_12" sap:VirtualizedContainerService.HintSize="1260,106">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             <x:Boolean x:Key="IsPinned">False</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
@@ -843,7 +843,6 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="WriteLine_17" sap:VirtualizedContainerService.HintSize="1113,59" />
       <sap2010:ViewStateData Id="ExtractData_11" sap:VirtualizedContainerService.HintSize="1113,106" />
       <sap2010:ViewStateData Id="Assign_26" sap:VirtualizedContainerService.HintSize="936,59" />
       <sap2010:ViewStateData Id="Assign_34" sap:VirtualizedContainerService.HintSize="936,59" />
@@ -920,14 +919,14 @@
       <sap2010:ViewStateData Id="If_7" sap:VirtualizedContainerService.HintSize="1083,1605" />
       <sap2010:ViewStateData Id="ForEachRow_1" sap:VirtualizedContainerService.HintSize="1113,1750" />
       <sap2010:ViewStateData Id="CloseWindow_1" sap:VirtualizedContainerService.HintSize="1113,106" />
-      <sap2010:ViewStateData Id="Sequence_110" sap:VirtualizedContainerService.HintSize="1135,2265">
+      <sap2010:ViewStateData Id="Sequence_110" sap:VirtualizedContainerService.HintSize="1135,2166">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="If_8" sap:VirtualizedContainerService.HintSize="1260,2408">
+      <sap2010:ViewStateData Id="If_8" sap:VirtualizedContainerService.HintSize="1260,2309">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -1061,7 +1060,8 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Sequence_63" sap:VirtualizedContainerService.HintSize="1282,4456">
+      <sap2010:ViewStateData Id="WriteLine_18" sap:VirtualizedContainerService.HintSize="1260,59" />
+      <sap2010:ViewStateData Id="Sequence_63" sap:VirtualizedContainerService.HintSize="1282,4513">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -1069,7 +1069,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="BrowserScope_8" sap:VirtualizedContainerService.HintSize="1296,4602">
+      <sap2010:ViewStateData Id="BrowserScope_8" sap:VirtualizedContainerService.HintSize="1296,4659">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -1077,14 +1077,14 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Sequence_64" sap:VirtualizedContainerService.HintSize="1318,5895">
+      <sap2010:ViewStateData Id="Sequence_64" sap:VirtualizedContainerService.HintSize="1318,5952">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="aInntekt_1" sap:VirtualizedContainerService.HintSize="1358,6055" />
+      <sap2010:ViewStateData Id="aInntekt_1" sap:VirtualizedContainerService.HintSize="1358,6152" />
     </sap2010:ViewStateManager>
   </sap2010:WorkflowViewState.ViewStateManager>
 </Activity>
