@@ -119,6 +119,7 @@
           <Literal x:TypeArguments="x:String" Value="" />
         </Variable.Default>
       </Variable>
+      <Variable x:TypeArguments="ui:GenericValue" Name="status1" />
     </Sequence.Variables>
     <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_2" Text="BEGIN: aInntekt" />
     <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_16" Text="[&quot;FNR: &quot;+row.Item(&quot;FNR&quot;).ToString]" />
@@ -136,6 +137,14 @@
       </Assign.To>
       <Assign.Value>
         <InArgument x:TypeArguments="x:String">[row.Item("Kommune_Nr").ToString]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign sap2010:WorkflowViewState.IdRef="Assign_52">
+      <Assign.To>
+        <OutArgument x:TypeArguments="ui:GenericValue">[status1]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="ui:GenericValue">[row.Item("_1_status_1_message").ToString]</InArgument>
       </Assign.Value>
     </Assign>
     <Sequence DisplayName="Initialize Predator And Browser" sap2010:WorkflowViewState.IdRef="Sequence_127">
@@ -467,7 +476,7 @@
                                   <InArgument x:TypeArguments="x:String">[row(1).ToString]</InArgument>
                                 </Assign.Value>
                               </Assign>
-                              <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{fnr,sakNr,kommuneNr,fnr,arbeidsinntekt,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,orgNR,arbeidsgiver,&quot;&quot;,&quot;&quot;,&quot;&quot;}]" DataTable="[output_tabell]" DisplayName="Add data row" sap2010:WorkflowViewState.IdRef="AddDataRow_1" />
+                              <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{fnr,sakNr,kommuneNr,fnr,arbeidsinntekt,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,orgNR,arbeidsgiver,&quot;&quot;,&quot;&quot;,&quot;&quot;,status1,&quot;&quot;,&quot;&quot;}]" DataTable="[output_tabell]" DisplayName="Add data row" sap2010:WorkflowViewState.IdRef="AddDataRow_1" />
                             </Sequence>
                           </If.Else>
                         </If>
@@ -607,7 +616,7 @@
                       <InArgument x:TypeArguments="x:Object">[arbeidsInntekt]</InArgument>
                     </Assign.Value>
                   </Assign>
-                  <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{fnr,row(1).ToString,kommuneNr,fnr,arbeidsInntekt,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;}]" DataTable="[output_tabell]" DisplayName="Add data row" sap2010:WorkflowViewState.IdRef="AddDataRow_2" />
+                  <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{fnr,row(1).ToString,kommuneNr,fnr,arbeidsInntekt,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;}]" DataTable="[output_tabell]" DisplayName="Add data row" sap2010:WorkflowViewState.IdRef="AddDataRow_2" />
                 </Sequence>
               </If.Then>
             </If>
@@ -686,7 +695,7 @@
         </ActivityAction>
       </ui:BrowserScope.Body>
     </ui:BrowserScope>
-    <sads:DebugSymbol.Symbol>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</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>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</sads:DebugSymbol.Symbol>
   </Sequence>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
@@ -694,6 +703,7 @@
       <sap2010:ViewStateData Id="WriteLine_16" sap:VirtualizedContainerService.HintSize="1296,59" />
       <sap2010:ViewStateData Id="Assign_1" sap:VirtualizedContainerService.HintSize="1296,59" />
       <sap2010:ViewStateData Id="Assign_43" sap:VirtualizedContainerService.HintSize="1296,59" />
+      <sap2010:ViewStateData Id="Assign_52" sap:VirtualizedContainerService.HintSize="1296,59" />
       <sap2010:ViewStateData Id="StartProcess_1" sap:VirtualizedContainerService.HintSize="414,87" />
       <sap2010:ViewStateData Id="SendHotkey_4" sap:VirtualizedContainerService.HintSize="414,152" />
       <sap2010:ViewStateData Id="Click_18" sap:VirtualizedContainerService.HintSize="314,106" />
@@ -1075,14 +1085,14 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Sequence_64" sap:VirtualizedContainerService.HintSize="1318,5853">
+      <sap2010:ViewStateData Id="Sequence_64" sap:VirtualizedContainerService.HintSize="1318,5952">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="aInntekt_1" sap:VirtualizedContainerService.HintSize="1358,6013" />
+      <sap2010:ViewStateData Id="aInntekt_1" sap:VirtualizedContainerService.HintSize="1358,6712" />
     </sap2010:ViewStateManager>
   </sap2010:WorkflowViewState.ViewStateManager>
 </Activity>
