@@ -108,7 +108,7 @@
                   <ActivityAction.Argument>
                     <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
                   </ActivityAction.Argument>
-                  <Sequence>
+                  <Sequence sap2010:WorkflowViewState.IdRef="Sequence_34">
                     <Sequence DisplayName="Utfør søk og skriv til excel" sap2010:WorkflowViewState.IdRef="Sequence_12">
                       <Sequence.Variables>
                         <Variable x:TypeArguments="x:Int32" Name="antallVoksene" />
@@ -226,6 +226,15 @@
                           </ui:CommentOut>
                         </Sequence>
                         <Sequence DisplayName="Bygg tabbeller" sap2010:WorkflowViewState.IdRef="Sequence_26">
+                          <Assign>
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="x:Int32">[antallVoksene]</OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:Int32">1</InArgument>
+                            </Assign.Value>
+                            <sap2010:WorkflowViewState.IdRef>Assign_32</sap2010:WorkflowViewState.IdRef>
+                          </Assign>
                           <ui:ForEachRow DataTable="[extractedEktefelle]" DisplayName="Ektefelle" sap2010:WorkflowViewState.IdRef="ForEachRow_2">
                             <ui:ForEachRow.Body>
                               <ActivityAction x:TypeArguments="sd:DataRow">
@@ -560,7 +569,6 @@
                         <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="4a825bf96f7ba4ba45645c56c53db150" Selector="&lt;wnd app='iexplore.exe' cls='IEFrame' title='PESYS -  Familieforhold - Internet Explorer' /&gt;" WaitForReady="INTERACTIVE" />
                       </ui:CloseApplication.Target>
                     </ui:CloseApplication>
-                    <sap2010:WorkflowViewState.IdRef>Sequence_34</sap2010:WorkflowViewState.IdRef>
                   </Sequence>
                 </ActivityAction>
               </ui:BrowserScope.Body>
@@ -569,7 +577,7 @@
         </ActivityAction>
       </ui:OpenBrowser.Body>
     </ui:OpenBrowser>
-    <sads:DebugSymbol.Symbol>dypXOlxycGFcVmFza2xpc3RlclxEZWwyXHBlc3lzR2V0RmFtaWx5LnhhbWy3AUoDvQQOAgEBTwVPdgMB5wFQBWEQAwHeAWIFuwQWAgECT1xPcwMB6AFRB1gQAwHjAVkHYBADAd8BYrsBYoQCAwHdAWgLuAQWAgEDVjJWTAMB5gFTM1M4AwHkAV44XlIDAeIBWzlbSgMB4AFpDbcEHwIBBGmoAmnWAgMB3AFvE7QEHgIBBXAVrQQgAgEIrgQVsgQrAgEGeBeKASIDAdMBiwEXrgEiAwHHAa8BF90DIgIBLN4DF6wEIgIBCbAEqAGwBIwCAgEHeRl/JAMB2gGAARmEAScDAdYBhQEZiQEpAwHUAY8BGZ0BJAMB0QGeARmlAScDAc0BpgEZrQEiAwHIAbYBGcQBJAMBxQHFARnjASQDAasB5AEZ3AMkAgEt3wMZqwQpAgEKeht+KwMB2wGCAawBggHpAQMB2QGAAcACgAHHAgMB1wGFAY0BhQGTAQMB1QGbAawBmwGEAgMB0gGjAUyjAVoDAc4BoAGsAaAB7QEDAdABqwFLqwFZAwHLAagBTKgBVgMByQHCAawBwgGDAgMBxgHJARvNASwDAb0BzgEb0gEsAwG1AdMBG9cBLAMBrQHYARviASsDAawB5QEbhgIrAwGcAYcCG6ACKwMBkQGhAhu5AysCAT26AxvWAysCATzXAxvXA4EBAgE62AMb2AOvAQIBN9kDG9kDrQECATTaAxvaA7ABAgEx2wMb2wOyAQIBLt8DMt8DPwIBKuUDH6gEJAIBC8kB1QLJAdgCAwHEAcsBrgHLAesBAwHDAckBkwHJAZgBAwHCAckBV8kBXQMBwQHJAWjJAX4DAb8ByQHjAckBkQIDAb4BzgHJAs4BzgIDAbwB0AGuAdAB6wEDAbsBzgGRAc4BlgEDAboBzgFXzgFdAwG5Ac4BaM4BfAMBtwHOAdcBzgGFAgMBtgHTAdMC0wHWAgMBtAHVAa4B1QHqAQMBswHTAZUB0wGaAQMBsgHTAVfTAV0DAbEB0wFo0wGAAQMBrwHTAeEB0wGPAgMBrgHlATTlAUoDAakB6wEhgwIsAwGdAYcCNIcCSAMBmgGNAiGdAiwDAZIBoQKPAaECpwEDAY8BpwIhtgMsAgE+1wNz1wN+AgE72ANz2AOsAQIBONkDc9kDqgECATXaA3PaA60BAgEy2wNz2wOvAQIBL+UDLeUDTAIBDOcDI6YELgIBDe8BI/YBLAMBpQH3ASOCAigDAZ4BkQIjnAIoAwGTAagCI7UDLgIBP+gDJf0DKgIBIf4DJYUELgIBHYYEJY0ELgIBGY4EJZUELgIBFZYEJZ0ELgIBEZ4EJaUELgIBDvQBTvQBdAMBqAHxAU/xAV0DAaYB9wEx9wFzAwGfAfkBJ4ACMAMBoAGRAjGRAlUDAZQBkwInmgIwAwGVAa4CJ6kDMgIBQ7EDK7EDmwECAUDoAzPoA0sCASLqAynxAzICASf0Ayn7AzICASSDBFCDBGgCAR+ABFGABGsCAR6LBFCLBGcCARuIBFGIBGgCARqTBFCTBGgCAReQBFGQBGkCARabBFCbBGkCAROYBFGYBGoCARKjBFCjBFoCARCgBFGgBGgCAQ/+AVH+AWMDAaMB+wFS+wFhAwGhAZgCUZgCYwMBmAGVAlKVAmEDAZYBsgIptgI1AwGNAbcCKbcCnwEDAYsBuAIpvwIyAwGHAcACKccCMgMBgwHIAinIAqoBAwGAAckCKckCsAECAX3KAimoAy4CAUSxA4MBsQOYAQIBQe8DVO8DXAIBKewDVewDcgIBKPkDVPkDXQIBJvYDVfYDcgIBJbQCLbQCXAMBjgG3AoEBtwKcAQMBjAG9AlS9AnoDAYoBugJVugJeAwGIAcUCVMUCagMBhgHCAlXCAmIDAYQByAKBAcgCpwEDAYEByQKAAckCrQECAX7KAjfKAnICAUXMAi2jAzgCAUumAy2mA5wBAgFJzwJezwKEAQIBTNMCL9MCnAECAXvUAi/bAjgCAXfcAi/jAjgCAXDkAi/rAjgCAWzsAi/zAjgCAWj0Ai/0Ar8BAgFl9QIvogM0AgFNpgOFAaYDmQECAUrTAoYB0wKZAQIBfNkCWtkCjQECAXrWAlvWAmsCAXjhAlrhAr0BAgFz3gJb3gJrAgFx6QJc6QKQAQIBb+YCXeYCagIBbfECYfECgAECAWvuAmLuAm0CAWn0AocB9AK8AQIBZvUCPfUCUQIBTvcCM6ADPgIBT/gCNZ8DOgIBUPgCQ/gCVwIBUfoCOZMDRAIBV5YDOZ0DQgIBUvsCO5IDQAIBWJsDY5sDdgIBVZgDZJgDdAIBU/sCSfsCXAIBWf0CP4YDSgIBX4kDP5ADSAIBWv4CQYUDSgIBYI4DaY4DewIBXYsDaosDeQIBW4MDa4MDfAIBY4ADbIADegIBYQ==</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>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</sads:DebugSymbol.Symbol>
   </Sequence>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
@@ -640,6 +648,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Assign_32" sap:VirtualizedContainerService.HintSize="416,59" />
       <sap2010:ViewStateData Id="Assign_18" sap:VirtualizedContainerService.HintSize="464,59" />
       <sap2010:ViewStateData Id="Assign_17" sap:VirtualizedContainerService.HintSize="242,59" />
       <sap2010:ViewStateData Id="If_6" sap:VirtualizedContainerService.HintSize="464,203" />
@@ -817,7 +826,7 @@
       <sap2010:ViewStateData Id="WriteLine_13" sap:VirtualizedContainerService.HintSize="416,59" />
       <sap2010:ViewStateData Id="WriteLine_14" sap:VirtualizedContainerService.HintSize="416,59" />
       <sap2010:ViewStateData Id="WriteLine_15" sap:VirtualizedContainerService.HintSize="416,59" />
-      <sap2010:ViewStateData Id="Sequence_26" sap:VirtualizedContainerService.HintSize="438,1175">
+      <sap2010:ViewStateData Id="Sequence_26" sap:VirtualizedContainerService.HintSize="438,1274">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -825,7 +834,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Sequence_13" sap:VirtualizedContainerService.HintSize="708,1477">
+      <sap2010:ViewStateData Id="Sequence_13" sap:VirtualizedContainerService.HintSize="708,1576">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -864,7 +873,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Sequence_12" sap:VirtualizedContainerService.HintSize="730,4120">
+      <sap2010:ViewStateData Id="Sequence_12" sap:VirtualizedContainerService.HintSize="730,4219">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -872,30 +881,30 @@
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="CloseApplication_1" sap:VirtualizedContainerService.HintSize="730,106" />
-      <sap2010:ViewStateData Id="Sequence_34" sap:VirtualizedContainerService.HintSize="752,4390">
+      <sap2010:ViewStateData Id="Sequence_34" sap:VirtualizedContainerService.HintSize="752,4489">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="BrowserScope_1" sap:VirtualizedContainerService.HintSize="766,4536" />
-      <sap2010:ViewStateData Id="Sequence_5" sap:VirtualizedContainerService.HintSize="788,4660">
+      <sap2010:ViewStateData Id="BrowserScope_1" sap:VirtualizedContainerService.HintSize="766,4635" />
+      <sap2010:ViewStateData Id="Sequence_5" sap:VirtualizedContainerService.HintSize="788,4759">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="OpenBrowser_1" sap:VirtualizedContainerService.HintSize="802,4759" />
-      <sap2010:ViewStateData Id="Sequence_1" sap:VirtualizedContainerService.HintSize="824,5304">
+      <sap2010:ViewStateData Id="OpenBrowser_1" sap:VirtualizedContainerService.HintSize="802,4858" />
+      <sap2010:ViewStateData Id="Sequence_1" sap:VirtualizedContainerService.HintSize="824,5403">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="pesysGetFamily_1" sap:VirtualizedContainerService.HintSize="864,5544" />
+      <sap2010:ViewStateData Id="pesysGetFamily_1" sap:VirtualizedContainerService.HintSize="864,5483" />
     </sap2010:ViewStateManager>
   </sap2010:WorkflowViewState.ViewStateManager>
 </Activity>
