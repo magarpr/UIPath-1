@@ -127,16 +127,186 @@
         </ui:CommentOut.Body>
       </ui:CommentOut>
     </Sequence>
-    <ui:OpenBrowser UiBrowser="{x:Null}" BrowserType="IE" DisplayName="Open browser (Pesys)" Hidden="False" sap2010:WorkflowViewState.IdRef="OpenBrowser_6" NewSession="True" Private="False" Url="https://wasapp-t5.adeo.no/psak">
-      <ui:OpenBrowser.Body>
+    <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" DisplayName="Attach Window 'iexplore.exe Aa-Registe...'" sap2010:WorkflowViewState.IdRef="WindowScope_1" InformativeScreenshot="a7e42a1c0921db62f320a1da7857d451" Selector="&lt;wnd app='iexplore.exe' cls='IEFrame' title='*' /&gt;">
+      <ui:WindowScope.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_65" />
+          <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_109">
+            <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" BrowserType="IE" DisplayName="Attach Browser 'iexplore.exe Aa-Registe...'" sap2010:WorkflowViewState.IdRef="BrowserScope_10" InformativeScreenshot="a72391c4c05b4f892662382662ac22de" Selector="&lt;html url='*' /&gt;">
+              <ui:BrowserScope.Body>
+                <ActivityAction x:TypeArguments="x:Object">
+                  <ActivityAction.Argument>
+                    <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+                  </ActivityAction.Argument>
+                  <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_110">
+                    <ui:NavigateTo Browser="{x:Null}" DisplayName="Navigate to" sap2010:WorkflowViewState.IdRef="NavigateTo_1" Url="https://wasapp-t5.adeo.no/psak" />
+                  </Sequence>
+                </ActivityAction>
+              </ui:BrowserScope.Body>
+            </ui:BrowserScope>
+            <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" BrowserType="IE" DisplayName="Attach Browser 'PESYS Opp Page'" sap2010:WorkflowViewState.IdRef="BrowserScope_9" InformativeScreenshot="a6a98864e6ec223ba68f75f132dd222f" Selector="&lt;html title='PESYS -  Oppgaveliste' /&gt;">
+              <ui:BrowserScope.Body>
+                <ActivityAction x:TypeArguments="x:Object">
+                  <ActivityAction.Argument>
+                    <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+                  </ActivityAction.Argument>
+                  <Sequence DisplayName="Attached to PESYS" sap2010:WorkflowViewState.IdRef="Sequence_100">
+                    <Sequence.Variables>
+                      <Variable x:TypeArguments="sd:DataTable" Name="skattTrekkTable" />
+                    </Sequence.Variables>
+                    <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'brukeroversikt'" sap2010:WorkflowViewState.IdRef="Click_17" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="True">
+                      <ui:Click.CursorPosition>
+                        <ui:CursorPosition OffsetX="52" OffsetY="1" Position="TopLeft" />
+                      </ui:Click.CursorPosition>
+                      <ui:Click.Target>
+                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="e5522f37a53b5be1ce66207605e826d9" Selector="&lt;webctrl id='menyForm:brukeroversikt' tag='A' /&gt;" WaitForReady="COMPLETE" />
+                      </ui:Click.Target>
+                    </ui:Click>
+                    <While DisplayName="Wait for Brukeroversikt" sap2010:WorkflowViewState.IdRef="While_4">
+                      <While.Variables>
+                        <Variable x:TypeArguments="x:Boolean" Name="pesysExists" />
+                        <Variable x:TypeArguments="x:Boolean" Name="brukeroversiktExists" />
+                      </While.Variables>
+                      <While.Condition>[not brukeroversiktExists]</While.Condition>
+                      <Sequence sap2010:WorkflowViewState.IdRef="Sequence_93">
+                        <Delay Duration="00:00:00.5000000" sap2010:WorkflowViewState.IdRef="Delay_4" />
+                        <ui:UiElementExists DisplayName="Element Exists 'HTML '" Exists="[brukeroversiktExists]" sap2010:WorkflowViewState.IdRef="UiElementExists_4">
+                          <ui:UiElementExists.Target>
+                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="df7a7d88fcdc62bd6f133011929109cf" Selector="&lt;webctrl parentid='j_id_29:subnavigation' tag='A' /&gt;" TimeoutMS="3000" WaitForReady="INTERACTIVE" />
+                          </ui:UiElementExists.Target>
+                        </ui:UiElementExists>
+                      </Sequence>
+                    </While>
+                    <ui:TypeInto DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Type into 'skriv in pnr + enter'" EmptyField="False" sap2010:WorkflowViewState.IdRef="TypeInto_13" SendWindowMessages="False" SimulateType="False" Text="[fnr + &quot;[k(enter)]&quot;]">
+                      <ui:TypeInto.Target>
+                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="2e607d5491acc8165e8586307e56c1ec" Selector="&lt;webctrl id='pageFormId:fodselsNummer' tag='INPUT' /&gt;" WaitForReady="COMPLETE" />
+                      </ui:TypeInto.Target>
+                    </ui:TypeInto>
+                    <While sap2010:Annotation.AnnotationText="Venter på at bruker skal åpne seg, henter selectoren til en menyknapp som bare er der dersom en bruker er åpen" DisplayName="Wait for open user" sap2010:WorkflowViewState.IdRef="While_5">
+                      <While.Variables>
+                        <Variable x:TypeArguments="x:Boolean" Name="pesysExists" />
+                        <Variable x:TypeArguments="x:Boolean" Name="brukeroversiktExists" />
+                        <Variable x:TypeArguments="x:Boolean" Name="openUser" />
+                      </While.Variables>
+                      <While.Condition>[not openUser]</While.Condition>
+                      <Sequence sap2010:WorkflowViewState.IdRef="Sequence_94">
+                        <Delay Duration="00:00:00.5000000" sap2010:WorkflowViewState.IdRef="Delay_5" />
+                        <ui:UiElementExists DisplayName="Element Exists 'HTML '" Exists="[openUser]" sap2010:WorkflowViewState.IdRef="UiElementExists_5">
+                          <ui:UiElementExists.Target>
+                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="3758acf7fadf21b5e6ca65936d7f7e1e" Selector="&lt;webctrl aaname='Registrere henvendelse' parentid='j_id_29:subnavigation' tag='A' /&gt;" TimeoutMS="3000" WaitForReady="INTERACTIVE" />
+                          </ui:UiElementExists.Target>
+                        </ui:UiElementExists>
+                      </Sequence>
+                    </While>
+                    <ui:CommentOut sap2010:Annotation.AnnotationText="Gjelder kun når man har nasjonalt søk med logg. Roboten har en annen tilgang, hvor dette ikke kreves. " DisplayName="Comment out" sap2010:WorkflowViewState.IdRef="CommentOut_5">
+                      <ui:CommentOut.Body>
+                        <Sequence DisplayName="Ignored Activities" sap2010:WorkflowViewState.IdRef="Sequence_95">
+                          <ui:TypeInto DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" sap2010:Annotation.AnnotationText="Denne boksen trenger vi kanskje ikke?Det gjelder søk med logg" ClickBeforeTyping="False" DelayBefore="[delay_short]" DisplayName="Skriv inn tekst for feilmelding" EmptyField="False" sap2010:WorkflowViewState.IdRef="TypeInto_14" SendWindowMessages="False" SimulateType="True" Text="Automatisk kjøring av vaskelister. Denne meldingen ignoreres.">
+                            <ui:TypeInto.Target>
+                              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="23ed34f50367121e58cbeb3822fe2a78" Selector="&lt;webctrl id='pageFormId:begrunnelse' tag='TEXTAREA' /&gt;" WaitForReady="COMPLETE" />
+                            </ui:TypeInto.Target>
+                          </ui:TypeInto>
+                          <ui:Click DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DelayBefore="[delay_short]" DisplayName="Click 'ok' på feilmelding" sap2010:WorkflowViewState.IdRef="Click_18" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="True">
+                            <ui:Click.CursorPosition>
+                              <ui:CursorPosition OffsetX="22" OffsetY="9" Position="TopLeft" />
+                            </ui:Click.CursorPosition>
+                            <ui:Click.Target>
+                              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="c0671c9832b34e1f6383a3a2e5f8f015" Selector="&lt;webctrl id='pageFormId:okBegrunnelse' tag='INPUT' /&gt;" WaitForReady="COMPLETE" />
+                            </ui:Click.Target>
+                          </ui:Click>
+                        </Sequence>
+                      </ui:CommentOut.Body>
+                    </ui:CommentOut>
+                    <ui:Click DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DelayBefore="[delay_short]" DisplayName="Click 'Utbetalinger '" sap2010:WorkflowViewState.IdRef="Click_19" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="True">
+                      <ui:Click.CursorPosition>
+                        <ui:CursorPosition OffsetX="41" OffsetY="2" Position="TopLeft" />
+                      </ui:Click.CursorPosition>
+                      <ui:Click.Target>
+                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="09ec9b0d9c0a0c11c17cfd3f7fc20d75" Selector="&lt;webctrl aaname='Utbetalinger' parentid='j_id_29:subnavigation' tag='A' /&gt;" WaitForReady="COMPLETE" />
+                      </ui:Click.Target>
+                    </ui:Click>
+                    <ui:Click DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DelayBefore="[delay_short]" DisplayName="Click 'Skatt/trekk'" sap2010:WorkflowViewState.IdRef="Click_20" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="True">
+                      <ui:Click.CursorPosition>
+                        <ui:CursorPosition OffsetX="45" OffsetY="9" Position="TopLeft" />
+                      </ui:Click.CursorPosition>
+                      <ui:Click.Target>
+                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="c9249c27b96fe1d7ee8cb7e3a9d5338c" Selector="&lt;webctrl aaname='Skatt/trekk' parentid='j_id_29:subnavigation' tag='SPAN' /&gt;" WaitForReady="COMPLETE" />
+                      </ui:Click.Target>
+                    </ui:Click>
+                    <While sap2010:Annotation.AnnotationText="Venter på at bruker skal åpne seg, henter selectoren til en menyknapp som bare er der dersom en bruker er åpen" DisplayName="Wait for skatt/trekk" sap2010:WorkflowViewState.IdRef="While_6">
+                      <While.Variables>
+                        <Variable x:TypeArguments="x:Boolean" Name="pesysExists" />
+                        <Variable x:TypeArguments="x:Boolean" Name="brukeroversiktExists" />
+                        <Variable x:TypeArguments="x:Boolean" Name="openUser" />
+                        <Variable x:TypeArguments="x:Boolean" Name="trekkExists" />
+                      </While.Variables>
+                      <While.Condition>[not trekkExists]</While.Condition>
+                      <Sequence sap2010:WorkflowViewState.IdRef="Sequence_101">
+                        <Delay Duration="00:00:00.5000000" sap2010:WorkflowViewState.IdRef="Delay_6" />
+                        <ui:UiElementExists DisplayName="Element Exists 'HTML '" Exists="[trekkExists]" sap2010:WorkflowViewState.IdRef="UiElementExists_6">
+                          <ui:UiElementExists.Target>
+                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="da4c66084f1be24773d598a68ad308cd" Selector="&lt;webctrl id='pageFormId:skattogtrekkSubTitle' tag='SPAN' /&gt;" TimeoutMS="3000" WaitForReady="INTERACTIVE" />
+                          </ui:UiElementExists.Target>
+                        </ui:UiElementExists>
+                      </Sequence>
+                    </While>
+                    <ui:ExtractData NextLinkSelector="{x:Null}" ContinueOnError="True" DataTable="[skattTrekkTable]" DelayBetweenPagesMS="300" DisplayName="Extract Structured Data 'TABLE  pageFormId:resul...'" ExtractMetadata="&lt;extract-table get_columns_name='1' /&gt;" sap2010:WorkflowViewState.IdRef="ExtractData_3" MaxNumberOfResults="100">
+                      <ui:ExtractData.Target>
+                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="95a61650ebb17e396fd3c777451825db" Selector="&lt;webctrl id='pageFormId:resultTable' tag='TABLE' /&gt;" WaitForReady="COMPLETE" />
+                      </ui:ExtractData.Target>
+                    </ui:ExtractData>
+                    <ui:ForEachRow DataTable="[skattTrekkTable]" DisplayName="Get skatt/trekk value from aktivt trekk" sap2010:WorkflowViewState.IdRef="ForEachRow_3">
+                      <ui:ForEachRow.Body>
+                        <ActivityAction x:TypeArguments="sd:DataRow">
+                          <ActivityAction.Argument>
+                            <DelegateInArgument x:TypeArguments="sd:DataRow" Name="row" />
+                          </ActivityAction.Argument>
+                          <Sequence DisplayName="Body" sap2010:WorkflowViewState.IdRef="Sequence_99">
+                            <If Condition="[row.Item(1).ToString.Equals(&quot;Forskuddskatt&quot;) AND row.Item(5).ToString().Equals(&quot;Aktivt&quot;)]" sap2010:WorkflowViewState.IdRef="If_2">
+                              <If.Then>
+                                <Sequence sap2010:WorkflowViewState.IdRef="Sequence_98">
+                                  <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_37" Text="[&quot;Skatt/trekk: &quot; +row.Item(4).Tostring]" />
+                                  <Assign sap2010:WorkflowViewState.IdRef="Assign_3">
+                                    <Assign.To>
+                                      <OutArgument x:TypeArguments="x:String">[skattTrekk]</OutArgument>
+                                    </Assign.To>
+                                    <Assign.Value>
+                                      <InArgument x:TypeArguments="x:String">[row.Item(4).Tostring]</InArgument>
+                                    </Assign.Value>
+                                  </Assign>
+                                </Sequence>
+                              </If.Then>
+                            </If>
+                          </Sequence>
+                        </ActivityAction>
+                      </ui:ForEachRow.Body>
+                    </ui:ForEachRow>
+                  </Sequence>
+                </ActivityAction>
+              </ui:BrowserScope.Body>
+            </ui:BrowserScope>
+          </Sequence>
         </ActivityAction>
-      </ui:OpenBrowser.Body>
-    </ui:OpenBrowser>
+      </ui:WindowScope.Body>
+    </ui:WindowScope>
+    <ui:CommentOut DisplayName="Comment out" sap2010:WorkflowViewState.IdRef="CommentOut_11">
+      <ui:CommentOut.Body>
+        <Sequence DisplayName="Ignored Activities" sap2010:WorkflowViewState.IdRef="Sequence_111">
+          <ui:OpenBrowser UiBrowser="{x:Null}" BrowserType="IE" DisplayName="Open browser (Pesys)" Hidden="False" sap2010:WorkflowViewState.IdRef="OpenBrowser_6" NewSession="True" Private="False" Url="https://wasapp-t5.adeo.no/psak">
+            <ui:OpenBrowser.Body>
+              <ActivityAction x:TypeArguments="x:Object">
+                <ActivityAction.Argument>
+                  <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+                </ActivityAction.Argument>
+                <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_65" />
+              </ActivityAction>
+            </ui:OpenBrowser.Body>
+          </ui:OpenBrowser>
+        </Sequence>
+      </ui:CommentOut.Body>
+    </ui:CommentOut>
     <ui:Comment sap2010:WorkflowViewState.IdRef="Comment_1" Text="Her må det inn en wait for state " />
     <Sequence sap2010:Annotation.AnnotationText="While PESYS != done loading, delay, gå videre" DisplayName="Check if PESYS is done loading" sap2010:WorkflowViewState.IdRef="Sequence_79" />
     <While DisplayName="While waiting for PESYS" sap2010:WorkflowViewState.IdRef="While_1">
@@ -153,147 +323,6 @@
         </ui:UiElementExists>
       </Sequence>
     </While>
-    <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" BrowserType="IE" DisplayName="Attach Browser 'PESYS Opp Page'" sap2010:WorkflowViewState.IdRef="BrowserScope_9" InformativeScreenshot="a6a98864e6ec223ba68f75f132dd222f" Selector="&lt;html title='PESYS -  Oppgaveliste' /&gt;">
-      <ui:BrowserScope.Body>
-        <ActivityAction x:TypeArguments="x:Object">
-          <ActivityAction.Argument>
-            <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
-          </ActivityAction.Argument>
-          <Sequence DisplayName="Attached to PESYS" sap2010:WorkflowViewState.IdRef="Sequence_100">
-            <Sequence.Variables>
-              <Variable x:TypeArguments="sd:DataTable" Name="skattTrekkTable" />
-            </Sequence.Variables>
-            <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'brukeroversikt'" sap2010:WorkflowViewState.IdRef="Click_17" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="True">
-              <ui:Click.CursorPosition>
-                <ui:CursorPosition OffsetX="52" OffsetY="1" Position="TopLeft" />
-              </ui:Click.CursorPosition>
-              <ui:Click.Target>
-                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="e5522f37a53b5be1ce66207605e826d9" Selector="&lt;webctrl id='menyForm:brukeroversikt' tag='A' /&gt;" WaitForReady="COMPLETE" />
-              </ui:Click.Target>
-            </ui:Click>
-            <While DisplayName="Wait for Brukeroversikt" sap2010:WorkflowViewState.IdRef="While_4">
-              <While.Variables>
-                <Variable x:TypeArguments="x:Boolean" Name="pesysExists" />
-                <Variable x:TypeArguments="x:Boolean" Name="brukeroversiktExists" />
-              </While.Variables>
-              <While.Condition>[not brukeroversiktExists]</While.Condition>
-              <Sequence sap2010:WorkflowViewState.IdRef="Sequence_93">
-                <Delay Duration="00:00:00.5000000" sap2010:WorkflowViewState.IdRef="Delay_4" />
-                <ui:UiElementExists DisplayName="Element Exists 'HTML '" Exists="[brukeroversiktExists]" sap2010:WorkflowViewState.IdRef="UiElementExists_4">
-                  <ui:UiElementExists.Target>
-                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="df7a7d88fcdc62bd6f133011929109cf" Selector="&lt;webctrl parentid='j_id_29:subnavigation' tag='A' /&gt;" TimeoutMS="3000" WaitForReady="INTERACTIVE" />
-                  </ui:UiElementExists.Target>
-                </ui:UiElementExists>
-              </Sequence>
-            </While>
-            <ui:TypeInto DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Type into 'skriv in pnr + enter'" EmptyField="False" sap2010:WorkflowViewState.IdRef="TypeInto_13" SendWindowMessages="False" SimulateType="False" Text="[fnr + &quot;[k(enter)]&quot;]">
-              <ui:TypeInto.Target>
-                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="2e607d5491acc8165e8586307e56c1ec" Selector="&lt;webctrl id='pageFormId:fodselsNummer' tag='INPUT' /&gt;" WaitForReady="COMPLETE" />
-              </ui:TypeInto.Target>
-            </ui:TypeInto>
-            <While sap2010:Annotation.AnnotationText="Venter på at bruker skal åpne seg, henter selectoren til en menyknapp som bare er der dersom en bruker er åpen" DisplayName="Wait for open user" sap2010:WorkflowViewState.IdRef="While_5">
-              <While.Variables>
-                <Variable x:TypeArguments="x:Boolean" Name="pesysExists" />
-                <Variable x:TypeArguments="x:Boolean" Name="brukeroversiktExists" />
-                <Variable x:TypeArguments="x:Boolean" Name="openUser" />
-              </While.Variables>
-              <While.Condition>[not openUser]</While.Condition>
-              <Sequence sap2010:WorkflowViewState.IdRef="Sequence_94">
-                <Delay Duration="00:00:00.5000000" sap2010:WorkflowViewState.IdRef="Delay_5" />
-                <ui:UiElementExists DisplayName="Element Exists 'HTML '" Exists="[openUser]" sap2010:WorkflowViewState.IdRef="UiElementExists_5">
-                  <ui:UiElementExists.Target>
-                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="3758acf7fadf21b5e6ca65936d7f7e1e" Selector="&lt;webctrl aaname='Registrere henvendelse' parentid='j_id_29:subnavigation' tag='A' /&gt;" TimeoutMS="3000" WaitForReady="INTERACTIVE" />
-                  </ui:UiElementExists.Target>
-                </ui:UiElementExists>
-              </Sequence>
-            </While>
-            <ui:CommentOut sap2010:Annotation.AnnotationText="Gjelder kun når man har nasjonalt søk med logg. Roboten har en annen tilgang, hvor dette ikke kreves. " DisplayName="Comment out" sap2010:WorkflowViewState.IdRef="CommentOut_5">
-              <ui:CommentOut.Body>
-                <Sequence DisplayName="Ignored Activities" sap2010:WorkflowViewState.IdRef="Sequence_95">
-                  <ui:TypeInto DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" sap2010:Annotation.AnnotationText="Denne boksen trenger vi kanskje ikke?Det gjelder søk med logg" ClickBeforeTyping="False" DelayBefore="[delay_short]" DisplayName="Skriv inn tekst for feilmelding" EmptyField="False" sap2010:WorkflowViewState.IdRef="TypeInto_14" SendWindowMessages="False" SimulateType="True" Text="Automatisk kjøring av vaskelister. Denne meldingen ignoreres.">
-                    <ui:TypeInto.Target>
-                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="23ed34f50367121e58cbeb3822fe2a78" Selector="&lt;webctrl id='pageFormId:begrunnelse' tag='TEXTAREA' /&gt;" WaitForReady="COMPLETE" />
-                    </ui:TypeInto.Target>
-                  </ui:TypeInto>
-                  <ui:Click DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DelayBefore="[delay_short]" DisplayName="Click 'ok' på feilmelding" sap2010:WorkflowViewState.IdRef="Click_18" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="True">
-                    <ui:Click.CursorPosition>
-                      <ui:CursorPosition OffsetX="22" OffsetY="9" Position="TopLeft" />
-                    </ui:Click.CursorPosition>
-                    <ui:Click.Target>
-                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="c0671c9832b34e1f6383a3a2e5f8f015" Selector="&lt;webctrl id='pageFormId:okBegrunnelse' tag='INPUT' /&gt;" WaitForReady="COMPLETE" />
-                    </ui:Click.Target>
-                  </ui:Click>
-                </Sequence>
-              </ui:CommentOut.Body>
-            </ui:CommentOut>
-            <ui:Click DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DelayBefore="[delay_short]" DisplayName="Click 'Utbetalinger '" sap2010:WorkflowViewState.IdRef="Click_19" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="True">
-              <ui:Click.CursorPosition>
-                <ui:CursorPosition OffsetX="41" OffsetY="2" Position="TopLeft" />
-              </ui:Click.CursorPosition>
-              <ui:Click.Target>
-                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="09ec9b0d9c0a0c11c17cfd3f7fc20d75" Selector="&lt;webctrl aaname='Utbetalinger' parentid='j_id_29:subnavigation' tag='A' /&gt;" WaitForReady="COMPLETE" />
-              </ui:Click.Target>
-            </ui:Click>
-            <ui:Click DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DelayBefore="[delay_short]" DisplayName="Click 'Skatt/trekk'" sap2010:WorkflowViewState.IdRef="Click_20" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="True">
-              <ui:Click.CursorPosition>
-                <ui:CursorPosition OffsetX="45" OffsetY="9" Position="TopLeft" />
-              </ui:Click.CursorPosition>
-              <ui:Click.Target>
-                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="c9249c27b96fe1d7ee8cb7e3a9d5338c" Selector="&lt;webctrl aaname='Skatt/trekk' parentid='j_id_29:subnavigation' tag='SPAN' /&gt;" WaitForReady="COMPLETE" />
-              </ui:Click.Target>
-            </ui:Click>
-            <While sap2010:Annotation.AnnotationText="Venter på at bruker skal åpne seg, henter selectoren til en menyknapp som bare er der dersom en bruker er åpen" DisplayName="Wait for skatt/trekk" sap2010:WorkflowViewState.IdRef="While_6">
-              <While.Variables>
-                <Variable x:TypeArguments="x:Boolean" Name="pesysExists" />
-                <Variable x:TypeArguments="x:Boolean" Name="brukeroversiktExists" />
-                <Variable x:TypeArguments="x:Boolean" Name="openUser" />
-                <Variable x:TypeArguments="x:Boolean" Name="trekkExists" />
-              </While.Variables>
-              <While.Condition>[not trekkExists]</While.Condition>
-              <Sequence sap2010:WorkflowViewState.IdRef="Sequence_101">
-                <Delay Duration="00:00:00.5000000" sap2010:WorkflowViewState.IdRef="Delay_6" />
-                <ui:UiElementExists DisplayName="Element Exists 'HTML '" Exists="[trekkExists]" sap2010:WorkflowViewState.IdRef="UiElementExists_6">
-                  <ui:UiElementExists.Target>
-                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="da4c66084f1be24773d598a68ad308cd" Selector="&lt;webctrl id='pageFormId:skattogtrekkSubTitle' tag='SPAN' /&gt;" TimeoutMS="3000" WaitForReady="INTERACTIVE" />
-                  </ui:UiElementExists.Target>
-                </ui:UiElementExists>
-              </Sequence>
-            </While>
-            <ui:ExtractData NextLinkSelector="{x:Null}" ContinueOnError="True" DataTable="[skattTrekkTable]" DelayBetweenPagesMS="300" DisplayName="Extract Structured Data 'TABLE  pageFormId:resul...'" ExtractMetadata="&lt;extract-table get_columns_name='1' /&gt;" sap2010:WorkflowViewState.IdRef="ExtractData_3" MaxNumberOfResults="100">
-              <ui:ExtractData.Target>
-                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="95a61650ebb17e396fd3c777451825db" Selector="&lt;webctrl id='pageFormId:resultTable' tag='TABLE' /&gt;" WaitForReady="COMPLETE" />
-              </ui:ExtractData.Target>
-            </ui:ExtractData>
-            <ui:ForEachRow DataTable="[skattTrekkTable]" DisplayName="Get skatt/trekk value from aktivt trekk" sap2010:WorkflowViewState.IdRef="ForEachRow_3">
-              <ui:ForEachRow.Body>
-                <ActivityAction x:TypeArguments="sd:DataRow">
-                  <ActivityAction.Argument>
-                    <DelegateInArgument x:TypeArguments="sd:DataRow" Name="row" />
-                  </ActivityAction.Argument>
-                  <Sequence DisplayName="Body" sap2010:WorkflowViewState.IdRef="Sequence_99">
-                    <If Condition="[row.Item(1).ToString.Equals(&quot;Forskuddskatt&quot;) AND row.Item(5).ToString().Equals(&quot;Aktivt&quot;)]" sap2010:WorkflowViewState.IdRef="If_2">
-                      <If.Then>
-                        <Sequence sap2010:WorkflowViewState.IdRef="Sequence_98">
-                          <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_37" Text="[&quot;Skatt/trekk: &quot; +row.Item(4).Tostring]" />
-                          <Assign sap2010:WorkflowViewState.IdRef="Assign_3">
-                            <Assign.To>
-                              <OutArgument x:TypeArguments="x:String">[skattTrekk]</OutArgument>
-                            </Assign.To>
-                            <Assign.Value>
-                              <InArgument x:TypeArguments="x:String">[row.Item(4).Tostring]</InArgument>
-                            </Assign.Value>
-                          </Assign>
-                        </Sequence>
-                      </If.Then>
-                    </If>
-                  </Sequence>
-                </ActivityAction>
-              </ui:ForEachRow.Body>
-            </ui:ForEachRow>
-          </Sequence>
-        </ActivityAction>
-      </ui:BrowserScope.Body>
-    </ui:BrowserScope>
     <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_38" Text="[&quot;Final outbound values for &quot; + fnr + &quot;: &quot; + &quot;Skatt/trekk&quot; +skattTrekk]" />
     <ui:ForEachRow DataTable="[output_tabell]" DisplayName="For each row" sap2010:WorkflowViewState.IdRef="ForEachRow_4">
       <ui:ForEachRow.Body>
@@ -375,12 +404,18 @@
         </Assign.Value>
       </Assign>
     </Sequence>
-    <ui:CloseWindow TimeoutMS="{x:Null}" UseWindow="{x:Null}" DisplayName="Steng browser" sap2010:WorkflowViewState.IdRef="CloseWindow_3" InformativeScreenshot="0091845bb14e065b491e4e97fbf1c36c" Selector="&lt;wnd app='iexplore.exe' cls='IEFrame' /&gt;" WaitForReady="INTERACTIVE" />
-    <sads:DebugSymbol.Symbol>dylXOlxycGFcVmFza2xpc3RlclxEZWwyXHBlc3lzR2V0VHJla2sueGFtbHxiA/wCDgIBAWUzZTYCAQNmNGZBAgECaQVpdwMBkQFqBYEBEAMBiwGCAQWLARYDAYgBjAEFjAFoAwGHAY0BBY0BvgEDAYYBjgEFmwENAgF7nAEFqAIXAgEtqQIFqQLHAQIBKaoCBdkCFQIBFNoCBfkCEAIBBvoCBfoCmwICAQRpXWl0AwGSAWsHchADAY0BcweAARcDAYwBggHDAYIB4wEDAYoBiAELiAFWAwGJAZMBB5oBEgIBfpIBGJIBKQIBfJwBnAKcAcoCAgF6ogELpQIWAgEuqQJdqQLEAQIBKqoCHqoCLwIBJ7ACC9YCEAIBFdsCB/ACDAIBC/ECB/gCEAIBB/oCzQH6Av0BAgEFcDJwTAMBkAFtM204AwGOAZQBCZQBWAMBhAGVAQmZAR4CAX+mAQ2tARgCAXauAQ28ARUCAWu9AQ3BARsCAWfCAQ3RARUCAVzSAQ3kAR0CAVvlAQ3sARgCAVXtAQ30ARgCAU/1AQ2FAhUCAUSGAg2KAh4CATyLAg2kAh0CAS+wAhmwAjgCARayAg/UAhoCARfbAhXbAi4CAQzdAgvkAhQCARHnAgvuAhQCAQ72AjL2AkcCAQnzAjPzAlACAQiUARmUASsDAYUBlwGHAZcBxgEDAYMBlwHRAZcB1wEDAYIBlQFJlQFYAwGAAasBoAGrAdgBAgF5qAE5qAE8AgF4qAEsqAEwAgF3tAEPuwEaAgFuswEgswE6AgFsvwGgAb8B3QECAWq9Aa8CvQHPAgIBaMkBD9ABGgIBX8gBIMgBLgIBXeoBoAHqAfIBAgFa5wE55wE8AgFZ5wEs5wEwAgFY5QFP5QFeAgFW8gGgAfIB9AECAVTvATnvATwCAVPvASzvATACAVLtAU/tAV4CAVD9AQ+EAhoCAUf8ASD8ATECAUWGAs0ChgLSAgIBQ4gCoAGIAtsBAgFChgKCAYYChwECAUGGAkmGAk8CAUCGAlqGAm0CAT6GAtsBhgKJAgIBPYsCJosCOQIBOpECE6ECHgIBMLMCEdICHAIBGdMCEdMCRwIBGOICNuICSAIBE98CN98CVgIBEuwCNuwCRwIBEOkCN+kCVgIBD7UBEbUBYAIBdLYBEboBJgIBb8oBEcoBYAIBZcsBEc8BJgIBYP4BEf4BYAIBTf8BEYMCJgIBSJICFaACGgIBMbQCE8kCGAIBHsoCE9ECHAIBGrUBIbUBMwIBdbgBjwG4AcsBAgFzuAHWAbgB3AECAXK2AVG2AWkCAXDKASHKATMCAWbNAY8BzQHrAQIBZM0B9gHNAfwBAgFjywFRywFdAgFh/gEh/gEzAgFOgQKPAYEC0gECAUyBAt0BgQLjAQIBS/8BUf8BYAIBSZICI5ICkwECATKUAhmeAiQCATO0AiG0AjoCAR+2Ahe9AiACASTAAhfHAiACASHPAj7PAlMCARzMAj/MAkcCARuVAhuVAqkBAgE4lgIbnQIkAgE0uwJCuwJUAgEmuAJDuAJLAgElxQJCxQJTAgEjwgJDwgJLAgEilQJzlQKmAQIBOZsCRpsCXAIBN5gCR5gCUwIBNQ==</sads:DebugSymbol.Symbol>
+    <ui:CommentOut DisplayName="Comment out" sap2010:WorkflowViewState.IdRef="CommentOut_12">
+      <ui:CommentOut.Body>
+        <Sequence DisplayName="Ignored Activities" sap2010:WorkflowViewState.IdRef="Sequence_112">
+          <ui:CloseWindow TimeoutMS="{x:Null}" UseWindow="{x:Null}" DisplayName="Steng browser" sap2010:WorkflowViewState.IdRef="CloseWindow_3" InformativeScreenshot="0091845bb14e065b491e4e97fbf1c36c" Selector="&lt;wnd app='iexplore.exe' cls='IEFrame' /&gt;" WaitForReady="INTERACTIVE" />
+        </Sequence>
+      </ui:CommentOut.Body>
+    </ui:CommentOut>
+    <sads:DebugSymbol.Symbol>dylXOlxycGFcVmFza2xpc3RlclxEZWwyXHBlc3lzR2V0VHJla2sueGFtbIEBYgOfAw4CAQFlM2U2AgEDZjRmQQIBAmkFaXcDAZYBagWBARADAZABggEFpQIWAgE6pgIFtQIVAgE5tgIFtgJoAgE4twIFtwK+AQIBN7gCBcUCDQIBLMYCBcYCxwECASjHAgX2AhUCARP3AgWWAxACAQWXAwWdAxUCAQRpXWl0AwGXAWsHchADAZIBcweAARcDAZEBggGbAoIB1QIDAY8BiAELogIWAgE7vQIHxAISAgEvvAIYvAIpAgEtxgJdxgLEAQIBKccCHscCLwIBJs0CC/MCEAIBFPgCB40DDAIBCo4DB5UDEAIBBnAycEwDAZUBbTNtOAMBkwGJAQ2UAR8DAYoBlQENoQIfAgE8vgIJvgJYAgE1vwIJwwIeAgEwzQIZzQI4AgEVzwIP8QIaAgEW+AIV+AIuAgEL+gILgQMUAgEQhAMLiwMUAgENkwMykwNHAgEIkAMzkANQAgEHiQGxAokByQIDAY4BjwETkQEeAwGLAZUBpAKVAdICAwGJAZsBE54CHgIBPb4CGb4CKwIBNsEChwHBAsYBAgE0wQLRAcEC1wECATO/Akm/AlgCATHQAhHvAhwCARjwAhHwAkcCARf/Ajb/AkgCARL8Ajf8AlYCARGJAzaJA0cCAQ+GAzeGA1YCAQ6QARWQAacBAwGMAZ8BFaYBIAMBhQGnARW1AR0CAXq2ARW6ASMCAXa7ARXKAR0CAWvLARXdASUCAWreARXlASACAWTmARXtASACAV7uARX+AR0CAVP/ARWDAiYCAUuEAhWdAiUCAT7RAhPmAhgCAR3nAhPuAhwCARmQAYQBkAGkAQMBjQGkAagBpAHgAQMBiAGhAUGhAUQDAYcBoQE0oQE4AwGGAa0BF7QBIgIBfawBKKwBQgIBe7gBqAG4AeUBAgF5tgG3ArYB1wICAXfCARfJASICAW7BASjBATYCAWzjAagB4wH6AQIBaeABQeABRAIBaOABNOABOAIBZ94BV94BZgIBZesBqAHrAfwBAgFj6AFB6AFEAgFi6AE06AE4AgFh5gFX5gFmAgFf9gEX/QEiAgFW9QEo9QE5AgFU/wHVAv8B2gICAVKBAqgBgQLjAQIBUf8BigH/AY8BAgFQ/wFR/wFXAgFP/wFi/wF1AgFN/wHjAf8BkQICAUyEAi6EAkECAUmKAhuaAiYCAT/RAiHRAjoCAR7TAhfaAiACASPdAhfkAiACASDsAj7sAlMCARvpAj/pAkcCARquARmuAWgDAYMBrwEZswEuAgF+wwEZwwFoAgF0xAEZyAEuAgFv9wEZ9wFoAgFc+AEZ/AEuAgFXiwIdmQIiAgFA2AJC2AJUAgEl1QJD1QJLAgEk4gJC4gJTAgEi3wJD3wJLAgEhrgEprgE7AwGEAbEBlwGxAdMBAwGCAbEB3gGxAeQBAwGBAa8BWa8BcQIBf8MBKcMBOwIBdcYBlwHGAfMBAgFzxgH+AcYBhAICAXLEAVnEAWUCAXD3ASn3ATsCAV36AZcB+gHaAQIBW/oB5QH6AesBAgFa+AFZ+AFoAgFYiwIriwKbAQIBQY0CIZcCLAIBQo4CI44CsQECAUePAiOWAiwCAUOOAnuOAq4BAgFIlAJOlAJkAgFGkQJPkQJbAgFE</sads:DebugSymbol.Symbol>
   </Sequence>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
-      <sap2010:ViewStateData Id="WriteLine_39" sap:VirtualizedContainerService.HintSize="531,59" />
+      <sap2010:ViewStateData Id="WriteLine_39" sap:VirtualizedContainerService.HintSize="708,59" />
       <sap2010:ViewStateData Id="Assign_1" sap:VirtualizedContainerService.HintSize="242,59" />
       <sap2010:ViewStateData Id="Assign_7" sap:VirtualizedContainerService.HintSize="242,59" />
       <sap2010:ViewStateData Id="Sequence_106" sap:VirtualizedContainerService.HintSize="264,183">
@@ -405,47 +440,15 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Sequence_65" sap:VirtualizedContainerService.HintSize="200,97">
+      <sap2010:ViewStateData Id="NavigateTo_1" sap:VirtualizedContainerService.HintSize="314,59" />
+      <sap2010:ViewStateData Id="Sequence_110" sap:VirtualizedContainerService.HintSize="336,183">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="OpenBrowser_6" sap:VirtualizedContainerService.HintSize="708,196">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-            <x:Boolean x:Key="IsPinned">False</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Comment_1" sap:VirtualizedContainerService.HintSize="708,55" />
-      <sap2010:ViewStateData Id="Sequence_79" sap:VirtualizedContainerService.HintSize="708,135">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Delay_1" sap:VirtualizedContainerService.HintSize="314,22" />
-      <sap2010:ViewStateData Id="UiElementExists_1" sap:VirtualizedContainerService.HintSize="314,106" />
-      <sap2010:ViewStateData Id="Sequence_83" sap:VirtualizedContainerService.HintSize="336,292">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="While_1" sap:VirtualizedContainerService.HintSize="708,49">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-            <x:Boolean x:Key="IsPinned">False</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="BrowserScope_10" sap:VirtualizedContainerService.HintSize="414,329" />
       <sap2010:ViewStateData Id="Click_17" sap:VirtualizedContainerService.HintSize="314,49">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -598,7 +601,64 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="BrowserScope_9" sap:VirtualizedContainerService.HintSize="708,1568" />
+      <sap2010:ViewStateData Id="BrowserScope_9" sap:VirtualizedContainerService.HintSize="414,1568" />
+      <sap2010:ViewStateData Id="Sequence_109" sap:VirtualizedContainerService.HintSize="436,2061">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="WindowScope_1" sap:VirtualizedContainerService.HintSize="708,2207" />
+      <sap2010:ViewStateData Id="Sequence_65" sap:VirtualizedContainerService.HintSize="200,97">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="OpenBrowser_6" sap:VirtualizedContainerService.HintSize="414,196">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_111" sap:VirtualizedContainerService.HintSize="436,320">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="CommentOut_11" sap:VirtualizedContainerService.HintSize="708,398" />
+      <sap2010:ViewStateData Id="Comment_1" sap:VirtualizedContainerService.HintSize="708,55" />
+      <sap2010:ViewStateData Id="Sequence_79" sap:VirtualizedContainerService.HintSize="708,135">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Delay_1" sap:VirtualizedContainerService.HintSize="314,22" />
+      <sap2010:ViewStateData Id="UiElementExists_1" sap:VirtualizedContainerService.HintSize="314,106" />
+      <sap2010:ViewStateData Id="Sequence_83" sap:VirtualizedContainerService.HintSize="336,292">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="While_1" sap:VirtualizedContainerService.HintSize="708,49">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="WriteLine_38" sap:VirtualizedContainerService.HintSize="708,59" />
       <sap2010:ViewStateData Id="Assign_13" sap:VirtualizedContainerService.HintSize="242,59" />
       <sap2010:ViewStateData Id="Assign_14" sap:VirtualizedContainerService.HintSize="242,59" />
@@ -643,7 +703,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="CloseWindow_3" sap:VirtualizedContainerService.HintSize="708,106">
+      <sap2010:ViewStateData Id="CloseWindow_3" sap:VirtualizedContainerService.HintSize="314,106">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -651,14 +711,22 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Sequence_70" sap:VirtualizedContainerService.HintSize="730,4399">
+      <sap2010:ViewStateData Id="Sequence_112" sap:VirtualizedContainerService.HintSize="336,230">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="pesysModule_1" sap:VirtualizedContainerService.HintSize="770,4599" />
+      <sap2010:ViewStateData Id="CommentOut_12" sap:VirtualizedContainerService.HintSize="708,308" />
+      <sap2010:ViewStateData Id="Sequence_70" sap:VirtualizedContainerService.HintSize="730,5442">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="pesysModule_1" sap:VirtualizedContainerService.HintSize="770,5922" />
     </sap2010:ViewStateManager>
   </sap2010:WorkflowViewState.ViewStateManager>
 </Activity>
