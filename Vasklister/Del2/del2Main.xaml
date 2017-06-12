@@ -148,7 +148,7 @@
                       </ActivityAction>
                     </ui:WindowScope.Body>
                   </ui:WindowScope>
-                  <ui:OpenBrowser UiBrowser="{x:Null}" BrowserType="IE" DisplayName="Open browser (a-inntekt)" Hidden="False" sap2010:WorkflowViewState.IdRef="OpenBrowser_1" NewSession="True" Private="False">
+                  <ui:OpenBrowser UiBrowser="{x:Null}" BrowserType="IE" DisplayName="Open browser (a-inntekt)" Hidden="False" sap2010:WorkflowViewState.IdRef="OpenBrowser_1" NewSession="True" Private="False" Url="https://modapp-t5.adeo.no/a-inntekt/?0#!empty">
                     <ui:OpenBrowser.Body>
                       <ActivityAction x:TypeArguments="x:Object">
                         <ActivityAction.Argument>
@@ -156,11 +156,6 @@
                         </ActivityAction.Argument>
                       </ActivityAction>
                     </ui:OpenBrowser.Body>
-                    <ui:OpenBrowser.Url>
-                      <InArgument x:TypeArguments="x:String">
-                        <Literal x:TypeArguments="x:String" Value="" />
-                      </InArgument>
-                    </ui:OpenBrowser.Url>
                   </ui:OpenBrowser>
                 </Sequence>
               </Sequence>
@@ -249,19 +244,32 @@
                   </Sequence>
                   <FlowStep.Next>
                     <FlowStep x:Name="__ReferenceID4" sap2010:WorkflowViewState.IdRef="FlowStep_24">
-                      <Sequence DisplayName="Close predator" sap2010:WorkflowViewState.IdRef="Sequence_106">
-                        <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" DisplayName="Attach Window 'iexplore.exe A-inntekt'" sap2010:WorkflowViewState.IdRef="WindowScope_6" InformativeScreenshot="42ad4afeb62c6c7ed9ec555dd562f7ab" Selector="&lt;wnd app='iexplore.exe' cls='IEFrame' title='PESYS*' /&gt;">
-                          <ui:WindowScope.Body>
-                            <ActivityAction x:TypeArguments="x:Object">
-                              <ActivityAction.Argument>
-                                <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
-                              </ActivityAction.Argument>
-                              <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_114">
-                                <ui:CloseWindow Selector="{x:Null}" TimeoutMS="{x:Null}" UseWindow="{x:Null}" DisplayName="Close window 'iexplore.exe A-inntekt'" sap2010:WorkflowViewState.IdRef="CloseWindow_1" InformativeScreenshot="c24d1e84c1edef6100e0e78a2f8938c0" WaitForReady="INTERACTIVE" />
-                              </Sequence>
-                            </ActivityAction>
-                          </ui:WindowScope.Body>
-                        </ui:WindowScope>
+                      <Sequence DisplayName="Close Applications" sap2010:WorkflowViewState.IdRef="Sequence_106">
+                        <Sequence.Variables>
+                          <Variable x:TypeArguments="x:Boolean" Name="PesysVinduEksists" />
+                        </Sequence.Variables>
+                        <ui:UiElementExists DisplayName="Element Exists" Exists="[PesysVinduEksists]" sap2010:WorkflowViewState.IdRef="UiElementExists_2">
+                          <ui:UiElementExists.Target>
+                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="&lt;wnd app='iexplore.exe' cls='IEFrame' title='PESYS*' /&gt;" TimeoutMS="3000" WaitForReady="INTERACTIVE" />
+                          </ui:UiElementExists.Target>
+                        </ui:UiElementExists>
+                        <If Condition="[PesysVinduEksists]">
+                          <If.Then>
+                            <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" DisplayName="Attach Window 'Pesys''" sap2010:WorkflowViewState.IdRef="WindowScope_6" InformativeScreenshot="42ad4afeb62c6c7ed9ec555dd562f7ab" Selector="&lt;wnd app='iexplore.exe' cls='IEFrame' title='PESYS*' /&gt;">
+                              <ui:WindowScope.Body>
+                                <ActivityAction x:TypeArguments="x:Object">
+                                  <ActivityAction.Argument>
+                                    <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+                                  </ActivityAction.Argument>
+                                  <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_114">
+                                    <ui:CloseWindow Selector="{x:Null}" TimeoutMS="{x:Null}" UseWindow="{x:Null}" DisplayName="Close window 'Pesys'" sap2010:WorkflowViewState.IdRef="CloseWindow_1" InformativeScreenshot="c24d1e84c1edef6100e0e78a2f8938c0" WaitForReady="INTERACTIVE" />
+                                  </Sequence>
+                                </ActivityAction>
+                              </ui:WindowScope.Body>
+                            </ui:WindowScope>
+                          </If.Then>
+                          <sap2010:WorkflowViewState.IdRef>If_4</sap2010:WorkflowViewState.IdRef>
+                        </If>
                         <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" DisplayName="Attach Window 'InboxClient.exe Innkurv'" sap2010:WorkflowViewState.IdRef="WindowScope_3" InformativeScreenshot="2bc0f80e80be98aa827cc78367327b40" Selector="&lt;wnd app='inboxclient.exe' ctrlname='MainForm' /&gt;">
                           <ui:WindowScope.Body>
                             <ActivityAction x:TypeArguments="x:Object">
@@ -387,7 +395,7 @@
       <x:Reference>__ReferenceID3</x:Reference>
       <x:Reference>__ReferenceID4</x:Reference>
     </Flowchart>
-    <sads:DebugSymbol.Symbol>dyRXOlxycGFcVmFza2xpc3RlclxEZWwyXGRlbDJNYWluLnhhbWyIAUADhwMOAgEBQjRCYgIBAkcFhQMRAgEDSgtmFgMBhAFpD6YBGgIBbakBE/kBHgIBLvwBF9oCIgIBF90CG/UCJgIBBE4NTpABAwGeAU8NViUDAZUBVw1X4gEDAZMBWA1YrB8DAZABWQ1ZjAEDAY0BWg1lKAMBhQFqEaUBHAIBbqoBFfgBIgIBL/0BGYgCKgIBKokCGZgCKgIBJZkCGdkCJAIBGOECHeEC0gECARPiAh3oAiICAQ3pAh30AjgCAQVOZU6NAQMBnwFUTFRUAwGcAVFFUVUDAZoBU0pTTgMBmQFPwQFP2QEDAZgBUk5SXwMBlgFXZVffAQMBlAFYKlg3AwGRAVkqWTcDAY4BWqgBWtYBAwGMAWATYh4DAYYBaxNr+wEDAYEBbBNwIwIBf3ETgwEkAgF4hAETlgEkAgFxlwETpAEkAgFvqgGbAaoBvQECAWywARv1ASYCATD9AasC/QHqAgIBLYMCH4UCKgIBK4kCrAKJAuUCAgEpjwIflQIqAgEmmgIbrgIrAgEkrwIbvgIsAgEevwIb2AIsAgEZ4QJN4QJcAgEV4QKRAeECvwECARTiAiviAjoCAQ7kAiHmAiwCARDpArgB6QLmAQIBDO8CI/ECLgIBBmEVYc0BAwGHAWtea5ABAwGDAWvTAWv4AQMBggFupgFu7gEDAYABcaICcf0CAgF+dxmAASQCAXmEAaEChAHaAgIBd4oBGZMBJAIBcqEBGaEBSAIBcLEBHfQBIgIBMYQCIYQCqQICASyQAiGUAjcCASevAq4CrwKJAwIBI7UCIbsCLAIBH78CrAK/AusCAgEdxQIh1QIsAgEa5QIj5QKqAQIBEfACJfAC1gECAQdhxgFhygEDAYsBYUZhWQMBiQFhsgFhuAEDAYgBeBt/JgIBeosBG5IBJgIBc7EBK7EBbwIBMrMBIfIBLAIBM5ICtAGSAu0BAgEotgIjugIzAgEgxgIj1AIuAgEb5QJ55QKnAQIBEvACzwHwAtMBAgEL8AJV8AJiAgEJ8AK7AfACwQECAQh9rgF9iAMCAX16R3pKAgF8ejp6PgIBe5ABrgGQAegBAgF2jQFHjQFKAgF1jQE6jQE+AgF0tAEjuAEvAgFquQEjuQGOAQIBaLoBI78BOwIBYsABI/ABKAIBNvEBI/EBjAECATS2ApMBtgKZAQIBIrYChAG2AooBAgEh0gK2AdIC4gICARy2ASe2AVYCAWu5AXu5AYsBAgFpvAFfvAFkAgFmvQFrvQF2AgFkugHPAboB4wECAWPAATHAAbgBAgE3wgEnygEyAgFZzQEn7gEyAgE48QF78QGJAQIBNcMBKcMBmgECAWDEASnJAUECAVrOASnTAUECAVPUASnZAUECAU3aASnfAUECAUfgASnlAUECAUHmASnsAUECATvtASntAaQBAgE5wwGBAcMBlwECAWHGAWLGAWcCAV7HAW7HAXkCAVzEAdYBxAHzAQIBW9ABZdABagIBV9EBbdEBeAIBVc4B1QHOAesBAgFU1gFl1gFqAgFR1wFx1wF8AgFP1AHVAdQB7gECAU7dAW7dAXkCAUvcAWXcAWoCAUnaAdYB2gH8AQIBSOIBZeIBagIBReMBbeMBeAIBQ+AB1gHgAfABAgFC6gFl6gFqAgE/6QFx6QF8AgE95gHWAeYB8QECATztAYEB7QGhAQIBOg==</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>dyRXOlxycGFcVmFza2xpc3RlclxEZWwyXGRlbDJNYWluLnhhbWyOAUADjwMOAgEBQjRCYgIBAkcFjQMRAgEDSgtmFgMBjAFpD6EBGgIBdaQBE/QBHgIBNvcBF+ICIgIBF+UCG/0CJgIBBE4NTpABAwGmAU8NViUDAZ0BVw1X4gEDAZsBWA1YrB8DAZgBWQ1ZjAEDAZUBWg1lKAMBjQFqEaABHAIBdqUBFfMBIgIBN/sBGf8BLgIBMYACGZACHgIBKpECGaACKgIBJaECGeECJAIBGOkCHekC0gECARPqAh3wAiICAQ3xAh38AjgCAQVOZU6NAQMBpwFUTFRUAwGkAVFFUVUDAaIBU0pTTgMBoQFPwQFP2QEDAaABUk5SXwMBngFXZVffAQMBnAFYKlg3AwGZAVkqWTcDAZYBWqgBWtYBAwGUAWATYh4DAY4BaxNr+wEDAYkBbBNwIwMBhwFxE4MBJAMBgAGEAROWASQCAXmXAROfASQCAXelAZsBpQG9AQIBdKsBG/ABJgIBOP0BXv0BnQECATX9AagB/QGuAQIBNPsBUfsBZgIBMoACJ4ACPAIBK4ICHY0CLgIBLZECrAKRAuUCAgEplwIfnQIqAgEmogIbtgIrAgEktwIbxgIsAgEexwIb4AIsAgEZ6QJN6QJcAgEV6QKRAekCvwECARTqAivqAjoCAQ7sAiHuAiwCARDxArgB8QLmAQIBDPcCI/kCLgIBBmEVYc0BAwGPAWtea5ABAwGLAWvTAWv4AQMBigFupgFu7gEDAYgBcaICcf0CAwGGAXcZgAEkAwGBAYQBoQKEAdoCAgF/igEZkwEkAgF6lwHVAZcBhAICAXisAR3vASICATmCAp8CggLeAgIBMIgCI4oCLgIBLpgCIZwCNwIBJ7cCrgK3AokDAgEjvQIhwwIsAgEfxwKsAscC6wICAR3NAiHdAiwCARrtAiPtAqoBAgER+AIl+ALWAQIBB2HGAWHKAQMBkwFhRmFZAwGRAWGyAWG4AQMBkAF4G38mAwGCAYsBG5IBJgIBe6wBK6wBbwIBOq4BIe0BLAIBO4kCJYkCnAICAS+aArQBmgLtAQIBKL4CI8ICMwIBIM4CI9wCLgIBG+0Cee0CpwECARL4As8B+ALTAQIBC/gCVfgCYgIBCfgCuwH4AsEBAgEIfa4BfYgDAwGFAXpHekoDAYQBejp6PgMBgwGQAa4BkAHoAQIBfo0BR40BSgIBfY0BOo0BPgIBfK8BI7MBLwIBcrQBI7QBjgECAXC1ASO6ATsCAWq7ASPrASgCAT7sASPsAYwBAgE8vgKTAb4CmQECASK+AoQBvgKKAQIBIdoCtgHaAuICAgEcsQEnsQFWAgFztAF7tAGLAQIBcbcBX7cBZAIBbrgBa7gBdgIBbLUBzwG1AeMBAgFruwExuwG4AQIBP70BJ8UBMgIBYcgBJ+kBMgIBQOwBe+wBiQECAT2+ASm+AZoBAgFovwEpxAFBAgFiyQEpzgFBAgFbzwEp1AFBAgFV1QEp2gFBAgFP2wEp4AFBAgFJ4QEp5wFBAgFD6AEp6AGkAQIBQb4BgQG+AZcBAgFpwQFiwQFnAgFmwgFuwgF5AgFkvwHWAb8B8wECAWPLAWXLAWoCAV/MAW3MAXgCAV3JAdUByQHrAQIBXNEBZdEBagIBWdIBcdIBfAIBV88B1QHPAe4BAgFW2AFu2AF5AgFT1wFl1wFqAgFR1QHWAdUB/AECAVDdAWXdAWoCAU3eAW3eAXgCAUvbAdYB2wHwAQIBSuUBZeUBagIBR+QBceQBfAIBReEB1gHhAfEBAgFE6AGBAegBoQECAUI=</sads:DebugSymbol.Symbol>
   </Sequence>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
@@ -513,13 +521,14 @@
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="ForEach`1_12" sap:VirtualizedContainerService.HintSize="882,1907" />
-      <sap2010:ViewStateData Id="Sequence_84" sap:VirtualizedContainerService.HintSize="904,2031">
+      <sap2010:ViewStateData Id="Sequence_84" sap:VirtualizedContainerService.HintSize="200,49">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="UiElementExists_2" sap:VirtualizedContainerService.HintSize="539,68" />
       <sap2010:ViewStateData Id="CloseWindow_1" sap:VirtualizedContainerService.HintSize="314,106" />
       <sap2010:ViewStateData Id="Sequence_114" sap:VirtualizedContainerService.HintSize="336,230">
         <sap:WorkflowViewStateService.ViewState>
@@ -528,7 +537,8 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="WindowScope_6" sap:VirtualizedContainerService.HintSize="438,376" />
+      <sap2010:ViewStateData Id="WindowScope_6" sap:VirtualizedContainerService.HintSize="414,376" />
+      <sap2010:ViewStateData Id="If_4" sap:VirtualizedContainerService.HintSize="539,519" />
       <sap2010:ViewStateData Id="CloseApplication_1" sap:VirtualizedContainerService.HintSize="314,106">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -544,7 +554,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="WindowScope_3" sap:VirtualizedContainerService.HintSize="438,376" />
+      <sap2010:ViewStateData Id="WindowScope_3" sap:VirtualizedContainerService.HintSize="539,376" />
       <sap2010:ViewStateData Id="Click_3" sap:VirtualizedContainerService.HintSize="314,106">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -587,7 +597,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Sequence_106" sap:VirtualizedContainerService.HintSize="200,49">
+      <sap2010:ViewStateData Id="Sequence_106" sap:VirtualizedContainerService.HintSize="561,2517">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
