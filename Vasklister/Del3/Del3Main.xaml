@@ -86,153 +86,196 @@
       <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
       <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
       <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>TimeSpan2</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Del 3" sap2010:WorkflowViewState.IdRef="Sequence_89">
-    <Sequence.Variables>
-      <Variable x:TypeArguments="x:Int32" Name="i" />
-      <Variable x:TypeArguments="sd:DataTable" Name="Inn_tabell" />
-      <Variable x:TypeArguments="sd:DataTable" Name="vaskeliste_tabell" />
-      <Variable x:TypeArguments="x:Boolean" Name="Saksnummer_finnes" />
-    </Sequence.Variables>
-    <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Excel application scope" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_5" WorkbookPath="Excel\vaskeliste_v2.0.xlsx">
-      <ui:ExcelApplicationScope.Body>
-        <ActivityAction x:TypeArguments="ui:WorkbookApplication">
-          <ActivityAction.Argument>
-            <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
-          </ActivityAction.Argument>
-          <Sequence sap2010:WorkflowViewState.IdRef="Sequence_110">
-            <ui:ExcelReadRange AddHeaders="True" DataTable="[Inn_tabell]" DisplayName="Read Range" sap2010:WorkflowViewState.IdRef="ExcelReadRange_2" SheetName="Ark1">
-              <ui:ExcelReadRange.Range>
-                <InArgument x:TypeArguments="x:String">
-                  <Literal x:TypeArguments="x:String" Value="" />
-                </InArgument>
-              </ui:ExcelReadRange.Range>
-            </ui:ExcelReadRange>
-            <ui:ExcelReadRange AddHeaders="True" DataTable="[vaskeliste_tabell]" DisplayName="Read Range" sap2010:WorkflowViewState.IdRef="ExcelReadRange_3" SheetName="Ark1">
-              <ui:ExcelReadRange.Range>
-                <InArgument x:TypeArguments="x:String">
-                  <Literal x:TypeArguments="x:String" Value="" />
-                </InArgument>
-              </ui:ExcelReadRange.Range>
-            </ui:ExcelReadRange>
-          </Sequence>
-        </ActivityAction>
-      </ui:ExcelApplicationScope.Body>
-    </ui:ExcelApplicationScope>
-    <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_31" Text="[Inn_tabell.Rows(0)(0).ToString]" />
-    <ui:ClearDataTable DataTable="[vaskeliste_tabell]" DisplayName="Clear data table" sap2010:WorkflowViewState.IdRef="ClearDataTable_1" />
-    <ui:ForEachRow DataTable="[Inn_tabell]" DisplayName="For each row" sap2010:WorkflowViewState.IdRef="ForEachRow_3">
-      <ui:ForEachRow.Body>
-        <ActivityAction x:TypeArguments="sd:DataRow">
-          <ActivityAction.Argument>
-            <DelegateInArgument x:TypeArguments="sd:DataRow" Name="row" />
-          </ActivityAction.Argument>
-          <Sequence sap2010:WorkflowViewState.IdRef="Sequence_109">
-            <ui:ForEachRow DataTable="[vaskeliste_tabell]" DisplayName="For each row" sap2010:WorkflowViewState.IdRef="ForEachRow_4">
-              <ui:ForEachRow.Body>
-                <ActivityAction x:TypeArguments="sd:DataRow">
-                  <ActivityAction.Argument>
-                    <DelegateInArgument x:TypeArguments="sd:DataRow" Name="rad" />
-                  </ActivityAction.Argument>
-                  <If Condition="[row(1).ToString.Equals(rad(1).ToString)]" sap2010:WorkflowViewState.IdRef="If_3">
-                    <If.Then>
-                      <Sequence sap2010:WorkflowViewState.IdRef="Sequence_108">
-                        <Assign sap2010:WorkflowViewState.IdRef="Assign_13">
-                          <Assign.To>
-                            <OutArgument x:TypeArguments="x:Object">[rad(4)]</OutArgument>
-                          </Assign.To>
-                          <Assign.Value>
-                            <InArgument x:TypeArguments="x:Object">[rad.Item("_1_inntekt").ToString.Replace(",",".")]</InArgument>
-                          </Assign.Value>
-                        </Assign>
-                        <Assign sap2010:WorkflowViewState.IdRef="Assign_15">
-                          <Assign.To>
-                            <OutArgument x:TypeArguments="x:Object">[row(4)]</OutArgument>
-                          </Assign.To>
-                          <Assign.Value>
-                            <InArgument x:TypeArguments="x:Object">[row.Item("_1_inntekt").ToString.Replace(",",".")]</InArgument>
-                          </Assign.Value>
-                        </Assign>
-                        <Assign sap2010:WorkflowViewState.IdRef="Assign_16">
-                          <Assign.To>
-                            <OutArgument x:TypeArguments="x:Object">[row(4)]</OutArgument>
-                          </Assign.To>
-                          <Assign.Value>
-                            <InArgument x:TypeArguments="x:Object">[row.Item("_1_inntekt").ToString.Replace(" ","")]</InArgument>
-                          </Assign.Value>
-                        </Assign>
-                        <Assign sap2010:WorkflowViewState.IdRef="Assign_14">
-                          <Assign.To>
-                            <OutArgument x:TypeArguments="x:Object">[rad(4)]</OutArgument>
-                          </Assign.To>
-                          <Assign.Value>
-                            <InArgument x:TypeArguments="x:Object">[rad.Item("_1_inntekt").ToString.Replace(" ","")]</InArgument>
-                          </Assign.Value>
-                        </Assign>
-                        <Assign sap2010:WorkflowViewState.IdRef="Assign_10">
-                          <Assign.To>
-                            <OutArgument x:TypeArguments="x:Object">[rad(4)]</OutArgument>
-                          </Assign.To>
-                          <Assign.Value>
-                            <InArgument x:TypeArguments="x:Object">[Ctype(rad.Item("_1_inntekt"),decimal)+ Ctype(row(4),decimal)]</InArgument>
-                          </Assign.Value>
-                        </Assign>
-                        <Assign sap2010:WorkflowViewState.IdRef="Assign_11">
+  <Sequence sap2010:WorkflowViewState.IdRef="Sequence_116">
+    <Sequence DisplayName="Del 3" sap2010:WorkflowViewState.IdRef="Sequence_89">
+      <Sequence.Variables>
+        <Variable x:TypeArguments="x:Int32" Name="i" />
+        <Variable x:TypeArguments="sd:DataTable" Name="Inn_tabell" />
+        <Variable x:TypeArguments="sd:DataTable" Name="vaskeliste_tabell" />
+        <Variable x:TypeArguments="x:Boolean" Name="Saksnummer_finnes" />
+      </Sequence.Variables>
+      <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Excel application scope" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_5" WorkbookPath="Excel\vaskeliste_v2.0.xlsx">
+        <ui:ExcelApplicationScope.Body>
+          <ActivityAction x:TypeArguments="ui:WorkbookApplication">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
+            </ActivityAction.Argument>
+            <Sequence sap2010:WorkflowViewState.IdRef="Sequence_110">
+              <ui:ExcelReadRange AddHeaders="True" DataTable="[Inn_tabell]" DisplayName="Read Range" sap2010:WorkflowViewState.IdRef="ExcelReadRange_2" SheetName="Ark1">
+                <ui:ExcelReadRange.Range>
+                  <InArgument x:TypeArguments="x:String">
+                    <Literal x:TypeArguments="x:String" Value="" />
+                  </InArgument>
+                </ui:ExcelReadRange.Range>
+              </ui:ExcelReadRange>
+              <ui:ExcelReadRange AddHeaders="True" DataTable="[vaskeliste_tabell]" DisplayName="Read Range" sap2010:WorkflowViewState.IdRef="ExcelReadRange_3" SheetName="Ark1">
+                <ui:ExcelReadRange.Range>
+                  <InArgument x:TypeArguments="x:String">
+                    <Literal x:TypeArguments="x:String" Value="" />
+                  </InArgument>
+                </ui:ExcelReadRange.Range>
+              </ui:ExcelReadRange>
+            </Sequence>
+          </ActivityAction>
+        </ui:ExcelApplicationScope.Body>
+      </ui:ExcelApplicationScope>
+      <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_31" Text="[Inn_tabell.Rows(0)(0).ToString]" />
+      <ui:ClearDataTable DataTable="[vaskeliste_tabell]" DisplayName="Clear data table" sap2010:WorkflowViewState.IdRef="ClearDataTable_1" />
+      <ui:ForEachRow DataTable="[Inn_tabell]" DisplayName="For each row" sap2010:WorkflowViewState.IdRef="ForEachRow_3">
+        <ui:ForEachRow.Body>
+          <ActivityAction x:TypeArguments="sd:DataRow">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="sd:DataRow" Name="row" />
+            </ActivityAction.Argument>
+            <Sequence sap2010:WorkflowViewState.IdRef="Sequence_109">
+              <ui:ForEachRow DataTable="[vaskeliste_tabell]" DisplayName="For each row" sap2010:WorkflowViewState.IdRef="ForEachRow_4">
+                <ui:ForEachRow.Body>
+                  <ActivityAction x:TypeArguments="sd:DataRow">
+                    <ActivityAction.Argument>
+                      <DelegateInArgument x:TypeArguments="sd:DataRow" Name="rad" />
+                    </ActivityAction.Argument>
+                    <If Condition="[row(1).ToString.Equals(rad(1).ToString)]" sap2010:WorkflowViewState.IdRef="If_3">
+                      <If.Then>
+                        <Sequence sap2010:WorkflowViewState.IdRef="Sequence_108">
+                          <Assign sap2010:WorkflowViewState.IdRef="Assign_13">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="x:Object">[rad(4)]</OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:Object">[rad.Item("_1_inntekt").ToString.Replace(",",".")]</InArgument>
+                            </Assign.Value>
+                          </Assign>
+                          <Assign sap2010:WorkflowViewState.IdRef="Assign_15">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="x:Object">[row(4)]</OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:Object">[row.Item("_1_inntekt").ToString.Replace(",",".")]</InArgument>
+                            </Assign.Value>
+                          </Assign>
+                          <Assign sap2010:WorkflowViewState.IdRef="Assign_16">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="x:Object">[row(4)]</OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:Object">[row.Item("_1_inntekt").ToString.Replace(" ","")]</InArgument>
+                            </Assign.Value>
+                          </Assign>
+                          <Assign sap2010:WorkflowViewState.IdRef="Assign_14">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="x:Object">[rad(4)]</OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:Object">[rad.Item("_1_inntekt").ToString.Replace(" ","")]</InArgument>
+                            </Assign.Value>
+                          </Assign>
+                          <Assign sap2010:WorkflowViewState.IdRef="Assign_10">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="x:Object">[rad(4)]</OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:Object">[Ctype(rad.Item("_1_inntekt"),decimal)+ Ctype(row(4),decimal)]</InArgument>
+                            </Assign.Value>
+                          </Assign>
+                          <Assign sap2010:WorkflowViewState.IdRef="Assign_11">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="x:Boolean">[Saksnummer_finnes]</OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:Boolean">True</InArgument>
+                            </Assign.Value>
+                          </Assign>
+                          <ui:Break sap2010:WorkflowViewState.IdRef="Break_1" />
+                        </Sequence>
+                      </If.Then>
+                      <If.Else>
+                        <Assign sap2010:WorkflowViewState.IdRef="Assign_12">
                           <Assign.To>
                             <OutArgument x:TypeArguments="x:Boolean">[Saksnummer_finnes]</OutArgument>
                           </Assign.To>
                           <Assign.Value>
-                            <InArgument x:TypeArguments="x:Boolean">True</InArgument>
+                            <InArgument x:TypeArguments="x:Boolean">False</InArgument>
                           </Assign.Value>
                         </Assign>
-                        <ui:Break sap2010:WorkflowViewState.IdRef="Break_1" />
-                      </Sequence>
-                    </If.Then>
-                    <If.Else>
-                      <Assign sap2010:WorkflowViewState.IdRef="Assign_12">
-                        <Assign.To>
-                          <OutArgument x:TypeArguments="x:Boolean">[Saksnummer_finnes]</OutArgument>
-                        </Assign.To>
-                        <Assign.Value>
-                          <InArgument x:TypeArguments="x:Boolean">False</InArgument>
-                        </Assign.Value>
-                      </Assign>
-                    </If.Else>
-                  </If>
-                </ActivityAction>
-              </ui:ForEachRow.Body>
-            </ui:ForEachRow>
-            <If Condition="[Saksnummer_finnes]" sap2010:WorkflowViewState.IdRef="If_4">
-              <If.Else>
-                <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[row.ItemArray]" DataTable="[vaskeliste_tabell]" DisplayName="Add data row" sap2010:WorkflowViewState.IdRef="AddDataRow_2" />
-              </If.Else>
+                      </If.Else>
+                    </If>
+                  </ActivityAction>
+                </ui:ForEachRow.Body>
+              </ui:ForEachRow>
+              <If Condition="[Saksnummer_finnes]" sap2010:WorkflowViewState.IdRef="If_4">
+                <If.Else>
+                  <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[row.ItemArray]" DataTable="[vaskeliste_tabell]" DisplayName="Add data row" sap2010:WorkflowViewState.IdRef="AddDataRow_2" />
+                </If.Else>
+              </If>
+            </Sequence>
+          </ActivityAction>
+        </ui:ForEachRow.Body>
+      </ui:ForEachRow>
+      <ui:ForEachRow DataTable="[vaskeliste_tabell]" DisplayName="For each row" sap2010:WorkflowViewState.IdRef="ForEachRow_2">
+        <ui:ForEachRow.Body>
+          <ActivityAction x:TypeArguments="sd:DataRow">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="sd:DataRow" Name="row" />
+            </ActivityAction.Argument>
+            <If Condition="[(row.Item(&quot;_2_status_1_message&quot;).Equals(&quot;OK&quot;)) and (not row(4).ToString.Equals(&quot;&quot;)) and (not row(4).ToString.ToLower.Equals(&quot;inntekt not found&quot;)) and (not row(15).Equals(&quot;MANUELL BEHANDLING&quot;))]" sap2010:WorkflowViewState.IdRef="If_2">
+              <If.Then>
+                <Sequence sap2010:WorkflowViewState.IdRef="Sequence_111">
+                  <Sequence.Variables>
+                    <Variable x:TypeArguments="x:String" Name="_3_beløp_fra_workflow" />
+                  </Sequence.Variables>
+                  <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke workflow file" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_28" UnSafe="False" WorkflowFileName="Del3\3. Making word file.xaml">
+                    <ui:InvokeWorkflowFile.Arguments>
+                      <InArgument x:TypeArguments="sd:DataRow" x:Key="row">[row]</InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="xlsPath1">Excel\Økonomisk_oppsett_med_skatt_2017.xls</InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="docPath">W:\rpa\Vasklister\OppsettWord\</InArgument>
+                      <OutArgument x:TypeArguments="x:String" x:Key="_3_beløp">[_3_beløp_fra_workflow]</OutArgument>
+                    </ui:InvokeWorkflowFile.Arguments>
+                  </ui:InvokeWorkflowFile>
+                  <Assign sap2010:WorkflowViewState.IdRef="Assign_17">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:Object">[row.Item("_3_beløp")]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:Object">[_3_beløp_fra_workflow]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                </Sequence>
+              </If.Then>
             </If>
-          </Sequence>
-        </ActivityAction>
-      </ui:ForEachRow.Body>
-    </ui:ForEachRow>
-    <ui:ForEachRow DataTable="[vaskeliste_tabell]" DisplayName="For each row" sap2010:WorkflowViewState.IdRef="ForEachRow_2">
-      <ui:ForEachRow.Body>
-        <ActivityAction x:TypeArguments="sd:DataRow">
-          <ActivityAction.Argument>
-            <DelegateInArgument x:TypeArguments="sd:DataRow" Name="row" />
-          </ActivityAction.Argument>
-          <If Condition="[(row.Item(&quot;_2_status_1_message&quot;).Equals(&quot;OK&quot;)) and (not row(4).ToString.Equals(&quot;&quot;)) and (not row(4).ToString.ToLower.Equals(&quot;inntekt not found&quot;)) and (not row(15).Equals(&quot;MANUELL BEHANDLING&quot;))]" sap2010:WorkflowViewState.IdRef="If_2">
-            <If.Then>
-              <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke workflow file" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_28" UnSafe="False" WorkflowFileName="Del3\3. Making word file.xaml">
-                <ui:InvokeWorkflowFile.Arguments>
-                  <InArgument x:TypeArguments="sd:DataRow" x:Key="row">[row]</InArgument>
-                  <InArgument x:TypeArguments="x:String" x:Key="xlsPath1">Excel\Økonomisk_oppsett_med_skatt_2017.xls</InArgument>
-                  <InArgument x:TypeArguments="x:String" x:Key="docPath">W:\rpa\Vasklister\OppsettWord\test</InArgument>
-                </ui:InvokeWorkflowFile.Arguments>
-              </ui:InvokeWorkflowFile>
-            </If.Then>
-          </If>
-        </ActivityAction>
-      </ui:ForEachRow.Body>
-    </ui:ForEachRow>
-    <sads:DebugSymbol.Symbol>dyRXOlxycGFcVmFza2xpc3RlclxEZWwzXERlbDNNYWluLnhhbWw8WwPsAQ4CAQFiBXogAgE7ewV7ggECATl8BXyMAQIBNn0F1gEVAgEN1wEF6gEVAgECYqABYrwBAgFHaAt3FgIBPHtde38CATp8Inw3AgE3fR59LAIBNIMBC9MBFgIBDtcBHtcBMwIBC90BC+cBEAIBA2kNbyECAUJwDXYhAgE9hAENzQEdAgEWzgEN0gESAgEP3QEZ3QGPAgIBBN8BD+UBJwIBBWk8aUoCAUVsE2xCAgFEaaEBaacBAgFDcDxwUQIBQHMTc0ICAT9wqAFwrgECAT6EASaEATsCATKKARPKARgCARfOARvOATACARDQARHQAboBAgES4gFL4gF1AgEK4QFI4QFNAgEI3wG8Ad8B2wECAQfjAUrjAWwCAQaKASGKAUwCARiMARe+ASICAR3BARfIASACARnQAVjQAW0CARTQATzQAU0CARONARmUASICAS+VARmcASICASydARmkASICASmlARmsASICASatARm0ASICASO1ARm8ASICAR+9ARm9AU8CAR7GAUPGAUgCARzDAUTDAVcCARqSAUSSAXYCATGPAUWPAU0CATCaAUSaAXYCAS6XAUWXAU0CAS2iAUSiAXUCASufAUWfAU0CASqqAUSqAXUCASinAUWnAU0CASeyAUSyAYIBAgElrwFFrwFNAgEkugFFugFJAgEitwFGtwFZAgEg</sads:DebugSymbol.Symbol>
+          </ActivityAction>
+        </ui:ForEachRow.Body>
+      </ui:ForEachRow>
+      <Sequence DisplayName="Skriv til fil" sap2010:WorkflowViewState.IdRef="Sequence_119">
+        <Sequence.Variables>
+          <Variable x:TypeArguments="x:Boolean" Name="Fil2_finnes" />
+          <Variable x:TypeArguments="x:Boolean" Name="Fil3_finnes" />
+        </Sequence.Variables>
+        <ui:PathExists DisplayName="Path exists" Exists="[Fil3_finnes]" sap2010:WorkflowViewState.IdRef="PathExists_2" Path="W:\rpa\Vasklister\Excel\vaskeliste_v3.0.xlsx" PathType="File" />
+        <If Condition="[Fil3_finnes]" DisplayName="Slett fil om finnes fra før" sap2010:WorkflowViewState.IdRef="If_6">
+          <If.Then>
+            <Sequence sap2010:WorkflowViewState.IdRef="Sequence_117">
+              <ui:Delete ContinueOnError="{x:Null}" sap2010:WorkflowViewState.IdRef="Delete_2" Path="W:\rpa\Vasklister\Excel\vaskeliste_v2.0.xlsx" />
+            </Sequence>
+          </If.Then>
+        </If>
+        <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Excel application scope" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_7" WorkbookPath="W:\rpa\Vasklister\Excel\vaskeliste_v3.0.xlsx">
+          <ui:ExcelApplicationScope.Body>
+            <ActivityAction x:TypeArguments="ui:WorkbookApplication">
+              <ActivityAction.Argument>
+                <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
+              </ActivityAction.Argument>
+              <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_118">
+                <ui:ExcelWriteRange AddHeaders="True" DataTable="[vaskeliste_tabell]" DisplayName="Write Range" sap2010:WorkflowViewState.IdRef="ExcelWriteRange_2" SheetName="Ark1" StartingCell="A1" />
+              </Sequence>
+            </ActivityAction>
+          </ui:ExcelApplicationScope.Body>
+        </ui:ExcelApplicationScope>
+      </Sequence>
+    </Sequence>
+    <sads:DebugSymbol.Symbol>dyRXOlxycGFcVmFza2xpc3RlclxEZWwzXERlbDNNYWluLnhhbWxSXAOXAg4CAQFdBZUCEAIBAmQHfCICAVZ9B32EAQIBVH4Hfo4BAgFRfwfYARcCASjZAQf6ARcCARb7AQeUAhICAQNkogFkvgECAWJqDXkYAgFXfV99gQECAVV+JH45AgFSfyB/LgIBT4UBDdUBGAIBKdkBINkBNQIBJt8BDfcBEgIBF4ACCYACvgECARKBAgmHAg4CAQyIAgmTAiQCAQRrD3EjAgFdcg94IwIBWIYBD88BHwIBMdABD9QBFAIBKt8BG98BkQICARjhARH1ARwCARmAAjmAAkgCARSAAn2AAqsBAgETgQIXgQImAgENgwINhQIYAgEPiAKkAYgC0gECAQuOAg+QAhoCAQVrPmtMAgFgbhVuRAIBX2ujAWupAQIBXnI+clMCAVt1FXVEAgFacqoBcrABAgFZhgEohgE9AgFNjAEVzAEaAgEy0AEd0AEyAgEr0gET0gG8AQIBLeUBE+wBKwIBHu0BE/QBHAIBGoQCD4QClgECARCPAhGPAsoBAgEGjAEjjAFOAgEzjgEZwAEkAgE4wwEZygEiAgE00gFa0gFvAgEv0gE+0gFPAgEu6gFQ6gFnAgEk6AFP6AF5AgEj5wFM5wFRAgEh5QHAAeUB3wECASDpAU7pAWwCAR/yAT7yAVUCARzvAT/vAVUCARuEAmWEApMBAgERjwLDAY8CxwECAQqPAkGPAlYCAQiPAq8BjwK1AQIBB48BG5YBJAIBSpcBG54BJAIBR58BG6YBJAIBRKcBG64BJAIBQa8BG7YBJAIBPrcBG74BJAIBOr8BG78BUQIBOcgBRcgBSgIBN8UBRsUBWQIBNZQBRpQBeAIBTJEBR5EBTwIBS5wBRpwBeAIBSZkBR5kBTwIBSKQBRqQBdwIBRqEBR6EBTwIBRawBRqwBdwIBQ6kBR6kBTwIBQrQBRrQBhAECAUCxAUexAU8CAT+8AUe8AUsCAT25AUi5AVsCATs=</sads:DebugSymbol.Symbol>
   </Sequence>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
@@ -245,10 +288,10 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="ExcelApplicationScope_5" sap:VirtualizedContainerService.HintSize="613,49">
+      <sap2010:ViewStateData Id="ExcelApplicationScope_5" sap:VirtualizedContainerService.HintSize="613,391">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             <x:Boolean x:Key="IsPinned">False</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
@@ -290,16 +333,58 @@
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="InvokeWorkflowFile_28" sap:VirtualizedContainerService.HintSize="314,87" />
-      <sap2010:ViewStateData Id="If_2" sap:VirtualizedContainerService.HintSize="464,230" />
-      <sap2010:ViewStateData Id="ForEachRow_2" sap:VirtualizedContainerService.HintSize="613,375" />
-      <sap2010:ViewStateData Id="Sequence_89" sap:VirtualizedContainerService.HintSize="635,2329">
+      <sap2010:ViewStateData Id="Assign_17" sap:VirtualizedContainerService.HintSize="314,59" />
+      <sap2010:ViewStateData Id="Sequence_111" sap:VirtualizedContainerService.HintSize="336,310">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Del3Main_1" sap:VirtualizedContainerService.HintSize="675,2449" />
+      <sap2010:ViewStateData Id="If_2" sap:VirtualizedContainerService.HintSize="464,453" />
+      <sap2010:ViewStateData Id="ForEachRow_2" sap:VirtualizedContainerService.HintSize="613,598" />
+      <sap2010:ViewStateData Id="PathExists_2" sap:VirtualizedContainerService.HintSize="464,88" />
+      <sap2010:ViewStateData Id="Delete_2" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="Sequence_117" sap:VirtualizedContainerService.HintSize="222,146">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="If_6" sap:VirtualizedContainerService.HintSize="464,289" />
+      <sap2010:ViewStateData Id="ExcelWriteRange_2" sap:VirtualizedContainerService.HintSize="314,87" />
+      <sap2010:ViewStateData Id="Sequence_118" sap:VirtualizedContainerService.HintSize="336,211">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="ExcelApplicationScope_7" sap:VirtualizedContainerService.HintSize="464,320" />
+      <sap2010:ViewStateData Id="Sequence_119" sap:VirtualizedContainerService.HintSize="613,901">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_89" sap:VirtualizedContainerService.HintSize="635,3835">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_116" sap:VirtualizedContainerService.HintSize="657,3959">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Del3Main_1" sap:VirtualizedContainerService.HintSize="697,4639" />
     </sap2010:ViewStateManager>
   </sap2010:WorkflowViewState.ViewStateManager>
 </Activity>
