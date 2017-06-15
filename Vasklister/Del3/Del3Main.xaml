@@ -250,71 +250,77 @@
           </ActivityAction>
         </ui:ForEachRow.Body>
       </ui:ForEachRow>
-      <Sequence DisplayName="Exit applications" sap2010:WorkflowViewState.IdRef="Sequence_123">
-        <ui:CommentOut DisplayName="Comment out" sap2010:WorkflowViewState.IdRef="CommentOut_1">
-          <ui:CommentOut.Body>
-            <Sequence DisplayName="Ignored Activities" sap2010:WorkflowViewState.IdRef="Sequence_120">
-              <ui:Click ClickType="CLICK_SINGLE" DelayBefore="1000" DelayMS="1000" DisplayName="Click 'push button  Lukk'" sap2010:WorkflowViewState.IdRef="Click_1" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
-                <ui:Click.CursorPosition>
-                  <ui:CursorPosition Position="Center">
-                    <ui:CursorPosition.OffsetX>
-                      <InArgument x:TypeArguments="x:Int32" />
-                    </ui:CursorPosition.OffsetX>
-                    <ui:CursorPosition.OffsetY>
-                      <InArgument x:TypeArguments="x:Int32" />
-                    </ui:CursorPosition.OffsetY>
-                  </ui:CursorPosition>
-                </ui:Click.CursorPosition>
-                <ui:Click.Target>
-                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="9dee9c50415281ac12f00ca9e00cb45b" Selector="&lt;wnd app='predator.exe' cls='TfrmPredator' title='PredatorNO - [Saksbehandling]' /&gt;&lt;ctrl automationid='MenuBar' idx='1' name='Program' role='menu bar' /&gt;&lt;ctrl name='Lukk' role='push button' /&gt;" WaitForReady="INTERACTIVE" />
-                </ui:Click.Target>
-              </ui:Click>
+      <ui:CommentOut DisplayName="Comment out" sap2010:WorkflowViewState.IdRef="CommentOut_2">
+        <ui:CommentOut.Body>
+          <Sequence DisplayName="Ignored Activities" sap2010:WorkflowViewState.IdRef="Sequence_125">
+            <Sequence DisplayName="Exit applications" sap2010:WorkflowViewState.IdRef="Sequence_123">
+              <ui:CommentOut DisplayName="Comment out" sap2010:WorkflowViewState.IdRef="CommentOut_1">
+                <ui:CommentOut.Body>
+                  <Sequence DisplayName="Ignored Activities" sap2010:WorkflowViewState.IdRef="Sequence_120">
+                    <ui:Click ClickType="CLICK_SINGLE" DelayBefore="1000" DelayMS="1000" DisplayName="Click 'push button  Lukk'" sap2010:WorkflowViewState.IdRef="Click_1" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
+                      <ui:Click.CursorPosition>
+                        <ui:CursorPosition Position="Center">
+                          <ui:CursorPosition.OffsetX>
+                            <InArgument x:TypeArguments="x:Int32" />
+                          </ui:CursorPosition.OffsetX>
+                          <ui:CursorPosition.OffsetY>
+                            <InArgument x:TypeArguments="x:Int32" />
+                          </ui:CursorPosition.OffsetY>
+                        </ui:CursorPosition>
+                      </ui:Click.CursorPosition>
+                      <ui:Click.Target>
+                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="9dee9c50415281ac12f00ca9e00cb45b" Selector="&lt;wnd app='predator.exe' cls='TfrmPredator' title='PredatorNO - [Saksbehandling]' /&gt;&lt;ctrl automationid='MenuBar' idx='1' name='Program' role='menu bar' /&gt;&lt;ctrl name='Lukk' role='push button' /&gt;" WaitForReady="INTERACTIVE" />
+                      </ui:Click.Target>
+                    </ui:Click>
+                  </Sequence>
+                </ui:CommentOut.Body>
+              </ui:CommentOut>
+              <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" DisplayName="Attach Window 'Predator.exe PredatorNO'" sap2010:WorkflowViewState.IdRef="WindowScope_1" InformativeScreenshot="feae91478cb45a5d46c5df9d68a6988e" Selector="&lt;wnd app='predator.exe' cls='TfrmPredator' title='PredatorNO - [Saksbehandling]' /&gt;">
+                <ui:WindowScope.Body>
+                  <ActivityAction x:TypeArguments="x:Object">
+                    <ActivityAction.Argument>
+                      <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+                    </ActivityAction.Argument>
+                    <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_121">
+                      <ui:SendHotkey DelayBetweenKeys="{x:Null}" Activate="True" ClickBeforeTyping="False" DelayBefore="1000" DelayMS="1500" DisplayName="Send hotkey 'Predator.exe  PredatorNO'" EmptyField="False" sap2010:WorkflowViewState.IdRef="SendHotkey_1" Key="f4" KeyModifiers="Alt" SendWindowMessages="False" SpecialKey="True">
+                        <ui:SendHotkey.Target>
+                          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="7337581e528ddae867d6ef0e8c9131a4" WaitForReady="INTERACTIVE" />
+                        </ui:SendHotkey.Target>
+                      </ui:SendHotkey>
+                    </Sequence>
+                  </ActivityAction>
+                </ui:WindowScope.Body>
+              </ui:WindowScope>
+              <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" DisplayName="Attach Window 'Predator.exe  Confirm'" sap2010:WorkflowViewState.IdRef="WindowScope_2" InformativeScreenshot="a7e786346fd76d4f7d9408cb59473904" Selector="&lt;wnd app='predator.exe' cls='#32770' title='Confirm' /&gt;">
+                <ui:WindowScope.Body>
+                  <ActivityAction x:TypeArguments="x:Object">
+                    <ActivityAction.Argument>
+                      <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+                    </ActivityAction.Argument>
+                    <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_122">
+                      <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'Button'" sap2010:WorkflowViewState.IdRef="Click_2" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
+                        <ui:Click.CursorPosition>
+                          <ui:CursorPosition Position="Center">
+                            <ui:CursorPosition.OffsetX>
+                              <InArgument x:TypeArguments="x:Int32" />
+                            </ui:CursorPosition.OffsetX>
+                            <ui:CursorPosition.OffsetY>
+                              <InArgument x:TypeArguments="x:Int32" />
+                            </ui:CursorPosition.OffsetY>
+                          </ui:CursorPosition>
+                        </ui:Click.CursorPosition>
+                        <ui:Click.Target>
+                          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="3cb831dd82be888f8f962ee1153ea5dc" Selector="&lt;wnd app='predator.exe' cls='#32770' title='Confirm' /&gt;&lt;wnd aaname='Confirm' cls='DirectUIHWND' /&gt;&lt;wnd aaname='Yes' cls='Button' title='&amp;amp;Yes' /&gt;" WaitForReady="INTERACTIVE" />
+                        </ui:Click.Target>
+                      </ui:Click>
+                    </Sequence>
+                  </ActivityAction>
+                </ui:WindowScope.Body>
+              </ui:WindowScope>
             </Sequence>
-          </ui:CommentOut.Body>
-        </ui:CommentOut>
-        <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" DisplayName="Attach Window 'Predator.exe PredatorNO'" sap2010:WorkflowViewState.IdRef="WindowScope_1" InformativeScreenshot="feae91478cb45a5d46c5df9d68a6988e" Selector="&lt;wnd app='predator.exe' cls='TfrmPredator' title='PredatorNO - [Saksbehandling]' /&gt;">
-          <ui:WindowScope.Body>
-            <ActivityAction x:TypeArguments="x:Object">
-              <ActivityAction.Argument>
-                <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
-              </ActivityAction.Argument>
-              <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_121">
-                <ui:SendHotkey DelayBetweenKeys="{x:Null}" Activate="True" ClickBeforeTyping="False" DelayBefore="1000" DelayMS="1500" DisplayName="Send hotkey 'Predator.exe  PredatorNO'" EmptyField="False" sap2010:WorkflowViewState.IdRef="SendHotkey_1" Key="f4" KeyModifiers="Alt" SendWindowMessages="False" SpecialKey="True">
-                  <ui:SendHotkey.Target>
-                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="7337581e528ddae867d6ef0e8c9131a4" WaitForReady="INTERACTIVE" />
-                  </ui:SendHotkey.Target>
-                </ui:SendHotkey>
-              </Sequence>
-            </ActivityAction>
-          </ui:WindowScope.Body>
-        </ui:WindowScope>
-        <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" DisplayName="Attach Window 'Predator.exe  Confirm'" sap2010:WorkflowViewState.IdRef="WindowScope_2" InformativeScreenshot="a7e786346fd76d4f7d9408cb59473904" Selector="&lt;wnd app='predator.exe' cls='#32770' title='Confirm' /&gt;">
-          <ui:WindowScope.Body>
-            <ActivityAction x:TypeArguments="x:Object">
-              <ActivityAction.Argument>
-                <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
-              </ActivityAction.Argument>
-              <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_122">
-                <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'Button'" sap2010:WorkflowViewState.IdRef="Click_2" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
-                  <ui:Click.CursorPosition>
-                    <ui:CursorPosition Position="Center">
-                      <ui:CursorPosition.OffsetX>
-                        <InArgument x:TypeArguments="x:Int32" />
-                      </ui:CursorPosition.OffsetX>
-                      <ui:CursorPosition.OffsetY>
-                        <InArgument x:TypeArguments="x:Int32" />
-                      </ui:CursorPosition.OffsetY>
-                    </ui:CursorPosition>
-                  </ui:Click.CursorPosition>
-                  <ui:Click.Target>
-                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="3cb831dd82be888f8f962ee1153ea5dc" Selector="&lt;wnd app='predator.exe' cls='#32770' title='Confirm' /&gt;&lt;wnd aaname='Confirm' cls='DirectUIHWND' /&gt;&lt;wnd aaname='Yes' cls='Button' title='&amp;amp;Yes' /&gt;" WaitForReady="INTERACTIVE" />
-                  </ui:Click.Target>
-                </ui:Click>
-              </Sequence>
-            </ActivityAction>
-          </ui:WindowScope.Body>
-        </ui:WindowScope>
-      </Sequence>
+          </Sequence>
+        </ui:CommentOut.Body>
+      </ui:CommentOut>
       <Sequence DisplayName="Skriv til fil" sap2010:WorkflowViewState.IdRef="Sequence_119">
         <Sequence.Variables>
           <Variable x:TypeArguments="x:Boolean" Name="Fil2_finnes" />
@@ -324,7 +330,7 @@
         <If Condition="[Fil3_finnes]" DisplayName="Slett fil om finnes fra før" sap2010:WorkflowViewState.IdRef="If_6">
           <If.Then>
             <Sequence sap2010:WorkflowViewState.IdRef="Sequence_117">
-              <ui:Delete ContinueOnError="{x:Null}" sap2010:WorkflowViewState.IdRef="Delete_2" Path="W:\rpa\Vasklister\Excel\vaskeliste_v2.0.xlsx" />
+              <ui:Delete ContinueOnError="{x:Null}" sap2010:WorkflowViewState.IdRef="Delete_2" Path="W:\rpa\Vasklister\Excel\vaskeliste_v3.0.xlsx" />
             </Sequence>
           </If.Then>
         </If>
@@ -342,7 +348,7 @@
         </ui:ExcelApplicationScope>
       </Sequence>
     </Sequence>
-    <sads:DebugSymbol.Symbol>dyRXOlxycGFcVmFza2xpc3RlclxEZWwzXERlbDNNYWluLnhhbWxgXAPaAg4CAQFdBdgCEAIBAmQHfCICAWR9B32EAQIBYn4Hfo4BAgFffwfYARcCATbZAQf8ARcCASP9AQe9AhICARa+AgfXAhICAQNkogFkvgECAXBqDXkYAgFlfV99gQECAWN+JH45AgFgfyB/LgIBXYUBDdUBGAIBN9kBINkBNQIBNN8BDfkBGAIBJP4BCZICGQIBIpMCCaICGgIBHKMCCbwCGgIBF8MCCcMCvgECARLEAgnKAg4CAQzLAgnWAiQCAQRrD3EjAgFrcg94IwIBZoYBD88BHwIBP9ABD9QBFAIBOOABD/gBFAIBJZMCnAKTAvcCAgEhmQIPnwIaAgEdowKaAqMC2QICARupAg+5AhoCARjDAjnDAkgCARTDAn3DAqsBAgETxAIXxAImAgENxgINyAIYAgEPywKkAcsC0gECAQvRAg/TAhoCAQVrPmtMAgFubhVuRAIBbWujAWupAQIBbHI+clMCAWl1FXVEAgFocqoBcrABAgFnhgEohgE9AgFbjAEVzAEaAgFA0AEd0AEyAgE50gET0gG8AQIBO+ABHeAB5AICASbiARP2AR4CASeaAhGeAiECAR6qAhG4AhwCARnHAg/HApYBAgEQ0gIR0gLKAQIBBowBI4wBTgIBQY4BGcABJAIBRsMBGcoBIgIBQtIBWtIBbwIBPdIBPtIBTwIBPOYBFe0BLQIBLO4BFfUBHgIBKJoCgQGaAocBAgEgmgJymgJ4AgEftgKkAbYC0AICARrHAmXHApMBAgER0gLDAdICxwECAQrSAkHSAlYCAQjSAq8B0gK1AQIBB48BG5YBJAIBWJcBG54BJAIBVZ8BG6YBJAIBUqcBG64BJAIBT68BG7YBJAIBTLcBG74BJAIBSL8BG78BUQIBR8gBRcgBSgIBRcUBRsUBWQIBQ+sBUusBaQIBMukBUekBewIBMegBTugBUwIBL+YBwgHmAeEBAgEu6gFQ6gFuAgEt8wFA8wFXAgEq8AFB8AFXAgEplAFGlAF4AgFakQFHkQFPAgFZnAFGnAF4AgFXmQFHmQFPAgFWpAFGpAF3AgFUoQFHoQFPAgFTrAFGrAF3AgFRqQFHqQFPAgFQtAFGtAGEAQIBTrEBR7EBTwIBTbwBR7wBSwIBS7kBSLkBWwIBSQ==</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>dyRXOlxycGFcVmFza2xpc3RlclxEZWwzXERlbDNNYWluLnhhbWxUXAPgAg4CAQFdBd4CEAIBAmQHfCICAVh9B32EAQIBVn4Hfo4BAgFTfwfYARcCASrZAQf8ARcCARf9AQfDAhcCARbEAgfdAhICAQNkogFkvgECAWRqDXkYAgFZfV99gQECAVd+JH45AgFUfyB/LgIBUYUBDdUBGAIBK9kBINkBNQIBKN8BDfkBGAIBGMkCCckCvgECARLKAgnQAg4CAQzRAgncAiQCAQRrD3EjAgFfcg94IwIBWoYBD88BHwIBM9ABD9QBFAIBLOABD/gBFAIBGckCOckCSAIBFMkCfckCqwECARPKAhfKAiYCAQ3MAg3OAhgCAQ/RAqQB0QLSAQIBC9cCD9kCGgIBBWs+a0wCAWJuFW5EAgFha6MBa6kBAgFgcj5yUwIBXXUVdUQCAVxyqgFysAECAVuGASiGAT0CAU+MARXMARoCATTQAR3QATICAS3SARPSAbwBAgEv4AEd4AHkAgIBGuIBE/YBHgIBG80CD80ClgECARDYAhHYAsoBAgEGjAEjjAFOAgE1jgEZwAEkAgE6wwEZygEiAgE20gFa0gFvAgEx0gE+0gFPAgEw5gEV7QEtAgEg7gEV9QEeAgEczQJlzQKTAQIBEdgCwwHYAscBAgEK2AJB2AJWAgEI2AKvAdgCtQECAQePARuWASQCAUyXARueASQCAUmfARumASQCAUanARuuASQCAUOvARu2ASQCAUC3ARu+ASQCATy/ARu/AVECATvIAUXIAUoCATnFAUbFAVkCATfrAVLrAWkCASbpAVHpAXsCASXoAU7oAVMCASPmAcIB5gHhAQIBIuoBUOoBbgIBIfMBQPMBVwIBHvABQfABVwIBHZQBRpQBeAIBTpEBR5EBTwIBTZwBRpwBeAIBS5kBR5kBTwIBSqQBRqQBdwIBSKEBR6EBTwIBR6wBRqwBdwIBRakBR6kBTwIBRLQBRrQBhAECAUKxAUexAU8CAUG8AUe8AUsCAT+5AUi5AVsCAT0=</sads:DebugSymbol.Symbol>
   </Sequence>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
@@ -355,7 +361,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="ExcelApplicationScope_5" sap:VirtualizedContainerService.HintSize="613,391">
+      <sap2010:ViewStateData Id="ExcelApplicationScope_5" sap:VirtualizedContainerService.HintSize="516,391">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -363,8 +369,8 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="WriteLine_31" sap:VirtualizedContainerService.HintSize="613,59" />
-      <sap2010:ViewStateData Id="ClearDataTable_1" sap:VirtualizedContainerService.HintSize="613,22" />
+      <sap2010:ViewStateData Id="WriteLine_31" sap:VirtualizedContainerService.HintSize="516,59" />
+      <sap2010:ViewStateData Id="ClearDataTable_1" sap:VirtualizedContainerService.HintSize="516,22" />
       <sap2010:ViewStateData Id="Assign_13" sap:VirtualizedContainerService.HintSize="242,59" />
       <sap2010:ViewStateData Id="Assign_15" sap:VirtualizedContainerService.HintSize="242,59" />
       <sap2010:ViewStateData Id="Assign_16" sap:VirtualizedContainerService.HintSize="242,59" />
@@ -398,7 +404,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="ForEachRow_3" sap:VirtualizedContainerService.HintSize="613,561">
+      <sap2010:ViewStateData Id="ForEachRow_3" sap:VirtualizedContainerService.HintSize="516,561">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -423,7 +429,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="ForEachRow_2" sap:VirtualizedContainerService.HintSize="613,722" />
+      <sap2010:ViewStateData Id="ForEachRow_2" sap:VirtualizedContainerService.HintSize="516,722" />
       <sap2010:ViewStateData Id="Click_1" sap:VirtualizedContainerService.HintSize="200,49">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -479,7 +485,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Sequence_123" sap:VirtualizedContainerService.HintSize="613,1253">
+      <sap2010:ViewStateData Id="Sequence_123" sap:VirtualizedContainerService.HintSize="438,1253">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -487,6 +493,14 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_125" sap:VirtualizedContainerService.HintSize="460,1377">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="CommentOut_2" sap:VirtualizedContainerService.HintSize="516,1455" />
       <sap2010:ViewStateData Id="PathExists_2" sap:VirtualizedContainerService.HintSize="464,88" />
       <sap2010:ViewStateData Id="Delete_2" sap:VirtualizedContainerService.HintSize="200,22" />
       <sap2010:ViewStateData Id="Sequence_117" sap:VirtualizedContainerService.HintSize="222,146">
@@ -506,7 +520,7 @@
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="ExcelApplicationScope_7" sap:VirtualizedContainerService.HintSize="464,320" />
-      <sap2010:ViewStateData Id="Sequence_119" sap:VirtualizedContainerService.HintSize="613,901">
+      <sap2010:ViewStateData Id="Sequence_119" sap:VirtualizedContainerService.HintSize="516,901">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -514,7 +528,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Sequence_89" sap:VirtualizedContainerService.HintSize="635,4273">
+      <sap2010:ViewStateData Id="Sequence_89" sap:VirtualizedContainerService.HintSize="538,4475">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -522,14 +536,14 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Sequence_116" sap:VirtualizedContainerService.HintSize="657,4397">
+      <sap2010:ViewStateData Id="Sequence_116" sap:VirtualizedContainerService.HintSize="560,4599">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Del3Main_1" sap:VirtualizedContainerService.HintSize="697,4717" />
+      <sap2010:ViewStateData Id="Del3Main_1" sap:VirtualizedContainerService.HintSize="600,4679" />
     </sap2010:ViewStateManager>
   </sap2010:WorkflowViewState.ViewStateManager>
 </Activity>
