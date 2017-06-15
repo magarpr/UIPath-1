@@ -556,41 +556,12 @@
                 </ui:ForEachRow>
               </Sequence>
             </Sequence>
-            <ui:CommentOut DisplayName="Comment out">
-              <ui:CommentOut.Body>
-                <Sequence DisplayName="Ignored Activities">
-                  <ui:CloseApplication DisplayName="Close application 'iexplore.exe PESYS'" sap2010:WorkflowViewState.IdRef="CloseApplication_1">
-                    <ui:CloseApplication.Target>
-                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="4a825bf96f7ba4ba45645c56c53db150" Selector="&lt;wnd app='iexplore.exe' cls='IEFrame' title='PESYS -  Familieforhold - Internet Explorer' /&gt;" WaitForReady="INTERACTIVE" />
-                    </ui:CloseApplication.Target>
-                  </ui:CloseApplication>
-                  <sap2010:WorkflowViewState.IdRef>Sequence_38</sap2010:WorkflowViewState.IdRef>
-                </Sequence>
-              </ui:CommentOut.Body>
-              <sap2010:WorkflowViewState.IdRef>CommentOut_6</sap2010:WorkflowViewState.IdRef>
-            </ui:CommentOut>
             <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_23" Text="COMPLETED: pesysGetFamily" />
           </Sequence>
         </ActivityAction>
       </ui:BrowserScope.Body>
     </ui:BrowserScope>
-    <ui:CommentOut DisplayName="Comment out" sap2010:WorkflowViewState.IdRef="CommentOut_3">
-      <ui:CommentOut.Body>
-        <Sequence DisplayName="Ignored Activities" sap2010:WorkflowViewState.IdRef="Sequence_35">
-          <ui:OpenBrowser UiBrowser="{x:Null}" BrowserType="IE" DisplayName="Open browser" Hidden="False" sap2010:WorkflowViewState.IdRef="OpenBrowser_1" NewSession="True" Private="False" Url="https://wasapp-t5.adeo.no/psak/bruker/brukeroversikt.jsf?execution=e4s1">
-            <ui:OpenBrowser.Body>
-              <ActivityAction x:TypeArguments="x:Object">
-                <ActivityAction.Argument>
-                  <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
-                </ActivityAction.Argument>
-                <Sequence sap2010:WorkflowViewState.IdRef="Sequence_5" />
-              </ActivityAction>
-            </ui:OpenBrowser.Body>
-          </ui:OpenBrowser>
-        </Sequence>
-      </ui:CommentOut.Body>
-    </ui:CommentOut>
-    <sads:DebugSymbol.Symbol>dypXOlxycGFcVmFza2xpc3RlclxEZWwyXHBlc3lzR2V0RmFtaWx5LnhhbWylAUoD0gQOAgEBTwVPdgMB0gFQBWEQAwHJAWIFwAQXAgEDwQQF0AQVAgECT1xPcwMB0wFRB1gQAwHOAVkHYBADAcoBYqACYroCAwHIAWgLvQQWAgEEVjJWTAMB0QFTM1M4AwHPAV44XlIDAc0BWzlbSgMBywFpDW8dAwHHAXANrgQYAgEIrwQNuwQdAgEHvAQNvASDAQIBBXgPkAEfAwHGAZEBD7QBGgMBugG1AQ/eAxoCASzfAw+tBBoCAQm8BGW8BIABAgEGlQERowEcAwHEAaQBEasBHwMBwAGsARGzARoDAbsBvAERygEcAwG4AcsBEekBHAMBngHqARHdAxwCAS3gAxGsBCECAQqhAaQBoQH8AQMBxQGpAUSpAVIDAcEBpgGkAaYB5QEDAcMBsQFDsQFRAwG+Aa4BRK4BTgMBvAHIAaQByAH7AQMBuQHPARPTASQDAbAB1AET2AEkAwGoAdkBE90BJAMBoAHeARPoASMDAZ8B6wET8gEcAwGaAfMBE5QCIwMBiwGVAhOuAiMDAYABrwITugMjAgE9uwMT1wMjAgE82AMT2AN5AgE62QMT2QOnAQIBN9oDE9oDpQECATTbAxPbA6gBAgEx3AMT3AOqAQIBLuADKuADNwIBKuYDF6kEHAIBC88BzQLPAdACAwG3AdEBpgHRAeMBAwG2Ac8BiwHPAZABAwG1Ac8BT88BVQMBtAHPAWDPAXYDAbIBzwHbAc8BiQIDAbEB1AHBAtQBxgIDAa8B1gGmAdYB4wEDAa4B1AGJAdQBjgEDAa0B1AFP1AFVAwGsAdQBYNQBdAMBqgHUAc8B1AH9AQMBqQHZAcsC2QHOAgMBpwHbAaYB2wHiAQMBpgHZAY0B2QGSAQMBpQHZAU/ZAVUDAaQB2QFg2QF4AwGiAdkB2QHZAYcCAwGhAfABPfABPgMBnQHtAT7tAU0DAZsB8wEs8wFCAwGYAfkBGZECJAMBjAGVAiyVAkADAYkBmwIZqwIkAwGBAa8ChwGvAp8BAgF+tQIZtwMkAgE+2ANr2AN2AgE72QNr2QOkAQIBONoDa9oDogECATXbA2vbA6UBAgEy3ANr3AOnAQIBL+YDJeYDRAIBDOgDG6cEJgIBDf0BG4QCJAMBlAGFAhuQAiADAY0BnwIbqgIgAwGCAbYCG7YDJgIBP+kDHf4DIgIBIf8DHYYEJgIBHYcEHY4EJgIBGY8EHZYEJgIBFZcEHZ4EJgIBEZ8EHaYEJgIBDoICRoICbAMBlwH/AUf/AVUDAZUBhQIphQJrAwGOAYcCH44CKAMBjwGfAimfAk0DAYMBoQIfqAIoAwGEAbwCH6oDKgIBQ7IDI7IDkwECAUDpAyvpA0MCASLrAyHyAyoCASf1AyH8AyoCASSEBEiEBGACAR+BBEmBBGMCAR6MBEiMBF8CARuJBEmJBGACARqUBEiUBGACAReRBEmRBGECARacBEicBGECAROZBEmZBGICARKkBEikBFICARChBEmhBGACAQ+MAkmMAlsDAZIBiQJKiQJZAwGQAaYCSaYCWwMBhwGjAkqjAlkDAYUBwAIhxwIqAgF6yAIhzwIqAgF20AIhqQMmAgFEsgN7sgOQAQIBQfADTPADVAIBKe0DTe0DagIBKPoDTPoDVQIBJvcDTfcDagIBJcUCTMUCcgIBfcICTcICVgIBe80CTM0CYgIBecoCTcoCWgIBd9ACL9ACagIBRdICJacDMAIBSdUCVtUCfAIBStkCJ+ACMAIBcuECJ+gCMAIBa+kCJ/ACMAIBZ/ECJ/gCMAIBY/kCJ6YDLAIBS94CUt4ChQECAXXbAlPbAmMCAXPmAlLmArUBAgFu4wJT4wJjAgFs7gJU7gKIAQIBausCVesCYgIBaPYCWfYCeAIBZvMCWvMCZQIBZPkCNfkCSQIBTPsCK6QDNgIBTfwCLaMDMgIBTvwCO/wCTwIBT/4CMZcDPAIBVZoDMaEDOgIBUP8CM5YDOAIBVp8DW58DbgIBU5wDXJwDbAIBUf8CQf8CVAIBV4EDN4oDQgIBXY0DN5QDQAIBWIIDOYkDQgIBXpIDYZIDcwIBW48DYo8DcQIBWYcDY4cDdAIBYYQDZIQDcgIBXw==</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>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</sads:DebugSymbol.Symbol>
   </Sequence>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
@@ -912,48 +883,23 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="CloseApplication_1" sap:VirtualizedContainerService.HintSize="314,106" />
-      <sap2010:ViewStateData Id="Sequence_38" sap:VirtualizedContainerService.HintSize="336,230">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="CommentOut_6" sap:VirtualizedContainerService.HintSize="730,308" />
       <sap2010:ViewStateData Id="WriteLine_23" sap:VirtualizedContainerService.HintSize="730,59" />
-      <sap2010:ViewStateData Id="Sequence_34" sap:VirtualizedContainerService.HintSize="752,5029">
+      <sap2010:ViewStateData Id="Sequence_34" sap:VirtualizedContainerService.HintSize="752,4681">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="BrowserScope_1" sap:VirtualizedContainerService.HintSize="766,5175" />
-      <sap2010:ViewStateData Id="Sequence_5" sap:VirtualizedContainerService.HintSize="200,97">
+      <sap2010:ViewStateData Id="BrowserScope_1" sap:VirtualizedContainerService.HintSize="766,4827" />
+      <sap2010:ViewStateData Id="Sequence_1" sap:VirtualizedContainerService.HintSize="788,5372">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="OpenBrowser_1" sap:VirtualizedContainerService.HintSize="414,196" />
-      <sap2010:ViewStateData Id="Sequence_35" sap:VirtualizedContainerService.HintSize="436,320">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="CommentOut_3" sap:VirtualizedContainerService.HintSize="766,398" />
-      <sap2010:ViewStateData Id="Sequence_1" sap:VirtualizedContainerService.HintSize="788,6158">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="pesysGetFamily_1" sap:VirtualizedContainerService.HintSize="828,6358" />
+      <sap2010:ViewStateData Id="pesysGetFamily_1" sap:VirtualizedContainerService.HintSize="828,5452" />
     </sap2010:ViewStateManager>
   </sap2010:WorkflowViewState.ViewStateManager>
 </Activity>
