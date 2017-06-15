@@ -131,85 +131,31 @@
               <DelegateInArgument x:TypeArguments="sd:DataRow" Name="row" />
             </ActivityAction.Argument>
             <Sequence sap2010:WorkflowViewState.IdRef="Sequence_109">
-              <ui:ForEachRow DataTable="[vaskeliste_tabell]" DisplayName="For each row" sap2010:WorkflowViewState.IdRef="ForEachRow_4">
-                <ui:ForEachRow.Body>
-                  <ActivityAction x:TypeArguments="sd:DataRow">
-                    <ActivityAction.Argument>
-                      <DelegateInArgument x:TypeArguments="sd:DataRow" Name="rad" />
-                    </ActivityAction.Argument>
-                    <If Condition="[row(1).ToString.Equals(rad(1).ToString)]" sap2010:WorkflowViewState.IdRef="If_3">
-                      <If.Then>
-                        <Sequence sap2010:WorkflowViewState.IdRef="Sequence_108">
-                          <Assign sap2010:WorkflowViewState.IdRef="Assign_13">
-                            <Assign.To>
-                              <OutArgument x:TypeArguments="x:Object">[rad(4)]</OutArgument>
-                            </Assign.To>
-                            <Assign.Value>
-                              <InArgument x:TypeArguments="x:Object">[rad.Item("_1_inntekt").ToString.Replace(",",".")]</InArgument>
-                            </Assign.Value>
-                          </Assign>
-                          <Assign sap2010:WorkflowViewState.IdRef="Assign_15">
-                            <Assign.To>
-                              <OutArgument x:TypeArguments="x:Object">[row(4)]</OutArgument>
-                            </Assign.To>
-                            <Assign.Value>
-                              <InArgument x:TypeArguments="x:Object">[row.Item("_1_inntekt").ToString.Replace(",",".")]</InArgument>
-                            </Assign.Value>
-                          </Assign>
-                          <Assign sap2010:WorkflowViewState.IdRef="Assign_16">
-                            <Assign.To>
-                              <OutArgument x:TypeArguments="x:Object">[row(4)]</OutArgument>
-                            </Assign.To>
-                            <Assign.Value>
-                              <InArgument x:TypeArguments="x:Object">[row.Item("_1_inntekt").ToString.Replace(" ","")]</InArgument>
-                            </Assign.Value>
-                          </Assign>
-                          <Assign sap2010:WorkflowViewState.IdRef="Assign_14">
-                            <Assign.To>
-                              <OutArgument x:TypeArguments="x:Object">[rad(4)]</OutArgument>
-                            </Assign.To>
-                            <Assign.Value>
-                              <InArgument x:TypeArguments="x:Object">[rad.Item("_1_inntekt").ToString.Replace(" ","")]</InArgument>
-                            </Assign.Value>
-                          </Assign>
-                          <Assign sap2010:WorkflowViewState.IdRef="Assign_10">
-                            <Assign.To>
-                              <OutArgument x:TypeArguments="x:Object">[rad(4)]</OutArgument>
-                            </Assign.To>
-                            <Assign.Value>
-                              <InArgument x:TypeArguments="x:Object">[Ctype(rad.Item("_1_inntekt"),decimal)+ Ctype(row(4),decimal)]</InArgument>
-                            </Assign.Value>
-                          </Assign>
-                          <Assign sap2010:WorkflowViewState.IdRef="Assign_11">
-                            <Assign.To>
-                              <OutArgument x:TypeArguments="x:Boolean">[Saksnummer_finnes]</OutArgument>
-                            </Assign.To>
-                            <Assign.Value>
-                              <InArgument x:TypeArguments="x:Boolean">True</InArgument>
-                            </Assign.Value>
-                          </Assign>
-                          <ui:Break sap2010:WorkflowViewState.IdRef="Break_1" />
-                        </Sequence>
-                      </If.Then>
-                      <If.Else>
-                        <Assign sap2010:WorkflowViewState.IdRef="Assign_12">
-                          <Assign.To>
-                            <OutArgument x:TypeArguments="x:Boolean">[Saksnummer_finnes]</OutArgument>
-                          </Assign.To>
-                          <Assign.Value>
-                            <InArgument x:TypeArguments="x:Boolean">False</InArgument>
-                          </Assign.Value>
-                        </Assign>
-                      </If.Else>
-                    </If>
-                  </ActivityAction>
-                </ui:ForEachRow.Body>
-              </ui:ForEachRow>
-              <If Condition="[Saksnummer_finnes]" sap2010:WorkflowViewState.IdRef="If_4">
-                <If.Else>
-                  <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[row.ItemArray]" DataTable="[vaskeliste_tabell]" DisplayName="Add data row" sap2010:WorkflowViewState.IdRef="AddDataRow_2" />
-                </If.Else>
-              </If>
+              <Assign sap2010:WorkflowViewState.IdRef="Assign_15">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:Object">[row(4)]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:Object">[row.Item("_1_inntekt").ToString.Replace(",",".")]</InArgument>
+                </Assign.Value>
+              </Assign>
+              <Assign sap2010:WorkflowViewState.IdRef="Assign_16">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:Object">[row(4)]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:Object">[row.Item("_1_inntekt").ToString.Replace(" ","")]</InArgument>
+                </Assign.Value>
+              </Assign>
+              <Assign sap2010:WorkflowViewState.IdRef="Assign_10">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:Object">[row(4)]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:Decimal">[Ctype(row(4),decimal)]</InArgument>
+                </Assign.Value>
+              </Assign>
+              <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[row.ItemArray]" DataTable="[vaskeliste_tabell]" DisplayName="Add data row" sap2010:WorkflowViewState.IdRef="AddDataRow_2" />
             </Sequence>
           </ActivityAction>
         </ui:ForEachRow.Body>
@@ -348,7 +294,7 @@
         </ui:ExcelApplicationScope>
       </Sequence>
     </Sequence>
-    <sads:DebugSymbol.Symbol>dyRXOlxycGFcVmFza2xpc3RlclxEZWwzXERlbDNNYWluLnhhbWxUXAPgAg4CAQFdBd4CEAIBAmQHfCICAVh9B32EAQIBVn4Hfo4BAgFTfwfYARcCASrZAQf8ARcCARf9AQfDAhcCARbEAgfdAhICAQNkogFkvgECAWRqDXkYAgFZfV99gQECAVd+JH45AgFUfyB/LgIBUYUBDdUBGAIBK9kBINkBNQIBKN8BDfkBGAIBGMkCCckCvgECARLKAgnQAg4CAQzRAgncAiQCAQRrD3EjAgFfcg94IwIBWoYBD88BHwIBM9ABD9QBFAIBLOABD/gBFAIBGckCOckCSAIBFMkCfckCqwECARPKAhfKAiYCAQ3MAg3OAhgCAQ/RAqQB0QLSAQIBC9cCD9kCGgIBBWs+a0wCAWJuFW5EAgFha6MBa6kBAgFgcj5yUwIBXXUVdUQCAVxyqgFysAECAVuGASiGAT0CAU+MARXMARoCATTQAR3QATICAS3SARPSAbwBAgEv4AEd4AHkAgIBGuIBE/YBHgIBG80CD80ClgECARDYAhHYAsoBAgEGjAEjjAFOAgE1jgEZwAEkAgE6wwEZygEiAgE20gFa0gFvAgEx0gE+0gFPAgEw5gEV7QEtAgEg7gEV9QEeAgEczQJlzQKTAQIBEdgCwwHYAscBAgEK2AJB2AJWAgEI2AKvAdgCtQECAQePARuWASQCAUyXARueASQCAUmfARumASQCAUanARuuASQCAUOvARu2ASQCAUC3ARu+ASQCATy/ARu/AVECATvIAUXIAUoCATnFAUbFAVkCATfrAVLrAWkCASbpAVHpAXsCASXoAU7oAVMCASPmAcIB5gHhAQIBIuoBUOoBbgIBIfMBQPMBVwIBHvABQfABVwIBHZQBRpQBeAIBTpEBR5EBTwIBTZwBRpwBeAIBS5kBR5kBTwIBSqQBRqQBdwIBSKEBR6EBTwIBR6wBRqwBdwIBRakBR6kBTwIBRLQBRrQBhAECAUKxAUexAU8CAUG8AUe8AUsCAT+5AUi5AVsCAT0=</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>dyRXOlxycGFcVmFza2xpc3RlclxEZWwzXERlbDNNYWluLnhhbWxAXAOqAg4CAQFdBagCEAIBAmQHfCICAUB9B32EAQIBPn4Hfo4BAgE7fweiARcCASqjAQfGARcCARfHAQeNAhcCARaOAgenAhICAQNkogFkvgECAUxqDXkYAgFBfV99gQECAT9+JH45AgE8fyB/LgIBOYUBDZ8BGAIBK6MBIKMBNQIBKKkBDcMBGAIBGJMCCZMCvgECARKUAgmaAg4CAQybAgmmAiQCAQRrD3EjAgFHcg94IwIBQoYBD40BGAIBNo4BD5UBGAIBM5YBD50BGAIBMJ4BD54BuAECASyqAQ/CARQCARmTAjmTAkgCARSTAn2TAqsBAgETlAIXlAImAgENlgINmAIYAgEPmwKkAZsC0gECAQuhAg+jAhoCAQVrPmtMAgFKbhVuRAIBSWujAWupAQIBSHI+clMCAUV1FXVEAgFEcqoBcrABAgFDiwE6iwFsAgE4iAE7iAFDAgE3kwE6kwFrAgE1kAE7kAFDAgE0mwE7mwFSAgEymAE7mAFDAgExngFWngFrAgEungE6ngFLAgEtqgEdqgHkAgIBGqwBE8ABHgIBG5cCD5cClgECARCiAhGiAsoBAgEGsAEVtwEtAgEguAEVvwEeAgEclwJllwKTAQIBEaICwwGiAscBAgEKogJBogJWAgEIogKvAaICtQECAQe1AVK1AWkCASazAVGzAXsCASWyAU6yAVMCASOwAcIBsAHhAQIBIrQBULQBbgIBIb0BQL0BVwIBHroBQboBVwIBHQ==</sads:DebugSymbol.Symbol>
   </Sequence>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
@@ -371,40 +317,18 @@
       </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="WriteLine_31" sap:VirtualizedContainerService.HintSize="516,59" />
       <sap2010:ViewStateData Id="ClearDataTable_1" sap:VirtualizedContainerService.HintSize="516,22" />
-      <sap2010:ViewStateData Id="Assign_13" sap:VirtualizedContainerService.HintSize="242,59" />
       <sap2010:ViewStateData Id="Assign_15" sap:VirtualizedContainerService.HintSize="242,59" />
       <sap2010:ViewStateData Id="Assign_16" sap:VirtualizedContainerService.HintSize="242,59" />
-      <sap2010:ViewStateData Id="Assign_14" sap:VirtualizedContainerService.HintSize="242,59" />
       <sap2010:ViewStateData Id="Assign_10" sap:VirtualizedContainerService.HintSize="242,59" />
-      <sap2010:ViewStateData Id="Assign_11" sap:VirtualizedContainerService.HintSize="242,59" />
-      <sap2010:ViewStateData Id="Break_1" sap:VirtualizedContainerService.HintSize="242,22" />
-      <sap2010:ViewStateData Id="Sequence_108" sap:VirtualizedContainerService.HintSize="264,740">
+      <sap2010:ViewStateData Id="AddDataRow_2" sap:VirtualizedContainerService.HintSize="242,22" />
+      <sap2010:ViewStateData Id="Sequence_109" sap:VirtualizedContainerService.HintSize="264,443">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Assign_12" sap:VirtualizedContainerService.HintSize="242,59" />
-      <sap2010:ViewStateData Id="If_3" sap:VirtualizedContainerService.HintSize="531,883" />
-      <sap2010:ViewStateData Id="ForEachRow_4" sap:VirtualizedContainerService.HintSize="464,49">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-            <x:Boolean x:Key="IsPinned">False</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="AddDataRow_2" sap:VirtualizedContainerService.HintSize="200,22" />
-      <sap2010:ViewStateData Id="If_4" sap:VirtualizedContainerService.HintSize="464,203" />
-      <sap2010:ViewStateData Id="Sequence_109" sap:VirtualizedContainerService.HintSize="486,416">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="ForEachRow_3" sap:VirtualizedContainerService.HintSize="516,561">
+      <sap2010:ViewStateData Id="ForEachRow_3" sap:VirtualizedContainerService.HintSize="516,588">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -528,7 +452,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Sequence_89" sap:VirtualizedContainerService.HintSize="538,4475">
+      <sap2010:ViewStateData Id="Sequence_89" sap:VirtualizedContainerService.HintSize="538,4502">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -543,7 +467,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Del3Main_1" sap:VirtualizedContainerService.HintSize="600,4679" />
+      <sap2010:ViewStateData Id="Del3Main_1" sap:VirtualizedContainerService.HintSize="600,4719" />
     </sap2010:ViewStateManager>
   </sap2010:WorkflowViewState.ViewStateManager>
 </Activity>
