@@ -1,4 +1,4 @@
-﻿<Activity mc:Ignorable="sap sap2010 sads" x:Class="HentTrekkDataUB"
+﻿<Activity mc:Ignorable="sap sap2010 sads" x:Class="HentTrekkDataUB" this:HentTrekkDataUB.FNR="13036844714"
  xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities"
  xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -10,11 +10,13 @@
  xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib"
  xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib"
  xmlns:sd="clr-namespace:System.Data;assembly=System.Data"
+ xmlns:this="clr-namespace:"
  xmlns:ui="http://schemas.uipath.com/workflow/activities"
  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="TrekKBeløpFraUB" Type="OutArgument(x:String)" />
     <x:Property Name="output_tabell" Type="InOutArgument(sd:DataTable)" />
+    <x:Property Name="FNR" Type="InArgument(x:String)" />
     <x:Property Name="row" Type="InOutArgument(sd:DataRow)" />
   </x:Members>
   <mva:VisualBasic.Settings>
@@ -76,14 +78,11 @@
   </TextExpression.ReferencesForImplementation>
   <StateMachine DisplayName="Main" sap2010:WorkflowViewState.IdRef="StateMachine_1">
     <StateMachine.InitialState>
-      <State x:Name="__ReferenceID0" DisplayName="ScapTrekkData" sap2010:WorkflowViewState.IdRef="State_1">
+      <State x:Name="__ReferenceID1" DisplayName="ScapTrekkData" sap2010:WorkflowViewState.IdRef="State_1">
         <State.Entry>
           <Sequence sap2010:WorkflowViewState.IdRef="Sequence_10">
-            <Sequence.Variables>
-              <Variable x:TypeArguments="x:String" Name="FNR" />
-            </Sequence.Variables>
             <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_4" Text="3.2 - Hent totalt trekkbeløp til 'Andre utgifter' fra Oppslag UB (Økonomiportal)" />
-            <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_1" Text="[&quot;FNR: &quot; +fnr]" />
+            <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_1" Text="[&quot;FNR: &quot; +FNR]" />
             <Sequence DisplayName="Recording Sequence" sap2010:WorkflowViewState.IdRef="Sequence_9">
               <Sequence.Variables>
                 <Variable x:TypeArguments="ui:GenericValue" Name="Td" />
@@ -110,7 +109,7 @@
                             <Variable x:TypeArguments="x:String" Name="Password" />
                             <Variable x:TypeArguments="x:String" Name="Password1" />
                           </Sequence.Variables>
-                          <ui:GetPassword DisplayName="Get password" sap2010:WorkflowViewState.IdRef="GetPassword_1" ProtectedPassword="AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAqe0wQvyo/kWt9NHC3mlc1gAAAAACAAAAAAADZgAAwAAAABAAAAAq6OiPfJRVu/xSXa+XfGlxAAAAAASAAACgAAAAEAAAAP+1/n1uKv21078PBQUZKm4QAAAAcfJqHzUhOh4BTYIaMTTO6hQAAAAN/pBzmM7cb+TWq9ZQhssh6cfGCw==" Result="[Password1]" />
+                          <ui:GetPassword DisplayName="Get password" sap2010:WorkflowViewState.IdRef="GetPassword_1" ProtectedPassword="AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAMCC3LOnF1UO7yJ3+9z6sUQAAAAACAAAAAAADZgAAwAAAABAAAAC+oxl2vLfgPa4AN36ONAseAAAAAASAAACgAAAAEAAAAJrmoxQ2PuDBiIaScoJqnKoQAAAANXOUCZsT+3whR9E3lPzKYxQAAAC7BeAs9nmGtpKtQ3FJFHV7O/8A4w==" Result="[Password1]" />
                           <ui:TypeInto DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Type into 'INPUT  password'" EmptyField="False" sap2010:WorkflowViewState.IdRef="TypeInto_2" SendWindowMessages="False" SimulateType="True" Text="[Password1]">
                             <ui:TypeInto.Target>
                               <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="264e72a1510f79a5408f94c67d5d4c49" Selector="&lt;webctrl id='password' tag='INPUT' /&gt;" WaitForReady="COMPLETE" />
@@ -165,13 +164,90 @@
                                   <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
                                 </ActivityAction.Argument>
                                 <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_3">
-                                  <ui:ExtractData NextLinkSelector="{x:Null}" ContinueOnError="True" DataTable="[ExtractDataTable]" DelayBetweenPagesMS="300" DisplayName="Extract Structured Data 'TBODY'" ExtractMetadata="&lt;extract&gt;&lt;row exact='1'&gt;&lt;webctrl tag='tr' class='row' /&gt;&lt;/row&gt;&lt;column name='TrekkBeløp' attr='text' exact='1'&gt;&lt;webctrl tag='tr' class='row' /&gt;&lt;webctrl tag='td' idx='9' /&gt;&lt;/column&gt;&lt;column name='Trekkprosent' attr='text' exact='1'&gt;&lt;webctrl tag='tr' class='row' /&gt;&lt;webctrl tag='td' idx='10' /&gt;&lt;/column&gt;&lt;column name='TrekkFra' attr='text' exact='1'&gt;&lt;webctrl tag='tr' class='row' /&gt;&lt;webctrl tag='td' idx='14' /&gt;&lt;/column&gt;&lt;column name='TrekkTil' attr='text' exact='1'&gt;&lt;webctrl tag='tr' class='row' /&gt;&lt;webctrl tag='td' idx='15' /&gt;&lt;/column&gt;&lt;column name='UtleggType' attr='text' exact='1'&gt;&lt;webctrl tag='tr' class='row' /&gt;&lt;webctrl tag='td' idx='16' /&gt;&lt;/column&gt;&lt;/extract&gt;" sap2010:WorkflowViewState.IdRef="ExtractData_1" MaxNumberOfResults="100">
-                                    <ui:ExtractData.Target>
-                                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="25df9541961e3245ba53c5958dbfd9c7" Selector="&lt;webctrl parentid='treffliste' tag='TBODY' /&gt;" WaitForReady="COMPLETE" />
-                                    </ui:ExtractData.Target>
-                                  </ui:ExtractData>
-                                  <ui:OutputDataTable DataTable="[ExtractDataTable]" DisplayName="Output data table" sap2010:WorkflowViewState.IdRef="OutputDataTable_1" Text="[TrekkDataFraUB]" />
-                                  <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_2" Text="[&quot;TrekkData:  &quot;+TrekkDataFraUB]" />
+                                  <Sequence.Variables>
+                                    <Variable x:TypeArguments="ui:GenericValue" Name="IngenTreffText" />
+                                  </Sequence.Variables>
+                                  <ui:UiElementExists DisplayName="Element Exists 'SPAN  ident.errors'" Exists="[IngenTreff]" sap2010:WorkflowViewState.IdRef="UiElementExists_1">
+                                    <ui:UiElementExists.Target>
+                                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="79f98e889c20cc3f72a6b0f40c007662" Selector="&lt;webctrl id='ident.errors' tag='SPAN' /&gt;" TimeoutMS="3000" WaitForReady="INTERACTIVE" />
+                                    </ui:UiElementExists.Target>
+                                  </ui:UiElementExists>
+                                  <If Condition="[IngenTreff]" sap2010:WorkflowViewState.IdRef="If_7">
+                                    <If.Then>
+                                      <Sequence sap2010:WorkflowViewState.IdRef="Sequence_26">
+                                        <ui:GetValue ContinueOnError="{x:Null}" DisplayName="Get Text 'SPAN  ident.errors'" sap2010:WorkflowViewState.IdRef="GetValue_2">
+                                          <ui:GetValue.Target>
+                                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="79f98e889c20cc3f72a6b0f40c007662" Selector="&lt;webctrl id='ident.errors' tag='SPAN' /&gt;" WaitForReady="INTERACTIVE" />
+                                          </ui:GetValue.Target>
+                                          <ui:GetValue.Value>
+                                            <OutArgument x:TypeArguments="ui:GenericValue">[IngenTreffText]</OutArgument>
+                                          </ui:GetValue.Value>
+                                        </ui:GetValue>
+                                        <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_14" Text="[&quot;IngenTreff&quot;+IngenTreffText]" />
+                                      </Sequence>
+                                    </If.Then>
+                                    <If.Else>
+                                      <Assign sap2010:WorkflowViewState.IdRef="Assign_16">
+                                        <Assign.To>
+                                          <OutArgument x:TypeArguments="ui:GenericValue">[IngenTreffText]</OutArgument>
+                                        </Assign.To>
+                                        <Assign.Value>
+                                          <InArgument x:TypeArguments="ui:GenericValue">["Trff"]</InArgument>
+                                        </Assign.Value>
+                                      </Assign>
+                                    </If.Else>
+                                  </If>
+                                  <If Condition="[IngenTreffText.Equals(&quot;Søkekriteriet gir ingen treff.&quot;)]" sap2010:WorkflowViewState.IdRef="If_6">
+                                    <If.Then>
+                                      <Assign sap2010:WorkflowViewState.IdRef="Assign_15">
+                                        <Assign.To>
+                                          <OutArgument x:TypeArguments="ui:GenericValue">[trekkBeløpParseSum]</OutArgument>
+                                        </Assign.To>
+                                        <Assign.Value>
+                                          <InArgument x:TypeArguments="ui:GenericValue">["0"]</InArgument>
+                                        </Assign.Value>
+                                      </Assign>
+                                    </If.Then>
+                                    <If.Else>
+                                      <Sequence sap2010:WorkflowViewState.IdRef="Sequence_24">
+                                        <Sequence.Variables>
+                                          <Variable x:TypeArguments="x:Boolean" Name="TreffListe" />
+                                        </Sequence.Variables>
+                                        <ui:UiElementExists DisplayName="Element Exists 'BUTTON'" Exists="[TreffListe]" sap2010:WorkflowViewState.IdRef="UiElementExists_2">
+                                          <ui:UiElementExists.Target>
+                                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="f4270f61b8af4114ed9c5dd5fc8a2891" Selector="&lt;webctrl tag='BUTTON' /&gt;" TimeoutMS="3000" WaitForReady="INTERACTIVE" />
+                                          </ui:UiElementExists.Target>
+                                        </ui:UiElementExists>
+                                        <If Condition="[TreffListe]" sap2010:WorkflowViewState.IdRef="If_8">
+                                          <If.Then>
+                                            <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'BUTTON'" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="True">
+                                              <ui:Click.CursorPosition>
+                                                <ui:CursorPosition Position="Center">
+                                                  <ui:CursorPosition.OffsetX>
+                                                    <InArgument x:TypeArguments="x:Int32" />
+                                                  </ui:CursorPosition.OffsetX>
+                                                  <ui:CursorPosition.OffsetY>
+                                                    <InArgument x:TypeArguments="x:Int32" />
+                                                  </ui:CursorPosition.OffsetY>
+                                                </ui:CursorPosition>
+                                              </ui:Click.CursorPosition>
+                                              <ui:Click.Target>
+                                                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="f4270f61b8af4114ed9c5dd5fc8a2891" Selector="&lt;webctrl tag='BUTTON' /&gt;" WaitForReady="INTERACTIVE" />
+                                              </ui:Click.Target>
+                                              <sap2010:WorkflowViewState.IdRef>Click_4</sap2010:WorkflowViewState.IdRef>
+                                            </ui:Click>
+                                          </If.Then>
+                                        </If>
+                                        <ui:ExtractData NextLinkSelector="{x:Null}" ContinueOnError="True" DataTable="[ExtractDataTable]" DelayBetweenPagesMS="300" DisplayName="Extract Structured Data 'TBODY'" ExtractMetadata="&lt;extract&gt;&lt;row exact='1'&gt;&lt;webctrl tag='tr' class='row' /&gt;&lt;/row&gt;&lt;column name='TrekkBeløp' attr='text' exact='1'&gt;&lt;webctrl tag='tr' class='row' /&gt;&lt;webctrl tag='td' idx='9' /&gt;&lt;/column&gt;&lt;column name='Trekkprosent' attr='text' exact='1'&gt;&lt;webctrl tag='tr' class='row' /&gt;&lt;webctrl tag='td' idx='10' /&gt;&lt;/column&gt;&lt;column name='TrekkFra' attr='text' exact='1'&gt;&lt;webctrl tag='tr' class='row' /&gt;&lt;webctrl tag='td' idx='14' /&gt;&lt;/column&gt;&lt;column name='TrekkTil' attr='text' exact='1'&gt;&lt;webctrl tag='tr' class='row' /&gt;&lt;webctrl tag='td' idx='15' /&gt;&lt;/column&gt;&lt;column name='UtleggType' attr='text' exact='1'&gt;&lt;webctrl tag='tr' class='row' /&gt;&lt;webctrl tag='td' idx='16' /&gt;&lt;/column&gt;&lt;/extract&gt;" sap2010:WorkflowViewState.IdRef="ExtractData_1" MaxNumberOfResults="100">
+                                          <ui:ExtractData.Target>
+                                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="25df9541961e3245ba53c5958dbfd9c7" Selector="&lt;webctrl parentid='treffliste' tag='TBODY' /&gt;" WaitForReady="COMPLETE" />
+                                          </ui:ExtractData.Target>
+                                        </ui:ExtractData>
+                                        <ui:OutputDataTable DataTable="[ExtractDataTable]" DisplayName="Output data table" sap2010:WorkflowViewState.IdRef="OutputDataTable_1" Text="[TrekkDataFraUB]" />
+                                        <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_2" Text="[&quot;TrekkData:  &quot;+TrekkDataFraUB]" />
+                                      </Sequence>
+                                    </If.Else>
+                                  </If>
                                 </Sequence>
                               </ActivityAction>
                             </ui:BrowserScope.Body>
@@ -227,7 +303,7 @@
         <State.Transitions>
           <Transition DisplayName="FantTrekkData" sap2010:WorkflowViewState.IdRef="Transition_1" Condition="[ExtractDataTable.Rows.Count &gt;0]">
             <Transition.To>
-              <State x:Name="__ReferenceID1" DisplayName="BehandleTrekkData" sap2010:WorkflowViewState.IdRef="State_2">
+              <State x:Name="__ReferenceID2" DisplayName="BehandleTrekkData" sap2010:WorkflowViewState.IdRef="State_2">
                 <State.Entry>
                   <ui:ForEachRow DataTable="[ExtractDataTable]" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
                     <ui:ForEachRow.Body>
@@ -336,7 +412,7 @@
                 <State.Transitions>
                   <Transition DisplayName="T1" sap2010:WorkflowViewState.IdRef="Transition_2">
                     <Transition.To>
-                      <State x:Name="__ReferenceID2" DisplayName="FinalState" sap2010:WorkflowViewState.IdRef="State_3" IsFinal="True">
+                      <State x:Name="__ReferenceID0" DisplayName="FinalState" sap2010:WorkflowViewState.IdRef="State_3" IsFinal="True">
                         <State.Entry>
                           <Sequence sap2010:WorkflowViewState.IdRef="Sequence_22">
                             <ui:ForEachRow DataTable="[output_tabell]" DisplayName="For each row" sap2010:WorkflowViewState.IdRef="ForEachRow_2">
@@ -367,12 +443,13 @@
               </State>
             </Transition.To>
           </Transition>
+          <Transition DisplayName="IngenTreffData" sap2010:WorkflowViewState.IdRef="Transition_3" To="{x:Reference __ReferenceID0}" Condition="[IngenTreff]" />
         </State.Transitions>
       </State>
     </StateMachine.InitialState>
-    <x:Reference>__ReferenceID0</x:Reference>
     <x:Reference>__ReferenceID1</x:Reference>
     <x:Reference>__ReferenceID2</x:Reference>
+    <x:Reference>__ReferenceID0</x:Reference>
     <StateMachine.Variables>
       <Variable x:TypeArguments="x:String" Name="TrekkDataFraUB" />
       <Variable x:TypeArguments="sd:DataTable" Default="[New System.Data.DataTable]" Name="ExtractDataTable" />
@@ -380,41 +457,66 @@
       <Variable x:TypeArguments="x:Int32" Name="index" />
       <Variable x:TypeArguments="s:DateTime" Name="trekkTilDato" />
       <Variable x:TypeArguments="ui:GenericValue" Name="trekkBeløpParseSum" />
+      <Variable x:TypeArguments="x:Boolean" Name="IngenTreff" />
     </StateMachine.Variables>
-    <sads:DebugSymbol.Symbol>dytXOlxycGFcVmFza2xpc3RlclxEZWwyXEhlbnRUcmVra0RhdGFVQi54YW1seE0DgQMSAgEB+gI4+gJVAwGVAU8H8wIPAgFP5gEP7wIXAgEM0wIX6wIfAgECUQvhARYCAVPkAWzkAZEBAgFR6AETzgIjAgEP1QIb6QImAgEEVQ1VuQEDAZMBVg1WgQEDAZABVw3gARgCAVToASzoAUACAU3uARnLAiQCARDWAh3oAi0CAQVVZFW2AQMBlAFWZFZ+AwGRAVsP3wEhAgFV7wEbgQImAgFBggIbygIgAgER1gI21gJHAgEK3AIj5QIuAgEGW6YCW8ACAwGPAWEV3AEgAgFW8AEd9wEmAgFJ+AEd/wEmAgFFgAIdgAKhAQIBQoICKYICYAIBEoQCH4QClwECAT+HAh/IAioCARPdAiXkAi4CAQdiF2K9AQMBjQFjF9sBIgIBV/UBR/UBZAIBTPIBSPIBTwIBSv0BSP0BaQIBSPoBSfoBVQIBRoACdYACngECAUOEAneEApQBAgFAiAIhjwIqAgE7kAIhxwImAgEU4gJQ4gJkAgEJ3wJR3wJtAgEIYoYBYroBAwGOAWcZaycDAYoBbBl3JAMBggF4GX8kAgF+gAEZigEpAgF7iwEZkgEkAgF3kwEZlwEnAgFzmAEZnwEkAgFvoAEZswEkAgFbtAEZwQEpAgFawgEZyAEpAgFZyQEZ2gEpAgFYjQJOjQKUAQIBPooCT4oCXQIBPJACL5ACawIBFZICJcICMAIBGMUCJcUClAECARZprAFp1wEDAYwBZ7ICZ7sCAwGLAXEbcfICAwGHAXIbdikDAYMBfawBfdgBAwGBAXpFekkDAYABejh6PAIBf4ABxwGAAc0BAgF8iAGsAYgB3wECAX2QAawBkAHdAQIBeo0BRY0BSQIBeY0BOI0BPAIBeJUBrAGVAd0BAgF2kwG4ApMBvwICAXSdAawBnQHMAQIBcpoBRZoBSQIBcZoBOJoBPAIBcKEBG7IBLQIBXJMCJ5MCjgECATmUAifBAiwCARnFAn3FApEBAgEXceICce8CAwGIAXSuAXTbAQMBhgFytgJywwIDAYQBoQGyAqEB9QICAW6nASGvASwCAV2TAn+TAosBAgE6lAI1lAJ0AgEalgIrvwI2AgEbqAEjrAE0AgFmrQEjrQHEAQIBYa4BI64BqAECAV6aAi2aArQBAgE3mwItvgI4AgEcqAHMCKgB0QgCAW2qAbYBqgHrAQIBbKgBmQGoAZ4BAgFrqAFfqAFlAgFqqAFwqAGEAQIBaKgB3QGoAYgIAgFnrQGvAa0BwQECAWStAUGtAVUCAWKuAXquAaUBAgFfmgKEAZoCsQECATicAi+cArQBAgE0nQIvpAI4AgEvpQIvrAI4AgEqrQIvtAI4AgEltQIvvAI4AgEfvQIvvQK5AQIBHZwChgGcArEBAgE1ogJaogJ4AgEynwJbnwJnAgEwqgJaqgJtAgEtpwJbpwJnAgErsgJhsgJ8AgEorwJirwJzAgEmugJhugKDAQIBIrcCYrcCdgIBIL0ChgG9ArYBAgEe</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>dytXOlxycGFcVmFza2xpc3RlclxEZWwyXEhlbnRUcmVra0RhdGFVQi54YW1slwEBXgFqAQJPA88DEgIBAccDOMcDVQMBuwFRB8ADDwIBT7ICD7sDFwIBDJ8DF7cDHwIBAlMLrQIWAgFVsAJssAKRAQIBU74DjwG+A50BAgFRtAITmgMjAgEPoQMbtQMmAgEEVA1UuQEDAbkBVQ1VgQEDAbYBVg2sAhgCAVa0Aiy0AkACAU26AhmXAyQCARCiAx20Ay0CAQVUZFS2AQMBugFVZFV+AwG3AVoPqwIhAgFXuwIbzQImAgFBzgIblgMgAgERogM2ogNHAgEKqAMjsQMuAgEGWqYCWsACAwG1AWAVqAIgAgFYvAIdwwImAgFJxAIdywImAgFFzAIdzAKhAQIBQs4CKc4CYAIBEtACH9AClwECAT/TAh+UAyoCAROpAyWwAy4CAQdhF2G9AQMBswFiF6cCIgIBWcECR8ECZAIBTL4CSL4CTwIBSskCSMkCaQIBSMYCScYCVQIBRswCdcwCngECAUPQAnfQApQBAgFA1AIh2wIqAgE73AIhkwMmAgEUrgNQrgNkAgEJqwNRqwNtAgEIYYYBYboBAwG0AWYZaicDAbABaxl2JAMBqAF3GX4kAwGkAX8ZiQEpAwGhAYoBGZEBJAMBnQGSARmWAScDAZkBlwEZngEkAwGVAZ8BGf8BJAIBXYACGY0CKQIBXI4CGZQCKQIBW5UCGaYCKQIBWtkCTtkClAECAT7WAk/WAl0CATzcAi/cAmsCARXeAiWOAzACARiRAyWRA5QBAgEWaKwBaNcBAwGyAWayAma7AgMBsQFwG3DyAgMBrQFxG3UpAwGpAXysAXzYAQMBpwF5RXlJAwGmAXk4eTwDAaUBf8cBf80BAwGiAYcBrAGHAd8BAwGjAY8BrAGPAd0BAwGgAYwBRYwBSQMBnwGMATiMATwDAZ4BlAGsAZQB3QEDAZwBkgG4ApIBvwIDAZoBnAGsAZwBzAEDAZgBmQFFmQFJAwGXAZkBOJkBPAMBlgGgARv+AS0CAV7fAiffAo4BAgE54AInjQMsAgEZkQN9kQORAQIBF3DiAnDvAgMBrgFzrgFz2wEDAawBcbYCccMCAwGqAaABsgKgAfUCAwGUAaYBIfsBLAIBX98Cf98CiwECATrgAjXgAnQCARriAiuLAzYCARuqASOuATgDAY8BrwEjxwEoAwGBAcgBI/oBKAIBYOYCLeYCtAECATfnAi2KAzgCARysAaEBrAHRAQMBkwGsAdwBrAHiAQMBkgGqAXCqAX4DAZABrwExrwE/AwGCAbEBJ7sBMgMBiAG+ASfFATADAYQByAExyAF2AgFhygEn0QEwAgF91AEn+AEyAgFi5gKEAeYCsQECATjoAi/oArQBAgE06QIv8AI4AgEv8QIv+AI4AgEq+QIvgAM4AgElgQMviAM4AgEfiQMviQO5AQIBHbIBKbkBNwMBiwG6ASm6Aa0BAwGJAcMBWcMBYQMBhwHAAVrAAWoDAYUBzwFZzwFeAwGAAcwBWswBbgIBftgBKdwBPgIBeN0BKfABLgIBc/EBKfUBOgIBa/YBKfYBygECAWb3ASn3Aa4BAgFj6AKGAegCsQECATXuAlruAngCATLrAlvrAmcCATD2Alr2Am0CAS3zAlvzAmcCASv+AmH+AnwCASj7AmL7AnMCASaGA2GGA4MBAgEigwNigwN2AgEgiQOGAYkDtgECAR63AVy3AWwDAYwBtAG8AbQB7AEDAY4BugGBAboBqgEDAYoB2gGnAdoBxwECAXzaAdIB2gHYAQIBe9gBatgBeAIBed0BN90BRQIBdN8BLe4BOAIBdvEB0gjxAdcIAgFy8wG8AfMB8QECAXHxAZ8B8QGkAQIBcPEBZfEBawIBb/EBdvEBigECAW3xAeMB8QGOCAIBbPYBtQH2AccBAgFp9gFH9gFbAgFn9wGAAfcBqwECAWTrAcAB6wHgAQIBdw==</sads:DebugSymbol.Symbol>
   </StateMachine>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
-      <sap2010:ViewStateData Id="WriteLine_4" sap:VirtualizedContainerService.HintSize="516,59" />
-      <sap2010:ViewStateData Id="WriteLine_1" sap:VirtualizedContainerService.HintSize="516,59" />
-      <sap2010:ViewStateData Id="NavigateTo_1" sap:VirtualizedContainerService.HintSize="458,59" />
-      <sap2010:ViewStateData Id="TypeInto_1" sap:VirtualizedContainerService.HintSize="436,134" />
+      <sap2010:ViewStateData Id="WriteLine_4" sap:VirtualizedContainerService.HintSize="891,59" />
+      <sap2010:ViewStateData Id="WriteLine_1" sap:VirtualizedContainerService.HintSize="891,59" />
+      <sap2010:ViewStateData Id="NavigateTo_1" sap:VirtualizedContainerService.HintSize="833,59" />
+      <sap2010:ViewStateData Id="TypeInto_1" sap:VirtualizedContainerService.HintSize="811,134" />
       <sap2010:ViewStateData Id="GetPassword_1" sap:VirtualizedContainerService.HintSize="314,22" />
       <sap2010:ViewStateData Id="TypeInto_2" sap:VirtualizedContainerService.HintSize="314,134" />
-      <sap2010:ViewStateData Id="Sequence_2" sap:VirtualizedContainerService.HintSize="436,320">
+      <sap2010:ViewStateData Id="Sequence_2" sap:VirtualizedContainerService.HintSize="811,320">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Click_1" sap:VirtualizedContainerService.HintSize="436,106" />
-      <sap2010:ViewStateData Id="SelectItem_1" sap:VirtualizedContainerService.HintSize="436,134" />
-      <sap2010:ViewStateData Id="Click_2" sap:VirtualizedContainerService.HintSize="436,106" />
-      <sap2010:ViewStateData Id="TypeInto_3" sap:VirtualizedContainerService.HintSize="436,134" />
-      <sap2010:ViewStateData Id="Click_3" sap:VirtualizedContainerService.HintSize="436,106" />
-      <sap2010:ViewStateData Id="ExtractData_1" sap:VirtualizedContainerService.HintSize="314,106" />
-      <sap2010:ViewStateData Id="OutputDataTable_1" sap:VirtualizedContainerService.HintSize="314,22" />
-      <sap2010:ViewStateData Id="WriteLine_2" sap:VirtualizedContainerService.HintSize="314,59" />
-      <sap2010:ViewStateData Id="Sequence_3" sap:VirtualizedContainerService.HintSize="336,391">
+      <sap2010:ViewStateData Id="Click_1" sap:VirtualizedContainerService.HintSize="811,106" />
+      <sap2010:ViewStateData Id="SelectItem_1" sap:VirtualizedContainerService.HintSize="811,134" />
+      <sap2010:ViewStateData Id="Click_2" sap:VirtualizedContainerService.HintSize="811,106" />
+      <sap2010:ViewStateData Id="TypeInto_3" sap:VirtualizedContainerService.HintSize="811,134" />
+      <sap2010:ViewStateData Id="Click_3" sap:VirtualizedContainerService.HintSize="811,106" />
+      <sap2010:ViewStateData Id="UiElementExists_1" sap:VirtualizedContainerService.HintSize="753,106" />
+      <sap2010:ViewStateData Id="GetValue_2" sap:VirtualizedContainerService.HintSize="314,106" />
+      <sap2010:ViewStateData Id="WriteLine_14" sap:VirtualizedContainerService.HintSize="314,59" />
+      <sap2010:ViewStateData Id="Sequence_26" sap:VirtualizedContainerService.HintSize="336,329">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="BrowserScope_1" sap:VirtualizedContainerService.HintSize="414,537" />
-      <sap2010:ViewStateData Id="Sequence_4" sap:VirtualizedContainerService.HintSize="436,661">
+      <sap2010:ViewStateData Id="Assign_16" sap:VirtualizedContainerService.HintSize="242,59" />
+      <sap2010:ViewStateData Id="If_7" sap:VirtualizedContainerService.HintSize="753,472" />
+      <sap2010:ViewStateData Id="Assign_15" sap:VirtualizedContainerService.HintSize="242,59" />
+      <sap2010:ViewStateData Id="UiElementExists_2" sap:VirtualizedContainerService.HintSize="464,106" />
+      <sap2010:ViewStateData Id="Click_4" sap:VirtualizedContainerService.HintSize="314,106" />
+      <sap2010:ViewStateData Id="If_8" sap:VirtualizedContainerService.HintSize="464,249" />
+      <sap2010:ViewStateData Id="ExtractData_1" sap:VirtualizedContainerService.HintSize="464,106" />
+      <sap2010:ViewStateData Id="OutputDataTable_1" sap:VirtualizedContainerService.HintSize="464,22" />
+      <sap2010:ViewStateData Id="WriteLine_2" sap:VirtualizedContainerService.HintSize="464,59" />
+      <sap2010:ViewStateData Id="Sequence_24" sap:VirtualizedContainerService.HintSize="486,826">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="If_6" sap:VirtualizedContainerService.HintSize="753,969" />
+      <sap2010:ViewStateData Id="Sequence_3" sap:VirtualizedContainerService.HintSize="775,1751">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="BrowserScope_1" sap:VirtualizedContainerService.HintSize="789,1897" />
+      <sap2010:ViewStateData Id="Sequence_4" sap:VirtualizedContainerService.HintSize="811,2021">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -429,7 +531,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="CommentOut_1" sap:VirtualizedContainerService.HintSize="436,49">
+      <sap2010:ViewStateData Id="CommentOut_1" sap:VirtualizedContainerService.HintSize="661,49">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -437,15 +539,15 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="WriteLine_3" sap:VirtualizedContainerService.HintSize="211,59" />
-      <sap2010:ViewStateData Id="Sequence_6" sap:VirtualizedContainerService.HintSize="233,183">
+      <sap2010:ViewStateData Id="WriteLine_3" sap:VirtualizedContainerService.HintSize="210,59" />
+      <sap2010:ViewStateData Id="Sequence_6" sap:VirtualizedContainerService.HintSize="232,183">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="CommentOut_2" sap:VirtualizedContainerService.HintSize="436,49">
+      <sap2010:ViewStateData Id="CommentOut_2" sap:VirtualizedContainerService.HintSize="661,49">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -462,7 +564,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="CommentOut_3" sap:VirtualizedContainerService.HintSize="436,49">
+      <sap2010:ViewStateData Id="CommentOut_3" sap:VirtualizedContainerService.HintSize="661,49">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -470,29 +572,29 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Sequence_8" sap:VirtualizedContainerService.HintSize="458,2372">
+      <sap2010:ViewStateData Id="Sequence_8" sap:VirtualizedContainerService.HintSize="833,3732">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Sequence_23" sap:VirtualizedContainerService.HintSize="480,2595">
+      <sap2010:ViewStateData Id="Sequence_23" sap:VirtualizedContainerService.HintSize="855,3955">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="BrowserScope_2" sap:VirtualizedContainerService.HintSize="494,2741" />
-      <sap2010:ViewStateData Id="Sequence_9" sap:VirtualizedContainerService.HintSize="516,2865">
+      <sap2010:ViewStateData Id="BrowserScope_2" sap:VirtualizedContainerService.HintSize="869,4101" />
+      <sap2010:ViewStateData Id="Sequence_9" sap:VirtualizedContainerService.HintSize="891,4225">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Sequence_10" sap:VirtualizedContainerService.HintSize="538,3187">
+      <sap2010:ViewStateData Id="Sequence_10" sap:VirtualizedContainerService.HintSize="913,4547">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -502,7 +604,7 @@
       <sap2010:ViewStateData Id="Assign_8" sap:VirtualizedContainerService.HintSize="242,59" />
       <sap2010:ViewStateData Id="Assign_13" sap:VirtualizedContainerService.HintSize="242,59" />
       <sap2010:ViewStateData Id="WriteLine_12" sap:VirtualizedContainerService.HintSize="242,59" />
-      <sap2010:ViewStateData Id="Sequence_20" sap:VirtualizedContainerService.HintSize="980,381">
+      <sap2010:ViewStateData Id="Sequence_20" sap:VirtualizedContainerService.HintSize="978,381">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -510,8 +612,8 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="WriteLine_13" sap:VirtualizedContainerService.HintSize="211,59" />
-      <sap2010:ViewStateData Id="Assign_11" sap:VirtualizedContainerService.HintSize="722,59" />
+      <sap2010:ViewStateData Id="WriteLine_13" sap:VirtualizedContainerService.HintSize="210,59" />
+      <sap2010:ViewStateData Id="Assign_11" sap:VirtualizedContainerService.HintSize="721,59" />
       <sap2010:ViewStateData Id="WriteLine_11" sap:VirtualizedContainerService.HintSize="464,59" />
       <sap2010:ViewStateData Id="WriteLine_9" sap:VirtualizedContainerService.HintSize="264,59" />
       <sap2010:ViewStateData Id="WriteLine_5" sap:VirtualizedContainerService.HintSize="242,59" />
@@ -544,24 +646,24 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="WriteLine_10" sap:VirtualizedContainerService.HintSize="211,59" />
-      <sap2010:ViewStateData Id="If_2" sap:VirtualizedContainerService.HintSize="722,1410" />
-      <sap2010:ViewStateData Id="Sequence_18" sap:VirtualizedContainerService.HintSize="744,1633">
+      <sap2010:ViewStateData Id="WriteLine_10" sap:VirtualizedContainerService.HintSize="210,59" />
+      <sap2010:ViewStateData Id="If_2" sap:VirtualizedContainerService.HintSize="721,1410" />
+      <sap2010:ViewStateData Id="Sequence_18" sap:VirtualizedContainerService.HintSize="743,1633">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="If_5" sap:VirtualizedContainerService.HintSize="980,1776" />
-      <sap2010:ViewStateData Id="Sequence_12" sap:VirtualizedContainerService.HintSize="1002,2321">
+      <sap2010:ViewStateData Id="If_5" sap:VirtualizedContainerService.HintSize="978,1776" />
+      <sap2010:ViewStateData Id="Sequence_12" sap:VirtualizedContainerService.HintSize="1000,2321">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="ForEachRow_1" sap:VirtualizedContainerService.HintSize="1032,2466" />
+      <sap2010:ViewStateData Id="ForEachRow_1" sap:VirtualizedContainerService.HintSize="1030,2466" />
       <sap2010:ViewStateData Id="Assign_14" sap:VirtualizedContainerService.HintSize="242,59" />
       <sap2010:ViewStateData Id="Sequence_21" sap:VirtualizedContainerService.HintSize="264,183">
         <sap:WorkflowViewStateService.ViewState>
@@ -614,7 +716,16 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="State_1" sap:VirtualizedContainerService.HintSize="564,3540">
+      <sap2010:ViewStateData Id="Transition_3">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <av:PointCollection x:Key="ConnectorLocation">235.8,190.5 235.8,220.5 257.1,220.5 257.1,332.5</av:PointCollection>
+            <x:Int32 x:Key="SrcConnectionPointIndex">15</x:Int32>
+            <x:Int32 x:Key="DestConnectionPointIndex">10</x:Int32>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="State_1" sap:VirtualizedContainerService.HintSize="939,4921">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <av:Point x:Key="ShapeLocation">213,129.5</av:Point>
@@ -634,7 +745,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="HentTrekkDataUB_1" sap:VirtualizedContainerService.HintSize="654,716" />
+      <sap2010:ViewStateData Id="HentTrekkDataUB_1" sap:VirtualizedContainerService.HintSize="654,756" />
     </sap2010:ViewStateManager>
   </sap2010:WorkflowViewState.ViewStateManager>
 </Activity>
