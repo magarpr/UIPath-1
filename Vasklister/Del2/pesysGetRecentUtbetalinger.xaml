@@ -167,22 +167,6 @@
         </Assign.Value>
       </Assign>
     </Sequence>
-    <ui:CommentOut DisplayName="Comment out" sap2010:WorkflowViewState.IdRef="CommentOut_1">
-      <ui:CommentOut.Body>
-        <Sequence DisplayName="Ignored Activities" sap2010:WorkflowViewState.IdRef="Sequence_147">
-          <ui:OpenBrowser UiBrowser="{x:Null}" BrowserType="IE" DisplayName="Open browser (Pesys)" Hidden="False" sap2010:WorkflowViewState.IdRef="OpenBrowser_6" NewSession="True" Private="False" Url="https://wasapp-t5.adeo.no/psak">
-            <ui:OpenBrowser.Body>
-              <ActivityAction x:TypeArguments="x:Object">
-                <ActivityAction.Argument>
-                  <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
-                </ActivityAction.Argument>
-                <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_65" />
-              </ActivityAction>
-            </ui:OpenBrowser.Body>
-          </ui:OpenBrowser>
-        </Sequence>
-      </ui:CommentOut.Body>
-    </ui:CommentOut>
     <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" BrowserType="IE" DisplayName="Attach Browser 'PESYS Opp Page'" sap2010:WorkflowViewState.IdRef="BrowserScope_9" InformativeScreenshot="e0aaaaf1750d9cc9e793f144634a3566" Selector="&lt;html title='*' /&gt;">
       <ui:BrowserScope.Body>
         <ActivityAction x:TypeArguments="x:Object">
@@ -197,47 +181,6 @@
               <Variable x:TypeArguments="x:String" Name="testut" />
             </Sequence.Variables>
             <Sequence sap2010:WorkflowViewState.IdRef="Sequence_142">
-              <ui:CommentOut DisplayName="Comment out" sap2010:WorkflowViewState.IdRef="CommentOut_3">
-                <ui:CommentOut.Body>
-                  <Sequence DisplayName="Ignored Activities" sap2010:WorkflowViewState.IdRef="Sequence_149">
-                    <ui:NavigateTo Browser="{x:Null}" DisplayName="Navigate to" sap2010:WorkflowViewState.IdRef="NavigateTo_1" Url="https://wasapp-t5.adeo.no/psak" />
-                    <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'brukeroversikt'" sap2010:WorkflowViewState.IdRef="Click_17" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="True">
-                      <ui:Click.CursorPosition>
-                        <ui:CursorPosition OffsetX="52" OffsetY="1" Position="TopLeft" />
-                      </ui:Click.CursorPosition>
-                      <ui:Click.Target>
-                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="e5522f37a53b5be1ce66207605e826d9" Selector="&lt;webctrl id='menyForm:brukeroversikt' tag='A' /&gt;" WaitForReady="COMPLETE" />
-                      </ui:Click.Target>
-                    </ui:Click>
-                    <While DisplayName="Wait for Brukeroversikt" sap2010:WorkflowViewState.IdRef="While_4">
-                      <While.Variables>
-                        <Variable x:TypeArguments="x:Boolean" Name="pesysExists" />
-                        <Variable x:TypeArguments="x:Boolean" Name="brukeroversiktExists" />
-                      </While.Variables>
-                      <While.Condition>[not brukeroversiktExists]</While.Condition>
-                      <Sequence sap2010:WorkflowViewState.IdRef="Sequence_93">
-                        <Delay Duration="00:00:00.5000000" sap2010:WorkflowViewState.IdRef="Delay_4" />
-                        <ui:UiElementExists DisplayName="Element Exists 'HTML '" Exists="[brukeroversiktExists]" sap2010:WorkflowViewState.IdRef="UiElementExists_4">
-                          <ui:UiElementExists.Target>
-                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="df7a7d88fcdc62bd6f133011929109cf" Selector="&lt;webctrl parentid='j_id_29:subnavigation' tag='A' /&gt;" TimeoutMS="3000" WaitForReady="INTERACTIVE" />
-                          </ui:UiElementExists.Target>
-                        </ui:UiElementExists>
-                      </Sequence>
-                    </While>
-                    <ui:CommentOut DisplayName="Comment out" sap2010:WorkflowViewState.IdRef="CommentOut_2">
-                      <ui:CommentOut.Body>
-                        <Sequence DisplayName="Ignored Activities" sap2010:WorkflowViewState.IdRef="Sequence_148">
-                          <ui:TypeInto DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Type into 'skriv in pnr + enter'" EmptyField="False" sap2010:WorkflowViewState.IdRef="TypeInto_13" SendWindowMessages="False" SimulateType="False" Text="[fnr + &quot;[k(enter)]&quot;]">
-                            <ui:TypeInto.Target>
-                              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="2e607d5491acc8165e8586307e56c1ec" Selector="&lt;webctrl id='pageFormId:fodselsNummer' tag='INPUT' /&gt;" WaitForReady="COMPLETE" />
-                            </ui:TypeInto.Target>
-                          </ui:TypeInto>
-                        </Sequence>
-                      </ui:CommentOut.Body>
-                    </ui:CommentOut>
-                  </Sequence>
-                </ui:CommentOut.Body>
-              </ui:CommentOut>
               <While sap2010:Annotation.AnnotationText="Venter på at bruker skal åpne seg, henter selectoren til en menyknapp som bare er der dersom en bruker er åpen" DisplayName="Wait for open user" sap2010:WorkflowViewState.IdRef="While_5">
                 <While.Variables>
                   <Variable x:TypeArguments="x:Boolean" Name="pesysExists" />
@@ -450,7 +393,7 @@
         </ActivityAction>
       </ui:BrowserScope.Body>
     </ui:BrowserScope>
-    <sads:DebugSymbol.Symbol>dzZXOlxycGFcVmFza2xpc3RlclxEZWwyXHBlc3lzR2V0UmVjZW50VXRiZXRhbGluZ2VyLnhhbWx+ZgPGAw4CAQFoM2g2AgECdwV3hQEDAZoBeAWpARADAYEBqgEFuQEVAwGAAboBBcQDFwIBA3ddd4IBAwGbAXkHgAEQAwGWAYEBB4gBEAMBkgGJAQeQARADAY4BkQEHmAEQAwGKAZkBB6ABEAMBhgGhAQeoARADAYIBugGcAroBtgICAX/AAQvBAxYCAQR+Mn5MAwGZAXszezgDAZcBhgE4hgFSAwGVAYMBOYMBSgMBkwGOATSOAUsDAZEBiwE1iwFAAwGPAZYBNJYBZAMBjQGTATWTAUcDAYsBngEyngEzAwGJAZsBM5sBQgMBhwGmATKmATMDAYUBowEzowE/AwGDAccBDaMCGAIBXaQCDaQCpgECAVilAg2dAx0CARWeAw3AAxgCAQXIAQ/wAR8CAX7xAQ+AAhcCAXOBAg+PAhoCAXGQAg+dAhcCAWaeAg+iAiACAV6kApkBpAKjAQIBW6QCK6QCPwIBWaUCJqUCOgIBVqsCE5oDHgIBFp8DD78DHwIBBvgBEf8BHAIBdvcBIvcBMAIBdI0CogGNAvQBAgFylQIRnAIcAgFplAIilAI0AgFnngLQAp4C1QICAWWgAqIBoALiAQIBZJ4ChQGeAooBAgFjngJLngJRAgFingJcngJwAgFgngLeAZ4CjAICAV+vAhWZAyACARefAyifAzYCAROlAxW8AyACAQf5ARP5AWICAXz6ARP+ASgCAXeWAhOWAmICAW+XAhObAigCAWqwAhf6AhwCASn7AheYAyICARimAxe7AxwCAQj5ASP5ATUCAX38AZEB/AHtAQIBe/wB+AH8Af4BAgF6+gFT+gFfAgF4lgIjlgI1AgFwmQKRAZkC9QECAW6ZAoACmQKGAgIBbZcCU5cCYwIBa7ACJbAC1AECASqyAhu0AiYCAVO3Ahv4AiYCASv8AhmJAx4CASGKAxmXAx4CARmmAyWmA0QCAQmoAxu5AyYCAQqzAh2zAo4BAgFUuAIdvwImAgFPwAId2wIiAgE93AId9wIiAgEs/AIn/AIwAgEi/gIdhwMoAgEkigMnigMwAgEajAMdlQMoAgEcqQMdsAMmAgEPsQMduAMmAgELswJ1swKLAQIBVb0CSr0CrAECAVK6Aku6AlQCAVDAAivAAqIBAgE+wgIhzAIsAgFHzwIh2QIsAgE/3AIr3AKnAQIBLd4CIegCLAIBNesCIfUCLAIBLv8CH4YDKAIBJY0DH5QDKAIBHa4DSK4DVAIBEasDSasDZAIBELYDSLYDVwIBDbMDSbMDZwIBDMMCI8oCLAIBS8sCI8sCtgECAUjQAiPXAiwCAUPYAiPYArABAgFA3wIj5gIsAgE55wIj5wK4AQIBNuwCI/MCLAIBMfQCI/QCoQECAS+EA0qEA2oCASiBA0uBA1cCASaSA0qSA3oCASCPA0uPA1oCAR7IAk/IAlMCAU7FAlDFAlcCAUzLAnvLArMBAgFJ1QJP1QJUAgFG0gJQ0gJXAgFE2AJ72AKtAQIBQeQCT+QCUwIBPOECUOECVwIBOucCe+cCtQECATfxAk/xAlQCATTuAlDuAlcCATL0Anv0Ap4BAgEw</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>dzZXOlxycGFcVmFza2xpc3RlclxEZWwyXHBlc3lzR2V0UmVjZW50VXRiZXRhbGluZ2VyLnhhbWx8ZgONAw4CAQFoM2g2AgECdwV3hQEDAZgBeAWpARACAX+qAQWLAxcCAQN3XXeCAQMBmQF5B4ABEAMBlAGBAQeIARADAZABiQEHkAEQAwGMAZEBB5gBEAMBiAGZAQegARADAYQBoQEHqAEQAwGAAaoBnAKqAbYCAgF+sAELiAMWAgEEfjJ+TAMBlwF7M3s4AwGVAYYBOIYBUgMBkwGDATmDAUoDAZEBjgE0jgFLAwGPAYsBNYsBQAMBjQGWATSWAWQDAYsBkwE1kwFHAwGJAZ4BMp4BMwMBhwGbATObAUIDAYUBpgEypgEzAwGDAaMBM6MBPwMBgQG3AQ3qARgCAV3rAQ3rAaYBAgFY7AEN5AIdAgEV5QINhwMYAgEFuAEPxwEXAgFzyAEP1gEaAgFx1wEP5AEXAgFm5QEP6QEgAgFe6wGZAesBowECAVvrASvrAT8CAVnsASbsAToCAVbyARPhAh4CARbmAg+GAx8CAQa/ARHGARwCAXa+ASK+ATACAXTUAaIB1AH0AQIBctwBEeMBHAIBadsBItsBNAIBZ+UB0ALlAdUCAgFl5wGiAecB4gECAWTlAYUB5QGKAQIBY+UBS+UBUQIBYuUBXOUBcAIBYOUB3gHlAYwCAgFf9gEV4AIgAgEX5gIo5gI2AgET7AIVgwMgAgEHwAETwAFiAgF8wQETxQEoAgF33QET3QFiAgFv3gET4gEoAgFq9wEXwQIcAgEpwgIX3wIiAgEY7QIXggMcAgEIwAEjwAE1AgF9wwGRAcMB7QECAXvDAfgBwwH+AQIBesEBU8EBXwIBeN0BI90BNQIBcOABkQHgAfUBAgFu4AGAAuABhgICAW3eAVPeAWMCAWv3ASX3AdQBAgEq+QEb+wEmAgFT/gEbvwImAgErwwIZ0AIeAgEh0QIZ3gIeAgEZ7QIl7QJEAgEJ7wIbgAMmAgEK+gEd+gGOAQIBVP8BHYYCJgIBT4cCHaICIgIBPaMCHb4CIgIBLMMCJ8MCMAIBIsUCHc4CKAIBJNECJ9ECMAIBGtMCHdwCKAIBHPACHfcCJgIBD/gCHf8CJgIBC/oBdfoBiwECAVWEAkqEAqwBAgFSgQJLgQJUAgFQhwIrhwKiAQIBPokCIZMCLAIBR5YCIaACLAIBP6MCK6MCpwECAS2lAiGvAiwCATWyAiG8AiwCAS7GAh/NAigCASXUAh/bAigCAR31Akj1AlQCARHyAknyAmQCARD9Akj9AlcCAQ36Akn6AmcCAQyKAiORAiwCAUuSAiOSArYBAgFIlwIjngIsAgFDnwIjnwKwAQIBQKYCI60CLAIBOa4CI64CuAECATazAiO6AiwCATG7AiO7AqEBAgEvywJKywJqAgEoyAJLyAJXAgEm2QJK2QJ6AgEg1gJL1gJaAgEejwJPjwJTAgFOjAJQjAJXAgFMkgJ7kgKzAQIBSZwCT5wCVAIBRpkCUJkCVwIBRJ8Ce58CrQECAUGrAk+rAlMCATyoAlCoAlcCATquAnuuArUBAgE3uAJPuAJUAgE0tQJQtQJXAgEyuwJ7uwKeAQIBMA==</sads:DebugSymbol.Symbol>
   </Sequence>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
@@ -469,86 +412,6 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Sequence_65" sap:VirtualizedContainerService.HintSize="200,97">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="OpenBrowser_6" sap:VirtualizedContainerService.HintSize="414,196">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-            <x:Boolean x:Key="IsPinned">False</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Sequence_147" sap:VirtualizedContainerService.HintSize="436,320">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="CommentOut_1" sap:VirtualizedContainerService.HintSize="943,49">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-            <x:Boolean x:Key="IsPinned">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="NavigateTo_1" sap:VirtualizedContainerService.HintSize="416,59" />
-      <sap2010:ViewStateData Id="Click_17" sap:VirtualizedContainerService.HintSize="416,106">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-            <x:Boolean x:Key="IsPinned">False</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Delay_4" sap:VirtualizedContainerService.HintSize="314,22" />
-      <sap2010:ViewStateData Id="UiElementExists_4" sap:VirtualizedContainerService.HintSize="314,106" />
-      <sap2010:ViewStateData Id="Sequence_93" sap:VirtualizedContainerService.HintSize="336,292">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="While_4" sap:VirtualizedContainerService.HintSize="416,49">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-            <x:Boolean x:Key="IsPinned">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="TypeInto_13" sap:VirtualizedContainerService.HintSize="314,134">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-            <x:Boolean x:Key="IsPinned">False</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Sequence_148" sap:VirtualizedContainerService.HintSize="336,258">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="CommentOut_2" sap:VirtualizedContainerService.HintSize="416,336" />
-      <sap2010:ViewStateData Id="Sequence_149" sap:VirtualizedContainerService.HintSize="438,794">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="CommentOut_3" sap:VirtualizedContainerService.HintSize="464,872" />
       <sap2010:ViewStateData Id="Delay_5" sap:VirtualizedContainerService.HintSize="314,22" />
       <sap2010:ViewStateData Id="UiElementExists_5" sap:VirtualizedContainerService.HintSize="314,106" />
       <sap2010:ViewStateData Id="Sequence_94" sap:VirtualizedContainerService.HintSize="336,292">
@@ -593,7 +456,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Sequence_142" sap:VirtualizedContainerService.HintSize="907,2321">
+      <sap2010:ViewStateData Id="Sequence_142" sap:VirtualizedContainerService.HintSize="907,1409">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -759,7 +622,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Sequence_100" sap:VirtualizedContainerService.HintSize="929,5935">
+      <sap2010:ViewStateData Id="Sequence_100" sap:VirtualizedContainerService.HintSize="929,5023">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -767,15 +630,15 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="BrowserScope_9" sap:VirtualizedContainerService.HintSize="943,6081" />
-      <sap2010:ViewStateData Id="Sequence_70" sap:VirtualizedContainerService.HintSize="965,6482">
+      <sap2010:ViewStateData Id="BrowserScope_9" sap:VirtualizedContainerService.HintSize="943,5169" />
+      <sap2010:ViewStateData Id="Sequence_70" sap:VirtualizedContainerService.HintSize="965,5481">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="pesysModule_1" sap:VirtualizedContainerService.HintSize="1005,6562">
+      <sap2010:ViewStateData Id="pesysModule_1" sap:VirtualizedContainerService.HintSize="1005,5561">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="ShouldCollapseAll">False</x:Boolean>
