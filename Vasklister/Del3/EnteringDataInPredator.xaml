@@ -1,4 +1,4 @@
-﻿<Activity mc:Ignorable="sap sap2010 sads" x:Class="Main" this:Main.sakNo="313054" this:Main.docPath="W:\rpa\Vasklister\OppsettWord\"
+﻿<Activity mc:Ignorable="sap sap2010 sads" x:Class="Main" this:Main.sakNo="341630" this:Main.docPath="W:\rpa\Vasklister\OppsettWord\"
  xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities"
  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
  xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities"
@@ -114,33 +114,47 @@
                 <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
               </ActivityAction.Argument>
               <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_67">
-                <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'TButton'" sap2010:WorkflowViewState.IdRef="Click_15" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="True">
-                  <ui:Click.CursorPosition>
-                    <ui:CursorPosition OffsetX="76" OffsetY="6" Position="TopLeft" />
-                  </ui:Click.CursorPosition>
-                  <ui:Click.Target>
-                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="7fff71e57067082cbe0d5e9fe59b9b7b" Selector="&lt;wnd aaname='Arbeidsområde' cls='MDIClient' /&gt;&lt;wnd cls='TfrmSaksbeh' title='Saksbehandling' /&gt;&lt;wnd cls='TGroupBox' title='Oppfølgninger på saken' /&gt;&lt;wnd cls='TButton' title='Ny oppfølgning' /&gt;" WaitForReady="INTERACTIVE" />
-                  </ui:Click.Target>
-                </ui:Click>
-              </Sequence>
-            </ActivityAction>
-          </ui:WindowScope.Body>
-        </ui:WindowScope>
-        <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" DisplayName="Attach Window 'MainForm Inboxclie'" sap2010:WorkflowViewState.IdRef="WindowScope_12" InformativeScreenshot="e4054ab225ffd45af1abeb905b002494" Selector="&lt;wnd app='inboxclient.exe' ctrlname='MainForm' /&gt;">
-          <ui:WindowScope.Body>
-            <ActivityAction x:TypeArguments="x:Object">
-              <ActivityAction.Argument>
-                <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
-              </ActivityAction.Argument>
-              <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_68">
-                <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'push button  Minimer'" sap2010:WorkflowViewState.IdRef="Click_16" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
-                  <ui:Click.CursorPosition>
-                    <ui:CursorPosition OffsetX="10" OffsetY="8" Position="TopLeft" />
-                  </ui:Click.CursorPosition>
-                  <ui:Click.Target>
-                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="1092701689469ba95ff29474264cd1f7" Selector="&lt;ctrl idx='1' name='Minimer' role='push button' /&gt;" WaitForReady="INTERACTIVE" />
-                  </ui:Click.Target>
-                </ui:Click>
+                <Sequence.Variables>
+                  <Variable x:TypeArguments="x:Boolean" Name="Innkurv" />
+                </Sequence.Variables>
+                <ui:UiElementExists DisplayName="Element Exists 'InboxClient.exe Innkurv'" Exists="[Innkurv]" sap2010:WorkflowViewState.IdRef="UiElementExists_5">
+                  <ui:UiElementExists.Target>
+                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" InformativeScreenshot="2e01f7f102f5afc61c6ed4b914dae99b" TimeoutMS="3000" WaitForReady="INTERACTIVE" />
+                  </ui:UiElementExists.Target>
+                </ui:UiElementExists>
+                <If Condition="[not Innkurv]" sap2010:WorkflowViewState.IdRef="If_17">
+                  <If.Then>
+                    <Sequence sap2010:WorkflowViewState.IdRef="Sequence_75">
+                      <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'TButton'" sap2010:WorkflowViewState.IdRef="Click_15" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="True">
+                        <ui:Click.CursorPosition>
+                          <ui:CursorPosition OffsetX="76" OffsetY="6" Position="TopLeft" />
+                        </ui:Click.CursorPosition>
+                        <ui:Click.Target>
+                          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="7fff71e57067082cbe0d5e9fe59b9b7b" Selector="&lt;wnd aaname='Arbeidsområde' cls='MDIClient' /&gt;&lt;wnd cls='TfrmSaksbeh' title='Saksbehandling' /&gt;&lt;wnd cls='TGroupBox' title='Oppfølgninger på saken' /&gt;&lt;wnd cls='TButton' title='Ny oppfølgning' /&gt;" WaitForReady="INTERACTIVE" />
+                        </ui:Click.Target>
+                      </ui:Click>
+                      <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" DisplayName="Attach Window 'MainForm Inboxclie'" sap2010:WorkflowViewState.IdRef="WindowScope_12" InformativeScreenshot="e4054ab225ffd45af1abeb905b002494" Selector="&lt;wnd app='inboxclient.exe' ctrlname='MainForm' /&gt;">
+                        <ui:WindowScope.Body>
+                          <ActivityAction x:TypeArguments="x:Object">
+                            <ActivityAction.Argument>
+                              <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+                            </ActivityAction.Argument>
+                            <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_68">
+                              <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'push button  Minimer'" sap2010:WorkflowViewState.IdRef="Click_16" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
+                                <ui:Click.CursorPosition>
+                                  <ui:CursorPosition OffsetX="10" OffsetY="8" Position="TopLeft" />
+                                </ui:Click.CursorPosition>
+                                <ui:Click.Target>
+                                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="1092701689469ba95ff29474264cd1f7" Selector="&lt;ctrl idx='1' name='Minimer' role='push button' /&gt;" WaitForReady="INTERACTIVE" />
+                                </ui:Click.Target>
+                              </ui:Click>
+                            </Sequence>
+                          </ActivityAction>
+                        </ui:WindowScope.Body>
+                      </ui:WindowScope>
+                    </Sequence>
+                  </If.Then>
+                </If>
               </Sequence>
             </ActivityAction>
           </ui:WindowScope.Body>
@@ -229,42 +243,30 @@
                 </ui:SendHotkey.Target>
               </ui:SendHotkey>
               <ui:CloseWindow Selector="{x:Null}" TimeoutMS="{x:Null}" DisplayName="Close window" sap2010:WorkflowViewState.IdRef="CloseWindow_5" UseWindow="[oppsetInfo]" WaitForReady="INTERACTIVE" />
-              <ui:CommentOut DisplayName="Comment out" sap2010:WorkflowViewState.IdRef="CommentOut_18">
-                <ui:CommentOut.Body>
-                  <Sequence DisplayName="Ignored Activities" sap2010:WorkflowViewState.IdRef="Sequence_70">
-                    <ui:UiElementExists DisplayName="Element Exists 'WINWORD.EXE Microsoft'" Exists="[KlippingVindu]" sap2010:WorkflowViewState.IdRef="UiElementExists_1">
-                      <ui:UiElementExists.Target>
-                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" InformativeScreenshot="3687d1b683f75c2cab9c98874fd554c9" TimeoutMS="3000" WaitForReady="INTERACTIVE" />
-                      </ui:UiElementExists.Target>
-                    </ui:UiElementExists>
-                  </Sequence>
-                </ui:CommentOut.Body>
-              </ui:CommentOut>
-              <ui:CommentOut DisplayName="Comment out" sap2010:WorkflowViewState.IdRef="CommentOut_19">
-                <ui:CommentOut.Body>
-                  <Sequence DisplayName="Ignored Activities" sap2010:WorkflowViewState.IdRef="Sequence_71">
-                    <If Condition="[KlippingVindu]" sap2010:WorkflowViewState.IdRef="If_13">
-                      <If.Then>
-                        <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'WINWORD.EXE Microsoft'" sap2010:WorkflowViewState.IdRef="Click_9" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
-                          <ui:Click.CursorPosition>
-                            <ui:CursorPosition Position="Center">
-                              <ui:CursorPosition.OffsetX>
-                                <InArgument x:TypeArguments="x:Int32" />
-                              </ui:CursorPosition.OffsetX>
-                              <ui:CursorPosition.OffsetY>
-                                <InArgument x:TypeArguments="x:Int32" />
-                              </ui:CursorPosition.OffsetY>
-                            </ui:CursorPosition>
-                          </ui:Click.CursorPosition>
-                          <ui:Click.Target>
-                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="560b29c7556367aa5193d87683e65924" Selector="&lt;wnd app='winword.exe' cls='#32770' title='Microsoft Word' /&gt;&lt;wnd ctrlid='6' title='&amp;amp;Ja' /&gt;" WaitForReady="INTERACTIVE" />
-                          </ui:Click.Target>
-                        </ui:Click>
-                      </If.Then>
-                    </If>
-                  </Sequence>
-                </ui:CommentOut.Body>
-              </ui:CommentOut>
+              <ui:UiElementExists DisplayName="Element Exists 'WINWORD.EXE Microsoft'" Exists="[KlippingVindu]" sap2010:WorkflowViewState.IdRef="UiElementExists_1">
+                <ui:UiElementExists.Target>
+                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="3687d1b683f75c2cab9c98874fd554c9" Selector="&lt;wnd app='winword.exe' cls='#32770' title='Microsoft Word' /&gt;" TimeoutMS="3000" WaitForReady="INTERACTIVE" />
+                </ui:UiElementExists.Target>
+              </ui:UiElementExists>
+              <If Condition="[KlippingVindu]" sap2010:WorkflowViewState.IdRef="If_13">
+                <If.Then>
+                  <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'WINWORD.EXE Microsoft'" sap2010:WorkflowViewState.IdRef="Click_9" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
+                    <ui:Click.CursorPosition>
+                      <ui:CursorPosition Position="Center">
+                        <ui:CursorPosition.OffsetX>
+                          <InArgument x:TypeArguments="x:Int32" />
+                        </ui:CursorPosition.OffsetX>
+                        <ui:CursorPosition.OffsetY>
+                          <InArgument x:TypeArguments="x:Int32" />
+                        </ui:CursorPosition.OffsetY>
+                      </ui:CursorPosition>
+                    </ui:Click.CursorPosition>
+                    <ui:Click.Target>
+                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="560b29c7556367aa5193d87683e65924" Selector="&lt;wnd app='winword.exe' cls='#32770' title='Microsoft Word' /&gt;&lt;wnd ctrlid='6' title='&amp;amp;Ja' /&gt;" WaitForReady="INTERACTIVE" />
+                    </ui:Click.Target>
+                  </ui:Click>
+                </If.Then>
+              </If>
               <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" DisplayName="Attach Window 'WINWORD.EXE 12176478'" sap2010:WorkflowViewState.IdRef="WindowScope_10" InformativeScreenshot="c928b8638641c9dd3fd10b507012845b" Selector="&lt;wnd app='winword.exe' cls='OpusApp' title='* [Kompatibilitetsmodus] - Microsoft Word' /&gt;">
                 <ui:WindowScope.Body>
                   <ActivityAction x:TypeArguments="x:Object">
@@ -292,7 +294,22 @@
                           <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" WaitForReady="INTERACTIVE" />
                         </ui:SendHotkey.Target>
                       </ui:SendHotkey>
-                      <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'push button'" sap2010:WorkflowViewState.IdRef="Click_10" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="True">
+                      <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'Home'" sap2010:WorkflowViewState.IdRef="Click_10" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="True">
+                        <ui:Click.CursorPosition>
+                          <ui:CursorPosition Position="Center">
+                            <ui:CursorPosition.OffsetX>
+                              <InArgument x:TypeArguments="x:Int32" />
+                            </ui:CursorPosition.OffsetX>
+                            <ui:CursorPosition.OffsetY>
+                              <InArgument x:TypeArguments="x:Int32" />
+                            </ui:CursorPosition.OffsetY>
+                          </ui:CursorPosition>
+                        </ui:Click.CursorPosition>
+                        <ui:Click.Target>
+                          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="d4169ffb7200762df5cf9345b918d06e" Selector="&lt;wnd cls='NetUIHWND' idx='1' /&gt;&lt;ctrl name='Ribbon' role='property page' /&gt;&lt;ctrl name='Båndkategorier' role='page tab list' /&gt;&lt;ctrl name='Hjem' role='page tab' /&gt;" WaitForReady="INTERACTIVE" />
+                        </ui:Click.Target>
+                      </ui:Click>
+                      <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'push button'" sap2010:WorkflowViewState.IdRef="Click_19" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="True">
                         <ui:Click.CursorPosition>
                           <ui:CursorPosition Position="Center">
                             <ui:CursorPosition.OffsetX>
@@ -508,7 +525,7 @@
         </Sequence>
       </ui:CommentOut.Body>
     </ui:CommentOut>
-    <sads:DebugSymbol.Symbol>dzJXOlxycGFcVmFza2xpc3RlclxEZWwzXEVudGVyaW5nRGF0YUluUHJlZGF0b3IueGFtbGMBSgFRAQMBZQGEAQECRgOABA4CAQFHBfkCEAIBA/oCBf4DFQIBAk0HURwCAWdSB1KeAQIBZFMHbAwCAVZtB5QBEgIBR5UBB5UBhAECAUWWAQeaARcCAUKbAQefARUCAT2gAQekARcCATulAQepARcCATqqAQeuARUCATivAQezARcCATe0AQe4ARcCATa5AQe9ARcCATW+AQfCARcCATPDAQfDAYwBAgExxAEHyAEXAgEuyQEHzQEXAgEtzgEH0gEXAgEr0wEH+AIcAgEET4UBT+ABAgFrT+sBT/EBAgFqTWBNcgIBaFJeUpsBAgFlUxVTJwIBV1ULXhwCAWFhC2oWAgFZbgmAARoCAU+BAQmTARoCAUiVAXWVAYEBAgFGmAGaAZgB9QECAUSWAXuWAYABAgFDnQGaAZ0B7wECAUGbAXmbAX4CAUCbAZUCmwGeAgIBPqABe6ABgQECATyqAZcCqgGdAgIBOb4Be74BgQECATTDAXXDAYkBAgEyxgGaAcYBkAICATDEAXvEAYIBAgEvzgF7zgGBAQIBLNMBkgPTAdwDAgEq0wFe0wFsAgEo0wF30wGcAQIBJdMB3QHTAZsCAgEk2QEN9QIYAgEFVZ8CVfoCAgFjWxFbXAIBYmINaRgCAVpumQJu9AICAVV0D30aAgFQgQGYAoEB0QICAU6HAQ+QARoCAUndAQ/hAR8CASPiAQ/mAR8CASLnAQ/nAckBAgEf6AEP8gEfAgEe8wEPiwIfAgEdjAIP9AIgAgEGYw9j9wECAV5kD2gfAgFbdRF8HAIBUYgBEY8BHAIBSucBnQHnAasBAgEgjAKgAowCgQMCARySAhXxAiACAQdjWmOMAQIBYGPPAWP0AQIBX2aiAWbqAQIBXWSDAWSIAQIBXHqkAXr+AgIBVHc9d0ACAVN3MHc0AgFSjQGkAY0B3gECAU2KAT2KAUACAUyKATCKATQCAUuTAhehAiICARqiAhemAicCARmnAhe1AiICARe2Ahe6AiwCARK7AhfNAhwCAQ3OAhfwAiICAQifAqoBnwLkAQIBG7MCqgGzAsEDAgEYuAKVAbgC6gECARa4AvUBuAL7AQIBFbYCZrYCeQIBE7sCJbsCOAIBDr0CG8sCJgIBENICGeACJAIBC+ECGe8CJAIBCckCrgHJAs4CAgER3gKsAd4CuQICAQztAqwB7QLUAgIBCg==</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>dzJXOlxycGFcVmFza2xpc3RlclxEZWwzXEVudGVyaW5nRGF0YUluUHJlZGF0b3IueGFtbHEBSgFRAQMBZQGEAQECRgORBA4CAQFHBYoDEAIBA4sDBY8EFQIBAk0HURwCAXlSB1KeAQIBdlMHbAwCAWhtB6IBEgIBUaMBB6MBhAECAU+kAQeoARcCAUypAQetARUCAUeuAQeyARcCAUWzAQe3ARcCAUS4AQe8ARUCAUK9AQfBARcCAUHCAQfGARcCAUDHAQfLARcCAT/MAQfQARcCAT3RAQfRAYwBAgE70gEH1gEXAgE41wEH2wEXAgE33AEH4AEXAgE14QEHiQMcAgEET4UBT+ABAgF9T+sBT/EBAgF8TWBNcgIBelJeUpsBAgF3UxVTJwIBaVULXhwCAXNhC2oWAgFrbgmhARoCAVKjAXWjAYEBAgFQpgGaAaYB9QECAU6kAXukAYABAgFNqwGaAasB7wECAUupAXmpAX4CAUqpAZUCqQGeAgIBSK4Be64BgQECAUa4AZcCuAGdAgIBQ8wBe8wBgQECAT7RAXXRAYkBAgE81AGaAdQBkAICATrSAXvSAYIBAgE53AF73AGBAQIBNuEBkgPhAdwDAgE04QFe4QFsAgEy4QF34QGcAQIBL+EB3QHhAZsCAgEu5wENhgMYAgEFVZ8CVfoCAgF1WxFbXAIBdGINaRgCAWxumQJu9AICAWd0D54BGgIBU+sBD+8BHwIBLfABD/QBHwIBLPUBD/UByQECASn2AQ/6ASQCAST7AQ+NAhQCAR+OAg+FAyACAQZjD2P3AQIBcGQPaB8CAW14EXwmAgFjfRGdARYCAVT1AZ0B9QGrAQIBKvgBjQH4AdIBAgEo+AHdAfgB4wECASf2AV/2AXACASX7AR37AS4CASD9AROLAh4CASKOAqACjgKBAwIBHpQCFYIDIAIBB2NaY4wBAgFyY88BY/QBAgFxZqIBZuoBAgFvZIMBZIgBAgFueqQBeqoBAgFmeGN4bgIBZH0ffS4CAVV/FZsBIAIBV4kCpgGJApcCAgEjlQIXowIiAgEcpAIXqAInAgEbqQIXtwIiAgEZuAIXxgIiAgEXxwIXywIsAgESzAIX3gIcAgEN3wIXgQMiAgEIgAEXhwEiAgFfiAEXmgEoAgFYoQKqAaEC5AECAR21AqoBtQLlAgIBGsQCqgHEAsEDAgEYyQKVAckC6gECARbJAvUByQL7AQIBFccCZscCeQIBE8wCJcwCOAIBDs4CG9wCJgIBEOMCGfECJAIBC/ICGYADJAIBCYUBqgGFAYQDAgFiggFDggFGAgFhggE2ggE6AgFgiAGmAogB3wICAV6OAR2XASgCAVnaAq4B2gLOAgIBEe8CrAHvArkCAgEM/gKsAf4C1AICAQqPAR+WASoCAVqUAbIBlAHsAQIBXZEBS5EBTgIBXJEBPpEBQgIBWw==</sads:DebugSymbol.Symbol>
   </Sequence>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
@@ -546,22 +563,8 @@
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="If_16" sap:VirtualizedContainerService.HintSize="854,670" />
-      <sap2010:ViewStateData Id="Click_15" sap:VirtualizedContainerService.HintSize="314,106" />
-      <sap2010:ViewStateData Id="Sequence_67" sap:VirtualizedContainerService.HintSize="336,230">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="WindowScope_11" sap:VirtualizedContainerService.HintSize="414,376">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-            <x:Boolean x:Key="IsPinned">False</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="UiElementExists_5" sap:VirtualizedContainerService.HintSize="561,106" />
+      <sap2010:ViewStateData Id="Click_15" sap:VirtualizedContainerService.HintSize="414,106" />
       <sap2010:ViewStateData Id="Click_16" sap:VirtualizedContainerService.HintSize="314,106" />
       <sap2010:ViewStateData Id="Sequence_68" sap:VirtualizedContainerService.HintSize="336,230">
         <sap:WorkflowViewStateService.ViewState>
@@ -578,7 +581,30 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Sequence_69" sap:VirtualizedContainerService.HintSize="854,916">
+      <sap2010:ViewStateData Id="Sequence_75" sap:VirtualizedContainerService.HintSize="436,646">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="If_17" sap:VirtualizedContainerService.HintSize="561,789" />
+      <sap2010:ViewStateData Id="Sequence_67" sap:VirtualizedContainerService.HintSize="583,1059">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="WindowScope_11" sap:VirtualizedContainerService.HintSize="597,1205">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_69" sap:VirtualizedContainerService.HintSize="854,1329">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -603,51 +629,36 @@
       <sap2010:ViewStateData Id="SendHotkey_75" sap:VirtualizedContainerService.HintSize="818,114" />
       <sap2010:ViewStateData Id="SendHotkey_76" sap:VirtualizedContainerService.HintSize="818,114" />
       <sap2010:ViewStateData Id="CloseWindow_5" sap:VirtualizedContainerService.HintSize="818,68" />
-      <sap2010:ViewStateData Id="UiElementExists_1" sap:VirtualizedContainerService.HintSize="314,106" />
-      <sap2010:ViewStateData Id="Sequence_70" sap:VirtualizedContainerService.HintSize="336,230">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="CommentOut_18" sap:VirtualizedContainerService.HintSize="818,308" />
+      <sap2010:ViewStateData Id="UiElementExists_1" sap:VirtualizedContainerService.HintSize="818,106" />
       <sap2010:ViewStateData Id="Click_9" sap:VirtualizedContainerService.HintSize="314,106" />
-      <sap2010:ViewStateData Id="If_13" sap:VirtualizedContainerService.HintSize="464,249" />
-      <sap2010:ViewStateData Id="Sequence_71" sap:VirtualizedContainerService.HintSize="486,373">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="CommentOut_19" sap:VirtualizedContainerService.HintSize="818,451" />
+      <sap2010:ViewStateData Id="If_13" sap:VirtualizedContainerService.HintSize="818,249" />
       <sap2010:ViewStateData Id="Click_18" sap:VirtualizedContainerService.HintSize="782,106" />
       <sap2010:ViewStateData Id="SendHotkey_78" sap:VirtualizedContainerService.HintSize="782,114" />
       <sap2010:ViewStateData Id="Click_10" sap:VirtualizedContainerService.HintSize="782,106" />
+      <sap2010:ViewStateData Id="Click_19" sap:VirtualizedContainerService.HintSize="782,106" />
       <sap2010:ViewStateData Id="UiElementExists_3" sap:VirtualizedContainerService.HintSize="782,106" />
       <sap2010:ViewStateData Id="Click_17" sap:VirtualizedContainerService.HintSize="314,106" />
       <sap2010:ViewStateData Id="If_15" sap:VirtualizedContainerService.HintSize="782,249" />
       <sap2010:ViewStateData Id="Click_13" sap:VirtualizedContainerService.HintSize="314,106" />
       <sap2010:ViewStateData Id="Click_14" sap:VirtualizedContainerService.HintSize="314,106" />
       <sap2010:ViewStateData Id="Parallel_2" sap:VirtualizedContainerService.HintSize="782,152" />
-      <sap2010:ViewStateData Id="Sequence_64" sap:VirtualizedContainerService.HintSize="804,1157">
+      <sap2010:ViewStateData Id="Sequence_64" sap:VirtualizedContainerService.HintSize="804,1303">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="WindowScope_10" sap:VirtualizedContainerService.HintSize="818,1303" />
-      <sap2010:ViewStateData Id="Sequence_63" sap:VirtualizedContainerService.HintSize="840,2682">
+      <sap2010:ViewStateData Id="WindowScope_10" sap:VirtualizedContainerService.HintSize="818,1449" />
+      <sap2010:ViewStateData Id="Sequence_63" sap:VirtualizedContainerService.HintSize="840,2424">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="OpenApplication_2" sap:VirtualizedContainerService.HintSize="854,2828" />
-      <sap2010:ViewStateData Id="Sequence_31" sap:VirtualizedContainerService.HintSize="876,7081">
+      <sap2010:ViewStateData Id="OpenApplication_2" sap:VirtualizedContainerService.HintSize="854,2570" />
+      <sap2010:ViewStateData Id="Sequence_31" sap:VirtualizedContainerService.HintSize="876,7236">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -752,14 +763,14 @@
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="CommentOut_17" sap:VirtualizedContainerService.HintSize="876,4444" />
-      <sap2010:ViewStateData Id="Sequence_40" sap:VirtualizedContainerService.HintSize="898,11689">
+      <sap2010:ViewStateData Id="Sequence_40" sap:VirtualizedContainerService.HintSize="898,11844">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Main_1" sap:VirtualizedContainerService.HintSize="938,11809" />
+      <sap2010:ViewStateData Id="Main_1" sap:VirtualizedContainerService.HintSize="938,11924" />
     </sap2010:ViewStateManager>
   </sap2010:WorkflowViewState.ViewStateManager>
 </Activity>
