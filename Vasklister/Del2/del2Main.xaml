@@ -79,6 +79,7 @@
               <Sequence DisplayName="Read from Vaskeliste" sap2010:WorkflowViewState.IdRef="Sequence_51">
                 <Sequence.Variables>
                   <Variable x:TypeArguments="sd:DataTable" Name="TopRow" />
+                  <Variable x:TypeArguments="x:String" Name="VaskelisteTableData" />
                 </Sequence.Variables>
                 <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_11" Text="[&quot;Inpath: &quot; +vaskelistepath]" />
                 <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke readXlsTable workflow" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Del2\readXlsTable.xaml">
@@ -91,7 +92,9 @@
                 </ui:InvokeWorkflowFile>
                 <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_12" Text="[&quot;Out Path: &quot; +  System.Environment.CurrentDirectory.ToString() + &quot;\ExcelTest\vaskeliste_v2.0.xlsx&quot;]" />
                 <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_40" Text="[&quot;Out Path: &quot; +  vaskelisteTable.Rows.Count.ToString]" />
-                <ui:BuildDataTable DataTable="[ny_tabell]" DisplayName="Build data table" sap2010:WorkflowViewState.IdRef="BuildDataTable_2" TableInfo="&lt;NewDataSet&gt;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xA;      &lt;xs:complexType&gt;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xA;            &lt;xs:complexType&gt;&#xA;              &lt;xs:sequence&gt;&#xA;                &lt;xs:element name=&quot;debitor_ident&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Sak_Nr&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Kommune_Nr&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;FNR&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;_1_inntekt&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;_1_isProcentTrekk&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;_1_tbNrEllerPct&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;_2_numVoksne&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;_23_isDelUtgift&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;_2_barn05&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;_2_barn610&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;_2_barn1118&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;_3_region&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;_4_kontantstøtte&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;_4_barnetrygd&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;_4_andreUtgift&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;_4_orgNr&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;_4_firmaNavn&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;_4_firmaPostAddresse&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;_4_firmaPostNr&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;_5_ErrorCode&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;_1_status_1_message&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;_2_status_1_message&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;_3_status_1_message&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;_x0032__Op_prosenttrekk&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;_3_beløp&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;              &lt;/xs:sequence&gt;&#xA;            &lt;/xs:complexType&gt;&#xA;          &lt;/xs:element&gt;&#xA;        &lt;/xs:choice&gt;&#xA;      &lt;/xs:complexType&gt;&#xA;    &lt;/xs:element&gt;&#xA;  &lt;/xs:schema&gt;&#xA;  &lt;TableName /&gt;&#xA;&lt;/NewDataSet&gt;" />
+                <ui:OutputDataTable DataTable="[vaskelisteTable]" DisplayName="Output data table" sap2010:WorkflowViewState.IdRef="OutputDataTable_1" Text="[vaskelisteTableData]" />
+                <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_41" Text="[&quot;The table is &quot; + VaskelisteTableData]" />
+                <ui:BuildDataTable DataTable="[ny_tabell]" DisplayName="Build data table" sap2010:WorkflowViewState.IdRef="BuildDataTable_2" TableInfo="&lt;NewDataSet&gt;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xA;      &lt;xs:complexType&gt;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xA;            &lt;xs:complexType&gt;&#xA;              &lt;xs:sequence&gt;&#xA;                &lt;xs:element name=&quot;debitor_ident&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Sak_Nr&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Kommune_Nr&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;FNR&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;_1_inntekt&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;_1_isProcentTrekk&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;_1_tbNrEllerPct&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;_2_numVoksne&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;_23_isDelUtgift&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;_2_barn05&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;_2_barn610&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;_2_barn1118&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;_3_region&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;_4_kontantstøtte&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;_4_barnetrygd&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;_4_andreUtgift&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;_4_orgNr&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;_4_firmaNavn&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;_4_firmaPostAddresse&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;_4_firmaPostNr&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;_5_ErrorCode&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;_1_status_1_message&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;_2_status_1_message&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;_3_status_1_message&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;_x0032__Op_prosenttrekk&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;_3_beløp&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;              &lt;/xs:sequence&gt;&#xA;            &lt;/xs:complexType&gt;&#xA;          &lt;/xs:element&gt;&#xA;        &lt;/xs:choice&gt;&#xA;      &lt;/xs:complexType&gt;&#xA;    &lt;/xs:element&gt;&#xA;  &lt;/xs:schema&gt;&#xA;&lt;/NewDataSet&gt;" />
                 <ui:ClearDataTable DataTable="[ny_tabell]" DisplayName="Clear data table" sap2010:WorkflowViewState.IdRef="ClearDataTable_1" />
                 <ui:CommentOut DisplayName="Comment out" sap2010:WorkflowViewState.IdRef="CommentOut_2">
                   <ui:CommentOut.Body>
@@ -679,15 +682,24 @@
                                           <Sequence DisplayName="Skriv til fil" sap2010:WorkflowViewState.IdRef="Sequence_96">
                                             <Sequence.Variables>
                                               <Variable x:TypeArguments="x:Boolean" Name="Fil2_finnes" />
+                                              <Variable x:TypeArguments="x:String" Name="ny_tabell_string" />
                                             </Sequence.Variables>
                                             <ui:PathExists DisplayName="Path exists" Exists="[Fil2_finnes]" sap2010:WorkflowViewState.IdRef="PathExists_1" Path="W:\rpa\Vasklister\Excel\vaskeliste_v2.0.xlsx" PathType="File" />
                                             <If Condition="[Fil2_finnes]" DisplayName="Slett fil om finnes fra før" sap2010:WorkflowViewState.IdRef="If_2">
                                               <If.Then>
                                                 <Sequence sap2010:WorkflowViewState.IdRef="Sequence_100">
-                                                  <ui:Delete ContinueOnError="{x:Null}" sap2010:WorkflowViewState.IdRef="Delete_1" Path="W:\rpa\Vasklister\Excel\vaskeliste_v2.0.xlsx" />
+                                                  <ui:CommentOut DisplayName="Comment out" sap2010:WorkflowViewState.IdRef="CommentOut_4">
+                                                    <ui:CommentOut.Body>
+                                                      <Sequence DisplayName="Ignored Activities" sap2010:WorkflowViewState.IdRef="Sequence_132">
+                                                        <ui:Delete ContinueOnError="{x:Null}" sap2010:WorkflowViewState.IdRef="Delete_1" Path="W:\rpa\Vasklister\Excel\vaskeliste_v2.0.xlsx" />
+                                                      </Sequence>
+                                                    </ui:CommentOut.Body>
+                                                  </ui:CommentOut>
                                                 </Sequence>
                                               </If.Then>
                                             </If>
+                                            <ui:OutputDataTable DataTable="[ny_tabell]" DisplayName="Output data table" sap2010:WorkflowViewState.IdRef="OutputDataTable_2" Text="[ny_tabell_string]" />
+                                            <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_42" Text="[&quot;final nytable is &quot; + ny_tabell_string]" />
                                             <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Excel application scope" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_7" WorkbookPath="W:\rpa\Vasklister\Excel\vaskeliste_v2.0.xlsx">
                                               <ui:ExcelApplicationScope.Body>
                                                 <ActivityAction x:TypeArguments="ui:WorkbookApplication">
@@ -695,6 +707,13 @@
                                                     <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
                                                   </ActivityAction.Argument>
                                                   <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_95">
+                                                    <ui:ExcelWriteCell Cell="A1:X300" DisplayName="Write Value" sap2010:WorkflowViewState.IdRef="ExcelWriteCell_1" SheetName="Ark1">
+                                                      <ui:ExcelWriteCell.Text>
+                                                        <InArgument x:TypeArguments="x:String">
+                                                          <Literal x:TypeArguments="x:String" Value="" />
+                                                        </InArgument>
+                                                      </ui:ExcelWriteCell.Text>
+                                                    </ui:ExcelWriteCell>
                                                     <ui:ExcelWriteRange AddHeaders="True" DataTable="[ny_tabell]" DisplayName="Write Range" sap2010:WorkflowViewState.IdRef="ExcelWriteRange_7" SheetName="Ark1" StartingCell="A1" />
                                                   </Sequence>
                                                 </ActivityAction>
@@ -730,7 +749,7 @@
       <x:Reference>__ReferenceID0</x:Reference>
       <x:Reference>__ReferenceID9</x:Reference>
     </Flowchart>
-    <sads:DebugSymbol.Symbol>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</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>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</sads:DebugSymbol.Symbol>
   </Sequence>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
@@ -738,6 +757,8 @@
       <sap2010:ViewStateData Id="InvokeWorkflowFile_2" sap:VirtualizedContainerService.HintSize="452,87" />
       <sap2010:ViewStateData Id="WriteLine_12" sap:VirtualizedContainerService.HintSize="452,59" />
       <sap2010:ViewStateData Id="WriteLine_40" sap:VirtualizedContainerService.HintSize="452,59" />
+      <sap2010:ViewStateData Id="OutputDataTable_1" sap:VirtualizedContainerService.HintSize="452,22" />
+      <sap2010:ViewStateData Id="WriteLine_41" sap:VirtualizedContainerService.HintSize="452,59" />
       <sap2010:ViewStateData Id="BuildDataTable_2" sap:VirtualizedContainerService.HintSize="452,59" />
       <sap2010:ViewStateData Id="ClearDataTable_1" sap:VirtualizedContainerService.HintSize="452,22" />
       <sap2010:ViewStateData Id="ExcelWriteRange_2" sap:VirtualizedContainerService.HintSize="314,87" />
@@ -757,7 +778,7 @@
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="CommentOut_2" sap:VirtualizedContainerService.HintSize="452,522" />
-      <sap2010:ViewStateData Id="Sequence_51" sap:VirtualizedContainerService.HintSize="474,1231">
+      <sap2010:ViewStateData Id="Sequence_51" sap:VirtualizedContainerService.HintSize="474,1392">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -924,7 +945,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="TryCatch_7" sap:VirtualizedContainerService.HintSize="601,3591">
+      <sap2010:ViewStateData Id="TryCatch_7" sap:VirtualizedContainerService.HintSize="200,49">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -1204,26 +1225,37 @@
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="TryCatch_6" sap:VirtualizedContainerService.HintSize="200,49" />
-      <sap2010:ViewStateData Id="PathExists_1" sap:VirtualizedContainerService.HintSize="464,88" />
+      <sap2010:ViewStateData Id="PathExists_1" sap:VirtualizedContainerService.HintSize="563,88" />
       <sap2010:ViewStateData Id="Delete_1" sap:VirtualizedContainerService.HintSize="200,22" />
-      <sap2010:ViewStateData Id="Sequence_100" sap:VirtualizedContainerService.HintSize="222,146">
+      <sap2010:ViewStateData Id="Sequence_132" sap:VirtualizedContainerService.HintSize="222,146">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="If_2" sap:VirtualizedContainerService.HintSize="464,289" />
+      <sap2010:ViewStateData Id="CommentOut_4" sap:VirtualizedContainerService.HintSize="416,224" />
+      <sap2010:ViewStateData Id="Sequence_100" sap:VirtualizedContainerService.HintSize="438,348">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="If_2" sap:VirtualizedContainerService.HintSize="563,491" />
+      <sap2010:ViewStateData Id="OutputDataTable_2" sap:VirtualizedContainerService.HintSize="563,22" />
+      <sap2010:ViewStateData Id="WriteLine_42" sap:VirtualizedContainerService.HintSize="563,59" />
+      <sap2010:ViewStateData Id="ExcelWriteCell_1" sap:VirtualizedContainerService.HintSize="314,87" />
       <sap2010:ViewStateData Id="ExcelWriteRange_7" sap:VirtualizedContainerService.HintSize="314,87" />
-      <sap2010:ViewStateData Id="Sequence_95" sap:VirtualizedContainerService.HintSize="336,211">
+      <sap2010:ViewStateData Id="Sequence_95" sap:VirtualizedContainerService.HintSize="336,338">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="ExcelApplicationScope_7" sap:VirtualizedContainerService.HintSize="464,320" />
-      <sap2010:ViewStateData Id="Sequence_96" sap:VirtualizedContainerService.HintSize="200,49">
+      <sap2010:ViewStateData Id="ExcelApplicationScope_7" sap:VirtualizedContainerService.HintSize="563,447" />
+      <sap2010:ViewStateData Id="Sequence_96" sap:VirtualizedContainerService.HintSize="585,1391">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
