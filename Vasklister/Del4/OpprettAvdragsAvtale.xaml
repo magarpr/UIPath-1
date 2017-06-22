@@ -1,4 +1,4 @@
-﻿<Activity mc:Ignorable="sap sap2010 sads" x:Class="OpprettAvdragsAvtale" this:OpprettAvdragsAvtale.terminBeløp="12"
+﻿<Activity mc:Ignorable="sap sap2010 sads" x:Class="OpprettAvdragsAvtale" this:OpprettAvdragsAvtale.terminBeløp="12" this:OpprettAvdragsAvtale.trekkkilde="AG"
  xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities"
  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
  xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities"
@@ -7,7 +7,6 @@
  xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation"
  xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib"
  xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib"
- xmlns:sd="clr-namespace:System.Drawing;assembly=System.Drawing"
  xmlns:this="clr-namespace:"
  xmlns:ui="http://schemas.uipath.com/workflow/activities"
  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
@@ -293,39 +292,6 @@
         </ui:WindowScope.Body>
       </ui:WindowScope>
     </Sequence>
-    <Sequence DisplayName="VelgForfallsdato" sap2010:WorkflowViewState.IdRef="Sequence_96">
-      <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" DisplayName="Attach Window 'PredatorN Tfrmpreda'" sap2010:WorkflowViewState.IdRef="WindowScope_73" InformativeScreenshot="de4a0569bce54807380f5001dbc8b73e" Selector="&lt;wnd app='predator.exe' cls='TfrmPredator' title='PredatorNO - [Avdrag]' /&gt;">
-        <ui:WindowScope.Body>
-          <ActivityAction x:TypeArguments="x:Object">
-            <ActivityAction.Argument>
-              <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
-            </ActivityAction.Argument>
-            <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_114">
-              <ui:ClickOCRText ContinueOnError="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click OCR text 'TGroupBox'" sap2010:WorkflowViewState.IdRef="ClickOCRText_8" KeyModifiers="None" MouseButton="BTN_LEFT" Occurrence="1" SendWindowMessages="False" Text="Nesta forfallsdato">
-                <ui:ClickOCRText.CursorPosition>
-                  <ui:CursorPosition OffsetX="39" OffsetY="1" Position="TopRight" />
-                </ui:ClickOCRText.CursorPosition>
-                <ui:ClickOCRText.OCREngine>
-                  <ActivityFunc x:TypeArguments="sd:Image, scg:IEnumerable(scg:KeyValuePair(sd:Rectangle, x:String))">
-                    <ActivityFunc.Argument>
-                      <DelegateInArgument x:TypeArguments="sd:Image" Name="Image" />
-                    </ActivityFunc.Argument>
-                    <ui:GoogleOCR FilterRegion="{x:Null}" Text="{x:Null}" AllowedCharacters="" DeniedCharacters="" DisplayName="Google OCR" ExtractWords="True" sap2010:WorkflowViewState.IdRef="GoogleOCR_10" Image="[Image]" Invert="False" Language="eng" Scale="2" />
-                  </ActivityFunc>
-                </ui:ClickOCRText.OCREngine>
-                <ui:ClickOCRText.Target>
-                  <ui:Target Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="da87c1b78e61101402825717d10a9f62" Selector="&lt;wnd aaname='Arbeidsområde' cls='MDIClient' /&gt;&lt;wnd cls='TfrmAvdrag' title='Avdrag' /&gt;&lt;wnd cls='TGroupBox' title='Avdragsordning ' /&gt;&lt;wnd aaname='Avdrag' cls='TTabSheet' title='A&amp;amp;vdrag' /&gt;&lt;wnd aaname='Giro' cls='TGroupBox' title='&amp;amp;Giro' /&gt;" WaitForReady="INTERACTIVE">
-                    <ui:Target.ClippingRegion>
-                      <ui:Region Rectangle="173, 10, 82, 27" />
-                    </ui:Target.ClippingRegion>
-                  </ui:Target>
-                </ui:ClickOCRText.Target>
-              </ui:ClickOCRText>
-            </Sequence>
-          </ActivityAction>
-        </ui:WindowScope.Body>
-      </ui:WindowScope>
-    </Sequence>
     <Sequence DisplayName="TasteInnForfallsdato" sap2010:WorkflowViewState.IdRef="Sequence_97">
       <Switch x:TypeArguments="x:String" DisplayName="Switch&lt;string&gt;" Expression="[trekkkilde]" sap2010:WorkflowViewState.IdRef="Switch`1_4">
         <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" x:Key="AG" DisplayName="Attach Window 'PredatorN Tfrmpreda'" sap2010:WorkflowViewState.IdRef="WindowScope_78" InformativeScreenshot="de4a0569bce54807380f5001dbc8b73e" Selector="&lt;wnd app='predator.exe' cls='TfrmPredator' title='PredatorNO - [Avdrag]' /&gt;">
@@ -337,7 +303,7 @@
               <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_127">
                 <ui:SetValue ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Set Text 'TDatoEdit'" sap2010:WorkflowViewState.IdRef="SetValue_4" Text="[new DateTime(DateTime.Today.Year,DateTime.Today.AddMonths(2).Month,1).ToString(&quot;dd.MM.yyyy&quot;)]">
                   <ui:SetValue.Target>
-                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="215185641f72de10ee283ebbb0ea1079" Selector="&lt;wnd aaname='Arbeidsområde' cls='MDIClient' /&gt;&lt;wnd cls='TfrmAvdrag' title='Avdrag' /&gt;&lt;wnd cls='TGroupBox' title='Avdragsordning ' /&gt;&lt;wnd aaname='Avdrag' cls='TTabSheet' title='A&amp;amp;vdrag' /&gt;&lt;wnd aaname='Giro' cls='TGroupBox' title='&amp;amp;Giro' /&gt;&lt;wnd cls='TDatoEdit' idx='3' /&gt;" WaitForReady="INTERACTIVE" />
+                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="a2b5e315c30b9012bc75c94820af4c4d" Selector="&lt;wnd aaname='Arbeidsområde' cls='MDIClient' /&gt;&lt;wnd cls='TfrmAvdrag' title='Avdrag' /&gt;&lt;wnd cls='TGroupBox' title='Avdragsordning ' /&gt;&lt;wnd aaname='Avdrag' cls='TTabSheet' title='A&amp;amp;vdrag' /&gt;&lt;wnd aaname='Giro' cls='TGroupBox' title='&amp;amp;Giro' /&gt;&lt;wnd cls='TDatoEdit' idx='3' /&gt;" WaitForReady="INTERACTIVE" />
                   </ui:SetValue.Target>
                 </ui:SetValue>
               </Sequence>
@@ -353,7 +319,7 @@
               <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_128">
                 <ui:SetValue ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Set Text 'TDatoEdit'" sap2010:WorkflowViewState.IdRef="SetValue_5" Text="[new DateTime(DateTime.Today.Year,DateTime.Today.AddMonths(2).Month,5).ToString(&quot;dd.MM.yyyy&quot;)]">
                   <ui:SetValue.Target>
-                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="215185641f72de10ee283ebbb0ea1079" Selector="&lt;wnd aaname='Arbeidsområde' cls='MDIClient' /&gt;&lt;wnd cls='TfrmAvdrag' title='Avdrag' /&gt;&lt;wnd cls='TGroupBox' title='Avdragsordning ' /&gt;&lt;wnd aaname='Avdrag' cls='TTabSheet' title='A&amp;amp;vdrag' /&gt;&lt;wnd aaname='Giro' cls='TGroupBox' title='&amp;amp;Giro' /&gt;&lt;wnd cls='TDatoEdit' idx='3' /&gt;" WaitForReady="INTERACTIVE" />
+                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="a2b5e315c30b9012bc75c94820af4c4d" Selector="&lt;wnd aaname='Arbeidsområde' cls='MDIClient' /&gt;&lt;wnd cls='TfrmAvdrag' title='Avdrag' /&gt;&lt;wnd cls='TGroupBox' title='Avdragsordning ' /&gt;&lt;wnd aaname='Avdrag' cls='TTabSheet' title='A&amp;amp;vdrag' /&gt;&lt;wnd aaname='Giro' cls='TGroupBox' title='&amp;amp;Giro' /&gt;&lt;wnd cls='TDatoEdit' idx='3' /&gt;" WaitForReady="INTERACTIVE" />
                   </ui:SetValue.Target>
                 </ui:SetValue>
               </Sequence>
@@ -369,7 +335,7 @@
               <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_129">
                 <ui:SetValue ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Set Text 'TDatoEdit'" sap2010:WorkflowViewState.IdRef="SetValue_6" Text="[new DateTime(DateTime.Today.Year,DateTime.Today.AddMonths(2).Month,5).ToString(&quot;dd.MM.yyyy&quot;)]">
                   <ui:SetValue.Target>
-                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="215185641f72de10ee283ebbb0ea1079" Selector="&lt;wnd aaname='Arbeidsområde' cls='MDIClient' /&gt;&lt;wnd cls='TfrmAvdrag' title='Avdrag' /&gt;&lt;wnd cls='TGroupBox' title='Avdragsordning ' /&gt;&lt;wnd aaname='Avdrag' cls='TTabSheet' title='A&amp;amp;vdrag' /&gt;&lt;wnd aaname='Giro' cls='TGroupBox' title='&amp;amp;Giro' /&gt;&lt;wnd cls='TDatoEdit' idx='3' /&gt;" WaitForReady="INTERACTIVE" />
+                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="a2b5e315c30b9012bc75c94820af4c4d" Selector="&lt;wnd aaname='Arbeidsområde' cls='MDIClient' /&gt;&lt;wnd cls='TfrmAvdrag' title='Avdrag' /&gt;&lt;wnd cls='TGroupBox' title='Avdragsordning ' /&gt;&lt;wnd aaname='Avdrag' cls='TTabSheet' title='A&amp;amp;vdrag' /&gt;&lt;wnd aaname='Giro' cls='TGroupBox' title='&amp;amp;Giro' /&gt;&lt;wnd cls='TDatoEdit' idx='3' /&gt;" WaitForReady="INTERACTIVE" />
                   </ui:SetValue.Target>
                 </ui:SetValue>
               </Sequence>
@@ -388,7 +354,12 @@
             <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_104">
               <ui:TypeInto DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Type into 'TTabSheet'" EmptyField="False" sap2010:WorkflowViewState.IdRef="TypeInto_12" SendWindowMessages="False" SimulateType="False" Text="%[k(tab)]">
                 <ui:TypeInto.Target>
-                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="f9a8db647eede25e3382a0740f34795b" Selector="&lt;wnd aaname='Arbeidsområde' cls='MDIClient' /&gt;&lt;wnd cls='TfrmAvdrag' title='Avdrag' /&gt;&lt;wnd cls='TGroupBox' title='Avdragsordning ' /&gt;&lt;wnd aaname='Avdrag' cls='TTabSheet' title='A&amp;amp;vdrag' /&gt;" WaitForReady="INTERACTIVE" />
+                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="3da90b8acb14ffae08763dc67bbe8f96" Selector="&lt;wnd aaname='Arbeidsområde' cls='MDIClient' /&gt;&lt;wnd cls='TfrmAvdrag' title='Avdrag' /&gt;&lt;wnd cls='TGroupBox' title='Avdragsordning ' /&gt;&lt;wnd aaname='Avdrag' cls='TTabSheet' title='A&amp;amp;vdrag' /&gt;&lt;wnd aaname='Giro' cls='TGroupBox' title='&amp;amp;Giro' /&gt;&lt;wnd cls='TDatoEdit' idx='3' /&gt;" WaitForReady="INTERACTIVE" />
+                </ui:TypeInto.Target>
+              </ui:TypeInto>
+              <ui:TypeInto DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Type into 'TTabSheet'" EmptyField="False" sap2010:WorkflowViewState.IdRef="TypeInto_21" SendWindowMessages="False" SimulateType="False" Text="%[k(tab)]">
+                <ui:TypeInto.Target>
+                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="785b50e058b4bdb2f58d542d49fbc8d9" Selector="&lt;wnd aaname='Arbeidsområde' cls='MDIClient' /&gt;&lt;wnd cls='TfrmAvdrag' title='Avdrag' /&gt;&lt;wnd cls='TGroupBox' title='Avdragsordning ' /&gt;&lt;wnd aaname='Avdrag' cls='TTabSheet' title='A&amp;amp;vdrag' /&gt;&lt;wnd aaname='Giro' cls='TGroupBox' title='&amp;amp;Giro' /&gt;&lt;wnd cls='TDatoEdit' idx='1' /&gt;" WaitForReady="INTERACTIVE" />
                 </ui:TypeInto.Target>
               </ui:TypeInto>
               <ui:SetValue ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Set Text 'TFloatEdit'" sap2010:WorkflowViewState.IdRef="SetValue_3" Text="[terminBeløp]">
@@ -419,17 +390,37 @@
                   <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="f9de81e5aae9a721d89514e8e91c3ae8" Selector="&lt;wnd aaname='Arbeidsområde' cls='MDIClient' /&gt;&lt;wnd cls='TfrmAvdrag' title='Avdrag' /&gt;&lt;wnd cls='TGroupBox' title='Avdragsordning ' /&gt;&lt;wnd aaname='Avdrag' cls='TTabSheet' title='A&amp;amp;vdrag' /&gt;&lt;wnd aaname='Termin' cls='TGroupBox' title='T&amp;amp;ermin' /&gt;&lt;wnd cls='TFloatEdit' idx='1' /&gt;" WaitForReady="INTERACTIVE" />
                 </ui:TypeInto.Target>
               </ui:TypeInto>
-              <ui:SendHotkey DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Send hotkey 'TfrmAvdrag'" EmptyField="False" sap2010:WorkflowViewState.IdRef="SendHotkey_5" Key="s" KeyModifiers="Ctrl" SendWindowMessages="False" SpecialKey="False">
-                <ui:SendHotkey.Target>
-                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="44cd61895b9469907675a12d61a6562b" Selector="&lt;wnd aaname='Arbeidsområde' cls='MDIClient' /&gt;&lt;wnd cls='TfrmAvdrag' title='Avdrag' /&gt;" WaitForReady="INTERACTIVE" />
-                </ui:SendHotkey.Target>
-              </ui:SendHotkey>
+              <ui:TypeInto DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Type into 'TFloatEdit'" EmptyField="False" sap2010:WorkflowViewState.IdRef="TypeInto_22" SendWindowMessages="False" SimulateType="False" Text="%[k(tab)]">
+                <ui:TypeInto.Target>
+                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="44cf5bb785ab2b26db6a10c20f973e57" Selector="&lt;wnd aaname='Arbeidsområde' cls='MDIClient' /&gt;&lt;wnd cls='TfrmAvdrag' title='Avdrag' /&gt;&lt;wnd cls='TGroupBox' title='Avdragsordning ' /&gt;&lt;wnd aaname='Avdrag' cls='TTabSheet' title='A&amp;amp;vdrag' /&gt;&lt;wnd aaname='Termin' cls='TGroupBox' title='T&amp;amp;ermin' /&gt;&lt;wnd cls='TDatoEdit' /&gt;" WaitForReady="INTERACTIVE" />
+                </ui:TypeInto.Target>
+              </ui:TypeInto>
+              <ui:TypeInto DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Type into 'TFloatEdit'" EmptyField="False" sap2010:WorkflowViewState.IdRef="TypeInto_23" SendWindowMessages="False" SimulateType="False" Text="%[k(tab)]">
+                <ui:TypeInto.Target>
+                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="0e07328581ddcd194ea9ba9c872e5513" Selector="&lt;wnd aaname='Arbeidsområde' cls='MDIClient' /&gt;&lt;wnd cls='TfrmAvdrag' title='Avdrag' /&gt;&lt;wnd cls='TGroupBox' title='Avdragsordning ' /&gt;&lt;wnd aaname='Avdrag' cls='TTabSheet' title='A&amp;amp;vdrag' /&gt;&lt;wnd aaname='Termin' cls='TGroupBox' title='T&amp;amp;ermin' /&gt;&lt;wnd cls='TFloatEdit' idx='2' /&gt;" WaitForReady="INTERACTIVE" />
+                </ui:TypeInto.Target>
+              </ui:TypeInto>
+              <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'TAdvGlowButton'" sap2010:WorkflowViewState.IdRef="Click_3" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
+                <ui:Click.CursorPosition>
+                  <ui:CursorPosition Position="Center">
+                    <ui:CursorPosition.OffsetX>
+                      <InArgument x:TypeArguments="x:Int32" />
+                    </ui:CursorPosition.OffsetX>
+                    <ui:CursorPosition.OffsetY>
+                      <InArgument x:TypeArguments="x:Int32" />
+                    </ui:CursorPosition.OffsetY>
+                  </ui:CursorPosition>
+                </ui:Click.CursorPosition>
+                <ui:Click.Target>
+                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="fedeaf45e1d60df81efdf95616ad9c2d" Selector="&lt;wnd cls='TAdvGlowButton' title='Lagre' /&gt;" WaitForReady="INTERACTIVE" />
+                </ui:Click.Target>
+              </ui:Click>
             </Sequence>
           </ActivityAction>
         </ui:WindowScope.Body>
       </ui:WindowScope>
     </Sequence>
-    <sads:DebugSymbol.Symbol>dzBXOlxycGFcVmFza2xpc3RlclxEZWw0XE9wcHJldHRBdmRyYWdzQXZ0YWxlLnhhbWx4AXABcwECZQOxAw4CAQFmBXUWAgF3dgWaARACAWubAQWVAhACAUOWAgWnAhACATyoAgXIAhACAS/JAgX8AhACARn9AgWTAxACAQ6UAwWvAxACAQJmlQJm6AICAXtsC3IWAgF4dweZARgCAWycAQeUAhgCAUSXAgemAhgCAT2pAgfHAhgCATDKAgf7AhACARr+AgeSAxgCAQ+VAweuAxgCAQNtDXEdAgF5d5cCd+kCAgF2fQ2WARgCAW2cAZcCnAHqAgIBaqIBDZECGAIBRZcClwKXAuoCAgFCnQINowIYAgE+qQKXAqkC6gICATuvAg3EAhgCATHKAljKAmYCARvLAgnaAhoCASnbAgnqAhoCASPrAgn6AhoCAR3+ApcC/gLqAgIBGIQDDY8DGAIBEJUDlwKVA+oCAgENmwMNqwMYAgEEb6ABb4MCAgF6fg+VARoCAW6jAQ+QAhgCAUaeAg+iAh0CAT+wAg/DAiECATLLAqQCywL3AgIBLtECD9cCGgIBKtsCpwLbAvoCAgEo4QIP5wIaAgEk6wKkAusC9wICASLxAg/3AhoCAR6FAw+JAx0CARWKAw+OAx0CARGcAw+gAx0CAQqhAw+lAx0CAQemAw+qAx8CAQV/EZQBIgIBb6MBYKMBbgIBR6QBEccBIgIBX8gBEesBIgIBVOwBEY8CIgIBSaACogGgAroCAgFBngKmAp4CsQICAUCwArICsALGAgIBN7ACjgKwApECAgE2vQKIAb0CpgMCATqyAi6yAjICATiyAjuyAj4CATm5AhW5AooCAgEz0gIR1gIfAgEr4gIR5gIfAgEl8gIR9gIfAgEfhwOiAYcD/wICAReFA6YChQOxAgIBFooDugGKA8kBAgESjAOiAYwD6gMCARSeA6IBngPqAwIBDJwDpwKcA7ICAgELowOiAaMD6gMCAQmhA6cCoQOyAgIBCKgDogGoA4UCAgEGf6ECf/MCAgF1hQEXkQEiAgFwpAGsAqQB/wICAWmqARfEASICAWDIAa8CyAGCAwIBXs4BF+gBIgIBVewBrALsAf8CAgFT8gEXjAIiAgFKuQLWAbkC3wECATTSArsB0gKlAgIBLNQCpAHUAucDAgEt4gK7AeICpQICASbkAqQB5ALnAwIBJ/ICuwHyAqUCAgEg9AKkAfQC5wMCASGGARmQASkCAXGrARm5ASkCAWa6ARm+AScCAWO/ARnDASkCAWHPARndASkCAVveARniAScCAVjjARnnASkCAVbzARmBAikCAVCCAhmGAicCAU2HAhmLAikCAUuLAUeLAUwCAXSIATiIATsCAXKIAUSIAUcCAXOrAcsBqwHWAQIBZ7cBrAG3Ae8DAgFovAGsAbwB7wMCAWW6AbACugGzAgIBZMEBrAHBAe8DAgFizwHLAc8B1gECAVzbAawB2wHvAwIBXeABrAHgAe8DAgFa3gGwAt4BswICAVnlAawB5QHvAwIBV/MBywHzAdYBAgFR/wGsAf8B7wMCAVKEAqwBhALvAwIBT4ICsAKCArMCAgFOiQKsAYkC7wMCAUw=</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>dzBXOlxycGFcVmFza2xpc3RlclxEZWw0XE9wcHJldHRBdmRyYWdzQXZ0YWxlLnhhbWx2AZoBAZ0BAQMBcAFzAQJkA6gDDgIBAWUFdBYCAXN1BZkBEAIBZ5oBBZQCEAIBP5UCBaYCEAIBOKcCBdoCEAIBItsCBfYCEAIBFPcCBaYDEAIBAmWVAmXoAgIBd2sLcRYCAXR2B5gBGAIBaJsBB5MCGAIBQJYCB6UCGAIBOagCB9kCEAIBI9wCB/UCGAIBFfgCB6UDGAIBA2wNcB0CAXV2lwJ26QICAXJ8DZUBGAIBaZsBlwKbAeoCAgFmoQENkAIYAgFBlgKXApYC6gICAT6cAg2iAhgCATqoAlioAmYCASSpAgm4AhoCATK5AgnIAhoCASzJAgnYAhoCASbcApcC3ALqAgIBIeICDfICGAIBFvgClwL4AuoCAgET/gINogMYAgEEbqABboMCAgF2fQ+UARoCAWqiAQ+PAhgCAUKdAg+hAh0CATupAqQCqQL3AgIBN68CD7UCGgIBM7kCpwK5AvoCAgExvwIPxQIaAgEtyQKkAskC9wICASvPAg/VAhoCASfjAg/nAh0CAR7oAg/sAh0CARvtAg/xAh0CARf/Ag+DAx0CARCEAw+IAx0CAQ2JAw+NAx0CAQqOAw+SAx0CAQeTAw+hAxoCAQV+EZMBIgIBa6IBYKIBbgIBQ6MBEcYBIgIBW8cBEeoBIgIBUOsBEY4CIgIBRZ8CogGfAroCAgE9nQKmAp0CsQICATywAhG0Ah8CATTAAhHEAh8CAS7QAhHUAh8CASjlAqIB5QLlAwIBIOMCpgLjArECAgEf6gKiAeoC5QMCAR3oAqYC6AKxAgIBHO0CugHtAskBAgEY7wKiAe8C6gMCARqBA6IBgQPqAwIBEv8CpwL/ArICAgERhgOiAYYD6gMCAQ+EA6cChAOyAgIBDosDogGLA+EDAgEMiQOnAokDsgICAQuQA6IBkAPqAwIBCY4DpwKOA7ICAgEInwOiAZ8D1AECAQZ+oQJ+8wICAXGEAReQASICAWyjAawCowH/AgIBZakBF8MBIgIBXMcBrwLHAYIDAgFazQEX5wEiAgFR6wGsAusB/wICAU/xAReLAiICAUawArsBsAKlAgIBNbICpAGyAucDAgE2wAK7AcACpQICAS/CAqQBwgLnAwIBMNACuwHQAqUCAgEp0gKkAdIC5wMCASqFARmPASkCAW2qARm4ASkCAWK5ARm9AScCAV++ARnCASkCAV3OARncASkCAVfdARnhAScCAVTiARnmASkCAVLyARmAAikCAUyBAhmFAicCAUmGAhmKAikCAUeKAUeKAUwCAXCHATiHATsCAW6HAUSHAUcCAW+qAcsBqgHWAQIBY7YBrAG2Ae8DAgFkuwGsAbsB7wMCAWG5AbACuQGzAgIBYMABrAHAAe8DAgFezgHLAc4B1gECAVjaAawB2gHvAwIBWd8BrAHfAe8DAgFW3QGwAt0BswICAVXkAawB5AHvAwIBU/IBywHyAdYBAgFN/gGsAf4B7wMCAU6DAqwBgwLvAwIBS4ECsAKBArMCAgFKiAKsAYgC7wMCAUg=</sads:DebugSymbol.Symbol>
   </Sequence>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
@@ -538,23 +529,6 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="GoogleOCR_10" sap:VirtualizedContainerService.HintSize="200,22" />
-      <sap2010:ViewStateData Id="ClickOCRText_8" sap:VirtualizedContainerService.HintSize="314,201" />
-      <sap2010:ViewStateData Id="Sequence_114" sap:VirtualizedContainerService.HintSize="336,325">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="WindowScope_73" sap:VirtualizedContainerService.HintSize="414,471" />
-      <sap2010:ViewStateData Id="Sequence_96" sap:VirtualizedContainerService.HintSize="531,595">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="SetValue_4" sap:VirtualizedContainerService.HintSize="314,134" />
       <sap2010:ViewStateData Id="Sequence_127" sap:VirtualizedContainerService.HintSize="336,258">
         <sap:WorkflowViewStateService.ViewState>
@@ -582,8 +556,8 @@
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="WindowScope_80" sap:VirtualizedContainerService.HintSize="414,404" />
-      <sap2010:ViewStateData Id="Switch`1_4" sap:VirtualizedContainerService.HintSize="473,174" />
-      <sap2010:ViewStateData Id="Sequence_97" sap:VirtualizedContainerService.HintSize="531,298">
+      <sap2010:ViewStateData Id="Switch`1_4" sap:VirtualizedContainerService.HintSize="473,623" />
+      <sap2010:ViewStateData Id="Sequence_97" sap:VirtualizedContainerService.HintSize="531,747">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -591,16 +565,17 @@
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="TypeInto_12" sap:VirtualizedContainerService.HintSize="314,134" />
+      <sap2010:ViewStateData Id="TypeInto_21" sap:VirtualizedContainerService.HintSize="314,134" />
       <sap2010:ViewStateData Id="SetValue_3" sap:VirtualizedContainerService.HintSize="314,134" />
-      <sap2010:ViewStateData Id="Sequence_104" sap:VirtualizedContainerService.HintSize="336,432">
+      <sap2010:ViewStateData Id="Sequence_104" sap:VirtualizedContainerService.HintSize="336,606">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="WindowScope_66" sap:VirtualizedContainerService.HintSize="414,578" />
-      <sap2010:ViewStateData Id="Sequence_103" sap:VirtualizedContainerService.HintSize="531,702">
+      <sap2010:ViewStateData Id="WindowScope_66" sap:VirtualizedContainerService.HintSize="414,752" />
+      <sap2010:ViewStateData Id="Sequence_103" sap:VirtualizedContainerService.HintSize="531,876">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -609,30 +584,32 @@
       </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="TypeInto_13" sap:VirtualizedContainerService.HintSize="314,134" />
       <sap2010:ViewStateData Id="TypeInto_14" sap:VirtualizedContainerService.HintSize="314,134" />
-      <sap2010:ViewStateData Id="SendHotkey_5" sap:VirtualizedContainerService.HintSize="314,152" />
-      <sap2010:ViewStateData Id="Sequence_107" sap:VirtualizedContainerService.HintSize="336,624">
+      <sap2010:ViewStateData Id="TypeInto_22" sap:VirtualizedContainerService.HintSize="314,134" />
+      <sap2010:ViewStateData Id="TypeInto_23" sap:VirtualizedContainerService.HintSize="314,134" />
+      <sap2010:ViewStateData Id="Click_3" sap:VirtualizedContainerService.HintSize="314,106" />
+      <sap2010:ViewStateData Id="Sequence_107" sap:VirtualizedContainerService.HintSize="336,926">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="WindowScope_67" sap:VirtualizedContainerService.HintSize="414,770" />
-      <sap2010:ViewStateData Id="Sequence_106" sap:VirtualizedContainerService.HintSize="531,894">
+      <sap2010:ViewStateData Id="WindowScope_67" sap:VirtualizedContainerService.HintSize="414,1072" />
+      <sap2010:ViewStateData Id="Sequence_106" sap:VirtualizedContainerService.HintSize="531,1196">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Sequence_79" sap:VirtualizedContainerService.HintSize="553,6120">
+      <sap2010:ViewStateData Id="Sequence_79" sap:VirtualizedContainerService.HintSize="553,6410">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="OpprettAvdragsAvtale_1" sap:VirtualizedContainerService.HintSize="593,6320" />
+      <sap2010:ViewStateData Id="OpprettAvdragsAvtale_1" sap:VirtualizedContainerService.HintSize="593,6490" />
     </sap2010:ViewStateManager>
   </sap2010:WorkflowViewState.ViewStateManager>
 </Activity>
