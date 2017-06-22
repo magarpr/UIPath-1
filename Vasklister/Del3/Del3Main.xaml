@@ -217,7 +217,13 @@
         <If Condition="[Fil3_finnes]" DisplayName="Slett fil om finnes fra før" sap2010:WorkflowViewState.IdRef="If_6">
           <If.Then>
             <Sequence sap2010:WorkflowViewState.IdRef="Sequence_117">
-              <ui:Delete ContinueOnError="{x:Null}" sap2010:WorkflowViewState.IdRef="Delete_2" Path="W:\rpa\Vasklister\Excel\vaskeliste_v3.0.xlsx" />
+              <ui:CommentOut DisplayName="Comment out" sap2010:WorkflowViewState.IdRef="CommentOut_1">
+                <ui:CommentOut.Body>
+                  <Sequence DisplayName="Ignored Activities" sap2010:WorkflowViewState.IdRef="Sequence_125">
+                    <ui:Delete ContinueOnError="{x:Null}" sap2010:WorkflowViewState.IdRef="Delete_2" Path="W:\rpa\Vasklister\Excel\vaskeliste_v3.0.xlsx" />
+                  </Sequence>
+                </ui:CommentOut.Body>
+              </ui:CommentOut>
             </Sequence>
           </If.Then>
         </If>
@@ -228,6 +234,13 @@
                 <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
               </ActivityAction.Argument>
               <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_118">
+                <ui:ExcelWriteCell Cell="A1:Z300" DisplayName="Write Value" sap2010:WorkflowViewState.IdRef="ExcelWriteCell_1" SheetName="Ark1">
+                  <ui:ExcelWriteCell.Text>
+                    <InArgument x:TypeArguments="x:String">
+                      <Literal x:TypeArguments="x:String" Value="" />
+                    </InArgument>
+                  </ui:ExcelWriteCell.Text>
+                </ui:ExcelWriteCell>
                 <ui:ExcelWriteRange AddHeaders="True" DataTable="[vaskeliste_tabell]" DisplayName="Write Range" sap2010:WorkflowViewState.IdRef="ExcelWriteRange_2" SheetName="Ark1" StartingCell="A1" />
               </Sequence>
             </ActivityAction>
@@ -278,11 +291,11 @@
         </ui:WindowScope>
       </Sequence>
     </Sequence>
-    <sads:DebugSymbol.Symbol>dyRXOlxycGFcVmFza2xpc3RlclxEZWwzXERlbDNNYWluLnhhbWxOXQOaAg4CAQFeBV5VAgFcXwWYAhACAQJnB38iAgFPgAEHgAGEAQIBTYEBB4EBjgECAUqCAQelARcCATmmAQfSARcCASDTAQfsARICAQ3tAQeXAhICAQNnogFnvgECAVttDXwYAgFQgAFfgAGBAQIBToEBJIEBOQIBS4IBIIIBLgIBSIgBDaIBGAIBOqYBIKYBNQIBN6wBDc8BGAIBIdgBCdgBvgECARzZAQnfAQ4CARbgAQnrASQCAQ7uAQn8ARQCAQn9AQmWAhoCAQRuD3QjAgFWdQ97IwIBUYkBD5ABGAIBRZEBD5gBGAIBQpkBD6ABGAIBP6EBD6EBuAECATutAQ/OARQCASLYATnYAUgCAR7YAX3YAasBAgEd2QEX2QEmAgEX2wEN3QEYAgEZ4AGkAeAB0gECARXmAQ/oARoCAQ/6AZwB+gHwAgIBDO4BR+4BTQIBC+4BOO4BPgIBCv0BmgL9AdQCAgEIgwIPkwIaAgEFbj5uTAIBWXEVcUQCAVhuowFuqQECAVd1PnVTAgFUeBV4RAIBU3WqAXWwAQIBUo4BOo4BbAIBR4sBO4sBQwIBRpYBOpYBawIBRJMBO5MBQwIBQ54BO54BUgIBQZsBO5sBQwIBQKEBVqEBawIBPaEBOqEBSwIBPK0BHa0B5AICASOvARPMAR4CASTcAQ/cAZYBAgEa5wER5wHKAQIBEIQCEZICHAIBBrMBFbsBLQIBLbwBFcMBHgIBKcQBFcsBHgIBJdwBZdwBkwECARvnAcMB5wHHAQIBFOcBQecBVgIBEucBrwHnAbUBAgERkAKkAZACywICAQe4AVK4AWkCATW2AVG2AXsCATS1AU61AVMCATK5AV25AXICATCzAcIBswHhAQIBL7cBULcBbgIBLsEBQMEBVwIBK74BQb4BVwIBKskBQMkBVQIBJ8YBQcYBYgIBJg==</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>dyRXOlxycGFcVmFza2xpc3RlclxEZWwzXERlbDNNYWluLnhhbWxRXQOnAg4CAQFeBV5VAgFfXwWlAhACAQJnB38iAgFSgAEHgAGEAQIBUIEBB4EBjgECAU2CAQelARcCATymAQfSARcCASPTAQf5ARICAQ36AQekAhICAQNnogFnvgECAV5tDXwYAgFTgAFfgAGBAQIBUYEBJIEBOQIBToIBIIIBLgIBS4gBDaIBGAIBPaYBIKYBNQIBOqwBDc8BGAIBJNgBCdgBvgECAR/ZAQnlAQ4CARrmAQn4ASQCAQ77AQmJAhQCAQmKAgmjAhoCAQRuD3QjAgFZdQ97IwIBVIkBD5ABGAIBSJEBD5gBGAIBRZkBD6ABGAIBQqEBD6EBuAECAT6tAQ/OARQCASXYATnYAUgCASHYAX3YAasBAgEg2QEX2QEmAgEb2wEN4wEYAgEd5gGkAeYB0gECARnsAQ/1ARoCAQ+HApwBhwLwAgIBDPsBR/sBTQIBC/sBOPsBPgIBCooCmgKKAtQCAgEIkAIPoAIaAgEFbj5uTAIBXHEVcUQCAVtuowFuqQECAVp1PnVTAgFXeBV4RAIBVnWqAXWwAQIBVY4BOo4BbAIBSosBO4sBQwIBSZYBOpYBawIBR5MBO5MBQwIBRp4BO54BUgIBRJsBO5sBQwIBQ6EBVqEBawIBQKEBOqEBSwIBP60BHa0B5AICASavARPMAR4CASfcAQ/iAR8CAR7tARHzASUCARX0ARH0AcoBAgEQkQIRnwIcAgEGswEVuwEtAgEwvAEVwwEeAgEsxAEVywEeAgEo7QEp7QEyAgEY8AEX8AFGAgEX7QGKAe0BkAECARb0AcMB9AHHAQIBFPQBQfQBVgIBEvQBrwH0AbUBAgERnQKkAZ0CywICAQe4AVK4AWkCATi2AVG2AXsCATe1AU61AVMCATW5AV25AXICATOzAcIBswHhAQIBMrcBULcBbgIBMcEBQMEBVwIBLr4BQb4BVwIBLckBQMkBVQIBKsYBQcYBYgIBKQ==</sads:DebugSymbol.Symbol>
   </Sequence>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
-      <sap2010:ViewStateData Id="Flowchart_1" sap:VirtualizedContainerService.HintSize="538,49">
+      <sap2010:ViewStateData Id="Flowchart_1" sap:VirtualizedContainerService.HintSize="607,49">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -350,24 +363,33 @@
       <sap2010:ViewStateData Id="ForEachRow_2" sap:VirtualizedContainerService.HintSize="516,821" />
       <sap2010:ViewStateData Id="PathExists_2" sap:VirtualizedContainerService.HintSize="464,88" />
       <sap2010:ViewStateData Id="Delete_2" sap:VirtualizedContainerService.HintSize="200,22" />
-      <sap2010:ViewStateData Id="Sequence_117" sap:VirtualizedContainerService.HintSize="222,146">
+      <sap2010:ViewStateData Id="Sequence_125" sap:VirtualizedContainerService.HintSize="222,146">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="If_6" sap:VirtualizedContainerService.HintSize="464,289" />
+      <sap2010:ViewStateData Id="CommentOut_1" sap:VirtualizedContainerService.HintSize="416,224" />
+      <sap2010:ViewStateData Id="Sequence_117" sap:VirtualizedContainerService.HintSize="438,348">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="If_6" sap:VirtualizedContainerService.HintSize="563,491" />
+      <sap2010:ViewStateData Id="ExcelWriteCell_1" sap:VirtualizedContainerService.HintSize="314,87" />
       <sap2010:ViewStateData Id="ExcelWriteRange_2" sap:VirtualizedContainerService.HintSize="314,87" />
-      <sap2010:ViewStateData Id="Sequence_118" sap:VirtualizedContainerService.HintSize="336,211">
+      <sap2010:ViewStateData Id="Sequence_118" sap:VirtualizedContainerService.HintSize="336,338">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="ExcelApplicationScope_7" sap:VirtualizedContainerService.HintSize="464,320" />
-      <sap2010:ViewStateData Id="Sequence_119" sap:VirtualizedContainerService.HintSize="516,901">
+      <sap2010:ViewStateData Id="ExcelApplicationScope_7" sap:VirtualizedContainerService.HintSize="563,447" />
+      <sap2010:ViewStateData Id="Sequence_119" sap:VirtualizedContainerService.HintSize="585,1230">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -392,7 +414,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Sequence_89" sap:VirtualizedContainerService.HintSize="538,3792">
+      <sap2010:ViewStateData Id="Sequence_89" sap:VirtualizedContainerService.HintSize="607,4121">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -400,14 +422,14 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Sequence_116" sap:VirtualizedContainerService.HintSize="560,4005">
+      <sap2010:ViewStateData Id="Sequence_116" sap:VirtualizedContainerService.HintSize="629,4334">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Del3Main_1" sap:VirtualizedContainerService.HintSize="600,4165" />
+      <sap2010:ViewStateData Id="Del3Main_1" sap:VirtualizedContainerService.HintSize="669,4454" />
     </sap2010:ViewStateManager>
   </sap2010:WorkflowViewState.ViewStateManager>
 </Activity>
