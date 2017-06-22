@@ -82,6 +82,8 @@
       <Variable x:TypeArguments="ui:GenericValue" Name="SakNoFraSkjerm" />
       <Variable x:TypeArguments="x:Boolean" Name="IsException" />
       <Variable x:TypeArguments="x:String" Name="ExceptionMessage" />
+      <Variable x:TypeArguments="ui:UiElement" Name="AvdragOrdning" />
+      <Variable x:TypeArguments="ui:GenericValue" Name="AvdragOrdningVisible" />
     </Flowchart.Variables>
     <Flowchart.StartNode>
       <FlowStep x:Name="__ReferenceID12" sap2010:WorkflowViewState.IdRef="FlowStep_69">
@@ -465,27 +467,32 @@
                                                   <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="57ee0d60d03ae0cc8298f3f0aa4d4f99" WaitForReady="INTERACTIVE" />
                                                 </ui:SendHotkey.Target>
                                               </ui:SendHotkey>
-                                              <ui:UiElementExists DisplayName="Element Exists 'TGroupBox'" Exists="[ForrigeAvdgragsOrdningAvtale]" sap2010:WorkflowViewState.IdRef="UiElementExists_1">
-                                                <ui:UiElementExists.Target>
-                                                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="52f3af1fa5eca1452edd24599e2dee07" Selector="&lt;wnd app='predator.exe' cls='TfrmPredator' title='PredatorNO - [Avdrag]' /&gt;&lt;wnd aaname='Arbeidsområde' cls='MDIClient' /&gt;&lt;wnd cls='TfrmAvdrag' title='Avdrag' /&gt;&lt;wnd cls='TGroupBox' idx='5' /&gt;" TimeoutMS="3000" WaitForReady="INTERACTIVE" />
-                                                </ui:UiElementExists.Target>
-                                              </ui:UiElementExists>
-                                              <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_15" Text="[&quot;ForrigeAvdgragsOrdningAvtale&quot;+ForrigeAvdgragsOrdningAvtale.ToString]" />
-                                              <If Condition="[ForrigeAvdgragsOrdningAvtale]" DisplayName="AvdragsAvtaleFinnesfraFør" sap2010:WorkflowViewState.IdRef="If_4">
+                                              <ui:WaitUiElementAppear DisplayName="Find Element" FoundElement="[AvdragOrdning]" sap2010:WorkflowViewState.IdRef="WaitUiElementAppear_2" WaitActive="False" WaitVisible="False">
+                                                <ui:WaitUiElementAppear.Target>
+                                                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" Selector="&lt;wnd app='predator.exe' cls='TfrmPredator' title='PredatorNO - [Avdrag]' /&gt;&lt;wnd aaname='Arbeidsområde' cls='MDIClient' /&gt;&lt;wnd cls='TfrmAvdrag' title='Avdrag' /&gt;&lt;wnd cls='TGroupBox' title='Avdragsordning ' /&gt;&lt;wnd aaname='Avdrag' cls='TTabSheet' title='A&amp;amp;vdrag' /&gt;&lt;wnd aaname='Type' cls='TGroupBox' title='&amp;amp;Type' /&gt;&lt;wnd cls='TComboBox' idx='1' /&gt;" WaitForReady="INTERACTIVE" />
+                                                </ui:WaitUiElementAppear.Target>
+                                              </ui:WaitUiElementAppear>
+                                              <ui:GetAttribute ContinueOnError="{x:Null}" Attribute="Visibility" DisplayName="Get attribute" sap2010:WorkflowViewState.IdRef="GetAttribute_2">
+                                                <ui:GetAttribute.Result>
+                                                  <OutArgument x:TypeArguments="ui:GenericValue">[AvdragOrdningVisible]</OutArgument>
+                                                </ui:GetAttribute.Result>
+                                                <ui:GetAttribute.Target>
+                                                  <ui:Target ClippingRegion="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" Element="[AvdragOrdning]" WaitForReady="INTERACTIVE" />
+                                                </ui:GetAttribute.Target>
+                                              </ui:GetAttribute>
+                                              <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_21" Text="[&quot;AvdragOrdningVisible&quot;+AvdragOrdningVisible.ToString]" />
+                                              <If Condition="[AvdragOrdningVisible.ToString.Equals(&quot;0&quot;)]" DisplayName="AvdragsAvtaleFinnesfraFør" sap2010:WorkflowViewState.IdRef="If_4">
                                                 <If.Then>
                                                   <Sequence DisplayName="SendSakTilManuellBehandling" sap2010:WorkflowViewState.IdRef="Sequence_256">
                                                     <Sequence.Variables>
                                                       <Variable x:TypeArguments="ui:GenericValue" Name="TypeAvdrag" />
                                                     </Sequence.Variables>
-                                                    <ui:GetVisibleText WordsInfo="{x:Null}" DisplayName="Get visible text 'TComboBox'" FormattedText="False" sap2010:WorkflowViewState.IdRef="GetVisibleText_5">
-                                                      <ui:GetVisibleText.Target>
-                                                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="b136f95d2c0af152256f339d1c95598a" Selector="&lt;wnd app='predator.exe' cls='TfrmPredator' title='PredatorNO - [Avdrag]' /&gt;&lt;wnd aaname='Arbeidsområde' cls='MDIClient' /&gt;&lt;wnd cls='TfrmAvdrag' title='Avdrag' /&gt;&lt;wnd cls='TGroupBox' title='Avdragsordning ' /&gt;&lt;wnd aaname='Avdrag' cls='TTabSheet' title='A&amp;amp;vdrag' /&gt;&lt;wnd aaname='Type' cls='TGroupBox' title='&amp;amp;Type' /&gt;&lt;wnd cls='TComboBox' idx='1' /&gt;" WaitForReady="INTERACTIVE" />
-                                                      </ui:GetVisibleText.Target>
-                                                      <ui:GetVisibleText.Text>
-                                                        <OutArgument x:TypeArguments="ui:GenericValue">[TypeAvdrag]</OutArgument>
-                                                      </ui:GetVisibleText.Text>
-                                                    </ui:GetVisibleText>
-                                                    <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_18" Text="[&quot;TypeAvdrag&quot;+TypeAvdrag]" />
+                                                    <ui:UiElementExists DisplayName="Element Exists 'TGroupBox'" Exists="[ForrigeAvdgragsOrdningAvtale]" sap2010:WorkflowViewState.IdRef="UiElementExists_2">
+                                                      <ui:UiElementExists.Target>
+                                                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="52f3af1fa5eca1452edd24599e2dee07" Selector="&lt;wnd app='predator.exe' cls='TfrmPredator' title='PredatorNO - [Avdrag]' /&gt;&lt;wnd aaname='Arbeidsområde' cls='MDIClient' /&gt;&lt;wnd cls='TfrmAvdrag' title='Avdrag' /&gt;&lt;wnd cls='TGroupBox' idx='5' /&gt;" TimeoutMS="3000" WaitForReady="INTERACTIVE" />
+                                                      </ui:UiElementExists.Target>
+                                                    </ui:UiElementExists>
+                                                    <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_22" Text="[&quot;ForrigeAvdgragsOrdningAvtale&quot;+ForrigeAvdgragsOrdningAvtale.ToString]" />
                                                     <If Condition="[TypeAvdrag.Equals(&quot;Frivillig&quot;)]" sap2010:WorkflowViewState.IdRef="If_5">
                                                       <If.Then>
                                                         <Sequence sap2010:WorkflowViewState.IdRef="Sequence_281">
@@ -1203,7 +1210,7 @@
     <x:Reference>__ReferenceID13</x:Reference>
     <x:Reference>__ReferenceID14</x:Reference>
     <x:Reference>__ReferenceID15</x:Reference>
-    <sads:DebugSymbol.Symbol>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</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>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</sads:DebugSymbol.Symbol>
   </Flowchart>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
@@ -1454,10 +1461,11 @@
       </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="TypeInto_32" sap:VirtualizedContainerService.HintSize="1648,134" />
       <sap2010:ViewStateData Id="SendHotkey_65" sap:VirtualizedContainerService.HintSize="1648,152" />
-      <sap2010:ViewStateData Id="UiElementExists_1" sap:VirtualizedContainerService.HintSize="1648,106" />
-      <sap2010:ViewStateData Id="WriteLine_15" sap:VirtualizedContainerService.HintSize="1648,59" />
-      <sap2010:ViewStateData Id="GetVisibleText_5" sap:VirtualizedContainerService.HintSize="1265,106" />
-      <sap2010:ViewStateData Id="WriteLine_18" sap:VirtualizedContainerService.HintSize="1265,59" />
+      <sap2010:ViewStateData Id="WaitUiElementAppear_2" sap:VirtualizedContainerService.HintSize="1648,68" />
+      <sap2010:ViewStateData Id="GetAttribute_2" sap:VirtualizedContainerService.HintSize="1648,96" />
+      <sap2010:ViewStateData Id="WriteLine_21" sap:VirtualizedContainerService.HintSize="1648,59" />
+      <sap2010:ViewStateData Id="UiElementExists_2" sap:VirtualizedContainerService.HintSize="1265,106" />
+      <sap2010:ViewStateData Id="WriteLine_22" sap:VirtualizedContainerService.HintSize="1265,59" />
       <sap2010:ViewStateData Id="Click_17" sap:VirtualizedContainerService.HintSize="314,376" />
       <sap2010:ViewStateData Id="Click_18" sap:VirtualizedContainerService.HintSize="314,106" />
       <sap2010:ViewStateData Id="Sequence_283" sap:VirtualizedContainerService.HintSize="336,230">
@@ -1511,15 +1519,15 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Sequence_257" sap:VirtualizedContainerService.HintSize="1670,2063">
+      <sap2010:ViewStateData Id="Sequence_257" sap:VirtualizedContainerService.HintSize="1670,2161">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="WindowScope_147" sap:VirtualizedContainerService.HintSize="1684,2209" />
-      <sap2010:ViewStateData Id="Sequence_258" sap:VirtualizedContainerService.HintSize="1706,2333">
+      <sap2010:ViewStateData Id="WindowScope_147" sap:VirtualizedContainerService.HintSize="1684,2307" />
+      <sap2010:ViewStateData Id="Sequence_258" sap:VirtualizedContainerService.HintSize="1706,2431">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -1536,7 +1544,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Catch`1_3" sap:VirtualizedContainerService.HintSize="1142,20">
+      <sap2010:ViewStateData Id="Catch`1_3" sap:VirtualizedContainerService.HintSize="1710,20">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -1885,7 +1893,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Registrering_av_ulike_trekktyper_1" sap:VirtualizedContainerService.HintSize="802,1980">
+      <sap2010:ViewStateData Id="Registrering_av_ulike_trekktyper_1" sap:VirtualizedContainerService.HintSize="802,1990">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="ShouldCollapseAll">False</x:Boolean>
