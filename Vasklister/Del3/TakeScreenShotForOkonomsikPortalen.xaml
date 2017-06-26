@@ -77,6 +77,14 @@
         <State x:Name="__ReferenceID0" DisplayName="ScapTrekkData" sap2010:WorkflowViewState.IdRef="State_3">
           <State.Entry>
             <Sequence DisplayName="Login til OP og Ta ScreenShot" sap2010:WorkflowViewState.IdRef="Sequence_10">
+              <Assign sap2010:WorkflowViewState.IdRef="Assign_1">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[Okonomi_URL]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">https://wasapp-q1.adeo.no/oppdrag/portal/login.jsp</InArgument>
+                </Assign.Value>
+              </Assign>
               <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_1" Text="3.2 - Hent totalt trekkbeløp til 'Andre utgifter' fra Oppslag UB (Økonomiportal)" />
               <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_2" Text="[&quot;FNR: &quot; +FNR]" />
               <ui:OpenBrowser UiBrowser="{x:Null}" BrowserType="IE" DisplayName="Open browser (Økonomiskportalen)" Hidden="False" sap2010:WorkflowViewState.IdRef="OpenBrowser_1" NewSession="True" Private="False" Url="https://wasapp-q1.adeo.no/oppdrag/portal/login.jsp">
@@ -305,12 +313,14 @@
         <Variable x:TypeArguments="s:DateTime" Name="trekkTilDato" />
         <Variable x:TypeArguments="ui:GenericValue" Name="trekkBeløpParseSum" />
         <Variable x:TypeArguments="x:Boolean" Name="TreffListe" />
+        <Variable x:TypeArguments="x:String" Name="Okonomi_URL" />
       </StateMachine.Variables>
     </StateMachine>
-    <sads:DebugSymbol.Symbol>dz5XOlxycGFcVmFza2xpc3RlclxEZWwzXFRha2VTY3JlZW5TaG90Rm9yT2tvbm9tc2lrUG9ydGFsZW4ueGFtbGsB1QEB4QEBAwGIAQGnAQECSgO3Ag4CAQFLBbUCFAIBAq4COq4CVwMBgAFNCagCEQIBBqACEaQCGQIBA08N+wEYAgEf/gENmwIYAgEJogIVogJPAgEFUA9QuwECAX5RD1GDAQIBe1IPWyACAXhcD/oBGgIBIIMCD4cCJAIBGogCD4wCFAIBFI0CD5ECJAIBD5ICD5oCFAIBClBmULgBAgF/UWZRgAECAXxS2QFSjQICAXpYFVhfAgF5YBH5ASMCASGFAlSFAssBAgEehQLWAYUC3AECAR2DAkODAlACARuIAh2IAioCARWKAhOKAusCAgEXjwJUjwKQAQIBE48CmwGPAqEBAgESjQJHjQJZAgEQkgIdkgIvAgELlAITmAIpAgENYKgCYNICAgF3Zhf2ASICASKKAtYBigLNAgIBGYoCXYoCYwIBGJYCpgGWAuIBAgEOahluJwIBdG8ZeiQCAWx7GYIBJAIBaIMBGY0BKQIBZY4BGZUBJAIBYZYBGZoBJwIBXZsBGaIBJAIBWaMBGfUBJAIBI2ysAWzXAQIBdmqyAmq7AgIBdXQbdPICAgFxdRt5KQIBbYABrAGAAdgBAgFrfUV9SQIBan04fTwCAWmDAccBgwHNAQIBZosBrAGLAd8BAgFnkwGsAZMB3QECAWSQAUWQAUkCAWOQATiQATwCAWKYAawBmAHdAQIBYJYBuAKWAb8CAgFeoAGsAaABzAECAVydAUWdAUkCAVudATidATwCAVqkARv0AS0CASR04gJ07wICAXJ3rgF32wECAXB1tgJ1wwICAW6kAbICpAH1AgIBWKoBIfEBLAIBJasBI68BOAIBU7ABI8IBKAIBTsMBI8cBNAIBRsgBI8gBxAECAUHJASPJAagBAgE+ygEj8AEoAgEmrQGhAa0BwQECAVetAcwBrQHSAQIBVqsBZKsBcgIBVLABMbABPwIBT7IBJ8ABMgIBUcMBzAjDAdEIAgFNxQG2AcUB6wECAUzDAZkBwwGeAQIBS8MBX8MBZQIBSsMBcMMBhAECAUjDAd0BwwGICAIBR8gBrwHIAcEBAgFEyAFByAFVAgFCyQF6yQGlAQIBP8oBMcoBVgIBJ8wBJ+sBMgIBKu4BJ+4BpgECASi+AboBvgHaAQIBUtABKdQBPQIBOtUBKdUBzAECATTWASnqAT4CASvuAZEB7gGjAQIBKdIBvAHSAesBAgE90AGuAdABvwECATvVAVnVAYMBAgE31QG4AdUByQECATXWAZMD1gHPAwIBM9YBlQHWAb8BAgEw1gH7AdYBnAICAS/cAS/nAToCASzdATHhAUECAS7iATHmAUECAS0=</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>dz5XOlxycGFcVmFza2xpc3RlclxEZWwzXFRha2VTY3JlZW5TaG90Rm9yT2tvbm9tc2lrUG9ydGFsZW4ueGFtbG4B1QEB4QEBAwGIAQGnAQECSgPAAg4CAQFLBb4CFAIBArYCOrYCVwMBhAFNCbACEQIBBqgCEawCGQIBA08NgwIYAgEfhgINowIYAgEJqgIVqgJPAgEFUA9XGAMBgAFYD1i7AQIBflkPWYMBAgF7Wg9jIAIBeGQPggIaAgEgiwIPjwIkAgEakAIPlAIUAgEUlQIPmQIkAgEPmgIPogIUAgEKVTpVbAMBgwFSO1JIAwGBAVhmWLgBAgF/WWZZgAECAXxa2QFajQICAXpgFWBfAgF5aBGBAiMCASGNAlSNAssBAgEejQLWAY0C3AECAR2LAkOLAlACARuQAh2QAioCARWSAhOSAusCAgEXlwJUlwKQAQIBE5cCmwGXAqEBAgESlQJHlQJZAgEQmgIdmgIvAgELnAIToAIpAgENaKgCaNICAgF3bhf+ASICASKSAtYBkgLNAgIBGZICXZICYwIBGJ4CpgGeAuIBAgEOchl2JwIBdHcZggEkAgFsgwEZigEkAgFoiwEZlQEpAgFllgEZnQEkAgFhngEZogEnAgFdowEZqgEkAgFZqwEZ/QEkAgEjdKwBdNcBAgF2crICcrsCAgF1fBt88gICAXF9G4EBKQIBbYgBrAGIAdgBAgFrhQFFhQFJAgFqhQE4hQE8AgFpiwHHAYsBzQECAWaTAawBkwHfAQIBZ5sBrAGbAd0BAgFkmAFFmAFJAgFjmAE4mAE8AgFioAGsAaAB3QECAWCeAbgCngG/AgIBXqgBrAGoAcwBAgFcpQFFpQFJAgFbpQE4pQE8AgFarAEb/AEtAgEkfOICfO8CAgFyf64Bf9sBAgFwfbYCfcMCAgFurAGyAqwB9QICAViyASH5ASwCASWzASO3ATgCAVO4ASPKASgCAU7LASPPATQCAUbQASPQAcQBAgFB0QEj0QGoAQIBPtIBI/gBKAIBJrUBoQG1AcEBAgFXtQHMAbUB0gECAVazAWSzAXICAVS4ATG4AT8CAU+6ASfIATICAVHLAcwIywHRCAIBTc0BtgHNAesBAgFMywGZAcsBngECAUvLAV/LAWUCAUrLAXDLAYQBAgFIywHdAcsBiAgCAUfQAa8B0AHBAQIBRNABQdABVQIBQtEBetEBpQECAT/SATHSAVYCASfUASfzATICASr2ASf2AaYBAgEoxgG6AcYB2gECAVLYASncAT0CATrdASndAcwBAgE03gEp8gE+AgEr9gGRAfYBowECASnaAbwB2gHrAQIBPdgBrgHYAb8BAgE73QFZ3QGDAQIBN90BuAHdAckBAgE13gGTA94BzwMCATPeAZUB3gG/AQIBMN4B+wHeAZwCAgEv5AEv7wE6AgEs5QEx6QFBAgEu6gEx7gFBAgEt</sads:DebugSymbol.Symbol>
   </Sequence>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
+      <sap2010:ViewStateData Id="Assign_1" sap:VirtualizedContainerService.HintSize="891,59" />
       <sap2010:ViewStateData Id="WriteLine_1" sap:VirtualizedContainerService.HintSize="891,59" />
       <sap2010:ViewStateData Id="WriteLine_2" sap:VirtualizedContainerService.HintSize="891,59" />
       <sap2010:ViewStateData Id="Sequence_1" sap:VirtualizedContainerService.HintSize="200,97">
@@ -400,7 +410,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Sequence_10" sap:VirtualizedContainerService.HintSize="913,4491">
+      <sap2010:ViewStateData Id="Sequence_10" sap:VirtualizedContainerService.HintSize="913,4590">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -445,7 +455,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="State_3" sap:VirtualizedContainerService.HintSize="939,6012">
+      <sap2010:ViewStateData Id="State_3" sap:VirtualizedContainerService.HintSize="114,61">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <av:Point x:Key="ShapeLocation">213,129.5</av:Point>
