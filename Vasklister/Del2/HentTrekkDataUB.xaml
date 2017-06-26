@@ -10,6 +10,7 @@
  xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib"
  xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib"
  xmlns:sd="clr-namespace:System.Data;assembly=System.Data"
+ xmlns:ss="clr-namespace:System.Security;assembly=mscorlib"
  xmlns:this="clr-namespace:"
  xmlns:ui="http://schemas.uipath.com/workflow/activities"
  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
@@ -51,6 +52,8 @@
       <x:String>OfficeOpenXml.FormulaParsing.Excel.Functions.DateTime</x:String>
       <x:String>OfficeOpenXml.FormulaParsing.Excel.Functions</x:String>
       <x:String>Microsoft.VisualBasic.CompilerServices</x:String>
+      <x:String>System.Security</x:String>
+      <x:String>System.Net</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -97,35 +100,60 @@
                     </ActivityAction.Argument>
                     <Sequence sap2010:WorkflowViewState.IdRef="Sequence_23">
                       <ui:NavigateTo Browser="{x:Null}" DisplayName="Navigate to" sap2010:WorkflowViewState.IdRef="NavigateTo_1" Url="[Okonomi_URL]" />
+                      <ui:UiElementExists DisplayName="Find out if there is a login button on okonomi page" Exists="[OkonomiLogin]" sap2010:WorkflowViewState.IdRef="UiElementExists_3">
+                        <ui:UiElementExists.Target>
+                          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="9aee4904755d6e41b27eeec7e4eee86f" Selector="&lt;webctrl name='login' tag='INPUT' /&gt;" TimeoutMS="3000" WaitForReady="INTERACTIVE" />
+                        </ui:UiElementExists.Target>
+                      </ui:UiElementExists>
                       <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_8">
                         <Sequence.Variables>
                           <Variable x:TypeArguments="x:String" Name="sokresult" />
                         </Sequence.Variables>
-                        <ui:TypeInto DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Type into 'INPUT  userid'" EmptyField="False" sap2010:WorkflowViewState.IdRef="TypeInto_1" SendWindowMessages="False" SimulateType="True" Text="Z990640">
-                          <ui:TypeInto.Target>
-                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="dfcccbe94bdc782dd1c5b187ad56918e" Selector="&lt;webctrl id='userid' tag='INPUT' /&gt;" WaitForReady="COMPLETE" />
-                          </ui:TypeInto.Target>
-                        </ui:TypeInto>
-                        <Sequence DisplayName="Type password" sap2010:WorkflowViewState.IdRef="Sequence_2">
-                          <Sequence.Variables>
-                            <Variable x:TypeArguments="x:String" Name="Password" />
-                            <Variable x:TypeArguments="x:String" Default="Test12345" Name="Password1" />
-                          </Sequence.Variables>
-                          <ui:GetPassword DisplayName="Get password" sap2010:WorkflowViewState.IdRef="GetPassword_1" ProtectedPassword="AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAldWqHh58sE6JG3U5Ab/N2AAAAAACAAAAAAADZgAAwAAAABAAAAD/PGhIj4hXV7Zr2IPc5vrIAAAAAASAAACgAAAAEAAAADbtZmcVIStRZMhZi+YyNF4QAAAAcXxLfYD5uza4lPreMWwltxQAAABQ4r4ey6Z1qpNgOVvw0dvzSAUOcQ==" Result="[Password1]" />
-                          <ui:TypeInto DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Type into 'INPUT  password'" EmptyField="False" sap2010:WorkflowViewState.IdRef="TypeInto_2" SendWindowMessages="False" SimulateType="True" Text="[Password1]">
-                            <ui:TypeInto.Target>
-                              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="264e72a1510f79a5408f94c67d5d4c49" Selector="&lt;webctrl id='password' tag='INPUT' /&gt;" WaitForReady="COMPLETE" />
-                            </ui:TypeInto.Target>
-                          </ui:TypeInto>
-                        </Sequence>
-                        <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'INPUT'" sap2010:WorkflowViewState.IdRef="Click_1" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="True">
-                          <ui:Click.CursorPosition>
-                            <ui:CursorPosition OffsetX="48" OffsetY="15" Position="TopLeft" />
-                          </ui:Click.CursorPosition>
-                          <ui:Click.Target>
-                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="13aca95223cb511e7c9afc1f9a6719e7" Selector="&lt;webctrl name='login' tag='INPUT' /&gt;" WaitForReady="COMPLETE" />
-                          </ui:Click.Target>
-                        </ui:Click>
+                        <If Condition="[OkonomiLogin]" DisplayName="If the okonomi page is asking for login then login else do nothing" sap2010:WorkflowViewState.IdRef="If_14">
+                          <If.Then>
+                            <Sequence sap2010:WorkflowViewState.IdRef="Sequence_40">
+                              <ui:GetRobotCredential TimeoutMS="{x:Null}" AssetName="VL_Okonomi_Login" DisplayName="Get Credential" sap2010:WorkflowViewState.IdRef="GetRobotCredential_1" Password="[Okonomi_Password]" Username="[Okonomi_Username]" />
+                              <ui:TypeInto DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Type into 'INPUT  userid'" EmptyField="False" sap2010:WorkflowViewState.IdRef="TypeInto_1" SendWindowMessages="False" SimulateType="True" Text="[Okonomi_Username]">
+                                <ui:TypeInto.Target>
+                                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="dfcccbe94bdc782dd1c5b187ad56918e" Selector="&lt;webctrl id='userid' tag='INPUT' /&gt;" WaitForReady="COMPLETE" />
+                                </ui:TypeInto.Target>
+                              </ui:TypeInto>
+                              <Sequence DisplayName="Type password" sap2010:WorkflowViewState.IdRef="Sequence_2">
+                                <Sequence.Variables>
+                                  <Variable x:TypeArguments="x:String" Name="Password" />
+                                  <Variable x:TypeArguments="x:String" Default="Test12345" Name="Password1" />
+                                </Sequence.Variables>
+                                <ui:CommentOut DisplayName="Comment out" sap2010:WorkflowViewState.IdRef="CommentOut_4">
+                                  <ui:CommentOut.Body>
+                                    <Sequence DisplayName="Ignored Activities" sap2010:WorkflowViewState.IdRef="Sequence_41">
+                                      <ui:GetPassword DisplayName="Get password" sap2010:WorkflowViewState.IdRef="GetPassword_1" ProtectedPassword="AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAldWqHh58sE6JG3U5Ab/N2AAAAAACAAAAAAADZgAAwAAAABAAAAD/PGhIj4hXV7Zr2IPc5vrIAAAAAASAAACgAAAAEAAAADbtZmcVIStRZMhZi+YyNF4QAAAAcXxLfYD5uza4lPreMWwltxQAAABQ4r4ey6Z1qpNgOVvw0dvzSAUOcQ==" Result="[Password1]" />
+                                    </Sequence>
+                                  </ui:CommentOut.Body>
+                                </ui:CommentOut>
+                                <ui:CommentOut DisplayName="Comment out" sap2010:WorkflowViewState.IdRef="CommentOut_5">
+                                  <ui:CommentOut.Body>
+                                    <Sequence DisplayName="Ignored Activities" sap2010:WorkflowViewState.IdRef="Sequence_42">
+                                      <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_18" Text="[new System.Net.NetworkCredential(string.Empty, Okonomi_Password).Password]" />
+                                    </Sequence>
+                                  </ui:CommentOut.Body>
+                                </ui:CommentOut>
+                                <ui:TypeInto DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Type into 'INPUT  password'" EmptyField="False" sap2010:WorkflowViewState.IdRef="TypeInto_2" SendWindowMessages="False" SimulateType="True" Text="[new System.Net.NetworkCredential(string.Empty, Okonomi_Password).Password]">
+                                  <ui:TypeInto.Target>
+                                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="264e72a1510f79a5408f94c67d5d4c49" Selector="&lt;webctrl id='password' tag='INPUT' /&gt;" WaitForReady="COMPLETE" />
+                                  </ui:TypeInto.Target>
+                                </ui:TypeInto>
+                                <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'INPUT'" sap2010:WorkflowViewState.IdRef="Click_1" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="True">
+                                  <ui:Click.CursorPosition>
+                                    <ui:CursorPosition OffsetX="48" OffsetY="15" Position="TopLeft" />
+                                  </ui:Click.CursorPosition>
+                                  <ui:Click.Target>
+                                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="13aca95223cb511e7c9afc1f9a6719e7" Selector="&lt;webctrl name='login' tag='INPUT' /&gt;" WaitForReady="COMPLETE" />
+                                  </ui:Click.Target>
+                                </ui:Click>
+                              </Sequence>
+                            </Sequence>
+                          </If.Then>
+                        </If>
                         <ui:SelectItem ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Select item 'SELECT'" sap2010:WorkflowViewState.IdRef="SelectItem_1" Item="Lese">
                           <ui:SelectItem.Items>
                             <scg:List x:TypeArguments="x:String" Capacity="4">
@@ -511,6 +539,9 @@
           </Transition>
           <Transition DisplayName="IngenTreffData" sap2010:WorkflowViewState.IdRef="Transition_3" To="{x:Reference __ReferenceID0}" Condition="[IngenTreff]" />
         </State.Transitions>
+        <State.Variables>
+          <Variable x:TypeArguments="x:Boolean" Name="OkonomiLogin" />
+        </State.Variables>
       </State>
     </StateMachine.InitialState>
     <x:Reference>__ReferenceID1</x:Reference>
@@ -526,25 +557,54 @@
       <Variable x:TypeArguments="x:Boolean" Name="IngenTreff" />
       <Variable x:TypeArguments="sd:DataRow[]" Name="selectedRows" />
       <Variable x:TypeArguments="x:String" Name="_2_prosenttrekk" />
+      <Variable x:TypeArguments="x:String" Name="Okonomi_Username" />
+      <Variable x:TypeArguments="ss:SecureString" Name="Okonomi_Password" />
     </StateMachine.Variables>
-    <sads:DebugSymbol.Symbol>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</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>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</sads:DebugSymbol.Symbol>
   </StateMachine>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
       <sap2010:ViewStateData Id="WriteLine_4" sap:VirtualizedContainerService.HintSize="891,59" />
       <sap2010:ViewStateData Id="WriteLine_1" sap:VirtualizedContainerService.HintSize="891,59" />
       <sap2010:ViewStateData Id="NavigateTo_1" sap:VirtualizedContainerService.HintSize="833,59" />
-      <sap2010:ViewStateData Id="TypeInto_1" sap:VirtualizedContainerService.HintSize="811,134" />
-      <sap2010:ViewStateData Id="GetPassword_1" sap:VirtualizedContainerService.HintSize="314,22" />
-      <sap2010:ViewStateData Id="TypeInto_2" sap:VirtualizedContainerService.HintSize="314,134" />
-      <sap2010:ViewStateData Id="Sequence_2" sap:VirtualizedContainerService.HintSize="811,320">
+      <sap2010:ViewStateData Id="UiElementExists_3" sap:VirtualizedContainerService.HintSize="833,106" />
+      <sap2010:ViewStateData Id="GetRobotCredential_1" sap:VirtualizedContainerService.HintSize="438,22" />
+      <sap2010:ViewStateData Id="TypeInto_1" sap:VirtualizedContainerService.HintSize="438,134" />
+      <sap2010:ViewStateData Id="GetPassword_1" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="Sequence_41" sap:VirtualizedContainerService.HintSize="222,146">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Click_1" sap:VirtualizedContainerService.HintSize="811,106" />
+      <sap2010:ViewStateData Id="CommentOut_4" sap:VirtualizedContainerService.HintSize="416,224" />
+      <sap2010:ViewStateData Id="WriteLine_18" sap:VirtualizedContainerService.HintSize="211,59" />
+      <sap2010:ViewStateData Id="Sequence_42" sap:VirtualizedContainerService.HintSize="233,183">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="CommentOut_5" sap:VirtualizedContainerService.HintSize="416,261" />
+      <sap2010:ViewStateData Id="TypeInto_2" sap:VirtualizedContainerService.HintSize="416,134" />
+      <sap2010:ViewStateData Id="Click_1" sap:VirtualizedContainerService.HintSize="416,106" />
+      <sap2010:ViewStateData Id="Sequence_2" sap:VirtualizedContainerService.HintSize="438,969">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_40" sap:VirtualizedContainerService.HintSize="460,1329">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="If_14" sap:VirtualizedContainerService.HintSize="811,1472" />
       <sap2010:ViewStateData Id="SelectItem_1" sap:VirtualizedContainerService.HintSize="811,134" />
       <sap2010:ViewStateData Id="Click_2" sap:VirtualizedContainerService.HintSize="811,106" />
       <sap2010:ViewStateData Id="TypeInto_3" sap:VirtualizedContainerService.HintSize="811,134" />
@@ -640,29 +700,29 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Sequence_8" sap:VirtualizedContainerService.HintSize="833,3732">
+      <sap2010:ViewStateData Id="Sequence_8" sap:VirtualizedContainerService.HintSize="833,4564">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Sequence_23" sap:VirtualizedContainerService.HintSize="855,3955">
+      <sap2010:ViewStateData Id="Sequence_23" sap:VirtualizedContainerService.HintSize="855,4933">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="BrowserScope_2" sap:VirtualizedContainerService.HintSize="869,4101" />
-      <sap2010:ViewStateData Id="Sequence_9" sap:VirtualizedContainerService.HintSize="891,4225">
+      <sap2010:ViewStateData Id="BrowserScope_2" sap:VirtualizedContainerService.HintSize="869,5079" />
+      <sap2010:ViewStateData Id="Sequence_9" sap:VirtualizedContainerService.HintSize="891,5203">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Sequence_10" sap:VirtualizedContainerService.HintSize="913,4547">
+      <sap2010:ViewStateData Id="Sequence_10" sap:VirtualizedContainerService.HintSize="913,5525">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -821,7 +881,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="State_1" sap:VirtualizedContainerService.HintSize="939,4921">
+      <sap2010:ViewStateData Id="State_1" sap:VirtualizedContainerService.HintSize="939,5939">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <av:Point x:Key="ShapeLocation">213,129.5</av:Point>
