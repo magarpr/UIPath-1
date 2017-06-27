@@ -127,7 +127,7 @@
       <Variable x:TypeArguments="x:Boolean" Name="_6_soknadKlageTreff" />
       <Variable x:TypeArguments="x:Boolean" Name="_7_returAvholdTreff" />
       <Variable x:TypeArguments="x:Boolean" Name="_3_sakstypeTreff" />
-      <Variable x:TypeArguments="s:String[]" Default="[{&quot;Betalingsordning&quot;, &quot;Ukjent&quot;, &quot;Utenlandssak&quot;, &quot;Mislighold&quot;, &quot;Betalingsutsettelse&quot;, &quot;Ukjent adresse Innland&quot;, &quot;Ukjent adresse Utland&quot;, &quot;Ny&quot;}]" Name="_3_sakstypeLst" />
+      <Variable x:TypeArguments="x:String" Name="_3_sakstypeLst" />
       <Variable x:TypeArguments="x:Boolean" Name="_9_isMoreSak" />
       <Variable x:TypeArguments="x:String" Default="234567" Name="saksNr" />
       <Variable x:TypeArguments="sd:DataRow[]" Name="rows" />
@@ -380,7 +380,21 @@
                 <Sequence DisplayName="1.3 Sjekk sakstype" sap2010:WorkflowViewState.IdRef="Sequence_152">
                   <Sequence.Variables>
                     <Variable x:TypeArguments="x:String" Name="sakstype" />
+                    <Variable x:TypeArguments="ui:GenericValue" Name="sakstypeAssets" />
                   </Sequence.Variables>
+                  <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="VL_Del1_sakstyper" DisplayName="Get Asset" sap2010:WorkflowViewState.IdRef="GetRobotAsset_3">
+                    <ui:GetRobotAsset.Value>
+                      <OutArgument x:TypeArguments="ui:GenericValue">[sakstypeAssets]</OutArgument>
+                    </ui:GetRobotAsset.Value>
+                  </ui:GetRobotAsset>
+                  <Assign sap2010:WorkflowViewState.IdRef="Assign_101">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:String">[_3_sakstypeLst]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:String">[sakstypeAssets.ToString]</InArgument>
+                    </Assign.Value>
+                  </Assign>
                   <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_64" Text="1.3 Sjekk sakstype" />
                   <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" DisplayName="Attach Window 'PredatorN Tfrmpreda'" sap2010:WorkflowViewState.IdRef="WindowScope_39" InformativeScreenshot="ff1895c4917a5b4c94098ac00b906ce4" Selector="&lt;wnd app='predator.exe' cls='TfrmPredator' title='PredatorNO - [Saksbehandling]' /&gt;">
                     <ui:WindowScope.Body>
@@ -422,7 +436,7 @@
                       </ActivityAction>
                     </ui:WindowScope.Body>
                   </ui:WindowScope>
-                  <If Condition="[_3_sakstypeLst.Contains(sakstype)]" sap2010:WorkflowViewState.IdRef="If_17">
+                  <If Condition="[_3_sakstypeLst.Contains(Sakstype)]" sap2010:WorkflowViewState.IdRef="If_17">
                     <If.Then>
                       <Assign sap2010:WorkflowViewState.IdRef="Assign_96">
                         <Assign.To>
@@ -1343,7 +1357,7 @@
     <x:Reference>__ReferenceID1</x:Reference>
     <x:Reference>__ReferenceID22</x:Reference>
     <x:Reference>__ReferenceID0</x:Reference>
-    <sads:DebugSymbol.Symbol>dzFXOlxycGFcVmFza2xpc3RlclxEZWwxXDEgS2xhc3NpZmlzZXJlIHNha19uci54YW1suwMBzwEBngIBAwFdAa8BAQJ5A8MKDwIBAYIBNoIBlgICAQWEATSEATwCAQSHATSHATkCAQONAQuNAToCAQKUAQnKAhQDAbQDzQIN4QMYAwHpAuMDQOMDbAMB5wK5BSnwBTQDAckC8wUtlQY4AwG2ApcGYJcGeAMBtAKaBjXuBkADAZUC5QND5QNXAwGTAu8HMfgIPAMB7QHoAxnsAzEDAekB7wMd3QQoAwGyAd8EUN8EagMBsAH6BlT6BngDAa4BlAcp6gc0AwGAAewHXOwHcwIBfoAJMYQJSQIBeocJNbsJQAIBXr0JaL0JeAIBXMAJPe8JSAIBQvEJcPEJhwECAUD0CUWBClACATn9BimMBzQCATDiBCW2BTACAQaVAQvJAhYDAbUDzgIP4AMaAwHqAr0FK8gFMAMB4ALJBSvWBTADAdgC1wUr1wWdAQMB1gLYBSvfBTQDAdIC4AUr5wU0AwHPAugFK+4FOwMBzgLvBSvvBaYEAwHKAvQFL/QFoAEDAccC9QUvlAY0AwG3ApsGN5sGnwEDAbICnAY3rgZSAwGlAq8GN+YGQgMBlwLnBjftBkcDAZYC8Acz8AemAQMBkQLxBzOKCEQDAYwCiwgznwhEAwGFAqAIM68IRAMB/gGwCDPJCEQDAfkByggz7ghEAwH0Ae8IM+8IsgEDAfIB8Agz9wg8AwHuAeoDW+oDZgMB6wHoA8QB6APgAQMB6gH0Ax/0A5EBAwHnAfUDH/wDKAMB4wH9Ax/9A+IBAwHhAf4DH4UEKAMB3QGGBB+NBCgDAdkBjgQflQQoAwHVAZYEH9cELAMBuAHYBB/cBCQDAbMBlgdalgd8AwGBAZoHK5oHnwEDAawBmwcrogc0AwGoAaMHK6MH2gEDAaYBpAcrqwc0AwGiAawHK7MHNAMBngG0ByvkBzgDAYcB5Qcr6QcwAwGCAYIJeYIJigECAXyACfMBgAmZAgIBe4sJN4sJsQECAXiMCTeTCUACAXSUCTebCUACAXCcCTejCUACAWykCTe6CTwCAV/ECT/ECb8BAgFaxQk/zAlIAgFWzQk/1AlIAgFS1Qk/7glEAgFD+AlH+Am5AQIBPvkJR4AKUAIBOv4GK4MHQwIBNYQHK4sHNAIBMecEJ+cEmwECAS7oBCfvBDACASrwBCf3BDACASX4BCf4BI0BAgEi+QQnpQUyAgEQpgUnrQUyAgELrgUntQUwAgEHlgENygEoAwHrA8sBDcgCGAMBtgPPAhHPAnwDAbID0AIR4gIiAwGrA+MCEfsCIgMBnQP8AhHfAxwDAesCvQU5vQVQAwHhAr8FL8YFOAMB4wLJBTnJBWkDAdkCywUv1AU6AwHbAtcFgwHXBZoBAwHXAt0FWN0FaQMB1QLaBVnaBWYDAdMC5QVY5QWTAQMB0QLiBVniBXADAdAC7wXNA+8F2QMDAcwC7wVW7wXCAwMBywL0BYcB9AWdAQMByAL1BT31BVsDAbgC9wUziAY+AwG9AosGM5IGPAMBuQKbBo8BmwacAQMBswKcBt4BnAbvAQMBsAKiBj2rBkgDAaYCsAY5tAZPAwGjArUGOcMGRAMBoQLEBjnSBkQDAZ8C0wY55QZKAwGYAvAHiwHwB6MBAwGSAvEHswLxB44DAwGQAvcHOYcIRAMBjQKLCLsCiwj2AgMBiwKRCDmcCEQDAYYCoAjCAqAI/QIDAYQCpgg5rAhEAwH/AbAIqwKwCOYCAwH9AbYIOcYIRAMB+gHKCK4CygiJAwMB+AHQCDnrCEQDAfUB7wiLAe8IrwEDAfMB9Qhe9QiAAQMB8QHyCF/yCGcDAe8B9AN39AOOAQMB6AH6A076A5QBAwHmAfcDT/cDVQMB5AH9A3f9A98BAwHiAYMES4MEUAMB4AGABEyABGADAd4BiwRMiwRwAwHcAYgETYgEWAMB2gGTBEyTBHADAdgBkARNkARYAwHWAZYEpAGWBKwBAwHUAZwEJdQEMAMBuQHYBC3YBEcDAbQB2gQj2gSSAQMBtgGaB4MBmgecAQMBrQGgB1qgB4ABAwGrAZ0HW50HYQMBqQGjB4MBowfXAQMBpwGpB1epB1wDAaUBpgdYpgdtAwGjAbEHWLEHfAMBoQGuB1muB2QDAZ8BtAewAbQHuAEDAZ0Bugcx4Qc8AwGIAeUHOeUHUwMBgwHnBy/nB54BAwGFAYsJjwGLCa4BAgF5kQljkQloAgF3jglkjglyAgF1mQljmQloAgFzlglklgl5AgFxoQlmoQmUAQIBb54JZ54JbQIBbaQJRaQJWwIBYKYJO7gJRgIBYcQJlwHECbwBAgFbyglryglwAgFZxwlsxwmBAQIBV9IJbtIJ2AECAVXPCW/PCXUCAVPVCU3VCWMCAUTXCUPpCU4CAUfsCUPsCasBAgFF+AmfAfgJtgECAT/+CXL+CXQCAT37CXP7CXsCATv+BtcB/gb1AQIBOIAHZ4AHbQIBNokHVokHbQIBNIYHV4YHXwIBMucEf+cEmAECAS/tBFTtBHcCAS3qBFXqBFsCASv1BFL1BG8CASjyBFPyBFwCASb4BH/4BIoBAgEj+gQpjAU6AgEbjQUppAU6AgERpwUprAVBAgEMswVSswVmAgEKsAVTsAVbAgEIlgGoAZYBuAEDAZEEnAETxwEeAwHsA8wBD8wBegMB6QPNAQ/aAR8DAegD2wEPmQIaAwHNA5oCD8cCGgMBtwPPAmnPAnkDAbMD0AKhAtAC/AIDAbED1gIX3wIiAwGsA+MCmQLjAtUCAwGqA+kCF/gCIgMBngOAAxOAA4IBAwGbA4EDE6gDJAMBiAOpAxPIAxgDAfgCyQMT3gMYAwHsAsQFWsQFZgMB5gLBBVvBBWMDAeQCzAUx0wU6AwHcAvgFNf8FPgMBwwKABjWHBj4DAb4CkAZekAZnAwG8Ao0GX40GZwMBugKjBj+pBlMDAawCqgY/qgbvAQMBpwKyBswBsgaFAgMBpALBBswBwQagAwMBogLQBswB0AbJAgMBoALTBsQC0waIAwMBngLZBj/iBkoDAZkC+Ac7hghGAwGOApIIO5YISQMBiAKXCDubCEsDAYcCpwg7qwhJAwGAArcIO8UIRgMB+wHRCDvVCEsDAfcB1gg76ghLAwH2AaAEJ6cEMAMB0AGoBCfTBCwDAboB2gR72gSPAQMBtwG+BzPFBzwDAZkBxgcz4Ac4AwGJAecHhwHnB5sBAwGGAacJPa4JRgIBaK8JPa8JpAECAWawCT23CUYCAWLYCUXfCU4CAU7gCUXgCbQBAgFM4QlF6AlOAgFI7AmbAewJqAECAUb6BLkC+gSUAwIBIYAFL4kFOgIBHI0FuQKNBYMDAgEakwUvoQU6AgESpwXjAacFgQICAQ+pBWWpBWsCAQ2gARWgAb4BAwGNBKEBFaEBuwIDAYkEogEVogGiAQMBhASjARWjAY8BAwGBBKQBFcQBJQMB9QPFARXFAaIBAwHwA8YBFcYBeQMB7QPMAWfMAXcDAeoD3AER8QEcAwHfA/IBEf8BIQMB3gOAAhGHAhoDAdoDiAIRjwIaAwHWA5ACEZcCGgMB0QOYAhGYApwfAwHOA5sCEZsC4AEDAcgDnAIRoAIhAwHGA6ECEbMCIgMBvwO0AhHGAiIDAbgD1wIZ3gIkAwGtA+oCGe4CJwMBpgPvAhnvApYBAwGjA/ACGfcCJAMBnwOAA2uAA38DAZwDgQOjAoED/gIDAZoDhwMZpQMkAwGJA6kDIakDRgMB+QKrAxeyAyADAYQDtQMXxgMiAwH6AskDIckDTQMB7QLLAxfcAyIDAe8C0QVc0QVqAwHfAs4FXc4FZQMB3QL9BWD9BYoBAwHGAvoFYfoFaQMBxAKFBl+FBmkDAcECggZgggZmAwG/AqMGV6MGYQMBrwKmBkWmBnQDAa4Cowa5AaMGvwEDAa0CqgboAaoG7AEDAasCqgZvqgZ7AwGpAqoG1AGqBtoBAwGoAtoGQeEGTAMBmgKECM4BhAioAwMBjwKUCM4BlAiXAgMBigKSCNcCkgj3AgMBiQKpCM4BqQiXAgMBgwKnCOMCpwjyAgMBgQLDCM4BwwjuAQMB/AGlBFSlBJ0BAwHTAaIEVaIEWwMB0QGoBDWoBKIBAwG7AaoEK7gENgMByAG7BCvRBDADAbwBwwdgwwepAQMBnAHAB2HAB2cDAZoBxgdBxgd3AwGKAcgHN9sHQgMBjQHeBzfeB7kBAwGLAawJaawJbQIBa6kJaqkJeAIBaa8JlQGvCaEBAgFntQlotQmXAQIBZbIJabIJdgIBY90Jcd0JdQIBUdoJctoJhwECAU/gCZ0B4AmxAQIBTeYJcOYJqwECAUvjCXHjCX4CAUmBBTGIBTwCAR2UBTGYBT8CAReZBTGgBTwCAROgAVWgAV4DAY8EoAG1AaABuwEDAY4EoQGgAaEBpQEDAYwEoQGwAaEBuQEDAYoEogGWAaIBnwEDAYcEogEzogE8AwGFBKMBbaMBjAEDAYIEpAEupAE3AwH/A6oBG8EBJgMB9gPFAZYBxQGfAQMB8wPFATPFATwDAfEDxgFtxgF2AwHuA90BE+EBJgMB5APiARPiAbMBAwHhA+MBE/ABIwMB4AOFAjuFAjwDAd0DggI8ggJCAwHbA40CPI0CZgMB2QOKAj2KAkUDAdcDlQI7lQJFAwHUA5ICPJICQgMB0gOYAi6YAjoDAc8DmwJcmwKJAQMBywObAswBmwLdAQMByQOeAqQBngLsAQMBxwOhAqECoQL8AgMBxQOnAhewAiIDAcADtAKgArQC2QIDAb4DugIXwwIiAwG5A9wCrAHcAtkBAwGwA9kCRdkCSQMBrwPZAjjZAjwDAa4D7AKsAewCxwEDAakD6gKrAuoCtQIDAacD7wJx7wKTAQMBpAP1AqwB9QLVAQMBogPyAkXyAkkDAaED8gI48gI8AwGgA4wDG5MDLwMBlAOUAxuUA7EBAwGSA5UDG5wDJAMBjgOdAxukAy8DAYoDsANDsANHAwGHA60DRK0DVgMBhQO2Axm9AyIDAYADvgMZxQMiAwH7AswDGdMDIgMB9ALUAxnbAyIDAfAC3wbUAd8GwwIDAZ0C3AZt3AZxAwGcAtwGYNwGZAMBmwKuBC21BDYDAcwBtgQttgSYAgMBygG3BC23BGMDAckBuwQ5uwRvAwG9Ab0EL88EOgMBvgHJBznQB0IDAZUB0Qc50QekAgMBkwHSBznZB0IDAY8B2gc52gdvAwGOAd4HjwHeB7YBAwGMAYYFxAGGBfMBAgEggwVdgwVhAgEfgwVQgwVUAgEelgXEAZYFkwICARmUBccClAXVAgIBGJ4FxAGeBYsCAgEWmwVdmwVhAgEVmwVQmwVUAgEUqwEdwAEiAwH3A98BP98BTgMB5gPdAUTdAVYDAeUD4gFr4gGwAQMB4gOoAhmvAiQDAcEDuwIZwgIkAwG6A4wDrQGMA7ABAwGZA44DrgGOA8MCAwGYA5EDTpEDWQMBlgOMA7sBjAPJAQMBlQOUA3OUA64BAwGTA5oDRpoDZAMBkQOXA0eXA1EDAY8DnwOuAZ8DvwIDAY0DogNHogNXAwGLA7sDRbsDSgMBgwO4A0a4A1gDAYEDwwNEwwOpAQMB/gLAA0XAA1IDAfwC0QNF0QNKAwH3As4DRs4DWAMB9QLZA0TZA3ADAfMC1gNF1gNSAwHxArMEWbMEXQMBzwGwBFqwBG4DAc0BtgSFAbYElQIDAcsBvgQxxQQ6AwHEAcYEMc0EOgMBwAHOBDHOBGcDAb8BzgdlzgdpAwGYAcsHZssHewMBlgHRB5EB0QehAgMBlAHXB2TXB50BAwGSAdQHZdQHcgMBkAGrASurAWIDAfgDrQEhtAEqAwH8A7cBIb4BKgMB+QOtAqwBrQKGAwMBxAOqAkWqAkgDAcMDqgI4qgI8AwHCA8ACrAHAAuYBAwG9A70CRb0CSAMBvAO9Aji9AjwDAbsDwwRdwwRhAwHHAcAEXsAEcgMBxQHLBF3LBGEDAcMByAReyASAAQMBwQGyAUyyAXEDAf4DrwFNrwFZAwH9A7wBTLwBawMB+wO5AU25AVkDAfoD</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>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</sads:DebugSymbol.Symbol>
   </Flowchart>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
@@ -1512,7 +1526,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="WriteLine_62" sap:VirtualizedContainerService.HintSize="414,59" />
+      <sap2010:ViewStateData Id="WriteLine_62" sap:VirtualizedContainerService.HintSize="553,59" />
       <sap2010:ViewStateData Id="Click_30" sap:VirtualizedContainerService.HintSize="314,106" />
       <sap2010:ViewStateData Id="Sequence_146" sap:VirtualizedContainerService.HintSize="336,230">
         <sap:WorkflowViewStateService.ViewState>
@@ -1521,7 +1535,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="WindowScope_37" sap:VirtualizedContainerService.HintSize="414,376">
+      <sap2010:ViewStateData Id="WindowScope_37" sap:VirtualizedContainerService.HintSize="553,376">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -1539,7 +1553,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="WindowScope_38" sap:VirtualizedContainerService.HintSize="414,649">
+      <sap2010:ViewStateData Id="WindowScope_38" sap:VirtualizedContainerService.HintSize="553,649">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -1547,6 +1561,8 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="GetRobotAsset_3" sap:VirtualizedContainerService.HintSize="531,22" />
+      <sap2010:ViewStateData Id="Assign_101" sap:VirtualizedContainerService.HintSize="531,59" />
       <sap2010:ViewStateData Id="WriteLine_64" sap:VirtualizedContainerService.HintSize="531,59" />
       <sap2010:ViewStateData Id="GetVisibleText_6" sap:VirtualizedContainerService.HintSize="314,106" />
       <sap2010:ViewStateData Id="WriteLine_65" sap:VirtualizedContainerService.HintSize="314,59" />
@@ -1602,21 +1618,21 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Sequence_152" sap:VirtualizedContainerService.HintSize="200,49">
+      <sap2010:ViewStateData Id="Sequence_152" sap:VirtualizedContainerService.HintSize="553,2034">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Sequence_148" sap:VirtualizedContainerService.HintSize="436,1377">
+      <sap2010:ViewStateData Id="Sequence_148" sap:VirtualizedContainerService.HintSize="575,3362">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Sequence_145" sap:VirtualizedContainerService.HintSize="200,49">
+      <sap2010:ViewStateData Id="Sequence_145" sap:VirtualizedContainerService.HintSize="597,3486">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
