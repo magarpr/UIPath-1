@@ -103,47 +103,40 @@
     </Sequence.Variables>
     <Flowchart sap2010:WorkflowViewState.IdRef="Flowchart_1">
       <Flowchart.StartNode>
-        <FlowStep x:Name="__ReferenceID6" sap2010:WorkflowViewState.IdRef="FlowStep_6">
-          <TryCatch DisplayName="Try ExcelRead" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+        <FlowStep x:Name="__ReferenceID12" sap2010:WorkflowViewState.IdRef="FlowStep_8">
+          <TryCatch DisplayName="Initialize Environment Variables" sap2010:WorkflowViewState.IdRef="TryCatch_8">
             <TryCatch.Try>
-              <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Excel application scope" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_5" WorkbookPath="Excel\vaskeliste_v2.0.xlsx">
-                <ui:ExcelApplicationScope.Body>
-                  <ActivityAction x:TypeArguments="ui:WorkbookApplication">
-                    <ActivityAction.Argument>
-                      <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
-                    </ActivityAction.Argument>
-                    <Sequence sap2010:WorkflowViewState.IdRef="Sequence_110">
-                      <ui:ExcelReadRange AddHeaders="True" DataTable="[Inn_tabell]" DisplayName="Read Range" sap2010:WorkflowViewState.IdRef="ExcelReadRange_2" SheetName="Ark1">
-                        <ui:ExcelReadRange.Range>
-                          <InArgument x:TypeArguments="x:String">
-                            <Literal x:TypeArguments="x:String" Value="" />
-                          </InArgument>
-                        </ui:ExcelReadRange.Range>
-                      </ui:ExcelReadRange>
-                      <ui:ExcelReadRange AddHeaders="True" DataTable="[vaskeliste_tabell]" DisplayName="Read Range" sap2010:WorkflowViewState.IdRef="ExcelReadRange_3" SheetName="Ark1">
-                        <ui:ExcelReadRange.Range>
-                          <InArgument x:TypeArguments="x:String">
-                            <Literal x:TypeArguments="x:String" Value="" />
-                          </InArgument>
-                        </ui:ExcelReadRange.Range>
-                      </ui:ExcelReadRange>
-                    </Sequence>
-                  </ActivityAction>
-                </ui:ExcelApplicationScope.Body>
-              </ui:ExcelApplicationScope>
+              <Sequence sap2010:WorkflowViewState.IdRef="Sequence_140">
+                <Assign sap2010:WorkflowViewState.IdRef="Assign_31">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[Okonomi_URL]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String">["https://wasapp-q1.adeo.no/oppdrag/portal/login.jsp"]</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <Assign sap2010:WorkflowViewState.IdRef="Assign_32">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[Predator_path]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String">["C:\Program Files (x86)\SPN\Predator"]</InArgument>
+                  </Assign.Value>
+                </Assign>
+              </Sequence>
             </TryCatch.Try>
             <TryCatch.Catches>
-              <Catch x:TypeArguments="s:Exception" sap2010:WorkflowViewState.IdRef="Catch`1_6">
+              <Catch x:TypeArguments="s:Exception" sap2010:WorkflowViewState.IdRef="Catch`1_8">
                 <ActivityAction x:TypeArguments="s:Exception">
                   <ActivityAction.Argument>
                     <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
                   </ActivityAction.Argument>
-                  <Sequence sap2010:WorkflowViewState.IdRef="Sequence_131">
+                  <Sequence sap2010:WorkflowViewState.IdRef="Sequence_141">
                     <Sequence.Variables>
                       <Variable x:TypeArguments="ui:GenericValue" Name="Del2MainIsExceptionText" />
                       <Variable x:TypeArguments="ui:GenericValue" Name="Del3MainIsExceptionText" />
                     </Sequence.Variables>
-                    <Assign sap2010:WorkflowViewState.IdRef="Assign_29">
+                    <Assign sap2010:WorkflowViewState.IdRef="Assign_33">
                       <Assign.To>
                         <OutArgument x:TypeArguments="ui:GenericValue">[IsDel3MainIsException]</OutArgument>
                       </Assign.To>
@@ -151,7 +144,7 @@
                         <InArgument x:TypeArguments="ui:GenericValue">[True]</InArgument>
                       </Assign.Value>
                     </Assign>
-                    <Assign sap2010:WorkflowViewState.IdRef="Assign_30">
+                    <Assign sap2010:WorkflowViewState.IdRef="Assign_34">
                       <Assign.To>
                         <OutArgument x:TypeArguments="ui:GenericValue">[Del3MainIsExceptionText]</OutArgument>
                       </Assign.To>
@@ -159,14 +152,14 @@
                         <InArgument x:TypeArguments="ui:GenericValue">[exception.Source+":"+exception.Message+":"+exception.StackTrace]</InArgument>
                       </Assign.Value>
                     </Assign>
-                    <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_37" Text="[&quot;Exception :&quot;+exception.Source+&quot;:&quot;+exception.Message+&quot;:&quot;+exception.StackTrace]" />
+                    <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_39" Text="[&quot;Exception :&quot;+exception.Source+&quot;:&quot;+exception.Message+&quot;:&quot;+exception.StackTrace]" />
                   </Sequence>
                 </ActivityAction>
               </Catch>
             </TryCatch.Catches>
           </TryCatch>
           <FlowStep.Next>
-            <FlowDecision x:Name="__ReferenceID7" Condition="[IsDel3MainIsException]" sap2010:WorkflowViewState.IdRef="FlowDecision_1">
+            <FlowDecision x:Name="__ReferenceID13" Condition="[IsDel3MainIsException]" sap2010:WorkflowViewState.IdRef="FlowDecision_7">
               <FlowDecision.True>
                 <FlowStep x:Name="__ReferenceID0" sap2010:WorkflowViewState.IdRef="FlowStep_7">
                   <TryCatch DisplayName="HåndtereException" sap2010:WorkflowViewState.IdRef="TryCatch_7">
@@ -323,24 +316,47 @@
                 </FlowStep>
               </FlowDecision.True>
               <FlowDecision.False>
-                <FlowStep x:Name="__ReferenceID5" sap2010:WorkflowViewState.IdRef="FlowStep_5">
-                  <TryCatch DisplayName="Try ClearDataTable" sap2010:WorkflowViewState.IdRef="TryCatch_2">
+                <FlowStep x:Name="__ReferenceID6" sap2010:WorkflowViewState.IdRef="FlowStep_6">
+                  <TryCatch DisplayName="Try ExcelRead" sap2010:WorkflowViewState.IdRef="TryCatch_1">
                     <TryCatch.Try>
-                      <ui:ClearDataTable DataTable="[vaskeliste_tabell]" DisplayName="Clear data table" sap2010:WorkflowViewState.IdRef="ClearDataTable_1" />
+                      <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Excel application scope" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_5" WorkbookPath="Excel\vaskeliste_v2.0.xlsx">
+                        <ui:ExcelApplicationScope.Body>
+                          <ActivityAction x:TypeArguments="ui:WorkbookApplication">
+                            <ActivityAction.Argument>
+                              <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
+                            </ActivityAction.Argument>
+                            <Sequence sap2010:WorkflowViewState.IdRef="Sequence_110">
+                              <ui:ExcelReadRange AddHeaders="True" DataTable="[Inn_tabell]" DisplayName="Read Range" sap2010:WorkflowViewState.IdRef="ExcelReadRange_2" SheetName="Ark1">
+                                <ui:ExcelReadRange.Range>
+                                  <InArgument x:TypeArguments="x:String">
+                                    <Literal x:TypeArguments="x:String" Value="" />
+                                  </InArgument>
+                                </ui:ExcelReadRange.Range>
+                              </ui:ExcelReadRange>
+                              <ui:ExcelReadRange AddHeaders="True" DataTable="[vaskeliste_tabell]" DisplayName="Read Range" sap2010:WorkflowViewState.IdRef="ExcelReadRange_3" SheetName="Ark1">
+                                <ui:ExcelReadRange.Range>
+                                  <InArgument x:TypeArguments="x:String">
+                                    <Literal x:TypeArguments="x:String" Value="" />
+                                  </InArgument>
+                                </ui:ExcelReadRange.Range>
+                              </ui:ExcelReadRange>
+                            </Sequence>
+                          </ActivityAction>
+                        </ui:ExcelApplicationScope.Body>
+                      </ui:ExcelApplicationScope>
                     </TryCatch.Try>
                     <TryCatch.Catches>
-                      <Catch x:TypeArguments="s:Exception" sap2010:WorkflowViewState.IdRef="Catch`1_5">
+                      <Catch x:TypeArguments="s:Exception" sap2010:WorkflowViewState.IdRef="Catch`1_6">
                         <ActivityAction x:TypeArguments="s:Exception">
                           <ActivityAction.Argument>
                             <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
                           </ActivityAction.Argument>
-                          <Sequence sap2010:WorkflowViewState.IdRef="Sequence_130">
+                          <Sequence sap2010:WorkflowViewState.IdRef="Sequence_131">
                             <Sequence.Variables>
                               <Variable x:TypeArguments="ui:GenericValue" Name="Del2MainIsExceptionText" />
-                              <Variable x:TypeArguments="ui:GenericValue" Name="IsDel3MainIsException" />
                               <Variable x:TypeArguments="ui:GenericValue" Name="Del3MainIsExceptionText" />
                             </Sequence.Variables>
-                            <Assign sap2010:WorkflowViewState.IdRef="Assign_27">
+                            <Assign sap2010:WorkflowViewState.IdRef="Assign_29">
                               <Assign.To>
                                 <OutArgument x:TypeArguments="ui:GenericValue">[IsDel3MainIsException]</OutArgument>
                               </Assign.To>
@@ -348,7 +364,7 @@
                                 <InArgument x:TypeArguments="ui:GenericValue">[True]</InArgument>
                               </Assign.Value>
                             </Assign>
-                            <Assign sap2010:WorkflowViewState.IdRef="Assign_28">
+                            <Assign sap2010:WorkflowViewState.IdRef="Assign_30">
                               <Assign.To>
                                 <OutArgument x:TypeArguments="ui:GenericValue">[Del3MainIsExceptionText]</OutArgument>
                               </Assign.To>
@@ -356,68 +372,33 @@
                                 <InArgument x:TypeArguments="ui:GenericValue">[exception.Source+":"+exception.Message+":"+exception.StackTrace]</InArgument>
                               </Assign.Value>
                             </Assign>
-                            <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_36" Text="[&quot;Exception :&quot;+exception.Source+&quot;:&quot;+exception.Message+&quot;:&quot;+exception.StackTrace]" />
+                            <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_37" Text="[&quot;Exception :&quot;+exception.Source+&quot;:&quot;+exception.Message+&quot;:&quot;+exception.StackTrace]" />
                           </Sequence>
                         </ActivityAction>
                       </Catch>
                     </TryCatch.Catches>
                   </TryCatch>
                   <FlowStep.Next>
-                    <FlowDecision x:Name="__ReferenceID8" Condition="[IsDel3MainIsException]" sap2010:WorkflowViewState.IdRef="FlowDecision_2" True="{x:Reference __ReferenceID0}">
+                    <FlowDecision x:Name="__ReferenceID7" Condition="[IsDel3MainIsException]" sap2010:WorkflowViewState.IdRef="FlowDecision_1" True="{x:Reference __ReferenceID0}">
                       <FlowDecision.False>
-                        <FlowStep x:Name="__ReferenceID4" sap2010:WorkflowViewState.IdRef="FlowStep_4">
-                          <TryCatch DisplayName="Try AddDataRow" sap2010:WorkflowViewState.IdRef="TryCatch_3">
+                        <FlowStep x:Name="__ReferenceID5" sap2010:WorkflowViewState.IdRef="FlowStep_5">
+                          <TryCatch DisplayName="Try ClearDataTable" sap2010:WorkflowViewState.IdRef="TryCatch_2">
                             <TryCatch.Try>
-                              <ui:ForEachRow DataTable="[Inn_tabell]" DisplayName="For each row" sap2010:WorkflowViewState.IdRef="ForEachRow_3">
-                                <ui:ForEachRow.Body>
-                                  <ActivityAction x:TypeArguments="sd:DataRow">
-                                    <ActivityAction.Argument>
-                                      <DelegateInArgument x:TypeArguments="sd:DataRow" Name="row" />
-                                    </ActivityAction.Argument>
-                                    <Sequence sap2010:WorkflowViewState.IdRef="Sequence_109">
-                                      <Assign sap2010:WorkflowViewState.IdRef="Assign_15">
-                                        <Assign.To>
-                                          <OutArgument x:TypeArguments="x:Object">[row(4)]</OutArgument>
-                                        </Assign.To>
-                                        <Assign.Value>
-                                          <InArgument x:TypeArguments="x:Object">[row.Item("_1_inntekt").ToString.Replace(",",".")]</InArgument>
-                                        </Assign.Value>
-                                      </Assign>
-                                      <Assign sap2010:WorkflowViewState.IdRef="Assign_16">
-                                        <Assign.To>
-                                          <OutArgument x:TypeArguments="x:Object">[row(4)]</OutArgument>
-                                        </Assign.To>
-                                        <Assign.Value>
-                                          <InArgument x:TypeArguments="x:Object">[row.Item("_1_inntekt").ToString.Replace(" ","")]</InArgument>
-                                        </Assign.Value>
-                                      </Assign>
-                                      <Assign sap2010:WorkflowViewState.IdRef="Assign_10">
-                                        <Assign.To>
-                                          <OutArgument x:TypeArguments="x:Object">[row(4)]</OutArgument>
-                                        </Assign.To>
-                                        <Assign.Value>
-                                          <InArgument x:TypeArguments="x:Decimal">[Ctype(row(4),decimal)]</InArgument>
-                                        </Assign.Value>
-                                      </Assign>
-                                      <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[row.ItemArray]" DataTable="[vaskeliste_tabell]" DisplayName="Add data row" sap2010:WorkflowViewState.IdRef="AddDataRow_2" />
-                                    </Sequence>
-                                  </ActivityAction>
-                                </ui:ForEachRow.Body>
-                              </ui:ForEachRow>
+                              <ui:ClearDataTable DataTable="[vaskeliste_tabell]" DisplayName="Clear data table" sap2010:WorkflowViewState.IdRef="ClearDataTable_1" />
                             </TryCatch.Try>
                             <TryCatch.Catches>
-                              <Catch x:TypeArguments="s:Exception" sap2010:WorkflowViewState.IdRef="Catch`1_4">
+                              <Catch x:TypeArguments="s:Exception" sap2010:WorkflowViewState.IdRef="Catch`1_5">
                                 <ActivityAction x:TypeArguments="s:Exception">
                                   <ActivityAction.Argument>
                                     <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
                                   </ActivityAction.Argument>
-                                  <Sequence sap2010:WorkflowViewState.IdRef="Sequence_129">
+                                  <Sequence sap2010:WorkflowViewState.IdRef="Sequence_130">
                                     <Sequence.Variables>
                                       <Variable x:TypeArguments="ui:GenericValue" Name="Del2MainIsExceptionText" />
                                       <Variable x:TypeArguments="ui:GenericValue" Name="IsDel3MainIsException" />
                                       <Variable x:TypeArguments="ui:GenericValue" Name="Del3MainIsExceptionText" />
                                     </Sequence.Variables>
-                                    <Assign sap2010:WorkflowViewState.IdRef="Assign_25">
+                                    <Assign sap2010:WorkflowViewState.IdRef="Assign_27">
                                       <Assign.To>
                                         <OutArgument x:TypeArguments="ui:GenericValue">[IsDel3MainIsException]</OutArgument>
                                       </Assign.To>
@@ -425,7 +406,7 @@
                                         <InArgument x:TypeArguments="ui:GenericValue">[True]</InArgument>
                                       </Assign.Value>
                                     </Assign>
-                                    <Assign sap2010:WorkflowViewState.IdRef="Assign_26">
+                                    <Assign sap2010:WorkflowViewState.IdRef="Assign_28">
                                       <Assign.To>
                                         <OutArgument x:TypeArguments="ui:GenericValue">[Del3MainIsExceptionText]</OutArgument>
                                       </Assign.To>
@@ -433,79 +414,68 @@
                                         <InArgument x:TypeArguments="ui:GenericValue">[exception.Source+":"+exception.Message+":"+exception.StackTrace]</InArgument>
                                       </Assign.Value>
                                     </Assign>
-                                    <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_35" Text="[&quot;Exception :&quot;+exception.Source+&quot;:&quot;+exception.Message+&quot;:&quot;+exception.StackTrace]" />
+                                    <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_36" Text="[&quot;Exception :&quot;+exception.Source+&quot;:&quot;+exception.Message+&quot;:&quot;+exception.StackTrace]" />
                                   </Sequence>
                                 </ActivityAction>
                               </Catch>
                             </TryCatch.Catches>
                           </TryCatch>
                           <FlowStep.Next>
-                            <FlowDecision x:Name="__ReferenceID9" Condition="[IsDel3MainIsException]" sap2010:WorkflowViewState.IdRef="FlowDecision_4" True="{x:Reference __ReferenceID0}">
+                            <FlowDecision x:Name="__ReferenceID8" Condition="[IsDel3MainIsException]" sap2010:WorkflowViewState.IdRef="FlowDecision_2" True="{x:Reference __ReferenceID0}">
                               <FlowDecision.False>
-                                <FlowStep x:Name="__ReferenceID3" sap2010:WorkflowViewState.IdRef="FlowStep_3">
-                                  <TryCatch DisplayName="Try MakingWordFile" sap2010:WorkflowViewState.IdRef="TryCatch_4">
+                                <FlowStep x:Name="__ReferenceID4" sap2010:WorkflowViewState.IdRef="FlowStep_4">
+                                  <TryCatch DisplayName="Try AddDataRow" sap2010:WorkflowViewState.IdRef="TryCatch_3">
                                     <TryCatch.Try>
-                                      <ui:ForEachRow DataTable="[vaskeliste_tabell]" DisplayName="For each row" sap2010:WorkflowViewState.IdRef="ForEachRow_2">
+                                      <ui:ForEachRow DataTable="[Inn_tabell]" DisplayName="For each row" sap2010:WorkflowViewState.IdRef="ForEachRow_3">
                                         <ui:ForEachRow.Body>
                                           <ActivityAction x:TypeArguments="sd:DataRow">
                                             <ActivityAction.Argument>
                                               <DelegateInArgument x:TypeArguments="sd:DataRow" Name="row" />
                                             </ActivityAction.Argument>
-                                            <Sequence sap2010:WorkflowViewState.IdRef="Sequence_124">
-                                              <If Condition="[(row.Item(&quot;_2_status_1_message&quot;).Equals(&quot;OK&quot;)) and (not row.Item(&quot;_1_inntekt&quot;).ToString.Equals(&quot;&quot;)) and (not row.Item(&quot;_1_inntekt&quot;).ToString.ToLower.Equals(&quot;inntekt not found&quot;)) and (not row.Item(&quot;_4_andreUtgift&quot;).Equals(&quot;MANUELL BEHANDLING&quot;))]" sap2010:WorkflowViewState.IdRef="If_2">
-                                                <If.Then>
-                                                  <Sequence sap2010:WorkflowViewState.IdRef="Sequence_111">
-                                                    <Sequence.Variables>
-                                                      <Variable x:TypeArguments="x:String" Name="_3_beløp_fra_workflow" />
-                                                    </Sequence.Variables>
-                                                    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke workflow file" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_28" UnSafe="False" WorkflowFileName="Del3\3. Making word file.xaml">
-                                                      <ui:InvokeWorkflowFile.Arguments>
-                                                        <InArgument x:TypeArguments="sd:DataRow" x:Key="row">[row]</InArgument>
-                                                        <InArgument x:TypeArguments="x:String" x:Key="xlsPath1">Excel\Økonomisk_oppsett_med_skatt_2017.xls</InArgument>
-                                                        <InArgument x:TypeArguments="x:String" x:Key="docPath">W:\rpa\Vasklister\OppsettWord\</InArgument>
-                                                        <OutArgument x:TypeArguments="x:String" x:Key="_3_beløp">[_3_beløp_fra_workflow]</OutArgument>
-                                                        <OutArgument x:TypeArguments="x:String" x:Key="_3_status_1_message">[_3_status_1_message]</OutArgument>
-                                                        <InArgument x:TypeArguments="x:String" x:Key="Okonomi_URL">[Okonomi_URL]</InArgument>
-                                                        <InArgument x:TypeArguments="x:String" x:Key="Predator_path">[Predator_path]</InArgument>
-                                                      </ui:InvokeWorkflowFile.Arguments>
-                                                    </ui:InvokeWorkflowFile>
-                                                    <Assign sap2010:WorkflowViewState.IdRef="Assign_17">
-                                                      <Assign.To>
-                                                        <OutArgument x:TypeArguments="x:Object">[row.Item("_3_beløp")]</OutArgument>
-                                                      </Assign.To>
-                                                      <Assign.Value>
-                                                        <InArgument x:TypeArguments="x:Object">[_3_beløp_fra_workflow]</InArgument>
-                                                      </Assign.Value>
-                                                    </Assign>
-                                                    <Assign sap2010:WorkflowViewState.IdRef="Assign_18">
-                                                      <Assign.To>
-                                                        <OutArgument x:TypeArguments="x:Object">[row.Item("_3_status_1_message")]</OutArgument>
-                                                      </Assign.To>
-                                                      <Assign.Value>
-                                                        <InArgument x:TypeArguments="x:Object">[_3_status_1_message]</InArgument>
-                                                      </Assign.Value>
-                                                    </Assign>
-                                                  </Sequence>
-                                                </If.Then>
-                                              </If>
+                                            <Sequence sap2010:WorkflowViewState.IdRef="Sequence_109">
+                                              <Assign sap2010:WorkflowViewState.IdRef="Assign_15">
+                                                <Assign.To>
+                                                  <OutArgument x:TypeArguments="x:Object">[row(4)]</OutArgument>
+                                                </Assign.To>
+                                                <Assign.Value>
+                                                  <InArgument x:TypeArguments="x:Object">[row.Item("_1_inntekt").ToString.Replace(",",".")]</InArgument>
+                                                </Assign.Value>
+                                              </Assign>
+                                              <Assign sap2010:WorkflowViewState.IdRef="Assign_16">
+                                                <Assign.To>
+                                                  <OutArgument x:TypeArguments="x:Object">[row(4)]</OutArgument>
+                                                </Assign.To>
+                                                <Assign.Value>
+                                                  <InArgument x:TypeArguments="x:Object">[row.Item("_1_inntekt").ToString.Replace(" ","")]</InArgument>
+                                                </Assign.Value>
+                                              </Assign>
+                                              <Assign sap2010:WorkflowViewState.IdRef="Assign_10">
+                                                <Assign.To>
+                                                  <OutArgument x:TypeArguments="x:Object">[row(4)]</OutArgument>
+                                                </Assign.To>
+                                                <Assign.Value>
+                                                  <InArgument x:TypeArguments="x:Decimal">[Ctype(row(4),decimal)]</InArgument>
+                                                </Assign.Value>
+                                              </Assign>
+                                              <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[row.ItemArray]" DataTable="[vaskeliste_tabell]" DisplayName="Add data row" sap2010:WorkflowViewState.IdRef="AddDataRow_2" />
                                             </Sequence>
                                           </ActivityAction>
                                         </ui:ForEachRow.Body>
                                       </ui:ForEachRow>
                                     </TryCatch.Try>
                                     <TryCatch.Catches>
-                                      <Catch x:TypeArguments="s:Exception" sap2010:WorkflowViewState.IdRef="Catch`1_3">
+                                      <Catch x:TypeArguments="s:Exception" sap2010:WorkflowViewState.IdRef="Catch`1_4">
                                         <ActivityAction x:TypeArguments="s:Exception">
                                           <ActivityAction.Argument>
                                             <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
                                           </ActivityAction.Argument>
-                                          <Sequence sap2010:WorkflowViewState.IdRef="Sequence_128">
+                                          <Sequence sap2010:WorkflowViewState.IdRef="Sequence_129">
                                             <Sequence.Variables>
                                               <Variable x:TypeArguments="ui:GenericValue" Name="Del2MainIsExceptionText" />
                                               <Variable x:TypeArguments="ui:GenericValue" Name="IsDel3MainIsException" />
                                               <Variable x:TypeArguments="ui:GenericValue" Name="Del3MainIsExceptionText" />
                                             </Sequence.Variables>
-                                            <Assign sap2010:WorkflowViewState.IdRef="Assign_23">
+                                            <Assign sap2010:WorkflowViewState.IdRef="Assign_25">
                                               <Assign.To>
                                                 <OutArgument x:TypeArguments="ui:GenericValue">[IsDel3MainIsException]</OutArgument>
                                               </Assign.To>
@@ -513,7 +483,7 @@
                                                 <InArgument x:TypeArguments="ui:GenericValue">[True]</InArgument>
                                               </Assign.Value>
                                             </Assign>
-                                            <Assign sap2010:WorkflowViewState.IdRef="Assign_24">
+                                            <Assign sap2010:WorkflowViewState.IdRef="Assign_26">
                                               <Assign.To>
                                                 <OutArgument x:TypeArguments="ui:GenericValue">[Del3MainIsExceptionText]</OutArgument>
                                               </Assign.To>
@@ -521,71 +491,79 @@
                                                 <InArgument x:TypeArguments="ui:GenericValue">[exception.Source+":"+exception.Message+":"+exception.StackTrace]</InArgument>
                                               </Assign.Value>
                                             </Assign>
-                                            <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_34" Text="[&quot;Exception :&quot;+exception.Source+&quot;:&quot;+exception.Message+&quot;:&quot;+exception.StackTrace]" />
+                                            <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_35" Text="[&quot;Exception :&quot;+exception.Source+&quot;:&quot;+exception.Message+&quot;:&quot;+exception.StackTrace]" />
                                           </Sequence>
                                         </ActivityAction>
                                       </Catch>
                                     </TryCatch.Catches>
                                   </TryCatch>
                                   <FlowStep.Next>
-                                    <FlowDecision x:Name="__ReferenceID10" Condition="[IsDel3MainIsException]" sap2010:WorkflowViewState.IdRef="FlowDecision_5" True="{x:Reference __ReferenceID0}">
+                                    <FlowDecision x:Name="__ReferenceID9" Condition="[IsDel3MainIsException]" sap2010:WorkflowViewState.IdRef="FlowDecision_4" True="{x:Reference __ReferenceID0}">
                                       <FlowDecision.False>
-                                        <FlowStep x:Name="__ReferenceID2" sap2010:WorkflowViewState.IdRef="FlowStep_2">
-                                          <TryCatch DisplayName="Try VaskelisteV3FinnesSjekk" sap2010:WorkflowViewState.IdRef="TryCatch_5">
+                                        <FlowStep x:Name="__ReferenceID3" sap2010:WorkflowViewState.IdRef="FlowStep_3">
+                                          <TryCatch DisplayName="Try MakingWordFile" sap2010:WorkflowViewState.IdRef="TryCatch_4">
                                             <TryCatch.Try>
-                                              <Sequence DisplayName="Skriv til fil" sap2010:WorkflowViewState.IdRef="Sequence_119">
-                                                <Sequence.Variables>
-                                                  <Variable x:TypeArguments="x:Boolean" Name="Fil2_finnes" />
-                                                  <Variable x:TypeArguments="x:Boolean" Name="Fil3_finnes" />
-                                                </Sequence.Variables>
-                                                <ui:PathExists DisplayName="Path exists" Exists="[Fil3_finnes]" sap2010:WorkflowViewState.IdRef="PathExists_2" Path="W:\rpa\Vasklister\Excel\vaskeliste_v3.0.xlsx" PathType="File" />
-                                                <If Condition="[Fil3_finnes]" DisplayName="Slett fil om finnes fra før" sap2010:WorkflowViewState.IdRef="If_6">
-                                                  <If.Then>
-                                                    <Sequence sap2010:WorkflowViewState.IdRef="Sequence_117">
-                                                      <ui:CommentOut DisplayName="Comment out" sap2010:WorkflowViewState.IdRef="CommentOut_1">
-                                                        <ui:CommentOut.Body>
-                                                          <Sequence DisplayName="Ignored Activities" sap2010:WorkflowViewState.IdRef="Sequence_125">
-                                                            <ui:Delete ContinueOnError="{x:Null}" sap2010:WorkflowViewState.IdRef="Delete_2" Path="W:\rpa\Vasklister\Excel\vaskeliste_v3.0.xlsx" />
+                                              <ui:ForEachRow DataTable="[vaskeliste_tabell]" DisplayName="For each row" sap2010:WorkflowViewState.IdRef="ForEachRow_2">
+                                                <ui:ForEachRow.Body>
+                                                  <ActivityAction x:TypeArguments="sd:DataRow">
+                                                    <ActivityAction.Argument>
+                                                      <DelegateInArgument x:TypeArguments="sd:DataRow" Name="row" />
+                                                    </ActivityAction.Argument>
+                                                    <Sequence sap2010:WorkflowViewState.IdRef="Sequence_124">
+                                                      <If Condition="[(row.Item(&quot;_2_status_1_message&quot;).Equals(&quot;OK&quot;)) and (not row.Item(&quot;_1_inntekt&quot;).ToString.Equals(&quot;&quot;)) and (not row.Item(&quot;_1_inntekt&quot;).ToString.ToLower.Equals(&quot;inntekt not found&quot;)) and (not row.Item(&quot;_4_andreUtgift&quot;).Equals(&quot;MANUELL BEHANDLING&quot;))]" sap2010:WorkflowViewState.IdRef="If_2">
+                                                        <If.Then>
+                                                          <Sequence sap2010:WorkflowViewState.IdRef="Sequence_111">
+                                                            <Sequence.Variables>
+                                                              <Variable x:TypeArguments="x:String" Name="_3_beløp_fra_workflow" />
+                                                            </Sequence.Variables>
+                                                            <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke workflow file" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_28" UnSafe="False" WorkflowFileName="Del3\3. Making word file.xaml">
+                                                              <ui:InvokeWorkflowFile.Arguments>
+                                                                <InArgument x:TypeArguments="sd:DataRow" x:Key="row">[row]</InArgument>
+                                                                <InArgument x:TypeArguments="x:String" x:Key="xlsPath1">Excel\Økonomisk_oppsett_med_skatt_2017.xls</InArgument>
+                                                                <InArgument x:TypeArguments="x:String" x:Key="docPath">W:\rpa\Vasklister\OppsettWord\</InArgument>
+                                                                <OutArgument x:TypeArguments="x:String" x:Key="_3_beløp">[_3_beløp_fra_workflow]</OutArgument>
+                                                                <OutArgument x:TypeArguments="x:String" x:Key="_3_status_1_message">[_3_status_1_message]</OutArgument>
+                                                                <InArgument x:TypeArguments="x:String" x:Key="Okonomi_URL">[Okonomi_URL]</InArgument>
+                                                                <InArgument x:TypeArguments="x:String" x:Key="Predator_path">[Predator_path]</InArgument>
+                                                              </ui:InvokeWorkflowFile.Arguments>
+                                                            </ui:InvokeWorkflowFile>
+                                                            <Assign sap2010:WorkflowViewState.IdRef="Assign_17">
+                                                              <Assign.To>
+                                                                <OutArgument x:TypeArguments="x:Object">[row.Item("_3_beløp")]</OutArgument>
+                                                              </Assign.To>
+                                                              <Assign.Value>
+                                                                <InArgument x:TypeArguments="x:Object">[_3_beløp_fra_workflow]</InArgument>
+                                                              </Assign.Value>
+                                                            </Assign>
+                                                            <Assign sap2010:WorkflowViewState.IdRef="Assign_18">
+                                                              <Assign.To>
+                                                                <OutArgument x:TypeArguments="x:Object">[row.Item("_3_status_1_message")]</OutArgument>
+                                                              </Assign.To>
+                                                              <Assign.Value>
+                                                                <InArgument x:TypeArguments="x:Object">[_3_status_1_message]</InArgument>
+                                                              </Assign.Value>
+                                                            </Assign>
                                                           </Sequence>
-                                                        </ui:CommentOut.Body>
-                                                      </ui:CommentOut>
+                                                        </If.Then>
+                                                      </If>
                                                     </Sequence>
-                                                  </If.Then>
-                                                </If>
-                                                <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Excel application scope" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_7" WorkbookPath="W:\rpa\Vasklister\Excel\vaskeliste_v3.0.xlsx">
-                                                  <ui:ExcelApplicationScope.Body>
-                                                    <ActivityAction x:TypeArguments="ui:WorkbookApplication">
-                                                      <ActivityAction.Argument>
-                                                        <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
-                                                      </ActivityAction.Argument>
-                                                      <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_118">
-                                                        <ui:ExcelWriteCell Cell="A1:Z300" DisplayName="Write Value" sap2010:WorkflowViewState.IdRef="ExcelWriteCell_1" SheetName="Ark1">
-                                                          <ui:ExcelWriteCell.Text>
-                                                            <InArgument x:TypeArguments="x:String">
-                                                              <Literal x:TypeArguments="x:String" Value="" />
-                                                            </InArgument>
-                                                          </ui:ExcelWriteCell.Text>
-                                                        </ui:ExcelWriteCell>
-                                                        <ui:ExcelWriteRange AddHeaders="True" DataTable="[vaskeliste_tabell]" DisplayName="Write Range" sap2010:WorkflowViewState.IdRef="ExcelWriteRange_2" SheetName="Ark1" StartingCell="A1" />
-                                                      </Sequence>
-                                                    </ActivityAction>
-                                                  </ui:ExcelApplicationScope.Body>
-                                                </ui:ExcelApplicationScope>
-                                              </Sequence>
+                                                  </ActivityAction>
+                                                </ui:ForEachRow.Body>
+                                              </ui:ForEachRow>
                                             </TryCatch.Try>
                                             <TryCatch.Catches>
-                                              <Catch x:TypeArguments="s:Exception" sap2010:WorkflowViewState.IdRef="Catch`1_2">
+                                              <Catch x:TypeArguments="s:Exception" sap2010:WorkflowViewState.IdRef="Catch`1_3">
                                                 <ActivityAction x:TypeArguments="s:Exception">
                                                   <ActivityAction.Argument>
                                                     <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
                                                   </ActivityAction.Argument>
-                                                  <Sequence sap2010:WorkflowViewState.IdRef="Sequence_127">
+                                                  <Sequence sap2010:WorkflowViewState.IdRef="Sequence_128">
                                                     <Sequence.Variables>
                                                       <Variable x:TypeArguments="ui:GenericValue" Name="Del2MainIsExceptionText" />
                                                       <Variable x:TypeArguments="ui:GenericValue" Name="IsDel3MainIsException" />
                                                       <Variable x:TypeArguments="ui:GenericValue" Name="Del3MainIsExceptionText" />
                                                     </Sequence.Variables>
-                                                    <Assign sap2010:WorkflowViewState.IdRef="Assign_21">
+                                                    <Assign sap2010:WorkflowViewState.IdRef="Assign_23">
                                                       <Assign.To>
                                                         <OutArgument x:TypeArguments="ui:GenericValue">[IsDel3MainIsException]</OutArgument>
                                                       </Assign.To>
@@ -593,7 +571,7 @@
                                                         <InArgument x:TypeArguments="ui:GenericValue">[True]</InArgument>
                                                       </Assign.Value>
                                                     </Assign>
-                                                    <Assign sap2010:WorkflowViewState.IdRef="Assign_22">
+                                                    <Assign sap2010:WorkflowViewState.IdRef="Assign_24">
                                                       <Assign.To>
                                                         <OutArgument x:TypeArguments="ui:GenericValue">[Del3MainIsExceptionText]</OutArgument>
                                                       </Assign.To>
@@ -601,42 +579,100 @@
                                                         <InArgument x:TypeArguments="ui:GenericValue">[exception.Source+":"+exception.Message+":"+exception.StackTrace]</InArgument>
                                                       </Assign.Value>
                                                     </Assign>
-                                                    <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_33" Text="[&quot;Exception :&quot;+exception.Source+&quot;:&quot;+exception.Message+&quot;:&quot;+exception.StackTrace]" />
+                                                    <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_34" Text="[&quot;Exception :&quot;+exception.Source+&quot;:&quot;+exception.Message+&quot;:&quot;+exception.StackTrace]" />
                                                   </Sequence>
                                                 </ActivityAction>
                                               </Catch>
                                             </TryCatch.Catches>
                                           </TryCatch>
                                           <FlowStep.Next>
-                                            <FlowDecision x:Name="__ReferenceID11" Condition="[IsDel3MainIsException]" sap2010:WorkflowViewState.IdRef="FlowDecision_6" True="{x:Reference __ReferenceID0}">
+                                            <FlowDecision x:Name="__ReferenceID10" Condition="[IsDel3MainIsException]" sap2010:WorkflowViewState.IdRef="FlowDecision_5" True="{x:Reference __ReferenceID0}">
                                               <FlowDecision.False>
-                                                <FlowStep x:Name="__ReferenceID1" sap2010:WorkflowViewState.IdRef="FlowStep_1">
-                                                  <TryCatch DisplayName="Try CloseProgram" sap2010:WorkflowViewState.IdRef="TryCatch_6">
+                                                <FlowStep x:Name="__ReferenceID2" sap2010:WorkflowViewState.IdRef="FlowStep_2">
+                                                  <TryCatch DisplayName="Try VaskelisteV3FinnesSjekk" sap2010:WorkflowViewState.IdRef="TryCatch_5">
                                                     <TryCatch.Try>
-                                                      <Sequence DisplayName="Exit applications" sap2010:WorkflowViewState.IdRef="Sequence_123">
-                                                        <ui:Click ClickType="CLICK_SINGLE" DelayBefore="1000" DelayMS="1000" DisplayName="Click 'push button  Lukk'" sap2010:WorkflowViewState.IdRef="Click_1" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
-                                                          <ui:Click.CursorPosition>
-                                                            <ui:CursorPosition Position="Center">
-                                                              <ui:CursorPosition.OffsetX>
-                                                                <InArgument x:TypeArguments="x:Int32" />
-                                                              </ui:CursorPosition.OffsetX>
-                                                              <ui:CursorPosition.OffsetY>
-                                                                <InArgument x:TypeArguments="x:Int32" />
-                                                              </ui:CursorPosition.OffsetY>
-                                                            </ui:CursorPosition>
-                                                          </ui:Click.CursorPosition>
-                                                          <ui:Click.Target>
-                                                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="9dee9c50415281ac12f00ca9e00cb45b" Selector="&lt;wnd app='predator.exe' cls='TfrmPredator' title='PredatorNO - [Saksbehandling]' /&gt;&lt;ctrl automationid='MenuBar' idx='1' name='Program' role='menu bar' /&gt;&lt;ctrl name='Lukk' role='push button' /&gt;" WaitForReady="INTERACTIVE" />
-                                                          </ui:Click.Target>
-                                                        </ui:Click>
-                                                        <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" DisplayName="Attach Window 'Predator.exe  Confirm'" sap2010:WorkflowViewState.IdRef="WindowScope_2" InformativeScreenshot="a7e786346fd76d4f7d9408cb59473904" Selector="&lt;wnd app='predator.exe' cls='*' title='Confirm' /&gt;">
-                                                          <ui:WindowScope.Body>
-                                                            <ActivityAction x:TypeArguments="x:Object">
+                                                      <Sequence DisplayName="Skriv til fil" sap2010:WorkflowViewState.IdRef="Sequence_119">
+                                                        <Sequence.Variables>
+                                                          <Variable x:TypeArguments="x:Boolean" Name="Fil2_finnes" />
+                                                          <Variable x:TypeArguments="x:Boolean" Name="Fil3_finnes" />
+                                                        </Sequence.Variables>
+                                                        <ui:PathExists DisplayName="Path exists" Exists="[Fil3_finnes]" sap2010:WorkflowViewState.IdRef="PathExists_2" Path="W:\rpa\Vasklister\Excel\vaskeliste_v3.0.xlsx" PathType="File" />
+                                                        <If Condition="[Fil3_finnes]" DisplayName="Slett fil om finnes fra før" sap2010:WorkflowViewState.IdRef="If_6">
+                                                          <If.Then>
+                                                            <Sequence sap2010:WorkflowViewState.IdRef="Sequence_117">
+                                                              <ui:CommentOut DisplayName="Comment out" sap2010:WorkflowViewState.IdRef="CommentOut_1">
+                                                                <ui:CommentOut.Body>
+                                                                  <Sequence DisplayName="Ignored Activities" sap2010:WorkflowViewState.IdRef="Sequence_125">
+                                                                    <ui:Delete ContinueOnError="{x:Null}" sap2010:WorkflowViewState.IdRef="Delete_2" Path="W:\rpa\Vasklister\Excel\vaskeliste_v3.0.xlsx" />
+                                                                  </Sequence>
+                                                                </ui:CommentOut.Body>
+                                                              </ui:CommentOut>
+                                                            </Sequence>
+                                                          </If.Then>
+                                                        </If>
+                                                        <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Excel application scope" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_7" WorkbookPath="W:\rpa\Vasklister\Excel\vaskeliste_v3.0.xlsx">
+                                                          <ui:ExcelApplicationScope.Body>
+                                                            <ActivityAction x:TypeArguments="ui:WorkbookApplication">
                                                               <ActivityAction.Argument>
-                                                                <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+                                                                <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
                                                               </ActivityAction.Argument>
-                                                              <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_122">
-                                                                <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'Button'" sap2010:WorkflowViewState.IdRef="Click_2" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
+                                                              <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_118">
+                                                                <ui:ExcelWriteCell Cell="A1:Z300" DisplayName="Write Value" sap2010:WorkflowViewState.IdRef="ExcelWriteCell_1" SheetName="Ark1">
+                                                                  <ui:ExcelWriteCell.Text>
+                                                                    <InArgument x:TypeArguments="x:String">
+                                                                      <Literal x:TypeArguments="x:String" Value="" />
+                                                                    </InArgument>
+                                                                  </ui:ExcelWriteCell.Text>
+                                                                </ui:ExcelWriteCell>
+                                                                <ui:ExcelWriteRange AddHeaders="True" DataTable="[vaskeliste_tabell]" DisplayName="Write Range" sap2010:WorkflowViewState.IdRef="ExcelWriteRange_2" SheetName="Ark1" StartingCell="A1" />
+                                                              </Sequence>
+                                                            </ActivityAction>
+                                                          </ui:ExcelApplicationScope.Body>
+                                                        </ui:ExcelApplicationScope>
+                                                      </Sequence>
+                                                    </TryCatch.Try>
+                                                    <TryCatch.Catches>
+                                                      <Catch x:TypeArguments="s:Exception" sap2010:WorkflowViewState.IdRef="Catch`1_2">
+                                                        <ActivityAction x:TypeArguments="s:Exception">
+                                                          <ActivityAction.Argument>
+                                                            <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                                                          </ActivityAction.Argument>
+                                                          <Sequence sap2010:WorkflowViewState.IdRef="Sequence_127">
+                                                            <Sequence.Variables>
+                                                              <Variable x:TypeArguments="ui:GenericValue" Name="Del2MainIsExceptionText" />
+                                                              <Variable x:TypeArguments="ui:GenericValue" Name="IsDel3MainIsException" />
+                                                              <Variable x:TypeArguments="ui:GenericValue" Name="Del3MainIsExceptionText" />
+                                                            </Sequence.Variables>
+                                                            <Assign sap2010:WorkflowViewState.IdRef="Assign_21">
+                                                              <Assign.To>
+                                                                <OutArgument x:TypeArguments="ui:GenericValue">[IsDel3MainIsException]</OutArgument>
+                                                              </Assign.To>
+                                                              <Assign.Value>
+                                                                <InArgument x:TypeArguments="ui:GenericValue">[True]</InArgument>
+                                                              </Assign.Value>
+                                                            </Assign>
+                                                            <Assign sap2010:WorkflowViewState.IdRef="Assign_22">
+                                                              <Assign.To>
+                                                                <OutArgument x:TypeArguments="ui:GenericValue">[Del3MainIsExceptionText]</OutArgument>
+                                                              </Assign.To>
+                                                              <Assign.Value>
+                                                                <InArgument x:TypeArguments="ui:GenericValue">[exception.Source+":"+exception.Message+":"+exception.StackTrace]</InArgument>
+                                                              </Assign.Value>
+                                                            </Assign>
+                                                            <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_33" Text="[&quot;Exception :&quot;+exception.Source+&quot;:&quot;+exception.Message+&quot;:&quot;+exception.StackTrace]" />
+                                                          </Sequence>
+                                                        </ActivityAction>
+                                                      </Catch>
+                                                    </TryCatch.Catches>
+                                                  </TryCatch>
+                                                  <FlowStep.Next>
+                                                    <FlowDecision x:Name="__ReferenceID11" Condition="[IsDel3MainIsException]" sap2010:WorkflowViewState.IdRef="FlowDecision_6" True="{x:Reference __ReferenceID0}">
+                                                      <FlowDecision.False>
+                                                        <FlowStep x:Name="__ReferenceID1" sap2010:WorkflowViewState.IdRef="FlowStep_1">
+                                                          <TryCatch DisplayName="Try CloseProgram" sap2010:WorkflowViewState.IdRef="TryCatch_6">
+                                                            <TryCatch.Try>
+                                                              <Sequence DisplayName="Exit applications" sap2010:WorkflowViewState.IdRef="Sequence_123">
+                                                                <ui:Click ClickType="CLICK_SINGLE" DelayBefore="1000" DelayMS="1000" DisplayName="Click 'push button  Lukk'" sap2010:WorkflowViewState.IdRef="Click_1" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
                                                                   <ui:Click.CursorPosition>
                                                                     <ui:CursorPosition Position="Center">
                                                                       <ui:CursorPosition.OffsetX>
@@ -648,49 +684,75 @@
                                                                     </ui:CursorPosition>
                                                                   </ui:Click.CursorPosition>
                                                                   <ui:Click.Target>
-                                                                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="3cb831dd82be888f8f962ee1153ea5dc" Selector="&lt;wnd app='predator.exe' cls='*' title='Confirm' /&gt;&lt;wnd aaname='Confirm' cls='DirectUIHWND' /&gt;&lt;wnd aaname='Yes' cls='Button' title='&amp;amp;Yes' /&gt;" WaitForReady="INTERACTIVE" />
+                                                                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="9dee9c50415281ac12f00ca9e00cb45b" Selector="&lt;wnd app='predator.exe' cls='TfrmPredator' title='PredatorNO - [Saksbehandling]' /&gt;&lt;ctrl automationid='MenuBar' idx='1' name='Program' role='menu bar' /&gt;&lt;ctrl name='Lukk' role='push button' /&gt;" WaitForReady="INTERACTIVE" />
                                                                   </ui:Click.Target>
                                                                 </ui:Click>
+                                                                <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" DisplayName="Attach Window 'Predator.exe  Confirm'" sap2010:WorkflowViewState.IdRef="WindowScope_2" InformativeScreenshot="a7e786346fd76d4f7d9408cb59473904" Selector="&lt;wnd app='predator.exe' cls='*' title='Confirm' /&gt;">
+                                                                  <ui:WindowScope.Body>
+                                                                    <ActivityAction x:TypeArguments="x:Object">
+                                                                      <ActivityAction.Argument>
+                                                                        <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+                                                                      </ActivityAction.Argument>
+                                                                      <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_122">
+                                                                        <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'Button'" sap2010:WorkflowViewState.IdRef="Click_2" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
+                                                                          <ui:Click.CursorPosition>
+                                                                            <ui:CursorPosition Position="Center">
+                                                                              <ui:CursorPosition.OffsetX>
+                                                                                <InArgument x:TypeArguments="x:Int32" />
+                                                                              </ui:CursorPosition.OffsetX>
+                                                                              <ui:CursorPosition.OffsetY>
+                                                                                <InArgument x:TypeArguments="x:Int32" />
+                                                                              </ui:CursorPosition.OffsetY>
+                                                                            </ui:CursorPosition>
+                                                                          </ui:Click.CursorPosition>
+                                                                          <ui:Click.Target>
+                                                                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="3cb831dd82be888f8f962ee1153ea5dc" Selector="&lt;wnd app='predator.exe' cls='*' title='Confirm' /&gt;&lt;wnd aaname='Confirm' cls='DirectUIHWND' /&gt;&lt;wnd aaname='Yes' cls='Button' title='&amp;amp;Yes' /&gt;" WaitForReady="INTERACTIVE" />
+                                                                          </ui:Click.Target>
+                                                                        </ui:Click>
+                                                                      </Sequence>
+                                                                    </ActivityAction>
+                                                                  </ui:WindowScope.Body>
+                                                                </ui:WindowScope>
                                                               </Sequence>
-                                                            </ActivityAction>
-                                                          </ui:WindowScope.Body>
-                                                        </ui:WindowScope>
-                                                      </Sequence>
-                                                    </TryCatch.Try>
-                                                    <TryCatch.Catches>
-                                                      <Catch x:TypeArguments="s:Exception" sap2010:WorkflowViewState.IdRef="Catch`1_1">
-                                                        <ActivityAction x:TypeArguments="s:Exception">
-                                                          <ActivityAction.Argument>
-                                                            <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
-                                                          </ActivityAction.Argument>
-                                                          <Sequence sap2010:WorkflowViewState.IdRef="Sequence_126">
-                                                            <Sequence.Variables>
-                                                              <Variable x:TypeArguments="ui:GenericValue" Name="Del2MainIsExceptionText" />
-                                                              <Variable x:TypeArguments="ui:GenericValue" Name="IsDel3MainIsException" />
-                                                              <Variable x:TypeArguments="ui:GenericValue" Name="Del3MainIsExceptionText" />
-                                                            </Sequence.Variables>
-                                                            <Assign sap2010:WorkflowViewState.IdRef="Assign_19">
-                                                              <Assign.To>
-                                                                <OutArgument x:TypeArguments="ui:GenericValue">[IsDel3MainIsException]</OutArgument>
-                                                              </Assign.To>
-                                                              <Assign.Value>
-                                                                <InArgument x:TypeArguments="ui:GenericValue">[True]</InArgument>
-                                                              </Assign.Value>
-                                                            </Assign>
-                                                            <Assign sap2010:WorkflowViewState.IdRef="Assign_20">
-                                                              <Assign.To>
-                                                                <OutArgument x:TypeArguments="ui:GenericValue">[Del3MainIsExceptionText]</OutArgument>
-                                                              </Assign.To>
-                                                              <Assign.Value>
-                                                                <InArgument x:TypeArguments="ui:GenericValue">[exception.Source+":"+exception.Message+":"+exception.StackTrace]</InArgument>
-                                                              </Assign.Value>
-                                                            </Assign>
-                                                            <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_32" Text="[&quot;Exception :&quot;+exception.Source+&quot;:&quot;+exception.Message+&quot;:&quot;+exception.StackTrace]" />
-                                                          </Sequence>
-                                                        </ActivityAction>
-                                                      </Catch>
-                                                    </TryCatch.Catches>
-                                                  </TryCatch>
+                                                            </TryCatch.Try>
+                                                            <TryCatch.Catches>
+                                                              <Catch x:TypeArguments="s:Exception" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+                                                                <ActivityAction x:TypeArguments="s:Exception">
+                                                                  <ActivityAction.Argument>
+                                                                    <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                                                                  </ActivityAction.Argument>
+                                                                  <Sequence sap2010:WorkflowViewState.IdRef="Sequence_126">
+                                                                    <Sequence.Variables>
+                                                                      <Variable x:TypeArguments="ui:GenericValue" Name="Del2MainIsExceptionText" />
+                                                                      <Variable x:TypeArguments="ui:GenericValue" Name="IsDel3MainIsException" />
+                                                                      <Variable x:TypeArguments="ui:GenericValue" Name="Del3MainIsExceptionText" />
+                                                                    </Sequence.Variables>
+                                                                    <Assign sap2010:WorkflowViewState.IdRef="Assign_19">
+                                                                      <Assign.To>
+                                                                        <OutArgument x:TypeArguments="ui:GenericValue">[IsDel3MainIsException]</OutArgument>
+                                                                      </Assign.To>
+                                                                      <Assign.Value>
+                                                                        <InArgument x:TypeArguments="ui:GenericValue">[True]</InArgument>
+                                                                      </Assign.Value>
+                                                                    </Assign>
+                                                                    <Assign sap2010:WorkflowViewState.IdRef="Assign_20">
+                                                                      <Assign.To>
+                                                                        <OutArgument x:TypeArguments="ui:GenericValue">[Del3MainIsExceptionText]</OutArgument>
+                                                                      </Assign.To>
+                                                                      <Assign.Value>
+                                                                        <InArgument x:TypeArguments="ui:GenericValue">[exception.Source+":"+exception.Message+":"+exception.StackTrace]</InArgument>
+                                                                      </Assign.Value>
+                                                                    </Assign>
+                                                                    <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_32" Text="[&quot;Exception :&quot;+exception.Source+&quot;:&quot;+exception.Message+&quot;:&quot;+exception.StackTrace]" />
+                                                                  </Sequence>
+                                                                </ActivityAction>
+                                                              </Catch>
+                                                            </TryCatch.Catches>
+                                                          </TryCatch>
+                                                        </FlowStep>
+                                                      </FlowDecision.False>
+                                                    </FlowDecision>
+                                                  </FlowStep.Next>
                                                 </FlowStep>
                                               </FlowDecision.False>
                                             </FlowDecision>
@@ -725,106 +787,45 @@
       <x:Reference>__ReferenceID10</x:Reference>
       <x:Reference>__ReferenceID11</x:Reference>
       <x:Reference>__ReferenceID0</x:Reference>
-      <FlowStep sap2010:WorkflowViewState.IdRef="FlowStep_8">
-        <TryCatch DisplayName="Initialize Environment Variables" sap2010:WorkflowViewState.IdRef="TryCatch_8">
-          <TryCatch.Try>
-            <Sequence sap2010:WorkflowViewState.IdRef="Sequence_140">
-              <Assign sap2010:WorkflowViewState.IdRef="Assign_31">
-                <Assign.To>
-                  <OutArgument x:TypeArguments="x:Object">[Okonomi_URL]</OutArgument>
-                </Assign.To>
-                <Assign.Value>
-                  <InArgument x:TypeArguments="x:String">["https://wasapp-q1.adeo.no/oppdrag/portal/login.jsp"]</InArgument>
-                </Assign.Value>
-              </Assign>
-              <Assign sap2010:WorkflowViewState.IdRef="Assign_32">
-                <Assign.To>
-                  <OutArgument x:TypeArguments="x:Object">[Predator_path]</OutArgument>
-                </Assign.To>
-                <Assign.Value>
-                  <InArgument x:TypeArguments="x:String">["C:\Program Files (x86)\SPN\Predator"]</InArgument>
-                </Assign.Value>
-              </Assign>
-            </Sequence>
-          </TryCatch.Try>
-          <TryCatch.Catches>
-            <Catch x:TypeArguments="s:Exception" sap2010:WorkflowViewState.IdRef="Catch`1_8">
-              <ActivityAction x:TypeArguments="s:Exception">
-                <ActivityAction.Argument>
-                  <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
-                </ActivityAction.Argument>
-                <Sequence sap2010:WorkflowViewState.IdRef="Sequence_141">
-                  <Sequence.Variables>
-                    <Variable x:TypeArguments="ui:GenericValue" Name="Del2MainIsExceptionText" />
-                    <Variable x:TypeArguments="ui:GenericValue" Name="Del3MainIsExceptionText" />
-                  </Sequence.Variables>
-                  <Assign sap2010:WorkflowViewState.IdRef="Assign_33">
-                    <Assign.To>
-                      <OutArgument x:TypeArguments="ui:GenericValue">[IsDel3MainIsException]</OutArgument>
-                    </Assign.To>
-                    <Assign.Value>
-                      <InArgument x:TypeArguments="ui:GenericValue">[True]</InArgument>
-                    </Assign.Value>
-                  </Assign>
-                  <Assign sap2010:WorkflowViewState.IdRef="Assign_34">
-                    <Assign.To>
-                      <OutArgument x:TypeArguments="ui:GenericValue">[Del3MainIsExceptionText]</OutArgument>
-                    </Assign.To>
-                    <Assign.Value>
-                      <InArgument x:TypeArguments="ui:GenericValue">[exception.Source+":"+exception.Message+":"+exception.StackTrace]</InArgument>
-                    </Assign.Value>
-                  </Assign>
-                  <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_39" Text="[&quot;Exception :&quot;+exception.Source+&quot;:&quot;+exception.Message+&quot;:&quot;+exception.StackTrace]" />
-                </Sequence>
-              </ActivityAction>
-            </Catch>
-          </TryCatch.Catches>
-        </TryCatch>
-      </FlowStep>
+      <x:Reference>__ReferenceID12</x:Reference>
+      <x:Reference>__ReferenceID13</x:Reference>
     </Flowchart>
-    <sads:DebugSymbol.Symbol>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</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>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</sads:DebugSymbol.Symbol>
   </Sequence>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
-      <sap2010:ViewStateData Id="ExcelReadRange_2" sap:VirtualizedContainerService.HintSize="314,59" />
-      <sap2010:ViewStateData Id="ExcelReadRange_3" sap:VirtualizedContainerService.HintSize="314,59" />
-      <sap2010:ViewStateData Id="Sequence_110" sap:VirtualizedContainerService.HintSize="336,282">
+      <sap2010:ViewStateData Id="Assign_31" sap:VirtualizedContainerService.HintSize="242,59" />
+      <sap2010:ViewStateData Id="Assign_32" sap:VirtualizedContainerService.HintSize="242,59" />
+      <sap2010:ViewStateData Id="Sequence_140" sap:VirtualizedContainerService.HintSize="264,282">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="ExcelApplicationScope_5" sap:VirtualizedContainerService.HintSize="414,391">
+      <sap2010:ViewStateData Id="Assign_33" sap:VirtualizedContainerService.HintSize="242,59" />
+      <sap2010:ViewStateData Id="Assign_34" sap:VirtualizedContainerService.HintSize="242,59" />
+      <sap2010:ViewStateData Id="WriteLine_39" sap:VirtualizedContainerService.HintSize="242,59" />
+      <sap2010:ViewStateData Id="Sequence_141" sap:VirtualizedContainerService.HintSize="264,381">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Catch`1_8" sap:VirtualizedContainerService.HintSize="404,452">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
             <x:Boolean x:Key="IsPinned">False</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Assign_29" sap:VirtualizedContainerService.HintSize="242,59" />
-      <sap2010:ViewStateData Id="Assign_30" sap:VirtualizedContainerService.HintSize="242,59" />
-      <sap2010:ViewStateData Id="WriteLine_37" sap:VirtualizedContainerService.HintSize="242,59" />
-      <sap2010:ViewStateData Id="Sequence_131" sap:VirtualizedContainerService.HintSize="264,381">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Catch`1_6" sap:VirtualizedContainerService.HintSize="418,452">
+      <sap2010:ViewStateData Id="TryCatch_8" sap:VirtualizedContainerService.HintSize="200,49">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             <x:Boolean x:Key="IsPinned">False</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="TryCatch_1" sap:VirtualizedContainerService.HintSize="200,49">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
@@ -984,6 +985,48 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="ExcelReadRange_2" sap:VirtualizedContainerService.HintSize="314,59" />
+      <sap2010:ViewStateData Id="ExcelReadRange_3" sap:VirtualizedContainerService.HintSize="314,59" />
+      <sap2010:ViewStateData Id="Sequence_110" sap:VirtualizedContainerService.HintSize="336,282">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="ExcelApplicationScope_5" sap:VirtualizedContainerService.HintSize="414,391">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Assign_29" sap:VirtualizedContainerService.HintSize="242,59" />
+      <sap2010:ViewStateData Id="Assign_30" sap:VirtualizedContainerService.HintSize="242,59" />
+      <sap2010:ViewStateData Id="WriteLine_37" sap:VirtualizedContainerService.HintSize="242,59" />
+      <sap2010:ViewStateData Id="Sequence_131" sap:VirtualizedContainerService.HintSize="264,381">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Catch`1_6" sap:VirtualizedContainerService.HintSize="418,452">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="TryCatch_1" sap:VirtualizedContainerService.HintSize="200,49">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="ClearDataTable_1" sap:VirtualizedContainerService.HintSize="200,22" />
       <sap2010:ViewStateData Id="Assign_27" sap:VirtualizedContainerService.HintSize="242,59" />
       <sap2010:ViewStateData Id="Assign_28" sap:VirtualizedContainerService.HintSize="242,59" />
@@ -1098,7 +1141,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="TryCatch_4" sap:VirtualizedContainerService.HintSize="534,1768">
+      <sap2010:ViewStateData Id="TryCatch_4" sap:VirtualizedContainerService.HintSize="200,49">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -1316,44 +1359,21 @@
       <sap2010:ViewStateData Id="FlowStep_6">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <av:Point x:Key="ShapeLocation">230,225.5</av:Point>
+            <av:Point x:Key="ShapeLocation">230,205.5</av:Point>
             <av:Size x:Key="ShapeSize">200,49</av:Size>
-            <av:PointCollection x:Key="ConnectorLocation">330,274.5 330,304.5 110,304.5 110,336.5</av:PointCollection>
+            <av:PointCollection x:Key="ConnectorLocation">330,254.5 330,284.5 110,284.5 110,336.5</av:PointCollection>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Assign_31" sap:VirtualizedContainerService.HintSize="242,59" />
-      <sap2010:ViewStateData Id="Assign_32" sap:VirtualizedContainerService.HintSize="242,59" />
-      <sap2010:ViewStateData Id="Sequence_140" sap:VirtualizedContainerService.HintSize="264,282">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Assign_33" sap:VirtualizedContainerService.HintSize="242,59" />
-      <sap2010:ViewStateData Id="Assign_34" sap:VirtualizedContainerService.HintSize="242,59" />
-      <sap2010:ViewStateData Id="WriteLine_39" sap:VirtualizedContainerService.HintSize="242,59" />
-      <sap2010:ViewStateData Id="Sequence_141" sap:VirtualizedContainerService.HintSize="264,381">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Catch`1_8" sap:VirtualizedContainerService.HintSize="404,452">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-            <x:Boolean x:Key="IsPinned">False</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="TryCatch_8" sap:VirtualizedContainerService.HintSize="200,49">
+      <sap2010:ViewStateData Id="FlowDecision_7" sap:VirtualizedContainerService.HintSize="70,87">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            <av:Point x:Key="ShapeLocation">75,186.5</av:Point>
+            <av:Size x:Key="ShapeSize">70,87</av:Size>
+            <av:PointCollection x:Key="FalseConnector">145,230 230,230</av:PointCollection>
+            <av:PointCollection x:Key="TrueConnector">75,230 45,230 45,1010 70,1010</av:PointCollection>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
@@ -1362,6 +1382,7 @@
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <av:Point x:Key="ShapeLocation">220,125.361666666667</av:Point>
             <av:Size x:Key="ShapeSize">200,49</av:Size>
+            <av:PointCollection x:Key="ConnectorLocation">220,149.861666666667 127.5,149.861666666667 127.5,186.5</av:PointCollection>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
@@ -1372,7 +1393,7 @@
             <av:Point x:Key="ShapeLocation">80,12.5</av:Point>
             <av:Size x:Key="ShapeSize">60,75</av:Size>
             <x:Boolean x:Key="IsPinned">False</x:Boolean>
-            <av:PointCollection x:Key="ConnectorLocation">140,50 170,50 170,250 230,250</av:PointCollection>
+            <av:PointCollection x:Key="ConnectorLocation">140,50 320,50 320,125.361666666667</av:PointCollection>
             <x:Double x:Key="Width">614</x:Double>
             <x:Double x:Key="Height">1054.5</x:Double>
           </scg:Dictionary>
