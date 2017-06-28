@@ -97,6 +97,9 @@
         <FlowStep.Next>
           <FlowStep x:Name="__ReferenceID2" sap2010:WorkflowViewState.IdRef="FlowStep_5">
             <TryCatch DisplayName="LeseExcelFilfraDel3" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+              <TryCatch.Variables>
+                <Variable x:TypeArguments="x:String" Name="Predator_Path" />
+              </TryCatch.Variables>
               <TryCatch.Try>
                 <Sequence sap2010:WorkflowViewState.IdRef="Sequence_9">
                   <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke readXlsTable workflow" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Del2\readXlsTable.xaml">
@@ -108,7 +111,12 @@
                     </ui:InvokeWorkflowFile.Arguments>
                   </ui:InvokeWorkflowFile>
                   <Sequence DisplayName="Open predator" sap2010:WorkflowViewState.IdRef="Sequence_15">
-                    <ui:StartProcess Arguments="{x:Null}" DisplayName="Start process" FileName="C:\Program Files (x86)\SPN\Predator\Predator.exe" sap2010:WorkflowViewState.IdRef="StartProcess_2" WorkingDirectory="C:\Program Files (x86)\SPN\Predator" />
+                    <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="VL_Predator_Path" DisplayName="Get Predator Path" sap2010:WorkflowViewState.IdRef="GetRobotAsset_3">
+                      <ui:GetRobotAsset.Value>
+                        <OutArgument x:TypeArguments="x:String">[Predator_Path]</OutArgument>
+                      </ui:GetRobotAsset.Value>
+                    </ui:GetRobotAsset>
+                    <ui:StartProcess Arguments="{x:Null}" DisplayName="Start process" FileName="[Predator_Path+&quot;\Predator.exe&quot;]" sap2010:WorkflowViewState.IdRef="StartProcess_2" WorkingDirectory="[Predator_Path]" />
                     <ui:SendHotkey DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Send hotkey 'Predator.exe  PredatorNO'" EmptyField="False" sap2010:WorkflowViewState.IdRef="SendHotkey_1" Key="f6" KeyModifiers="None" SendWindowMessages="False" SpecialKey="True">
                       <ui:SendHotkey.Target>
                         <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="785b71690c29f7126ea3154d9399c032" Selector="&lt;wnd app='predator.exe' cls='TfrmPredator' title='PredatorNO' /&gt;" WaitForReady="INTERACTIVE" />
@@ -426,13 +434,13 @@
     <x:Reference>__ReferenceID6</x:Reference>
     <x:Reference>__ReferenceID1</x:Reference>
     <x:Reference>__ReferenceID7</x:Reference>
-    <sads:DebugSymbol.Symbol>dyRXOlxycGFcVmFza2xpc3RlclxEZWw0XGRlbDRtYWluLnhhbWyBAUoDrgMPAgEBTDRMiwECAQNRNFGEAQIBAlUJYBQDAZwBYw26ARgCAWy8AT+8AVgCAWrJAhWZAyACATebA0ebA2ACATXQARnzASQCASD2AR3AAigCAQu/ARXNASACAQRWC1oeAwGhAVsLXx4DAZ0BZRGcARwCAX6kARW2ASACAW3LAhn7AiQCAUmDAx2VAygCATjSAR3kATgCASjsASHvASwCASH4ASGxAiwCARG5AiW8AjACAQzBARnBAaUBAgEIyQEdyQGwAQIBBVg3WEsDAaMBVjxWTAMBogFdN11GAwGfAVs8W0wDAZ4BZhNtKwMBkwFuE5sBHgIBf6UBF6wBIAIBeq0BF7QBIAIBc7UBF7UB4AECAW7MAhv6AigCAUqEAx+LAygCAUWMAx+TAygCAT6UAx+UA+gBAgE50gHEAdIB1QECATPYASPhAS4CASntASPtAcUBAgEl7gEj7gHbAQIBIvkBI7ACLgIBEroCJ7oCmgECAQ+7Aie7ArABAgENwQGHAcEBogECAQnJAXTJAa0BAgEGa1JrWgMBmgFoS2hfAwGYAWpQalQDAZcBZscBZt8BAwGWAWlUaVwDAZQBbxVv/QEDAZABcBV0JQMBjgF1FYcBJgMBhwGIARWaASYDAYABqgFDqgFHAgF9pwFEpwFbAgF7sgFCsgGDAQIBdq8BQ68BXAIBdLUBbrUB3QECAW/MAqABzAK5AQIBadICIfcCLAIBS4kDS4kDTwIBSIYDTIYDYwIBRpEDSpEDiwECAUGOA0uOA2QCAT+UA3aUA+UBAgE62QEl3wE5AgEv4AEl4AHTAQIBKu0Be+0BwgECASbuAZEB7gHYAQIBI/oBJf4BOwIBHv8BJY0CMAIBHI4CJZwCMAIBGp0CJa8CNgIBE7oCf7oClwECARC7ApUBuwKtAQIBDm9gb5IBAwGSAW/VAW/6AQMBkQFyqAFy8AEDAY8BdaQCdf8CAwGNAXsbhAEmAwGIAYgBowKIAdwCAwGGAY4BG5cBJgMBgQHXAiPXAsMFAgFn2AIj2AK1AQIBZdkCI+UCOwIBWOYCI+YCsAECAVTnAiPuAiwCAVDvAiP2AiwCAUzZAT3ZAUYCATLcASvcAVoCATHZAZ4B2QGkAQIBMOABzAHgAdABAgEu4AFV4AFfAgEs4AG4AeABvgECASv8AbgB/AHxAQIBH4sCuAGLAowDAgEdmgK4AZoCxAICARudAq8CnQLzAgIBGaMCK6wCNgIBFHwdgwEoAwGJAY8BHZYBKAMBggHXAnrXAsAFAgFo2AJ62AKyAQIBZtwCXNwCewIBZN8CX98CggECAWPjAl/jAmgCAWHiAl7iAmYCAV/bAl3bAnoCAV7gAmLgAo0BAgFd2QLPAdkC+wECAVzeAmHeAoUBAgFb3QJi3QKBAQIBWuECXeECggECAVnmAnvmAq0BAgFV7AJO7AJWAgFS6QJP6QJmAgFR9AJO9AJXAgFO8QJP8QJnAgFNpAItqwI4AgEVgQGwAYEBigMDAYwBfkl+TAMBiwF+PH5AAwGKAZQBsAGUAeoBAwGFAZEBSZEBTAMBhAGRATyRAUADAYMBqQLAAakCrwICARimAlmmAl0CARemAkymAlACARY=</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>dyRXOlxycGFcVmFza2xpc3RlclxEZWw0XGRlbDRtYWluLnhhbWyEAUoDtgMPAgEBTDRMiwECAQNRNFGEAQIBAlUJYBQDAaIBYw3CARgCAWzEAT/EAVgCAWrRAhWhAyACATejA0ejA2ACATXYARn7ASQCASD+AR3IAigCAQvHARXVASACAQRWC1oeAwGnAVsLXx4DAaMBaBGkARwCAX6sARW+ASACAW3TAhmDAyQCAUmLAx2dAygCATjaAR3sATgCASj0ASH3ASwCASGAAiG5AiwCARHBAiXEAjACAQzJARnJAaUBAgEI0QEd0QGwAQIBBVg3WEsDAakBVjxWTAMBqAFdN11GAwGlAVs8W0wDAaQBaRNwKwMBmQFxE6MBHgIBf60BF7QBIAIBerUBF7wBIAIBc70BF70B4AECAW7UAhuCAygCAUqMAx+TAygCAUWUAx+bAygCAT6cAx+cA+gBAgE52gHEAdoB1QECATPgASPpAS4CASn1ASP1AcUBAgEl9gEj9gHbAQIBIoECI7gCLgIBEsICJ8ICmgECAQ/DAifDArABAgENyQGHAckBogECAQnRAXTRAa0BAgEGblJuWgMBoAFrS2tfAwGeAW1QbVQDAZ0BaccBad8BAwGcAWxUbFwDAZoBchV2KAMBlQF3FXfiAQMBkAF4FXwlAwGOAX0VjwEmAwGHAZABFaIBJgMBgAGyAUOyAUcCAX2vAUSvAVsCAXu6AUK6AYMBAgF2twFDtwFcAgF0vQFuvQHdAQIBb9QCoAHUArkBAgFp2gIh/wIsAgFLkQNLkQNPAgFIjgNMjgNjAgFGmQNKmQOLAQIBQZYDS5YDZAIBP5wDdpwD5QECATrhASXnATkCAS/oASXoAdMBAgEq9QF79QHCAQIBJvYBkQH2AdgBAgEjggIlhgI7AgEehwIllQIwAgEclgIlpAIwAgEapQIltwI2AgETwgJ/wgKXAQIBEMMClQHDAq0BAgEOdEF0UAMBlwFyRnJYAwGWAXdgd4sBAwGTAXfOAXffAQMBkQF6qAF68AEDAY8BfaQCff8CAwGNAYMBG4wBJgMBiAGQAaMCkAHcAgMBhgGWARufASYDAYEB3wIj3wLDBQIBZ+ACI+ACtQECAWXhAiPtAjsCAVjuAiPuArABAgFU7wIj9gIsAgFQ9wIj/gIsAgFM4QE94QFGAgEy5AEr5AFaAgEx4QGeAeEBpAECATDoAcwB6AHQAQIBLugBVegBXwIBLOgBuAHoAb4BAgErhAK4AYQC8QECAR+TArgBkwKMAwIBHaICuAGiAsQCAgEbpQKvAqUC8wICARmrAiu0AjYCARSEAR2LASgDAYkBlwEdngEoAwGCAd8Cet8CwAUCAWjgAnrgArIBAgFm5AJc5AJ7AgFk5wJf5wKCAQIBY+sCX+sCaAIBYeoCXuoCZgIBX+MCXeMCegIBXugCYugCjQECAV3hAs8B4QL7AQIBXOYCYeYChQECAVvlAmLlAoEBAgFa6QJd6QKCAQIBWe4Ce+4CrQECAVX0Ak70AlYCAVLxAk/xAmYCAVH8Ak78AlcCAU75Ak/5AmcCAU2sAi2zAjgCARWJAbABiQGKAwMBjAGGAUmGAUwDAYsBhgE8hgFAAwGKAZwBsAGcAeoBAwGFAZkBSZkBTAMBhAGZATyZAUADAYMBsQLAAbECrwICARiuAlmuAl0CAReuAkyuAlACARY=</sads:DebugSymbol.Symbol>
   </Flowchart>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
       <sap2010:ViewStateData Id="GetRobotAsset_1" sap:VirtualizedContainerService.HintSize="200,22" />
       <sap2010:ViewStateData Id="GetRobotAsset_2" sap:VirtualizedContainerService.HintSize="200,22" />
-      <sap2010:ViewStateData Id="Sequence_27" sap:VirtualizedContainerService.HintSize="222,208">
+      <sap2010:ViewStateData Id="Sequence_27" sap:VirtualizedContainerService.HintSize="200,49">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -440,6 +448,7 @@
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="InvokeWorkflowFile_2" sap:VirtualizedContainerService.HintSize="336,87" />
+      <sap2010:ViewStateData Id="GetRobotAsset_3" sap:VirtualizedContainerService.HintSize="314,22" />
       <sap2010:ViewStateData Id="StartProcess_2" sap:VirtualizedContainerService.HintSize="314,87" />
       <sap2010:ViewStateData Id="SendHotkey_1" sap:VirtualizedContainerService.HintSize="314,152" />
       <sap2010:ViewStateData Id="Click_4" sap:VirtualizedContainerService.HintSize="314,106" />
@@ -474,7 +483,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Sequence_15" sap:VirtualizedContainerService.HintSize="336,581">
+      <sap2010:ViewStateData Id="Sequence_15" sap:VirtualizedContainerService.HintSize="336,643">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -482,7 +491,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Sequence_9" sap:VirtualizedContainerService.HintSize="358,832">
+      <sap2010:ViewStateData Id="Sequence_9" sap:VirtualizedContainerService.HintSize="358,894">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -507,7 +516,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="TryCatch_1" sap:VirtualizedContainerService.HintSize="200,49">
+      <sap2010:ViewStateData Id="TryCatch_1" sap:VirtualizedContainerService.HintSize="418,1112">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
