@@ -75,7 +75,7 @@
         <Variable x:TypeArguments="x:String" Default="[System.Environment.CurrentDirectory +&quot;\OppsettWord\&quot;]" Name="oppsettDocPath" />
       </Flowchart.Variables>
       <Flowchart.StartNode>
-        <FlowStep x:Name="__ReferenceID0" sap2010:WorkflowViewState.IdRef="FlowStep_24">
+        <FlowStep x:Name="__ReferenceID2" sap2010:WorkflowViewState.IdRef="FlowStep_24">
           <Sequence DisplayName="Initialize Environment Variables" sap2010:WorkflowViewState.IdRef="Sequence_107">
             <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="VL_Input" DisplayName="Get Del1 Excel Input" sap2010:WorkflowViewState.IdRef="GetRobotAsset_1">
               <ui:GetRobotAsset.Value>
@@ -103,6 +103,19 @@
               </ui:GetRobotAsset.Value>
             </ui:GetRobotAsset>
           </Sequence>
+          <FlowStep.Next>
+            <FlowStep x:Name="__ReferenceID0" sap2010:WorkflowViewState.IdRef="FlowStep_20">
+              <Sequence DisplayName="Del 1" sap2010:WorkflowViewState.IdRef="Sequence_87">
+                <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke workflow file" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_10" UnSafe="False" WorkflowFileName="Del1\1 Klassifisere sak_nr.xaml">
+                  <ui:InvokeWorkflowFile.Arguments>
+                    <InArgument x:TypeArguments="x:String" x:Key="xlsPathInput">[xlsPathInput]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="xlsPathOutput">[xlsPath12]</InArgument>
+                    <OutArgument x:TypeArguments="sd:DataTable" x:Key="dtResult">[tbDel2]</OutArgument>
+                  </ui:InvokeWorkflowFile.Arguments>
+                </ui:InvokeWorkflowFile>
+              </Sequence>
+            </FlowStep>
+          </FlowStep.Next>
         </FlowStep>
       </Flowchart.StartNode>
       <FlowStep sap2010:WorkflowViewState.IdRef="FlowStep_10">
@@ -166,17 +179,7 @@
           </ui:ForEachRow>
         </Sequence>
       </FlowStep>
-      <FlowStep sap2010:WorkflowViewState.IdRef="FlowStep_20">
-        <Sequence DisplayName="Del 1" sap2010:WorkflowViewState.IdRef="Sequence_87">
-          <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke workflow file" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_10" UnSafe="False" WorkflowFileName="Del1\1 Klassifisere sak_nr.xaml">
-            <ui:InvokeWorkflowFile.Arguments>
-              <InArgument x:TypeArguments="x:String" x:Key="xlsPathInput">[xlsPathInput]</InArgument>
-              <InArgument x:TypeArguments="x:String" x:Key="xlsPathOutput">[xlsPath12]</InArgument>
-              <OutArgument x:TypeArguments="sd:DataTable" x:Key="dtResult">[tbDel2]</OutArgument>
-            </ui:InvokeWorkflowFile.Arguments>
-          </ui:InvokeWorkflowFile>
-        </Sequence>
-      </FlowStep>
+      <x:Reference>__ReferenceID0</x:Reference>
       <FlowStep sap2010:WorkflowViewState.IdRef="FlowStep_21">
         <Sequence DisplayName="Del 2" sap2010:WorkflowViewState.IdRef="Sequence_88">
           <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke readXlsTable workflow" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_32" UnSafe="False" WorkflowFileName="Del2\del2Main.xaml">
@@ -185,22 +188,25 @@
             </ui:InvokeWorkflowFile.Arguments>
           </ui:InvokeWorkflowFile>
         </Sequence>
+        <FlowStep.Next>
+          <FlowStep x:Name="__ReferenceID1" sap2010:WorkflowViewState.IdRef="FlowStep_22">
+            <Sequence DisplayName="Del 3" sap2010:WorkflowViewState.IdRef="Sequence_89">
+              <Sequence.Variables>
+                <Variable x:TypeArguments="x:Int32" Name="i" />
+                <Variable x:TypeArguments="sd:DataTable" Name="Inn_tabell" />
+                <Variable x:TypeArguments="sd:DataTable" Name="vaskeliste_tabell" />
+                <Variable x:TypeArguments="x:Boolean" Name="Saksnummer_finnes" />
+              </Sequence.Variables>
+              <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke readXlsTable workflow" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_33" UnSafe="False" WorkflowFileName="Del3\Del3Main.xaml">
+                <ui:InvokeWorkflowFile.Arguments>
+                  <scg:Dictionary x:TypeArguments="x:String, Argument" />
+                </ui:InvokeWorkflowFile.Arguments>
+              </ui:InvokeWorkflowFile>
+            </Sequence>
+          </FlowStep>
+        </FlowStep.Next>
       </FlowStep>
-      <FlowStep sap2010:WorkflowViewState.IdRef="FlowStep_22">
-        <Sequence DisplayName="Del 3" sap2010:WorkflowViewState.IdRef="Sequence_89">
-          <Sequence.Variables>
-            <Variable x:TypeArguments="x:Int32" Name="i" />
-            <Variable x:TypeArguments="sd:DataTable" Name="Inn_tabell" />
-            <Variable x:TypeArguments="sd:DataTable" Name="vaskeliste_tabell" />
-            <Variable x:TypeArguments="x:Boolean" Name="Saksnummer_finnes" />
-          </Sequence.Variables>
-          <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke readXlsTable workflow" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_33" UnSafe="False" WorkflowFileName="Del3\Del3Main.xaml">
-            <ui:InvokeWorkflowFile.Arguments>
-              <scg:Dictionary x:TypeArguments="x:String, Argument" />
-            </ui:InvokeWorkflowFile.Arguments>
-          </ui:InvokeWorkflowFile>
-        </Sequence>
-      </FlowStep>
+      <x:Reference>__ReferenceID1</x:Reference>
       <FlowStep sap2010:WorkflowViewState.IdRef="FlowStep_23">
         <Sequence DisplayName="make data" sap2010:WorkflowViewState.IdRef="Sequence_106">
           <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke readXlsTable workflow" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_27" UnSafe="False" WorkflowFileName="Del2\readXlsTable.xaml">
@@ -212,9 +218,9 @@
           </ui:InvokeWorkflowFile>
         </Sequence>
       </FlowStep>
-      <x:Reference>__ReferenceID0</x:Reference>
+      <x:Reference>__ReferenceID2</x:Reference>
     </Flowchart>
-    <sads:DebugSymbol.Symbol>dxtXOlxycGFcVmFza2xpc3RlclxNYWluLnhhbWwYQAPaAQ4CAQFDNEN/AgECRQXYARECAQNHNkeJAQIBCEg2SIYBAgEHSTZJhgECAQZKNkqQAQIBBUs2S3gCAQRPC2kWAgEJUA1UIAIBGlUNWSACARZaDV4gAgESXw1jIAIBDmQNaCACAQpSOVJHAgEcUD5QSAIBG1c5V0QCARhVPlVOAgEXXDlcRAIBFFo+Wk4CARNhOWFJAgEQXz5fUQIBD2Y5ZkYCAQxkPmRUAgEL</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>dxtXOlxycGFcVmFza2xpc3RlclxNYWluLnhhbWweQAPgAQ4CAQFDNEN/AgECRQXeARECAQNHNkeJAQIBCEg2SIYBAgEHSTZJhgECAQZKNkqQAQIBBUs2S3gCAQRPC2kWAgESbA90GgIBCVANVCACASNVDVkgAgEfWg1eIAIBG18NYyACARdkDWggAgETbRFzKQIBClI5UkcCASVQPlBIAgEkVzlXRAIBIVU+VU4CASBcOVxEAgEdWj5aTgIBHGE5YUkCARlfPl9RAgEYZjlmRgIBFWQ+ZFQCARRwUnBdAgEQcVJxWgIBDm9Rb18CAQxtvgFt3wECAQs=</sads:DebugSymbol.Symbol>
   </Sequence>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
@@ -231,11 +237,28 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="InvokeWorkflowFile_10" sap:VirtualizedContainerService.HintSize="314,87" />
+      <sap2010:ViewStateData Id="Sequence_87" sap:VirtualizedContainerService.HintSize="200,49">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="FlowStep_20">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <av:Point x:Key="ShapeLocation">190,255.5</av:Point>
+            <av:Size x:Key="ShapeSize">200,49</av:Size>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="FlowStep_24">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <av:Point x:Key="ShapeLocation">200,165.5</av:Point>
             <av:Size x:Key="ShapeSize">200,49</av:Size>
+            <av:PointCollection x:Key="ConnectorLocation">300,214.5 300,244.5 290,244.5 290,255.5</av:PointCollection>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
@@ -318,35 +341,11 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="InvokeWorkflowFile_10" sap:VirtualizedContainerService.HintSize="314,87" />
-      <sap2010:ViewStateData Id="Sequence_87" sap:VirtualizedContainerService.HintSize="200,49">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="FlowStep_20">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <av:Point x:Key="ShapeLocation">190,255.5</av:Point>
-            <av:Size x:Key="ShapeSize">200,49</av:Size>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="InvokeWorkflowFile_32" sap:VirtualizedContainerService.HintSize="314,87" />
       <sap2010:ViewStateData Id="Sequence_88" sap:VirtualizedContainerService.HintSize="200,49">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="FlowStep_21">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <av:Point x:Key="ShapeLocation">190,345.5</av:Point>
-            <av:Size x:Key="ShapeSize">200,49</av:Size>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
@@ -363,6 +362,15 @@
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <av:Point x:Key="ShapeLocation">190,425.5</av:Point>
             <av:Size x:Key="ShapeSize">200,49</av:Size>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="FlowStep_21">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <av:Point x:Key="ShapeLocation">190,345.5</av:Point>
+            <av:Size x:Key="ShapeSize">200,49</av:Size>
+            <av:PointCollection x:Key="ConnectorLocation">290,394.5 290,425.5</av:PointCollection>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
