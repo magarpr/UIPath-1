@@ -121,7 +121,7 @@
   <Flowchart DisplayName="1 Klassifisere sak_nr" sap2010:WorkflowViewState.IdRef="Flowchart_2">
     <Flowchart.Variables>
       <Variable x:TypeArguments="sd:DataTable" Name="_4_dtBrev" />
-      <Variable x:TypeArguments="x:Boolean" Name="_4_varselBrevTreff" />
+      <Variable x:TypeArguments="x:Boolean" Name="createWarningLetter" />
       <Variable x:TypeArguments="sd:DataTable" Name="_7_dtOppfolging" />
       <Variable x:TypeArguments="x:Boolean" Name="_7_postTreff" />
       <Variable x:TypeArguments="x:Boolean" Name="_6_soknadKlageTreff" />
@@ -134,7 +134,7 @@
       <Variable x:TypeArguments="x:Int32" Name="iSak" />
       <Variable x:TypeArguments="x:String" Default="Hei" Name="kommentarMB" />
       <Variable x:TypeArguments="sd:DataTable" Name="sakDt" />
-      <Variable x:TypeArguments="x:Boolean" Name="_4_varselBrevTreff_Mindre15Dager" />
+      <Variable x:TypeArguments="x:Boolean" Name="doOppfolging" />
       <Variable x:TypeArguments="x:String" Name="Avsluttet_dato" />
       <Variable x:TypeArguments="x:String" Name="Status">
         <Variable.Default>
@@ -144,7 +144,7 @@
       <Variable x:TypeArguments="x:String" Name="Predator_path" />
     </Flowchart.Variables>
     <Flowchart.StartNode>
-      <FlowStep x:Name="__ReferenceID22" sap2010:WorkflowViewState.IdRef="FlowStep_38">
+      <FlowStep x:Name="__ReferenceID21" sap2010:WorkflowViewState.IdRef="FlowStep_38">
         <Sequence DisplayName="Init" sap2010:WorkflowViewState.IdRef="Sequence_135">
           <Sequence DisplayName="0.0 Modify excel list" sap2010:WorkflowViewState.IdRef="Sequence_134">
             <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Excel application scope" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_3" WorkbookPath="[xlsPathInput]">
@@ -480,25 +480,21 @@
               </Sequence>
             </Sequence>
             <FlowStep.Next>
-              <FlowDecision x:Name="__ReferenceID21" Condition="[Avsluttet_dato.Trim.Equals(&quot;&quot;)]" DisplayName="Sak avsluttet?" sap2010:WorkflowViewState.IdRef="FlowDecision_8">
+              <FlowDecision x:Name="__ReferenceID20" Condition="[Avsluttet_dato.Trim.Equals(&quot;&quot;)]" DisplayName="Sak avsluttet?" sap2010:WorkflowViewState.IdRef="FlowDecision_8">
                 <FlowDecision.True>
-                  <FlowDecision x:Name="__ReferenceID9" Condition="[_3_sakstypeTreff]" DisplayName="sakstype treff" sap2010:WorkflowViewState.IdRef="FlowDecision_1">
+                  <FlowDecision x:Name="__ReferenceID8" Condition="[_3_sakstypeTreff]" DisplayName="sakstype treff" sap2010:WorkflowViewState.IdRef="FlowDecision_1">
                     <FlowDecision.True>
-                      <FlowStep x:Name="__ReferenceID3" sap2010:WorkflowViewState.IdRef="FlowStep_13">
-                        <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName=" Lage Database Brev" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="Del1\LageDatabaseBrev.xaml">
+                      <FlowStep x:Name="__ReferenceID22" sap2010:WorkflowViewState.IdRef="FlowStep_40">
+                        <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="ReadTable" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="varselBrevProtoType.xaml">
                           <ui:InvokeWorkflowFile.Arguments>
-                            <OutArgument x:TypeArguments="sd:DataTable" x:Key="_4_dtBrev">[_4_dtBrev]</OutArgument>
+                            <OutArgument x:TypeArguments="x:Boolean" x:Key="doOppfolging">[doOppfolging]</OutArgument>
+                            <OutArgument x:TypeArguments="x:Boolean" x:Key="sendVarselBrev">[createWarningLetter]</OutArgument>
                           </ui:InvokeWorkflowFile.Arguments>
                         </ui:InvokeWorkflowFile>
                         <FlowStep.Next>
-                          <FlowStep x:Name="__ReferenceID4" sap2010:WorkflowViewState.IdRef="FlowStep_19">
-                            <Sequence DisplayName="1.4 Sjekke varselBrev" sap2010:WorkflowViewState.IdRef="Sequence_44">
-                              <Sequence.Variables>
-                                <Variable x:TypeArguments="s:DateTime" Name="lowerDato" />
-                                <Variable x:TypeArguments="s:DateTime" Name="upperDato" />
-                              </Sequence.Variables>
-                              <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_42" Text="1.4 Sjekke varselBrev" />
-                              <Assign sap2010:WorkflowViewState.IdRef="Assign_20">
+                          <FlowStep x:Name="__ReferenceID23" sap2010:WorkflowViewState.IdRef="FlowStep_41">
+                            <Sequence DisplayName="GaffaInit" sap2010:WorkflowViewState.IdRef="Sequence_154">
+                              <Assign sap2010:WorkflowViewState.IdRef="Assign_102">
                                 <Assign.To>
                                   <OutArgument x:TypeArguments="sd:DataRow[]">[rows]</OutArgument>
                                 </Assign.To>
@@ -506,107 +502,11 @@
                                   <InArgument x:TypeArguments="sd:DataRow[]">[_4_dtBrev.Select("Kode in ('1003', '1062', '1066', '1550', '1566')")]</InArgument>
                                 </Assign.Value>
                               </Assign>
-                              <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_18" Text="[&quot;Vi har &quot;+ rows.Length.ToString + &quot; rader med kode 1003, 1062, 1066, 1550, 1566&quot;]" />
-                              <Assign sap2010:WorkflowViewState.IdRef="Assign_25">
-                                <Assign.To>
-                                  <OutArgument x:TypeArguments="x:Boolean">[_4_varselBrevTreff]</OutArgument>
-                                </Assign.To>
-                                <Assign.Value>
-                                  <InArgument x:TypeArguments="x:Boolean">False</InArgument>
-                                </Assign.Value>
-                              </Assign>
-                              <Assign sap2010:WorkflowViewState.IdRef="Assign_22">
-                                <Assign.To>
-                                  <OutArgument x:TypeArguments="s:DateTime">[lowerDato]</OutArgument>
-                                </Assign.To>
-                                <Assign.Value>
-                                  <InArgument x:TypeArguments="s:DateTime">[System.DateTime.Today.AddYears(-1)]</InArgument>
-                                </Assign.Value>
-                              </Assign>
-                              <Assign sap2010:WorkflowViewState.IdRef="Assign_23">
-                                <Assign.To>
-                                  <OutArgument x:TypeArguments="s:DateTime">[upperDato]</OutArgument>
-                                </Assign.To>
-                                <Assign.Value>
-                                  <InArgument x:TypeArguments="s:DateTime">[System.DateTime.Today.AddDays(-15)]</InArgument>
-                                </Assign.Value>
-                              </Assign>
-                              <ui:ForEach x:TypeArguments="sd:DataRow" DisplayName="For each&lt;data row&gt;" sap2010:WorkflowViewState.IdRef="ForEach`1_2" Values="[rows]">
-                                <ui:ForEach.Body>
-                                  <ActivityAction x:TypeArguments="sd:DataRow">
-                                    <ActivityAction.Argument>
-                                      <DelegateInArgument x:TypeArguments="sd:DataRow" Name="row" />
-                                    </ActivityAction.Argument>
-                                    <Sequence DisplayName="Body" sap2010:WorkflowViewState.IdRef="Sequence_45">
-                                      <Sequence.Variables>
-                                        <Variable x:TypeArguments="s:DateTime" Name="dato" />
-                                      </Sequence.Variables>
-                                      <Assign sap2010:WorkflowViewState.IdRef="Assign_21">
-                                        <Assign.To>
-                                          <OutArgument x:TypeArguments="s:DateTime">[dato]</OutArgument>
-                                        </Assign.To>
-                                        <Assign.Value>
-                                          <InArgument x:TypeArguments="s:DateTime">[System.DateTime.ParseExact(row("Dato").ToString, "dd.MM.yyyy", nothing)]</InArgument>
-                                        </Assign.Value>
-                                      </Assign>
-                                      <If Condition="[DateTime.Compare(dato.Date, lowerDato.Date) &gt; 0 And DateTime.Compare(dato.Date, upperDato.Date) &lt; 0]" sap2010:WorkflowViewState.IdRef="If_3">
-                                        <If.Then>
-                                          <Sequence sap2010:WorkflowViewState.IdRef="Sequence_46">
-                                            <Sequence.Variables>
-                                              <Variable x:TypeArguments="x:Boolean" Name="_4_varselBrevTreff_Mindre15Dager" />
-                                            </Sequence.Variables>
-                                            <Assign sap2010:WorkflowViewState.IdRef="Assign_24">
-                                              <Assign.To>
-                                                <OutArgument x:TypeArguments="x:Boolean">[_4_varselBrevTreff]</OutArgument>
-                                              </Assign.To>
-                                              <Assign.Value>
-                                                <InArgument x:TypeArguments="x:Boolean">True</InArgument>
-                                              </Assign.Value>
-                                            </Assign>
-                                            <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_19" Text="[&quot;linje med kode &quot; + row(&quot;Kode&quot;).ToString + &quot;, dato &quot; + row(&quot;Dato&quot;).ToString + &quot; har treff&quot;]" />
-                                            <ui:Break sap2010:WorkflowViewState.IdRef="Break_1" />
-                                          </Sequence>
-                                        </If.Then>
-                                        <If.Else>
-                                          <If Condition="[DateTime.Compare(dato.Date, upperDato.Date) &gt; 0]" sap2010:WorkflowViewState.IdRef="If_12">
-                                            <If.Then>
-                                              <Sequence sap2010:WorkflowViewState.IdRef="Sequence_119">
-                                                <Assign sap2010:WorkflowViewState.IdRef="Assign_70">
-                                                  <Assign.To>
-                                                    <OutArgument x:TypeArguments="x:Boolean">[_4_varselBrevTreff]</OutArgument>
-                                                  </Assign.To>
-                                                  <Assign.Value>
-                                                    <InArgument x:TypeArguments="x:Boolean">True</InArgument>
-                                                  </Assign.Value>
-                                                </Assign>
-                                                <Assign sap2010:WorkflowViewState.IdRef="Assign_71">
-                                                  <Assign.To>
-                                                    <OutArgument x:TypeArguments="x:Boolean">[_4_varselBrevTreff_Mindre15Dager]</OutArgument>
-                                                  </Assign.To>
-                                                  <Assign.Value>
-                                                    <InArgument x:TypeArguments="x:Boolean">True</InArgument>
-                                                  </Assign.Value>
-                                                </Assign>
-                                                <ui:Break sap2010:WorkflowViewState.IdRef="Break_4" />
-                                              </Sequence>
-                                            </If.Then>
-                                          </If>
-                                        </If.Else>
-                                      </If>
-                                    </Sequence>
-                                  </ActivityAction>
-                                </ui:ForEach.Body>
-                              </ui:ForEach>
-                              <If Condition="[not _4_varselBrevTreff]" sap2010:WorkflowViewState.IdRef="If_4">
-                                <If.Then>
-                                  <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_20" Text="ingen linjer treff" />
-                                </If.Then>
-                              </If>
                             </Sequence>
                             <FlowStep.Next>
-                              <FlowDecision x:Name="__ReferenceID10" Condition="[not _4_varselBrevTreff]" DisplayName="varselBrev treff" sap2010:WorkflowViewState.IdRef="FlowDecision_2">
+                              <FlowDecision x:Name="__ReferenceID9" Condition="[createWarningLetter]" DisplayName="Create Warning Letter" sap2010:WorkflowViewState.IdRef="FlowDecision_2">
                                 <FlowDecision.True>
-                                  <FlowStep x:Name="__ReferenceID5" sap2010:WorkflowViewState.IdRef="FlowStep_21">
+                                  <FlowStep x:Name="__ReferenceID4" sap2010:WorkflowViewState.IdRef="FlowStep_21">
                                     <Sequence DisplayName="1.5 Sende ut varsel brev" sap2010:WorkflowViewState.IdRef="Sequence_50">
                                       <Sequence.Variables>
                                         <Variable x:TypeArguments="s:DateTime" Name="dato" />
@@ -751,7 +651,7 @@
                                           <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{sakDt.Rows(iSak - 1)(0).ToString,sakDt.Rows(iSak - 1)(1),sakDt.Rows(iSak - 1)(2),sakDt.Rows(iSak - 1)(3),&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,Status,&quot;&quot;,&quot;&quot;}]" DataTable="[dtResult]" DisplayName="Add data row" sap2010:WorkflowViewState.IdRef="AddDataRow_6" />
                                         </Sequence>
                                         <FlowStep.Next>
-                                          <FlowStep x:Name="__ReferenceID11" sap2010:WorkflowViewState.IdRef="FlowStep_31">
+                                          <FlowStep x:Name="__ReferenceID10" sap2010:WorkflowViewState.IdRef="FlowStep_31">
                                             <Sequence DisplayName="1.9b Hente neste sak" sap2010:WorkflowViewState.IdRef="Sequence_86">
                                               <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_48" Text="1.9b Hente neste sak" />
                                               <If Condition="[iSak &lt; sakDt.Rows.Count]" sap2010:WorkflowViewState.IdRef="If_10">
@@ -788,9 +688,9 @@
                                               </If>
                                             </Sequence>
                                             <FlowStep.Next>
-                                              <FlowDecision x:Name="__ReferenceID18" Condition="[saksNr isnot nothing]" DisplayName="neste sak er ikke null" sap2010:WorkflowViewState.IdRef="FlowDecision_6" True="{x:Reference __ReferenceID0}">
+                                              <FlowDecision x:Name="__ReferenceID17" Condition="[saksNr isnot nothing]" DisplayName="neste sak er ikke null" sap2010:WorkflowViewState.IdRef="FlowDecision_6" True="{x:Reference __ReferenceID0}">
                                                 <FlowDecision.False>
-                                                  <FlowStep x:Name="__ReferenceID17" sap2010:WorkflowViewState.IdRef="FlowStep_34">
+                                                  <FlowStep x:Name="__ReferenceID16" sap2010:WorkflowViewState.IdRef="FlowStep_34">
                                                     <Sequence DisplayName="1.9c Finish" sap2010:WorkflowViewState.IdRef="Sequence_90">
                                                       <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_49" Text="1.9c Finish" />
                                                       <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Write data to the output excel file" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_1" WorkbookPath="[xlsPathOutput]">
@@ -887,9 +787,9 @@
                                   </FlowStep>
                                 </FlowDecision.True>
                                 <FlowDecision.False>
-                                  <FlowDecision x:Name="__ReferenceID19" Condition="[_4_varselBrevTreff_Mindre15Dager]" DisplayName="VarselBrev_Mindre15Dager" sap2010:WorkflowViewState.IdRef="FlowDecision_7">
+                                  <FlowDecision x:Name="__ReferenceID18" Condition="[doOppfolging]" DisplayName="doOppfolging" sap2010:WorkflowViewState.IdRef="FlowDecision_7">
                                     <FlowDecision.True>
-                                      <FlowStep x:Name="__ReferenceID20" sap2010:WorkflowViewState.IdRef="FlowStep_36">
+                                      <FlowStep x:Name="__ReferenceID19" sap2010:WorkflowViewState.IdRef="FlowStep_36">
                                         <Sequence DisplayName="LageOppfølging" sap2010:WorkflowViewState.IdRef="Sequence_120">
                                           <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke workflow file" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Del1\LageF030Oppfølging.xaml">
                                             <ui:InvokeWorkflowFile.Arguments>
@@ -912,7 +812,7 @@
                                       </FlowStep>
                                     </FlowDecision.True>
                                     <FlowDecision.False>
-                                      <FlowStep x:Name="__ReferenceID8" sap2010:WorkflowViewState.IdRef="FlowStep_27">
+                                      <FlowStep x:Name="__ReferenceID7" sap2010:WorkflowViewState.IdRef="FlowStep_27">
                                         <Sequence DisplayName="1.6 Sjekke soknad/klage" sap2010:WorkflowViewState.IdRef="Sequence_75">
                                           <Sequence.Variables>
                                             <Variable x:TypeArguments="x:String" Default="('1505', '1506', '1509', '1510')" Name="koder" />
@@ -994,14 +894,14 @@
                                               </ActivityAction>
                                             </ui:ForEach.Body>
                                           </ui:ForEach>
-                                          <If Condition="[not _4_varselBrevTreff]" sap2010:WorkflowViewState.IdRef="If_7">
+                                          <If Condition="[not createWarningLetter]" sap2010:WorkflowViewState.IdRef="If_7">
                                             <If.Then>
                                               <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_27" Text="ingen linjer treff" />
                                             </If.Then>
                                           </If>
                                         </Sequence>
                                         <FlowStep.Next>
-                                          <FlowDecision x:Name="__ReferenceID12" Condition="[_6_soknadKlageTreff]" DisplayName="soknad treff" sap2010:WorkflowViewState.IdRef="FlowDecision_3">
+                                          <FlowDecision x:Name="__ReferenceID11" Condition="[_6_soknadKlageTreff]" DisplayName="soknad treff" sap2010:WorkflowViewState.IdRef="FlowDecision_3">
                                             <FlowDecision.True>
                                               <FlowStep x:Name="__ReferenceID2" sap2010:WorkflowViewState.IdRef="FlowStep_30">
                                                 <Sequence DisplayName="1.8 Manuell Behandling" sap2010:WorkflowViewState.IdRef="Sequence_85">
@@ -1148,14 +1048,14 @@
                                               </FlowStep>
                                             </FlowDecision.True>
                                             <FlowDecision.False>
-                                              <FlowStep x:Name="__ReferenceID6" sap2010:WorkflowViewState.IdRef="FlowStep_25">
+                                              <FlowStep x:Name="__ReferenceID5" sap2010:WorkflowViewState.IdRef="FlowStep_25">
                                                 <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke LageDataTableForOppfølging workflow" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="Del1\LageDataTableForOppfølging.xaml">
                                                   <ui:InvokeWorkflowFile.Arguments>
                                                     <OutArgument x:TypeArguments="sd:DataTable" x:Key="_7_dtOppfolging">[_7_dtOppfolging]</OutArgument>
                                                   </ui:InvokeWorkflowFile.Arguments>
                                                 </ui:InvokeWorkflowFile>
                                                 <FlowStep.Next>
-                                                  <FlowStep x:Name="__ReferenceID7" sap2010:WorkflowViewState.IdRef="FlowStep_26">
+                                                  <FlowStep x:Name="__ReferenceID6" sap2010:WorkflowViewState.IdRef="FlowStep_26">
                                                     <Sequence DisplayName="1.7.1 Sjekk Oppfølginger post" sap2010:WorkflowViewState.IdRef="Sequence_74">
                                                       <Sequence.Variables>
                                                         <Variable x:TypeArguments="sd:DataRow[]" Name="rows" />
@@ -1210,9 +1110,9 @@
                                                       </If>
                                                     </Sequence>
                                                     <FlowStep.Next>
-                                                      <FlowDecision x:Name="__ReferenceID14" Condition="[_7_postTreff]" DisplayName="&quot;Post*&quot; treff" sap2010:WorkflowViewState.IdRef="FlowDecision_4" True="{x:Reference __ReferenceID2}">
+                                                      <FlowDecision x:Name="__ReferenceID13" Condition="[_7_postTreff]" DisplayName="&quot;Post*&quot; treff" sap2010:WorkflowViewState.IdRef="FlowDecision_4" True="{x:Reference __ReferenceID2}">
                                                         <FlowDecision.False>
-                                                          <FlowStep x:Name="__ReferenceID13" sap2010:WorkflowViewState.IdRef="FlowStep_32">
+                                                          <FlowStep x:Name="__ReferenceID12" sap2010:WorkflowViewState.IdRef="FlowStep_32">
                                                             <Sequence DisplayName="1.7.2 Sjekk oppfølging retur/avhold" sap2010:WorkflowViewState.IdRef="Sequence_87">
                                                               <Sequence.Variables>
                                                                 <Variable x:TypeArguments="sd:DataRow[]" Name="rows" />
@@ -1262,9 +1162,9 @@
                                                               </If>
                                                             </Sequence>
                                                             <FlowStep.Next>
-                                                              <FlowDecision x:Name="__ReferenceID15" Condition="[_7_returAvholdTreff]" DisplayName="&quot;Retur*&quot;/&quot;Avhold*&quot; treff" sap2010:WorkflowViewState.IdRef="FlowDecision_5" True="{x:Reference __ReferenceID1}">
+                                                              <FlowDecision x:Name="__ReferenceID14" Condition="[_7_returAvholdTreff]" DisplayName="&quot;Retur*&quot;/&quot;Avhold*&quot; treff" sap2010:WorkflowViewState.IdRef="FlowDecision_5" True="{x:Reference __ReferenceID1}">
                                                                 <FlowDecision.False>
-                                                                  <FlowStep x:Name="__ReferenceID16" sap2010:WorkflowViewState.IdRef="FlowStep_33">
+                                                                  <FlowStep x:Name="__ReferenceID15" sap2010:WorkflowViewState.IdRef="FlowStep_33">
                                                                     <Sequence DisplayName="1.9a Legge til videre" sap2010:WorkflowViewState.IdRef="Sequence_89">
                                                                       <Sequence.Variables>
                                                                         <Variable x:TypeArguments="sd:DataRow" Name="newRowOutDt" />
@@ -1320,14 +1220,148 @@
         </FlowStep.Next>
       </FlowStep>
     </Flowchart.StartNode>
+    <FlowStep sap2010:WorkflowViewState.IdRef="FlowStep_13">
+      <ui:CommentOut sap2010:WorkflowViewState.IdRef="CommentOut_21">
+        <ui:CommentOut.Body>
+          <Sequence DisplayName="Ignored Activities">
+            <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName=" Lage Database Brev" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="Del1\LageDatabaseBrev.xaml">
+              <ui:InvokeWorkflowFile.Arguments>
+                <OutArgument x:TypeArguments="sd:DataTable" x:Key="_4_dtBrev">[_4_dtBrev]</OutArgument>
+              </ui:InvokeWorkflowFile.Arguments>
+            </ui:InvokeWorkflowFile>
+          </Sequence>
+        </ui:CommentOut.Body>
+      </ui:CommentOut>
+      <FlowStep.Next>
+        <FlowStep x:Name="__ReferenceID3" sap2010:WorkflowViewState.IdRef="FlowStep_19">
+          <ui:CommentOut sap2010:WorkflowViewState.IdRef="CommentOut_20">
+            <ui:CommentOut.Body>
+              <Sequence DisplayName="Ignored Activities" sap2010:WorkflowViewState.IdRef="Sequence_153">
+                <Sequence DisplayName="1.4 Sjekke varselBrev" sap2010:WorkflowViewState.IdRef="Sequence_44">
+                  <Sequence.Variables>
+                    <Variable x:TypeArguments="s:DateTime" Name="lowerDato" />
+                    <Variable x:TypeArguments="s:DateTime" Name="upperDato" />
+                  </Sequence.Variables>
+                  <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_42" Text="1.4 Sjekke varselBrev" />
+                  <Assign sap2010:WorkflowViewState.IdRef="Assign_20">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="sd:DataRow[]">[rows]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="sd:DataRow[]">[_4_dtBrev.Select("Kode in ('1003', '1062', '1066', '1550', '1566')")]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_18" Text="[&quot;Vi har &quot;+ rows.Length.ToString + &quot; rader med kode 1003, 1062, 1066, 1550, 1566&quot;]" />
+                  <Assign sap2010:WorkflowViewState.IdRef="Assign_25">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:Boolean">[createWarningLetter]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:Boolean">False</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <Assign sap2010:WorkflowViewState.IdRef="Assign_22">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="s:DateTime">[lowerDato]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="s:DateTime">[System.DateTime.Today.AddYears(-1)]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <Assign sap2010:WorkflowViewState.IdRef="Assign_23">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="s:DateTime">[upperDato]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="s:DateTime">[System.DateTime.Today.AddDays(-15)]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <ui:ForEach x:TypeArguments="sd:DataRow" DisplayName="For each&lt;data row&gt;" sap2010:WorkflowViewState.IdRef="ForEach`1_2" Values="[rows]">
+                    <ui:ForEach.Body>
+                      <ActivityAction x:TypeArguments="sd:DataRow">
+                        <ActivityAction.Argument>
+                          <DelegateInArgument x:TypeArguments="sd:DataRow" Name="row" />
+                        </ActivityAction.Argument>
+                        <Sequence DisplayName="Body" sap2010:WorkflowViewState.IdRef="Sequence_45">
+                          <Sequence.Variables>
+                            <Variable x:TypeArguments="s:DateTime" Name="dato" />
+                          </Sequence.Variables>
+                          <Assign sap2010:WorkflowViewState.IdRef="Assign_21">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="s:DateTime">[dato]</OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="s:DateTime">[System.DateTime.ParseExact(row("Dato").ToString, "dd.MM.yyyy", nothing)]</InArgument>
+                            </Assign.Value>
+                          </Assign>
+                          <If Condition="[DateTime.Compare(dato.Date, lowerDato.Date) &gt; 0 And DateTime.Compare(dato.Date, upperDato.Date) &lt; 0]" sap2010:WorkflowViewState.IdRef="If_3">
+                            <If.Then>
+                              <Sequence sap2010:WorkflowViewState.IdRef="Sequence_46">
+                                <Sequence.Variables>
+                                  <Variable x:TypeArguments="x:Boolean" Name="_4_varselBrevTreff_Mindre15Dager" />
+                                </Sequence.Variables>
+                                <Assign sap2010:WorkflowViewState.IdRef="Assign_24">
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="x:Boolean">[createWarningLetter]</OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="x:Boolean">True</InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                                <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_19" Text="[&quot;linje med kode &quot; + row(&quot;Kode&quot;).ToString + &quot;, dato &quot; + row(&quot;Dato&quot;).ToString + &quot; har treff&quot;]" />
+                                <ui:Break sap2010:WorkflowViewState.IdRef="Break_1" />
+                              </Sequence>
+                            </If.Then>
+                            <If.Else>
+                              <If Condition="[DateTime.Compare(dato.Date, upperDato.Date) &gt; 0]" sap2010:WorkflowViewState.IdRef="If_12">
+                                <If.Then>
+                                  <Sequence sap2010:WorkflowViewState.IdRef="Sequence_119">
+                                    <Assign sap2010:WorkflowViewState.IdRef="Assign_70">
+                                      <Assign.To>
+                                        <OutArgument x:TypeArguments="x:Boolean">[createWarningLetter]</OutArgument>
+                                      </Assign.To>
+                                      <Assign.Value>
+                                        <InArgument x:TypeArguments="x:Boolean">True</InArgument>
+                                      </Assign.Value>
+                                    </Assign>
+                                    <Assign sap2010:WorkflowViewState.IdRef="Assign_71">
+                                      <Assign.To>
+                                        <OutArgument x:TypeArguments="x:Boolean">[doOppfolging]</OutArgument>
+                                      </Assign.To>
+                                      <Assign.Value>
+                                        <InArgument x:TypeArguments="x:Boolean">True</InArgument>
+                                      </Assign.Value>
+                                    </Assign>
+                                    <ui:Break sap2010:WorkflowViewState.IdRef="Break_4" />
+                                  </Sequence>
+                                </If.Then>
+                              </If>
+                            </If.Else>
+                          </If>
+                        </Sequence>
+                      </ActivityAction>
+                    </ui:ForEach.Body>
+                  </ui:ForEach>
+                  <If Condition="[not createWarningLetter]" sap2010:WorkflowViewState.IdRef="If_4">
+                    <If.Then>
+                      <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_20" Text="ingen linjer treff" />
+                    </If.Then>
+                  </If>
+                </Sequence>
+              </Sequence>
+            </ui:CommentOut.Body>
+          </ui:CommentOut>
+        </FlowStep>
+      </FlowStep.Next>
+    </FlowStep>
     <x:Reference>__ReferenceID3</x:Reference>
     <x:Reference>__ReferenceID4</x:Reference>
     <x:Reference>__ReferenceID5</x:Reference>
     <x:Reference>__ReferenceID6</x:Reference>
     <x:Reference>__ReferenceID7</x:Reference>
     <x:Reference>__ReferenceID8</x:Reference>
-    <x:Reference>__ReferenceID9</x:Reference>
     <x:Reference>__ReferenceID2</x:Reference>
+    <x:Reference>__ReferenceID9</x:Reference>
     <x:Reference>__ReferenceID10</x:Reference>
     <x:Reference>__ReferenceID11</x:Reference>
     <x:Reference>__ReferenceID12</x:Reference>
@@ -1339,11 +1373,12 @@
     <x:Reference>__ReferenceID18</x:Reference>
     <x:Reference>__ReferenceID19</x:Reference>
     <x:Reference>__ReferenceID20</x:Reference>
-    <x:Reference>__ReferenceID21</x:Reference>
     <x:Reference>__ReferenceID1</x:Reference>
-    <x:Reference>__ReferenceID22</x:Reference>
+    <x:Reference>__ReferenceID21</x:Reference>
     <x:Reference>__ReferenceID0</x:Reference>
-    <sads:DebugSymbol.Symbol>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</sads:DebugSymbol.Symbol>
+    <x:Reference>__ReferenceID22</x:Reference>
+    <x:Reference>__ReferenceID23</x:Reference>
+    <sads:DebugSymbol.Symbol>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</sads:DebugSymbol.Symbol>
   </Flowchart>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
@@ -1437,10 +1472,10 @@
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="CommentOut_19" sap:VirtualizedContainerService.HintSize="438,261" />
-      <sap2010:ViewStateData Id="Assign_92" sap:VirtualizedContainerService.HintSize="416,59" />
-      <sap2010:ViewStateData Id="Assign_93" sap:VirtualizedContainerService.HintSize="416,59" />
-      <sap2010:ViewStateData Id="Assign_94" sap:VirtualizedContainerService.HintSize="416,59" />
-      <sap2010:ViewStateData Id="BuildDataTable_2" sap:VirtualizedContainerService.HintSize="416,59" />
+      <sap2010:ViewStateData Id="Assign_92" sap:VirtualizedContainerService.HintSize="438,59" />
+      <sap2010:ViewStateData Id="Assign_93" sap:VirtualizedContainerService.HintSize="438,59" />
+      <sap2010:ViewStateData Id="Assign_94" sap:VirtualizedContainerService.HintSize="438,59" />
+      <sap2010:ViewStateData Id="BuildDataTable_2" sap:VirtualizedContainerService.HintSize="438,59" />
       <sap2010:ViewStateData Id="Sequence_140" sap:VirtualizedContainerService.HintSize="460,1367">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -1483,7 +1518,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Sequence_143" sap:VirtualizedContainerService.HintSize="438,1235">
+      <sap2010:ViewStateData Id="Sequence_143" sap:VirtualizedContainerService.HintSize="460,1235">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -1623,64 +1658,25 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="InvokeWorkflowFile_3" sap:VirtualizedContainerService.HintSize="200,49" />
-      <sap2010:ViewStateData Id="WriteLine_42" sap:VirtualizedContainerService.HintSize="464,59" />
-      <sap2010:ViewStateData Id="Assign_20" sap:VirtualizedContainerService.HintSize="464,59" />
-      <sap2010:ViewStateData Id="WriteLine_18" sap:VirtualizedContainerService.HintSize="464,59" />
-      <sap2010:ViewStateData Id="Assign_25" sap:VirtualizedContainerService.HintSize="464,59" />
-      <sap2010:ViewStateData Id="Assign_22" sap:VirtualizedContainerService.HintSize="464,59" />
-      <sap2010:ViewStateData Id="Assign_23" sap:VirtualizedContainerService.HintSize="464,59" />
-      <sap2010:ViewStateData Id="Assign_21" sap:VirtualizedContainerService.HintSize="753,59" />
-      <sap2010:ViewStateData Id="Assign_24" sap:VirtualizedContainerService.HintSize="242,59" />
-      <sap2010:ViewStateData Id="WriteLine_19" sap:VirtualizedContainerService.HintSize="242,59" />
-      <sap2010:ViewStateData Id="Break_1" sap:VirtualizedContainerService.HintSize="242,22" />
-      <sap2010:ViewStateData Id="Sequence_46" sap:VirtualizedContainerService.HintSize="264,344">
+      <sap2010:ViewStateData Id="InvokeWorkflowFile_5" sap:VirtualizedContainerService.HintSize="200,49">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Assign_70" sap:VirtualizedContainerService.HintSize="242,59" />
-      <sap2010:ViewStateData Id="Assign_71" sap:VirtualizedContainerService.HintSize="242,59" />
-      <sap2010:ViewStateData Id="Break_4" sap:VirtualizedContainerService.HintSize="242,22" />
-      <sap2010:ViewStateData Id="Sequence_119" sap:VirtualizedContainerService.HintSize="264,344">
+      <sap2010:ViewStateData Id="Assign_102" sap:VirtualizedContainerService.HintSize="242,59" />
+      <sap2010:ViewStateData Id="Sequence_154" sap:VirtualizedContainerService.HintSize="200,49">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="If_12" sap:VirtualizedContainerService.HintSize="464,487" />
-      <sap2010:ViewStateData Id="If_3" sap:VirtualizedContainerService.HintSize="753,630" />
-      <sap2010:ViewStateData Id="Sequence_45" sap:VirtualizedContainerService.HintSize="775,853">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="ForEach`1_2" sap:VirtualizedContainerService.HintSize="464,49">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-            <x:Boolean x:Key="IsPinned">False</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="WriteLine_20" sap:VirtualizedContainerService.HintSize="211,59" />
-      <sap2010:ViewStateData Id="If_4" sap:VirtualizedContainerService.HintSize="464,203" />
-      <sap2010:ViewStateData Id="Sequence_44" sap:VirtualizedContainerService.HintSize="200,49">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="WriteLine_37" sap:VirtualizedContainerService.HintSize="336,59" />
-      <sap2010:ViewStateData Id="Assign_26" sap:VirtualizedContainerService.HintSize="336,59" />
-      <sap2010:ViewStateData Id="Assign_27" sap:VirtualizedContainerService.HintSize="336,59" />
-      <sap2010:ViewStateData Id="WriteLine_53" sap:VirtualizedContainerService.HintSize="336,59" />
+      <sap2010:ViewStateData Id="WriteLine_37" sap:VirtualizedContainerService.HintSize="436,59" />
+      <sap2010:ViewStateData Id="Assign_26" sap:VirtualizedContainerService.HintSize="436,59" />
+      <sap2010:ViewStateData Id="Assign_27" sap:VirtualizedContainerService.HintSize="436,59" />
+      <sap2010:ViewStateData Id="WriteLine_53" sap:VirtualizedContainerService.HintSize="436,59" />
       <sap2010:ViewStateData Id="Click_14" sap:VirtualizedContainerService.HintSize="314,106" />
       <sap2010:ViewStateData Id="Sequence_48" sap:VirtualizedContainerService.HintSize="336,230">
         <sap:WorkflowViewStateService.ViewState>
@@ -1689,10 +1685,10 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="WindowScope_15" sap:VirtualizedContainerService.HintSize="200,49">
+      <sap2010:ViewStateData Id="WindowScope_15" sap:VirtualizedContainerService.HintSize="414,376">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             <x:Boolean x:Key="IsPinned">False</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
@@ -1706,24 +1702,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="WindowScope_16" sap:VirtualizedContainerService.HintSize="200,49">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-            <x:Boolean x:Key="IsPinned">False</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Sequence_58" sap:VirtualizedContainerService.HintSize="336,49">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-            <x:Boolean x:Key="IsPinned">False</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="InvokeWorkflowFile_1" sap:VirtualizedContainerService.HintSize="314,87" />
-      <sap2010:ViewStateData Id="Sequence_59" sap:VirtualizedContainerService.HintSize="336,211">
+      <sap2010:ViewStateData Id="WindowScope_16" sap:VirtualizedContainerService.HintSize="414,550">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -1731,7 +1710,24 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Assign_80" sap:VirtualizedContainerService.HintSize="336,59" />
+      <sap2010:ViewStateData Id="Sequence_58" sap:VirtualizedContainerService.HintSize="436,1090">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="InvokeWorkflowFile_1" sap:VirtualizedContainerService.HintSize="314,87" />
+      <sap2010:ViewStateData Id="Sequence_59" sap:VirtualizedContainerService.HintSize="436,211">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Assign_80" sap:VirtualizedContainerService.HintSize="436,59" />
       <sap2010:ViewStateData Id="Sequence_50" sap:VirtualizedContainerService.HintSize="200,49">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -2258,57 +2254,57 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="FlowDecision_7" sap:VirtualizedContainerService.HintSize="139,87">
+      <sap2010:ViewStateData Id="FlowDecision_7" sap:VirtualizedContainerService.HintSize="72,87">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-            <av:Point x:Key="ShapeLocation">250.5,676.5</av:Point>
-            <av:Size x:Key="ShapeSize">139,87</av:Size>
-            <av:PointCollection x:Key="FalseConnector">389.5,720 440,720</av:PointCollection>
-            <av:PointCollection x:Key="TrueConnector">250.5,720 220.5,720 220.5,840 250,840</av:PointCollection>
+            <av:Point x:Key="ShapeLocation">270.5,676.5</av:Point>
+            <av:Size x:Key="ShapeSize">72,87</av:Size>
+            <av:PointCollection x:Key="FalseConnector">342.5,720 440,720</av:PointCollection>
+            <av:PointCollection x:Key="TrueConnector">270.5,720 240.5,720 240.5,840 250,840</av:PointCollection>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="FlowDecision_2" sap:VirtualizedContainerService.HintSize="82,87">
+      <sap2010:ViewStateData Id="FlowDecision_2" sap:VirtualizedContainerService.HintSize="116,87">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-            <av:Point x:Key="ShapeLocation">189,546.5</av:Point>
-            <av:Size x:Key="ShapeSize">82,87</av:Size>
-            <av:PointCollection x:Key="FalseConnector">271,590 320,590 320,676.5</av:PointCollection>
+            <av:Point x:Key="ShapeLocation">169,546.5</av:Point>
+            <av:Size x:Key="ShapeSize">116,87</av:Size>
+            <av:PointCollection x:Key="FalseConnector">285,590 306.5,590 306.5,676.5</av:PointCollection>
             <x:String x:Key="FalseLabel">ikke treff</x:String>
-            <av:PointCollection x:Key="TrueConnector">189,590 159,590 159,960 250,960</av:PointCollection>
+            <av:PointCollection x:Key="TrueConnector">169,590 139,590 139,960 250,960</av:PointCollection>
             <x:String x:Key="TrueLabel">treff</x:String>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="FlowStep_19">
+      <sap2010:ViewStateData Id="FlowStep_41">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <av:Point x:Key="ShapeLocation">130,455.5</av:Point>
+            <av:Point x:Key="ShapeLocation">130,474.361666666667</av:Point>
             <av:Size x:Key="ShapeSize">200,49</av:Size>
-            <av:PointCollection x:Key="ConnectorLocation">230,504.5 230,546.5</av:PointCollection>
+            <av:PointCollection x:Key="ConnectorLocation">230,523.361666666667 227,523.361666666667 227,546.5</av:PointCollection>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="FlowStep_13">
+      <sap2010:ViewStateData Id="FlowStep_40">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <av:Point x:Key="ShapeLocation">130,375.5</av:Point>
+            <av:Point x:Key="ShapeLocation">130,405.361666666667</av:Point>
             <av:Size x:Key="ShapeSize">200,49</av:Size>
-            <av:PointCollection x:Key="ConnectorLocation">230,424.5 230,455.5</av:PointCollection>
+            <av:PointCollection x:Key="ConnectorLocation">230,454.361666666667 230,474.361666666667</av:PointCollection>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="FlowDecision_1" sap:VirtualizedContainerService.HintSize="74,87">
+      <sap2010:ViewStateData Id="FlowDecision_1" sap:VirtualizedContainerService.HintSize="76,87">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-            <av:Point x:Key="ShapeLocation">265,266.5</av:Point>
-            <av:Size x:Key="ShapeSize">74,87</av:Size>
+            <av:Point x:Key="ShapeLocation">385,266.5</av:Point>
+            <av:Size x:Key="ShapeSize">76,87</av:Size>
             <x:String x:Key="TrueLabel">treff</x:String>
-            <av:PointCollection x:Key="TrueConnector">265,310 230,310 230,375.5</av:PointCollection>
-            <av:PointCollection x:Key="FalseConnector">339,310 720,310</av:PointCollection>
+            <av:PointCollection x:Key="TrueConnector">385,310 355,310 355,375.361666666667 230,375.361666666667 230,405.361666666667</av:PointCollection>
+            <av:PointCollection x:Key="FalseConnector">461,310 720,310</av:PointCollection>
             <x:String x:Key="FalseLabel">ikke treff</x:String>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
@@ -2320,7 +2316,7 @@
             <av:Point x:Key="ShapeLocation">492,194.5</av:Point>
             <av:Size x:Key="ShapeSize">76,87</av:Size>
             <x:String x:Key="TrueLabel">ikke avsluttet</x:String>
-            <av:PointCollection x:Key="TrueConnector">492,238 302,238 302,266.5</av:PointCollection>
+            <av:PointCollection x:Key="TrueConnector">492,238 423,238 423,266.5</av:PointCollection>
             <av:PointCollection x:Key="FalseConnector">568,238 1540,238 1540,875.5</av:PointCollection>
             <x:String x:Key="FalseLabel">avsluttet</x:String>
           </scg:Dictionary>
@@ -2341,6 +2337,86 @@
             <av:Point x:Key="ShapeLocation">140,125.5</av:Point>
             <av:Size x:Key="ShapeSize">200,49</av:Size>
             <av:PointCollection x:Key="ConnectorLocation">340,150 430,150</av:PointCollection>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="InvokeWorkflowFile_3" sap:VirtualizedContainerService.HintSize="200,49" />
+      <sap2010:ViewStateData Id="CommentOut_21" sap:VirtualizedContainerService.HintSize="200,49" />
+      <sap2010:ViewStateData Id="WriteLine_42" sap:VirtualizedContainerService.HintSize="791,59" />
+      <sap2010:ViewStateData Id="Assign_20" sap:VirtualizedContainerService.HintSize="791,59" />
+      <sap2010:ViewStateData Id="WriteLine_18" sap:VirtualizedContainerService.HintSize="791,59" />
+      <sap2010:ViewStateData Id="Assign_25" sap:VirtualizedContainerService.HintSize="791,59" />
+      <sap2010:ViewStateData Id="Assign_22" sap:VirtualizedContainerService.HintSize="791,59" />
+      <sap2010:ViewStateData Id="Assign_23" sap:VirtualizedContainerService.HintSize="791,59" />
+      <sap2010:ViewStateData Id="Assign_21" sap:VirtualizedContainerService.HintSize="753,59" />
+      <sap2010:ViewStateData Id="Assign_24" sap:VirtualizedContainerService.HintSize="242,59" />
+      <sap2010:ViewStateData Id="WriteLine_19" sap:VirtualizedContainerService.HintSize="242,59" />
+      <sap2010:ViewStateData Id="Break_1" sap:VirtualizedContainerService.HintSize="242,22" />
+      <sap2010:ViewStateData Id="Sequence_46" sap:VirtualizedContainerService.HintSize="264,344">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Assign_70" sap:VirtualizedContainerService.HintSize="242,59" />
+      <sap2010:ViewStateData Id="Assign_71" sap:VirtualizedContainerService.HintSize="242,59" />
+      <sap2010:ViewStateData Id="Break_4" sap:VirtualizedContainerService.HintSize="242,22" />
+      <sap2010:ViewStateData Id="Sequence_119" sap:VirtualizedContainerService.HintSize="264,344">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="If_12" sap:VirtualizedContainerService.HintSize="464,487" />
+      <sap2010:ViewStateData Id="If_3" sap:VirtualizedContainerService.HintSize="753,630" />
+      <sap2010:ViewStateData Id="Sequence_45" sap:VirtualizedContainerService.HintSize="775,853">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="ForEach`1_2" sap:VirtualizedContainerService.HintSize="791,984">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="WriteLine_20" sap:VirtualizedContainerService.HintSize="211,59" />
+      <sap2010:ViewStateData Id="If_4" sap:VirtualizedContainerService.HintSize="791,203" />
+      <sap2010:ViewStateData Id="Sequence_44" sap:VirtualizedContainerService.HintSize="813,1945">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_153" sap:VirtualizedContainerService.HintSize="835,2069">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="CommentOut_20" sap:VirtualizedContainerService.HintSize="200,49" />
+      <sap2010:ViewStateData Id="FlowStep_19">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <av:Point x:Key="ShapeLocation">110,285.5</av:Point>
+            <av:Size x:Key="ShapeSize">200,49</av:Size>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="FlowStep_13">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <av:Point x:Key="ShapeLocation">110,205.5</av:Point>
+            <av:Size x:Key="ShapeSize">200,49</av:Size>
+            <av:PointCollection x:Key="ConnectorLocation">210,254.5 210,285.5</av:PointCollection>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
