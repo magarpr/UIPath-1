@@ -107,22 +107,40 @@
           <TryCatch DisplayName="Initialize Environment Variables" sap2010:WorkflowViewState.IdRef="TryCatch_8">
             <TryCatch.Try>
               <Sequence sap2010:WorkflowViewState.IdRef="Sequence_140">
-                <Assign sap2010:WorkflowViewState.IdRef="Assign_31">
-                  <Assign.To>
+                <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="VL_Okonomi_URL" DisplayName="Get Okonomi URL from Asset" sap2010:WorkflowViewState.IdRef="GetRobotAsset_1">
+                  <ui:GetRobotAsset.Value>
                     <OutArgument x:TypeArguments="x:String">[Okonomi_URL]</OutArgument>
-                  </Assign.To>
-                  <Assign.Value>
-                    <InArgument x:TypeArguments="x:String">["https://wasapp-q1.adeo.no/oppdrag/portal/login.jsp"]</InArgument>
-                  </Assign.Value>
-                </Assign>
-                <Assign sap2010:WorkflowViewState.IdRef="Assign_32">
-                  <Assign.To>
+                  </ui:GetRobotAsset.Value>
+                </ui:GetRobotAsset>
+                <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="VL_Predator_Path" DisplayName="Get Predator Path from Asset" sap2010:WorkflowViewState.IdRef="GetRobotAsset_2">
+                  <ui:GetRobotAsset.Value>
                     <OutArgument x:TypeArguments="x:String">[Predator_path]</OutArgument>
-                  </Assign.To>
-                  <Assign.Value>
-                    <InArgument x:TypeArguments="x:String">["C:\Program Files (x86)\SPN\Predator"]</InArgument>
-                  </Assign.Value>
-                </Assign>
+                  </ui:GetRobotAsset.Value>
+                </ui:GetRobotAsset>
+                <ui:CommentOut DisplayName="Comment out" sap2010:WorkflowViewState.IdRef="CommentOut_3">
+                  <ui:CommentOut.Body>
+                    <Sequence sap2010:WorkflowViewState.IdRef="Sequence_143">
+                      <Sequence DisplayName="Ignored Activities" sap2010:WorkflowViewState.IdRef="Sequence_142">
+                        <Assign sap2010:WorkflowViewState.IdRef="Assign_31">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:String">[Okonomi_URL]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:String">["https://wasapp-q1.adeo.no/oppdrag/portal/login.jsp"]</InArgument>
+                          </Assign.Value>
+                        </Assign>
+                      </Sequence>
+                      <Assign sap2010:WorkflowViewState.IdRef="Assign_32">
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="x:String">[Predator_path]</OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="x:String">["C:\Program Files (x86)\SPN\Predator"]</InArgument>
+                        </Assign.Value>
+                      </Assign>
+                    </Sequence>
+                  </ui:CommentOut.Body>
+                </ui:CommentOut>
               </Sequence>
             </TryCatch.Try>
             <TryCatch.Catches>
@@ -790,13 +808,30 @@
       <x:Reference>__ReferenceID12</x:Reference>
       <x:Reference>__ReferenceID13</x:Reference>
     </Flowchart>
-    <sads:DebugSymbol.Symbol>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</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>dyRXOlxycGFcVmFza2xpc3RlclxEZWwzXERlbDNNYWluLnhhbWzTAV4DrAYOAgEBaAWqBhECAQJrC7IBFgMBigK0AT60AVcDAYkC0gITjgMeAwHqAZADRZADXgMB6QGTAxu4AyYDAdQBugNNugNmAwHTAb0DI4UELgMBsAGHBFWHBG4DAa8BigQr3QQ2AwGAAd8EXt8EdwIBf+IEM60FPgIBV68FZq8FfwIBVrIFO4EGRgIBOrcBE80CHgIBA20PkAEaAwGcApgBE64BHgMBiwLUAhfsAjIDAfwB9AIbigMmAwHrAZUDH5UDpgEDAeYBnQMjtAMuAwHVAb8DJ+IDNwMBwgHqAyuBBDYDAbEBjAQvugQ/AwGSAcIEM9kEPgMBgQHkBDeKBUICAWmSBTupBUYCAVi0BT/eBUoCAUzmBUP9BU4CATu8ARe8AaMBAgE3yQEXywIiAgEHxAEbxAGvAQIBBG4RciQDAaICcxF3JAMBngJ4EY8BIQMBnQKdARWkAR4DAZgCpQEVrAEeAwGRAq0BFa0B3wEDAYwC1AKyAdQCzgEDAYgC2gId6QIoAwH9AfkCHYADJgMB+AGBAx2IAyYDAfEBiQMdiQPnAQMB7AGVAzyVA1EDAecBowMlqgMuAwHiAasDJbIDLgMB2wGzAyWzA+8BAwHWAb8DQL8DTgMB0QHFAy3fAzgDAcMB8AMt9wM2AwG+AfgDLf8DNgMBtwGABC2ABPcBAwGyAYwESIwEXQMBrQGSBDW3BEADAZMByAQ1zwQ+AwGOAdAENdcEPgMBhwHYBDXYBP8BAwGCAekEOekE7gECAXvqBDn2BD4CAXb3BDmJBVQCAWqYBT2fBUYCAWWgBT2nBUYCAV6oBT2oBYcCAgFZtQVBwwVMAgFSxAVB3QVSAgFN7AVF8wVOAgFI9AVF+wVOAgFB/AVF/AWPAgIBPLwBhQG8AaABAgE4zgEZ0gEuAgEy0wEZ4gEeAgEr4wEZ5wEuAgEm6AEZ+wEeAgEe/AEZygIkAgEIxAFzxAGsAQIBBXA9cEoDAaQCbkJuUgMBowJ1PXVMAwGgAnNCc1QDAZ8CogFHogFNAwGbAp8BSJ8BXwMBmQKqAUeqAYgBAwGUAqcBSKcBYQMBkgKtAW2tAdwBAwGNAtsCH+ECMwMBgwLiAh/oAjMDAf4B/gJP/gJVAwH7AfsCUPsCZwMB+QGGA0+GA5ABAwH0AYMDUIMDaQMB8gGJA3WJA+QBAwHtAagDV6gDXQMB5QGlA1ilA28DAeMBsANXsAOYAQMB3gGtA1itA3EDAdwBswN9swPsAQMB1wHGAy/NAzgDAc4BzgMv1QM4AwHLAdYDL90DOAMByAHeAy/eA9gBAwHEAfUDX/UDZQMBwQHyA2DyA3cDAb8B/QNf/QOgAQMBugH6A2D6A3kDAbgBgASFAYAE9AEDAbMBkwQ3tgQ8AwGUAc0EZ80EbQMBkQHKBGjKBH8DAY8B1QRn1QSoAQMBigHSBGjSBIEBAwGIAdgEjQHYBPwBAwGDAekEaekEeAIBfekErQHpBNsBAgF86gRH6gRWAgF37AQ99ARIAgF59wTUAfcEggICAXX9BD+GBUoCAWudBW+dBXUCAWiaBXCaBYcBAgFmpQVvpQWwAQIBYaIFcKIFiQECAV+oBZUBqAWEAgIBWsEF1AHBBagDAgFVtQV/tQWFAQIBVLUFcLUFdgIBU8QF0gLEBYwDAgFRygVH2gVSAgFO8QV38QV9AgFL7gV47gWPAQIBSfkFd/kFuAECAUT2BXj2BZEBAgFC/AWdAfwFjAICAT3QAV7QAZ0BAgE20AGoAdABrgECATXOAXDOAYUBAgEz0wEn0wE8AgEs1QEd4AEuAgEu5QGXAeUB0AECASrlAdsB5QHhAQIBKeMBXuMBdAIBJ+gBJ+gBPQIBH+oBHfkBLgIBIYACG5QCKwIBHZUCG5kCMAIBGJoCG8kCIAIBCdsCTtsCXAMBhgLeAiXeAlQDAYUC2wKzAdsCuQEDAYQC4gJO4gJjAwGBAuUCJeUCVAMBgALiAroB4gLAAQMB/wHLA1rLA4wBAwHQAcgDW8gDYwMBzwHTA1rTA4sBAwHNAdADW9ADYwMBzAHbA1vbA3IDAcoB2ANb2ANjAwHJAd4Ddt4DiwEDAcYB3gNa3gNrAwHFAZMERZMEjAMDAZUBlQQ7tARGAwGWAe0EP/METwIBev4EQYQFVQIBcYUFQYUF+gECAWzLBUnZBVQCAU/VAZ8C1QHeAgIBMdsBI90BLgIBL+oBsALqAekCAgEl8AEj9gEuAgEilwKZAZcC9AECARyXAv8BlwKFAgIBG5UCdJUChgECARmaAimaAjsCAQqcAh/HAjACAQyZBD2jBFUDAZ8BpAQ9qwRGAwGbAawEPbMERgMBlwH+BFn+BGICAXSBBUeBBXYCAXP+BLoB/gTAAQIBcoUF8wGFBfcBAgFwhQVxhQWGAQIBboUF3wGFBeUBAgFt1wXcAdcFgwMCAVDcASXcAZwCAgEw8QEl9QE7AgEjnAKyApwCjQMCAReiAiXEAjACAQ2eBHqeBJEBAwGrAaAEfKAEiQEDAakBnAR5nASjAQMBqAGhBH6hBI0BAwGmAZsEdpsEewMBpAGfBIUBnwSaAQMBogGZBOoBmQSJAgMBoQGdBHidBJYBAwGgAakEaKkEfwMBnQGmBGmmBH8DAZwBsQRosQR9AwGZAa4Eaa4EigEDAZgB8wG4AfMB8QECASSjAiepAjICAROqAifDAjgCAQ6kAimoAjkCARSqArgCqgL3AgIBErACLcACOAIBD6QCmQGkAp8BAgEWpAKKAaQCkAECARWxAi+/AjoCARC9AsIBvQLuAgIBEQ==</sads:DebugSymbol.Symbol>
   </Sequence>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
+      <sap2010:ViewStateData Id="GetRobotAsset_1" sap:VirtualizedContainerService.HintSize="416,22" />
+      <sap2010:ViewStateData Id="GetRobotAsset_2" sap:VirtualizedContainerService.HintSize="416,22" />
       <sap2010:ViewStateData Id="Assign_31" sap:VirtualizedContainerService.HintSize="242,59" />
-      <sap2010:ViewStateData Id="Assign_32" sap:VirtualizedContainerService.HintSize="242,59" />
-      <sap2010:ViewStateData Id="Sequence_140" sap:VirtualizedContainerService.HintSize="264,282">
+      <sap2010:ViewStateData Id="Sequence_142" sap:VirtualizedContainerService.HintSize="264,183">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Assign_32" sap:VirtualizedContainerService.HintSize="264,59" />
+      <sap2010:ViewStateData Id="Sequence_143" sap:VirtualizedContainerService.HintSize="286,406">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="CommentOut_3" sap:VirtualizedContainerService.HintSize="416,484" />
+      <sap2010:ViewStateData Id="Sequence_140" sap:VirtualizedContainerService.HintSize="438,732">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -813,7 +848,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Catch`1_8" sap:VirtualizedContainerService.HintSize="404,452">
+      <sap2010:ViewStateData Id="Catch`1_8" sap:VirtualizedContainerService.HintSize="442,452">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -821,7 +856,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="TryCatch_8" sap:VirtualizedContainerService.HintSize="200,49">
+      <sap2010:ViewStateData Id="TryCatch_8" sap:VirtualizedContainerService.HintSize="456,1486">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>

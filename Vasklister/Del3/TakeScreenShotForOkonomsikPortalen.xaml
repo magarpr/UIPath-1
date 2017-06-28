@@ -77,17 +77,28 @@
         <State x:Name="__ReferenceID0" DisplayName="ScapTrekkData" sap2010:WorkflowViewState.IdRef="State_3">
           <State.Entry>
             <Sequence DisplayName="Login til OP og Ta ScreenShot" sap2010:WorkflowViewState.IdRef="Sequence_10">
-              <Assign sap2010:WorkflowViewState.IdRef="Assign_1">
-                <Assign.To>
+              <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="VL_Okonomi_URL" DisplayName="Get Okonomi URL from Asset" sap2010:WorkflowViewState.IdRef="GetRobotAsset_1">
+                <ui:GetRobotAsset.Value>
                   <OutArgument x:TypeArguments="x:String">[Okonomi_URL]</OutArgument>
-                </Assign.To>
-                <Assign.Value>
-                  <InArgument x:TypeArguments="x:String">https://wasapp-q1.adeo.no/oppdrag/portal/login.jsp</InArgument>
-                </Assign.Value>
-              </Assign>
+                </ui:GetRobotAsset.Value>
+              </ui:GetRobotAsset>
+              <ui:CommentOut DisplayName="Comment out" sap2010:WorkflowViewState.IdRef="CommentOut_1">
+                <ui:CommentOut.Body>
+                  <Sequence DisplayName="Ignored Activities" sap2010:WorkflowViewState.IdRef="Sequence_25">
+                    <Assign sap2010:WorkflowViewState.IdRef="Assign_1">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:String">[Okonomi_URL]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:String">https://wasapp-q1.adeo.no/oppdrag/portal/login.jsp</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                  </Sequence>
+                </ui:CommentOut.Body>
+              </ui:CommentOut>
               <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_1" Text="3.2 - Hent totalt trekkbeløp til 'Andre utgifter' fra Oppslag UB (Økonomiportal)" />
               <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_2" Text="[&quot;FNR: &quot; +FNR]" />
-              <ui:OpenBrowser UiBrowser="{x:Null}" BrowserType="IE" DisplayName="Open browser (Økonomiskportalen)" Hidden="False" sap2010:WorkflowViewState.IdRef="OpenBrowser_1" NewSession="True" Private="False" Url="https://wasapp-q1.adeo.no/oppdrag/portal/login.jsp">
+              <ui:OpenBrowser UiBrowser="{x:Null}" BrowserType="IE" DisplayName="Open browser (Økonomiskportalen)" Hidden="False" sap2010:WorkflowViewState.IdRef="OpenBrowser_1" NewSession="True" Private="False" Url="[Okonomi_URL]">
                 <ui:OpenBrowser.Body>
                   <ActivityAction x:TypeArguments="x:Object">
                     <ActivityAction.Argument>
@@ -316,11 +327,20 @@
         <Variable x:TypeArguments="x:String" Name="Okonomi_URL" />
       </StateMachine.Variables>
     </StateMachine>
-    <sads:DebugSymbol.Symbol>dz5XOlxycGFcVmFza2xpc3RlclxEZWwzXFRha2VTY3JlZW5TaG90Rm9yT2tvbm9tc2lrUG9ydGFsZW4ueGFtbG4B1QEB4QEBAwGIAQGnAQECSgPAAg4CAQFLBb4CFAIBArYCOrYCVwMBhAFNCbACEQIBBqgCEawCGQIBA08NgwIYAgEfhgINowIYAgEJqgIVqgJPAgEFUA9XGAMBgAFYD1i7AQIBflkPWYMBAgF7Wg9jIAIBeGQPggIaAgEgiwIPjwIkAgEakAIPlAIUAgEUlQIPmQIkAgEPmgIPogIUAgEKVTpVbAMBgwFSO1JIAwGBAVhmWLgBAgF/WWZZgAECAXxa2QFajQICAXpgFWBfAgF5aBGBAiMCASGNAlSNAssBAgEejQLWAY0C3AECAR2LAkOLAlACARuQAh2QAioCARWSAhOSAusCAgEXlwJUlwKQAQIBE5cCmwGXAqEBAgESlQJHlQJZAgEQmgIdmgIvAgELnAIToAIpAgENaKgCaNICAgF3bhf+ASICASKSAtYBkgLNAgIBGZICXZICYwIBGJ4CpgGeAuIBAgEOchl2JwIBdHcZggEkAgFsgwEZigEkAgFoiwEZlQEpAgFllgEZnQEkAgFhngEZogEnAgFdowEZqgEkAgFZqwEZ/QEkAgEjdKwBdNcBAgF2crICcrsCAgF1fBt88gICAXF9G4EBKQIBbYgBrAGIAdgBAgFrhQFFhQFJAgFqhQE4hQE8AgFpiwHHAYsBzQECAWaTAawBkwHfAQIBZ5sBrAGbAd0BAgFkmAFFmAFJAgFjmAE4mAE8AgFioAGsAaAB3QECAWCeAbgCngG/AgIBXqgBrAGoAcwBAgFcpQFFpQFJAgFbpQE4pQE8AgFarAEb/AEtAgEkfOICfO8CAgFyf64Bf9sBAgFwfbYCfcMCAgFurAGyAqwB9QICAViyASH5ASwCASWzASO3ATgCAVO4ASPKASgCAU7LASPPATQCAUbQASPQAcQBAgFB0QEj0QGoAQIBPtIBI/gBKAIBJrUBoQG1AcEBAgFXtQHMAbUB0gECAVazAWSzAXICAVS4ATG4AT8CAU+6ASfIATICAVHLAcwIywHRCAIBTc0BtgHNAesBAgFMywGZAcsBngECAUvLAV/LAWUCAUrLAXDLAYQBAgFIywHdAcsBiAgCAUfQAa8B0AHBAQIBRNABQdABVQIBQtEBetEBpQECAT/SATHSAVYCASfUASfzATICASr2ASf2AaYBAgEoxgG6AcYB2gECAVLYASncAT0CATrdASndAcwBAgE03gEp8gE+AgEr9gGRAfYBowECASnaAbwB2gHrAQIBPdgBrgHYAb8BAgE73QFZ3QGDAQIBN90BuAHdAckBAgE13gGTA94BzwMCATPeAZUB3gG/AQIBMN4B+wHeAZwCAgEv5AEv7wE6AgEs5QEx6QFBAgEu6gEx7gFBAgEt</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>dz5XOlxycGFcVmFza2xpc3RlclxEZWwzXFRha2VTY3JlZW5TaG90Rm9yT2tvbm9tc2lrUG9ydGFsZW4ueGFtbG8B1QEB4QEBAwGIAQGnAQECSgPLAg4CAQFLBckCFAIBAsECOsECVwMBhgFNCbsCEQIBBrMCEbcCGQIBA08NjgIYAgEfkQINrgIYAgEJtQIVtQJPAgEFUA9UIgMBggFVD2IfAwGBAWMPY7sBAgF/ZA9kgwECAXxlD24gAgF4bw+NAhoCASCWAg+aAiQCARqbAg+fAhQCARSgAg+kAiQCAQ+lAg+tAhQCAQpSO1JIAwGEAVBAUFADAYMBY2ZjuAEDAYABZGZkgAECAX1l2QFl6AECAXprFWtfAgF5cxGMAiMCASGYAlSYAssBAgEemALWAZgC3AECAR2WAkOWAlACARubAh2bAioCARWdAhOdAusCAgEXogJUogKQAQIBE6ICmwGiAqEBAgESoAJHoAJZAgEQpQIdpQIvAgELpwITqwIpAgENc6gCc9ICAgF3eReJAiICASKdAtYBnQLNAgIBGZ0CXZ0CYwIBGKkCpgGpAuIBAgEOfRmBAScCAXSCARmNASQCAWyOARmVASQCAWiWARmgASkCAWWhARmoASQCAWGpARmtAScCAV2uARm1ASQCAVm2ARmIAiQCASN/rAF/1wECAXZ9sgJ9uwICAXWHARuHAfICAgFxiAEbjAEpAgFtkwGsAZMB2AECAWuQAUWQAUkCAWqQATiQATwCAWmWAccBlgHNAQIBZp4BrAGeAd8BAgFnpgGsAaYB3QECAWSjAUWjAUkCAWOjATijATwCAWKrAawBqwHdAQIBYKkBuAKpAb8CAgFeswGsAbMBzAECAVywAUWwAUkCAVuwATiwATwCAVq3ARuHAi0CASSHAeIChwHvAgIBcooBrgGKAdsBAgFwiAG2AogBwwICAW63AbICtwH1AgIBWL0BIYQCLAIBJb4BI8IBOAIBU8MBI9UBKAIBTtYBI9oBNAIBRtsBI9sBxAECAUHcASPcAagBAgE+3QEjgwIoAgEmwAGhAcABwQECAVfAAcwBwAHSAQIBVr4BZL4BcgIBVMMBMcMBPwIBT8UBJ9MBMgIBUdYBzAjWAdEIAgFN2AG2AdgB6wECAUzWAZkB1gGeAQIBS9YBX9YBZQIBStYBcNYBhAECAUjWAd0B1gGICAIBR9sBrwHbAcEBAgFE2wFB2wFVAgFC3AF63AGlAQIBP90BMd0BVgIBJ98BJ/4BMgIBKoECJ4ECpgECASjRAboB0QHaAQIBUuMBKecBPQIBOugBKegBzAECATTpASn9AT4CASuBApEBgQKjAQIBKeUBvAHlAesBAgE94wGuAeMBvwECATvoAVnoAYMBAgE36AG4AegByQECATXpAZMD6QHPAwIBM+kBlQHpAb8BAgEw6QH7AekBnAICAS/vAS/6AToCASzwATH0AUECAS71ATH5AUECAS0=</sads:DebugSymbol.Symbol>
   </Sequence>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
-      <sap2010:ViewStateData Id="Assign_1" sap:VirtualizedContainerService.HintSize="891,59" />
+      <sap2010:ViewStateData Id="GetRobotAsset_1" sap:VirtualizedContainerService.HintSize="891,22" />
+      <sap2010:ViewStateData Id="Assign_1" sap:VirtualizedContainerService.HintSize="242,59" />
+      <sap2010:ViewStateData Id="Sequence_25" sap:VirtualizedContainerService.HintSize="264,183">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="CommentOut_1" sap:VirtualizedContainerService.HintSize="891,261" />
       <sap2010:ViewStateData Id="WriteLine_1" sap:VirtualizedContainerService.HintSize="891,59" />
       <sap2010:ViewStateData Id="WriteLine_2" sap:VirtualizedContainerService.HintSize="891,59" />
       <sap2010:ViewStateData Id="Sequence_1" sap:VirtualizedContainerService.HintSize="200,97">
@@ -410,7 +430,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Sequence_10" sap:VirtualizedContainerService.HintSize="913,4590">
+      <sap2010:ViewStateData Id="Sequence_10" sap:VirtualizedContainerService.HintSize="913,4854">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -455,7 +475,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="State_3" sap:VirtualizedContainerService.HintSize="114,61">
+      <sap2010:ViewStateData Id="State_3" sap:VirtualizedContainerService.HintSize="939,5975">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <av:Point x:Key="ShapeLocation">213,129.5</av:Point>
