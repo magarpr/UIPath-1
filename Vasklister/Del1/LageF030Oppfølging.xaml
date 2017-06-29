@@ -1,24 +1,15 @@
-﻿<Activity mc:Ignorable="sap sap2010 sads" x:Class="LageF030Oppfølging" this:LageF030Oppfølging.datoStr="[new DateTime().AddDays(15).ToString(&quot;DD.MM.YYYY&quot;)]"
+﻿<Activity mc:Ignorable="sap sap2010 sads" x:Class="LageF030Oppfølging" mva:VisualBasic.Settings="{x:Null}" sap2010:WorkflowViewState.IdRef="LageF030Oppfølging_1"
  xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities"
  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
  xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities"
+ xmlns:s="clr-namespace:System;assembly=mscorlib"
  xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger"
  xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation"
  xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation"
  xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib"
  xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib"
- xmlns:sd="clr-namespace:System.Data;assembly=System.Data"
- xmlns:this="clr-namespace:"
  xmlns:ui="http://schemas.uipath.com/workflow/activities"
  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-  <x:Members>
-    <x:Property Name="rows" Type="InArgument(sd:DataRow[])" />
-    <x:Property Name="datoStr" Type="InArgument(x:String)" />
-  </x:Members>
-  <mva:VisualBasic.Settings>
-    <x:Null />
-  </mva:VisualBasic.Settings>
-  <sap2010:WorkflowViewState.IdRef>LageF030Oppfølging_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
       <x:String>System.Activities</x:String>
@@ -98,7 +89,9 @@
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
   <Sequence sap2010:WorkflowViewState.IdRef="Sequence_119">
-    <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'TButton'" sap2010:WorkflowViewState.IdRef="Click_23" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
+    <ui:LogMessage DisplayName="Log message" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="---BEGIN LageF30Oppfølging" />
+    <Delay Duration="00:00:01" sap2010:WorkflowViewState.IdRef="Delay_1" />
+    <ui:Click DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DelayBefore="1000" DisplayName="Click 'TButton'" sap2010:WorkflowViewState.IdRef="Click_23" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
       <ui:Click.CursorPosition>
         <ui:CursorPosition Position="Center">
           <ui:CursorPosition.OffsetX>
@@ -110,9 +103,108 @@
         </ui:CursorPosition>
       </ui:Click.CursorPosition>
       <ui:Click.Target>
-        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="71ecfc09fd01f12a041d6042e8c9eef4" Selector="&lt;wnd app='predator.exe' cls='TfrmPredator' title='PredatorNO - [Saksbehandling]' /&gt;&lt;wnd aaname='Arbeidsområde' cls='MDIClient' /&gt;&lt;wnd cls='TfrmSaksbeh' title='Saksbehandling' /&gt;&lt;wnd cls='TGroupBox' title='Oppfølgninger på saken' /&gt;&lt;wnd cls='TButton' title='Ny oppfølgning' /&gt;" WaitForReady="INTERACTIVE" />
+        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="8fa77f32fd4d8ff9c5f2853c8729a54b" Selector="&lt;wnd app='predator.exe' cls='TfrmPredator' title='PredatorNO - [Saksbehandling]' /&gt;&lt;wnd aaname='Arbeidsområde' cls='MDIClient' /&gt;&lt;wnd cls='TfrmSaksbeh' title='Saksbehandling' /&gt;&lt;wnd cls='TGroupBox' title='Oppfølgninger på saken' /&gt;&lt;wnd cls='TButton' title='Ny oppfølgning' /&gt;" WaitForReady="INTERACTIVE" />
       </ui:Click.Target>
     </ui:Click>
+    <Sequence sap2010:Annotation.AnnotationText="Waits up to 30 seconds for box to show, then clicks again, and waits another 30. Throws error if no box found after 60 seconds" DisplayName="Detect box" sap2010:WorkflowViewState.IdRef="Sequence_124">
+      <Sequence.Variables>
+        <Variable x:TypeArguments="x:Boolean" Name="boxIsUp" />
+      </Sequence.Variables>
+      <TryCatch DisplayName="Try to find the box" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+        <TryCatch.Try>
+          <Sequence sap2010:WorkflowViewState.IdRef="Sequence_126">
+            <While sap2010:WorkflowViewState.IdRef="While_1">
+              <While.Variables>
+                <Variable x:TypeArguments="x:Int32" Name="retries" />
+              </While.Variables>
+              <While.Condition>[NOT boxIsUp]</While.Condition>
+              <Sequence sap2010:WorkflowViewState.IdRef="Sequence_125">
+                <ui:UiElementExists DisplayName="Element Exists 'InboxClient.exe Ny'" Exists="[boxIsUp]" sap2010:WorkflowViewState.IdRef="UiElementExists_1">
+                  <ui:UiElementExists.Target>
+                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="f471c2e8afd749d12d0a16c5bb479524" Selector="&lt;wnd app='inboxclient.exe' ctrlname='CreateTask' /&gt;" TimeoutMS="3000" WaitForReady="INTERACTIVE" />
+                  </ui:UiElementExists.Target>
+                </ui:UiElementExists>
+                <If Condition="[Not boxIsUp]" sap2010:WorkflowViewState.IdRef="If_1">
+                  <If.Then>
+                    <Assign sap2010:WorkflowViewState.IdRef="Assign_5">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:Int32">[retries]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:Int32">[retries+1]</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                  </If.Then>
+                </If>
+                <If Condition="[retries&gt;10]" sap2010:WorkflowViewState.IdRef="If_2">
+                  <If.Then>
+                    <Throw Exception="[New Exception(&quot;Box did not show&quot;)]" sap2010:WorkflowViewState.IdRef="Throw_1" />
+                  </If.Then>
+                </If>
+              </Sequence>
+            </While>
+            <ui:LogMessage DisplayName="Log message" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="Found box!" />
+          </Sequence>
+        </TryCatch.Try>
+        <TryCatch.Catches>
+          <Catch x:TypeArguments="s:Exception" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+            <ActivityAction x:TypeArguments="s:Exception">
+              <ActivityAction.Argument>
+                <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+              </ActivityAction.Argument>
+              <Sequence sap2010:WorkflowViewState.IdRef="Sequence_128">
+                <ui:LogMessage DisplayName="Log message" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Info" Message="[exception.Message]" />
+                <ui:Click DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DelayBefore="1000" DisplayName="Click 'TButton'" sap2010:WorkflowViewState.IdRef="Click_24" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
+                  <ui:Click.CursorPosition>
+                    <ui:CursorPosition Position="Center">
+                      <ui:CursorPosition.OffsetX>
+                        <InArgument x:TypeArguments="x:Int32" />
+                      </ui:CursorPosition.OffsetX>
+                      <ui:CursorPosition.OffsetY>
+                        <InArgument x:TypeArguments="x:Int32" />
+                      </ui:CursorPosition.OffsetY>
+                    </ui:CursorPosition>
+                  </ui:Click.CursorPosition>
+                  <ui:Click.Target>
+                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="8fa77f32fd4d8ff9c5f2853c8729a54b" Selector="&lt;wnd app='predator.exe' cls='TfrmPredator' title='PredatorNO - [Saksbehandling]' /&gt;&lt;wnd aaname='Arbeidsområde' cls='MDIClient' /&gt;&lt;wnd cls='TfrmSaksbeh' title='Saksbehandling' /&gt;&lt;wnd cls='TGroupBox' title='Oppfølgninger på saken' /&gt;&lt;wnd cls='TButton' title='Ny oppfølgning' /&gt;" WaitForReady="INTERACTIVE" />
+                  </ui:Click.Target>
+                </ui:Click>
+                <While sap2010:WorkflowViewState.IdRef="While_2">
+                  <While.Variables>
+                    <Variable x:TypeArguments="x:Int32" Name="retries" />
+                  </While.Variables>
+                  <While.Condition>[NOT boxIsUp]</While.Condition>
+                  <Sequence sap2010:WorkflowViewState.IdRef="Sequence_127">
+                    <ui:UiElementExists DisplayName="Element Exists 'InboxClient.exe Ny'" Exists="[boxIsUp]" sap2010:WorkflowViewState.IdRef="UiElementExists_2">
+                      <ui:UiElementExists.Target>
+                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="f471c2e8afd749d12d0a16c5bb479524" Selector="&lt;wnd app='inboxclient.exe' ctrlname='CreateTask' /&gt;" TimeoutMS="3000" WaitForReady="INTERACTIVE" />
+                      </ui:UiElementExists.Target>
+                    </ui:UiElementExists>
+                    <If Condition="[Not boxIsUp]" sap2010:WorkflowViewState.IdRef="If_3">
+                      <If.Then>
+                        <Assign sap2010:WorkflowViewState.IdRef="Assign_6">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:Int32">[retries]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:Int32">[retries+1]</InArgument>
+                          </Assign.Value>
+                        </Assign>
+                      </If.Then>
+                    </If>
+                    <If Condition="[retries&gt;10]" sap2010:WorkflowViewState.IdRef="If_4">
+                      <If.Then>
+                        <Throw Exception="[New Exception(&quot;Box did not show&quot;)]" sap2010:WorkflowViewState.IdRef="Throw_2" />
+                      </If.Then>
+                    </If>
+                  </Sequence>
+                </While>
+              </Sequence>
+            </ActivityAction>
+          </Catch>
+        </TryCatch.Catches>
+      </TryCatch>
+    </Sequence>
     <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" DisplayName="Attach Window 'CreateTask Inboxclie'" sap2010:WorkflowViewState.IdRef="WindowScope_18" InformativeScreenshot="40167862f6a6bf59e6c896c126007e2b" Selector="&lt;wnd app='inboxclient.exe' ctrlname='CreateTask' /&gt;">
       <ui:WindowScope.Body>
         <ActivityAction x:TypeArguments="x:Object">
@@ -214,11 +306,95 @@
         </ActivityAction>
       </ui:WindowScope.Body>
     </ui:WindowScope>
-    <sads:DebugSymbol.Symbol>dy9XOlxycGFcVmFza2xpc3RlclxEZWwxXExhZ2VGMDMwT3BwZsO4bGdpbmcueGFtbCsBaAGmAQECZAPaAQ4CAQFlBXMQAgEwdAXYARYCAQJxmAFxywMCATF0lgJ00QICAS96C9UBFgIBA4EBDaIBGAIBG6MBDacBGwIBGKgBDawBGwIBFa0BDbEBGwIBErIBDbYBGwIBD7cBDbsBGwIBDLwBDcABGwIBCcEBDcUBGwIBBsYBDdQBGAIBBIIBD4kBGAIBK4oBD5EBGAIBJpIBD5kBGAIBIZoBD6EBGAIBHKUBoAGlAeYBAgEaowG0AqMBvwICARmqAaABqgHmAQIBF6gBtQKoAfoCAgEWrwGgAa8B5gECARStAbUCrQHbAgIBE7QBoAG0AeYBAgERsgG1ArIB8QICARC5AaABuQHmAQIBDrcBtAK3AcACAgENvgGgAb4B6QECAQu8AbQCvAG6AgIBCsMBoAHDAekBAgEIwQG1AsEB+gICAQfSAaAB0gHAAQIBBYcBQYcBZgIBLoQBQoQBSwIBLI8BQY8BZAIBKYwBQowBSwIBJ5cBQZcBZAIBJJQBQpQBTQIBIp8BQZ8BZAIBH5wBQpwBTAIBHQ==</sads:DebugSymbol.Symbol>
+    <ui:LogMessage DisplayName="Log message" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="---END LageF30Oppfølging" />
+    <sads:DebugSymbol.Symbol>dy9XOlxycGFcVmFza2xpc3RlclxEZWwxXExhZ2VGMDMwT3BwZsO4bGdpbmcueGFtbFxbA7cCDgIBAVwFXJEBAgFvXQVdTAIBbV4FbBACAWptBc8BEAIBMtABBbQCFgIBBLUCBbUCjwECAQJcclyOAQIBcF0VXR8CAW5qmAFqywMCAWxeR15NAgFrcQfOARICATPQAZYC0AHRAgIBMdYBC7ECFgIBBbUCcrUCjAECAQNzC5MBFgIBUZsBD8oBGgIBNN0BDf4BGAIBHf8BDYMCGwIBGoQCDYgCGwIBF4kCDY0CGwIBFI4CDZICGwIBEZMCDZcCGwIBDpgCDZwCGwIBC50CDaECGwIBCKICDbACGAIBBnQNkQEVAgFUkgENkgGJAQIBUpwBEZwBlgECAU6dARGrARwCAUusARHJARkCATXeAQ/lARgCAS3mAQ/tARgCASjuAQ/1ARgCASP2AQ/9ARgCAR6BAqABgQLmAQIBHP8BtAL/Ab8CAgEbhgKgAYYC5gECARmEArUChAL6AgIBGIsCoAGLAuYBAgEWiQK1AokC2wICARWQAqABkALmAQIBE44CtQKOAvECAgESlQKgAZUC5gECARCTArQCkwLAAgIBD5oCoAGaAukBAgENmAK0ApgCugICAQyfAqABnwLpAQIBCp0CtQKdAvoCAgEJrgKgAa4CwAECAQd5D5ABGgIBV3ggeC0CAVWSAXqSAYYBAgFTnAF+nAGTAQIBT6kBpAGpAdcDAgFNnQFTnQFZAgFMsQETyAEeAgE4sAEksAExAgE24wFB4wFmAgEw4AFC4AFLAgEu6wFB6wFkAgEr6AFC6AFLAgEp8wFB8wFkAgEm8AFC8AFNAgEk+wFB+wFkAgEh+AFC+AFMAgEfehF+JgIBZX8RigEWAgFdiwERjwEWAgFYsgEVtgEqAgFGtwEVwgEaAgE+wwEVxwEaAgE5fI8BfMoBAgFpfNUBfNsBAgFoel56aQIBZn8ffy4CAV6BARWIAR4CAWCLAR+LATACAVmNARWNAYIBAgFbtAGTAbQBzgECAUq0AdkBtAHfAQIBSbIBYrIBbQIBR7cBI7cBMgIBP7kBGcABIgIBQcMBI8MBNAIBOsUBGcUBhgECATyGAT+GAUoCAWODAUCDAUkCAWGNASaNAVUCAVy+AUO+AU4CAUS7AUS7AU0CAULFASrFAVkCAT0=</sads:DebugSymbol.Symbol>
   </Sequence>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
-      <sap2010:ViewStateData Id="Click_23" sap:VirtualizedContainerService.HintSize="414,106" />
+      <sap2010:ViewStateData Id="LogMessage_1" sap:VirtualizedContainerService.HintSize="314,87" />
+      <sap2010:ViewStateData Id="Delay_1" sap:VirtualizedContainerService.HintSize="314,22" />
+      <sap2010:ViewStateData Id="Click_23" sap:VirtualizedContainerService.HintSize="314,106" />
+      <sap2010:ViewStateData Id="UiElementExists_1" sap:VirtualizedContainerService.HintSize="464,106" />
+      <sap2010:ViewStateData Id="Assign_5" sap:VirtualizedContainerService.HintSize="242,59" />
+      <sap2010:ViewStateData Id="If_1" sap:VirtualizedContainerService.HintSize="464,203" />
+      <sap2010:ViewStateData Id="Throw_1" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="If_2" sap:VirtualizedContainerService.HintSize="464,203" />
+      <sap2010:ViewStateData Id="Sequence_125" sap:VirtualizedContainerService.HintSize="486,716">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="While_1" sap:VirtualizedContainerService.HintSize="512,869">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="LogMessage_3" sap:VirtualizedContainerService.HintSize="512,87" />
+      <sap2010:ViewStateData Id="Sequence_126" sap:VirtualizedContainerService.HintSize="534,1120">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="LogMessage_4" sap:VirtualizedContainerService.HintSize="314,87" />
+      <sap2010:ViewStateData Id="Click_24" sap:VirtualizedContainerService.HintSize="314,106" />
+      <sap2010:ViewStateData Id="UiElementExists_2" sap:VirtualizedContainerService.HintSize="464,106" />
+      <sap2010:ViewStateData Id="Assign_6" sap:VirtualizedContainerService.HintSize="242,59" />
+      <sap2010:ViewStateData Id="If_3" sap:VirtualizedContainerService.HintSize="464,203" />
+      <sap2010:ViewStateData Id="Throw_2" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="If_4" sap:VirtualizedContainerService.HintSize="464,203" />
+      <sap2010:ViewStateData Id="Sequence_127" sap:VirtualizedContainerService.HintSize="486,716">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="While_2" sap:VirtualizedContainerService.HintSize="314,49">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_128" sap:VirtualizedContainerService.HintSize="336,446">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Catch`1_1" sap:VirtualizedContainerService.HintSize="538,20">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="TryCatch_1" sap:VirtualizedContainerService.HintSize="200,49">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_124" sap:VirtualizedContainerService.HintSize="314,238">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="Assign_1" sap:VirtualizedContainerService.HintSize="242,59" />
       <sap2010:ViewStateData Id="Assign_2" sap:VirtualizedContainerService.HintSize="242,59" />
       <sap2010:ViewStateData Id="Assign_3" sap:VirtualizedContainerService.HintSize="242,59" />
@@ -246,22 +422,23 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="WindowScope_18" sap:VirtualizedContainerService.HintSize="414,2114">
+      <sap2010:ViewStateData Id="WindowScope_18" sap:VirtualizedContainerService.HintSize="314,49">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
             <x:Boolean x:Key="IsPinned">False</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Sequence_119" sap:VirtualizedContainerService.HintSize="436,2384">
+      <sap2010:ViewStateData Id="LogMessage_2" sap:VirtualizedContainerService.HintSize="314,87" />
+      <sap2010:ViewStateData Id="Sequence_119" sap:VirtualizedContainerService.HintSize="336,913">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="LageF030Oppfølging_1" sap:VirtualizedContainerService.HintSize="476,2504" />
+      <sap2010:ViewStateData Id="LageF030Oppfølging_1" sap:VirtualizedContainerService.HintSize="376,1273" />
     </sap2010:ViewStateManager>
   </sap2010:WorkflowViewState.ViewStateManager>
 </Activity>

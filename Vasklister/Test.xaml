@@ -2,6 +2,7 @@
  xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities"
  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
  xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities"
+ xmlns:s="clr-namespace:System;assembly=mscorlib"
  xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger"
  xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation"
  xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation"
@@ -51,110 +52,132 @@
       <AssemblyReference>WindowsBase</AssemblyReference>
       <AssemblyReference>PresentationCore</AssemblyReference>
       <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
   <Sequence DisplayName="Main" sap2010:WorkflowViewState.IdRef="Sequence_4">
-    <Sequence DisplayName="Delay" sap2010:WorkflowViewState.IdRef="Sequence_3">
-      <While sap2010:WorkflowViewState.IdRef="While_1">
-        <While.Variables>
-          <Variable x:TypeArguments="x:Boolean" Name="FirstLineFound" />
-          <Variable x:TypeArguments="x:Int32" Name="retries" />
-        </While.Variables>
-        <While.Condition>[NOT FirstLineFound]</While.Condition>
-        <Sequence sap2010:WorkflowViewState.IdRef="Sequence_2">
-          <Sequence.Variables>
-            <Variable x:TypeArguments="ui:UiElement" Name="firstElement" />
-          </Sequence.Variables>
-          <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_1" Text="[retries.ToString]" />
-          <ui:WaitUiElementAppear DisplayName="Find Element 'list item'" FoundElement="[firstElement]" sap2010:WorkflowViewState.IdRef="WaitUiElementAppear_1" WaitActive="False" WaitVisible="False">
-            <ui:WaitUiElementAppear.Target>
-              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="08ada7c932e140434db4989f4af5aea0" Selector="&lt;wnd app='predator.exe' cls='TfrmPredator' title='PredatorNO - [Saksbehandling]' /&gt;&lt;wnd aaname='Arbeidsområde' cls='MDIClient' /&gt;&lt;wnd cls='TfrmSaksbeh' title='Saksbehandling' /&gt;&lt;wnd cls='TListView' idx='2' /&gt;&lt;ctrl idx='1' role='list item' /&gt;" WaitForReady="INTERACTIVE" />
-            </ui:WaitUiElementAppear.Target>
-          </ui:WaitUiElementAppear>
-          <If Condition="[firstElement.IsVisible]" sap2010:WorkflowViewState.IdRef="If_1">
-            <If.Then>
-              <Assign sap2010:WorkflowViewState.IdRef="Assign_1">
-                <Assign.To>
-                  <OutArgument x:TypeArguments="x:Boolean">[FirstLineFound]</OutArgument>
-                </Assign.To>
-                <Assign.Value>
-                  <InArgument x:TypeArguments="x:Boolean">True</InArgument>
-                </Assign.Value>
-              </Assign>
-            </If.Then>
-            <If.Else>
-              <Sequence sap2010:WorkflowViewState.IdRef="Sequence_1">
-                <Assign sap2010:WorkflowViewState.IdRef="Assign_2">
+    <Sequence sap2010:WorkflowViewState.IdRef="Sequence_10">
+      <Sequence.Variables>
+        <Variable x:TypeArguments="x:String" Name="safeStorage" />
+        <Variable x:TypeArguments="x:String" Name="filnavn" />
+      </Sequence.Variables>
+      <TryCatch DisplayName="Try catch" sap2010:WorkflowViewState.IdRef="TryCatch_2">
+        <TryCatch.Try>
+          <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="VL_NAVI_LOGS" DisplayName="Get Asset" sap2010:WorkflowViewState.IdRef="GetRobotAsset_1">
+            <ui:GetRobotAsset.Value>
+              <OutArgument x:TypeArguments="x:String">[safeStorage]</OutArgument>
+            </ui:GetRobotAsset.Value>
+          </ui:GetRobotAsset>
+        </TryCatch.Try>
+        <TryCatch.Catches>
+          <Catch x:TypeArguments="s:Exception" sap2010:WorkflowViewState.IdRef="Catch`1_2">
+            <ActivityAction x:TypeArguments="s:Exception">
+              <ActivityAction.Argument>
+                <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+              </ActivityAction.Argument>
+              <Sequence sap2010:WorkflowViewState.IdRef="Sequence_12">
+                <Assign sap2010:WorkflowViewState.IdRef="Assign_6">
                   <Assign.To>
-                    <OutArgument x:TypeArguments="x:Boolean">[FirstLineFound]</OutArgument>
+                    <OutArgument x:TypeArguments="x:String">[safeStorage]</OutArgument>
                   </Assign.To>
                   <Assign.Value>
-                    <InArgument x:TypeArguments="x:Boolean">False</InArgument>
+                    <InArgument x:TypeArguments="x:String">F:\F9401\Felles Filer\5. Prosjekter\ROBOTISERING_2016\PG1_Vaskelister\Kjørelogg</InArgument>
                   </Assign.Value>
                 </Assign>
-                <Assign sap2010:WorkflowViewState.IdRef="Assign_3">
+                <Assign sap2010:WorkflowViewState.IdRef="Assign_9">
                   <Assign.To>
-                    <OutArgument x:TypeArguments="x:Int32">[retries]</OutArgument>
+                    <OutArgument x:TypeArguments="x:String">[safeStorage]</OutArgument>
                   </Assign.To>
                   <Assign.Value>
-                    <InArgument x:TypeArguments="x:Int32">[retries+1]</InArgument>
+                    <InArgument x:TypeArguments="x:String">["C:\Users\z990640\Documents\UiPath"]</InArgument>
                   </Assign.Value>
                 </Assign>
               </Sequence>
-            </If.Else>
-          </If>
-          <If Condition="[retries&gt;30]" sap2010:WorkflowViewState.IdRef="If_2">
-            <If.Then>
-              <Throw Exception="[new Exception(&quot;Timeout on fetching list of case history in Predator&quot;)]" sap2010:WorkflowViewState.IdRef="Throw_1" />
-            </If.Then>
-          </If>
-          <Delay Duration="00:00:01" sap2010:WorkflowViewState.IdRef="Delay_1" />
-        </Sequence>
-      </While>
+            </ActivityAction>
+          </Catch>
+        </TryCatch.Catches>
+      </TryCatch>
+      <Assign sap2010:WorkflowViewState.IdRef="Assign_8">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[filnavn]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String">["Vaskeliste_del1_"+Now().ToString("ddMMyyyy_hhmm")+".xlsx"]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <Assign sap2010:WorkflowViewState.IdRef="Assign_7">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[safeStorage]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String">[safeStorage+filnavn]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_2" Text="[safeStorage]" />
+      <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Excel application scope" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_1" WorkbookPath="[safeStorage]">
+        <ui:ExcelApplicationScope.Body>
+          <ActivityAction x:TypeArguments="ui:WorkbookApplication">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
+            </ActivityAction.Argument>
+            <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_9">
+              <ui:ExcelWriteRange DataTable="{x:Null}" AddHeaders="False" DisplayName="Write Range" sap2010:WorkflowViewState.IdRef="ExcelWriteRange_1" SheetName="Sheet1" StartingCell="A1" />
+            </Sequence>
+          </ActivityAction>
+        </ui:ExcelApplicationScope.Body>
+      </ui:ExcelApplicationScope>
     </Sequence>
-    <sads:DebugSymbol.Symbol>dxtXOlxycGFcVmFza2xpc3RlclxUZXN0LnhhbWwcOAN0DgIBATkFchACAQI6B3EPAgEDQAlwFAIBBj8aPy4CAQREC0R5AgEiRQtJJAIBHkoLaRACAQ5qC24QAgEJbwtvUgIBB0RiRHYCASNFV0VnAgEgR54BR68DAgEfShlKMwIBD0wPUxgCARpWD2caAgEQahlqKgIBCmwPbKABAgEMbxtvJQIBCFE7UT8CAR1OPE5MAgEbVxFeGgIBFl8RZhoCARFsIGxzAgENXD1cQgIBGVk+WU4CARdkO2RGAgEUYTxhRQIBEg==</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>dxtXOlxycGFcVmFza2xpc3RlclxUZXN0LnhhbWwbOwOEAQ4CAQE8BYIBEAIBAkEHZBICARdlB2wQAgETbQd0EAIBDXUHdXACAQp2B4EBIgIBA0MLRx4CASFPD2AaAgEYajJqbgIBFmczZzwCARRyMnJHAgEQbzNvQAIBDnVedW0CAQt2ogF2sQECAQh8DX4YAgEERTdFRAIBI0M8Q0oCASJQEVcaAgEdWBFfGgIBGX0PfcABAgEFVTxViwECASBSPVJKAgEeXTxdYQIBHFo9WkoCARp9uQF9vQECAQd9owF9qwECAQY=</sads:DebugSymbol.Symbol>
   </Sequence>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
-      <sap2010:ViewStateData Id="WriteLine_1" sap:VirtualizedContainerService.HintSize="531,59" />
-      <sap2010:ViewStateData Id="WaitUiElementAppear_1" sap:VirtualizedContainerService.HintSize="531,106" />
-      <sap2010:ViewStateData Id="Assign_1" sap:VirtualizedContainerService.HintSize="242,59" />
-      <sap2010:ViewStateData Id="Assign_2" sap:VirtualizedContainerService.HintSize="242,59" />
-      <sap2010:ViewStateData Id="Assign_3" sap:VirtualizedContainerService.HintSize="242,59" />
-      <sap2010:ViewStateData Id="Sequence_1" sap:VirtualizedContainerService.HintSize="264,282">
+      <sap2010:ViewStateData Id="GetRobotAsset_1" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="Assign_6" sap:VirtualizedContainerService.HintSize="242,59" />
+      <sap2010:ViewStateData Id="Assign_9" sap:VirtualizedContainerService.HintSize="242,59" />
+      <sap2010:ViewStateData Id="Sequence_12" sap:VirtualizedContainerService.HintSize="264,282">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="If_1" sap:VirtualizedContainerService.HintSize="531,425" />
-      <sap2010:ViewStateData Id="Throw_1" sap:VirtualizedContainerService.HintSize="200,22" />
-      <sap2010:ViewStateData Id="If_2" sap:VirtualizedContainerService.HintSize="531,203" />
-      <sap2010:ViewStateData Id="Delay_1" sap:VirtualizedContainerService.HintSize="531,22" />
-      <sap2010:ViewStateData Id="Sequence_2" sap:VirtualizedContainerService.HintSize="553,1099">
+      <sap2010:ViewStateData Id="Catch`1_2" sap:VirtualizedContainerService.HintSize="400,353">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="TryCatch_2" sap:VirtualizedContainerService.HintSize="414,507" />
+      <sap2010:ViewStateData Id="Assign_8" sap:VirtualizedContainerService.HintSize="414,59" />
+      <sap2010:ViewStateData Id="Assign_7" sap:VirtualizedContainerService.HintSize="414,59" />
+      <sap2010:ViewStateData Id="WriteLine_2" sap:VirtualizedContainerService.HintSize="414,59" />
+      <sap2010:ViewStateData Id="ExcelWriteRange_1" sap:VirtualizedContainerService.HintSize="314,87" />
+      <sap2010:ViewStateData Id="Sequence_9" sap:VirtualizedContainerService.HintSize="336,211">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="While_1" sap:VirtualizedContainerService.HintSize="579,1252" />
-      <sap2010:ViewStateData Id="Sequence_3" sap:VirtualizedContainerService.HintSize="601,1376">
+      <sap2010:ViewStateData Id="ExcelApplicationScope_1" sap:VirtualizedContainerService.HintSize="414,320" />
+      <sap2010:ViewStateData Id="Sequence_10" sap:VirtualizedContainerService.HintSize="436,1288">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Sequence_4" sap:VirtualizedContainerService.HintSize="623,1500">
+      <sap2010:ViewStateData Id="Sequence_4" sap:VirtualizedContainerService.HintSize="458,1412">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Test_1" sap:VirtualizedContainerService.HintSize="663,1660" />
+      <sap2010:ViewStateData Id="Test_1" sap:VirtualizedContainerService.HintSize="498,1692" />
     </sap2010:ViewStateManager>
   </sap2010:WorkflowViewState.ViewStateManager>
 </Activity>
