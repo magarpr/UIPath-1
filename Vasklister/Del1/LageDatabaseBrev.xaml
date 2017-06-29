@@ -104,7 +104,69 @@
       <Variable x:TypeArguments="x:Int32" Name="count" />
     </Sequence.Variables>
     <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_41" Text="1.4a Lag datatable brev" />
-    <Delay Duration="00:00:01" sap2010:WorkflowViewState.IdRef="Delay_1" />
+    <Sequence DisplayName="Delay" sap2010:WorkflowViewState.IdRef="Sequence_40">
+      <While sap2010:WorkflowViewState.IdRef="While_2">
+        <While.Variables>
+          <Variable x:TypeArguments="x:Boolean" Name="FirstLineFound" />
+          <Variable x:TypeArguments="x:Int32" Name="retries" />
+        </While.Variables>
+        <While.Condition>[NOT FirstLineFound]</While.Condition>
+        <Sequence sap2010:WorkflowViewState.IdRef="Sequence_39">
+          <Sequence.Variables>
+            <Variable x:TypeArguments="ui:UiElement" Name="firstElement" />
+          </Sequence.Variables>
+          <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_47" Text="[retries.ToString]" />
+          <ui:WaitUiElementAppear DisplayName="Find Element 'list item'" FoundElement="[firstElement]" sap2010:WorkflowViewState.IdRef="WaitUiElementAppear_2" WaitActive="False" WaitVisible="False">
+            <ui:WaitUiElementAppear.Target>
+              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="08ada7c932e140434db4989f4af5aea0" Selector="&lt;wnd app='predator.exe' cls='TfrmPredator' title='PredatorNO - [Saksbehandling]' /&gt;&lt;wnd aaname='Arbeidsområde' cls='MDIClient' /&gt;&lt;wnd cls='TfrmSaksbeh' title='Saksbehandling' /&gt;&lt;wnd cls='TListView' idx='2' /&gt;&lt;ctrl idx='1' role='list item' /&gt;" WaitForReady="INTERACTIVE" />
+            </ui:WaitUiElementAppear.Target>
+          </ui:WaitUiElementAppear>
+          <If Condition="[firstElement.IsVisible]" sap2010:WorkflowViewState.IdRef="If_5">
+            <If.Then>
+              <Assign sap2010:WorkflowViewState.IdRef="Assign_13">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:Boolean">[FirstLineFound]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:Boolean">True</InArgument>
+                </Assign.Value>
+              </Assign>
+            </If.Then>
+            <If.Else>
+              <Sequence sap2010:WorkflowViewState.IdRef="Sequence_38">
+                <Assign sap2010:WorkflowViewState.IdRef="Assign_14">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:Boolean">[FirstLineFound]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:Boolean">False</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <Assign sap2010:WorkflowViewState.IdRef="Assign_15">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:Int32">[retries]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:Int32">[retries+1]</InArgument>
+                  </Assign.Value>
+                </Assign>
+              </Sequence>
+            </If.Else>
+          </If>
+          <If Condition="[retries&gt;30]" sap2010:WorkflowViewState.IdRef="If_6">
+            <If.Then>
+              <Throw Exception="[new Exception(&quot;Timeout on fetching list of case history in Predator&quot;)]" sap2010:WorkflowViewState.IdRef="Throw_2" />
+            </If.Then>
+          </If>
+          <Delay Duration="00:00:01" sap2010:WorkflowViewState.IdRef="Delay_2" />
+          <ui:SendHotkey DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Send hotkey 'TListView'" EmptyField="False" sap2010:WorkflowViewState.IdRef="SendHotkey_4" Key="home" KeyModifiers="None" SendWindowMessages="False" SpecialKey="True">
+            <ui:SendHotkey.Target>
+              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="4eba1a0869d2417bbe2413556101bb4a" Selector="&lt;wnd app='predator.exe' cls='TfrmPredator' title='PredatorNO - [Saksbehandling]' /&gt;" WaitForReady="INTERACTIVE" />
+            </ui:SendHotkey.Target>
+          </ui:SendHotkey>
+        </Sequence>
+      </While>
+    </Sequence>
     <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" DisplayName="Attach Window 'PredatorN Tfrmpreda'" sap2010:WorkflowViewState.IdRef="WindowScope_11" InformativeScreenshot="ff1895c4917a5b4c94098ac00b906ce4" Selector="&lt;wnd app='predator.exe' cls='TfrmPredator' title='PredatorNO - [Saksbehandling]' /&gt;">
       <ui:WindowScope.Body>
         <ActivityAction x:TypeArguments="x:Object">
@@ -116,11 +178,6 @@
               <Variable x:TypeArguments="ui:UiElement" Name="ContainerElement" />
               <Variable x:TypeArguments="scg:IEnumerable(ui:UiElement)" Name="tableRows" />
             </Sequence.Variables>
-            <ui:SendHotkey DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Send hotkey 'TListView'" EmptyField="False" sap2010:WorkflowViewState.IdRef="SendHotkey_2" Key="home" KeyModifiers="None" SendWindowMessages="False" SpecialKey="True">
-              <ui:SendHotkey.Target>
-                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="0d6d2bb34b852fceb97de8bd9ea3a43b" Selector="&lt;wnd aaname='Arbeidsområde' cls='MDIClient' /&gt;&lt;wnd cls='TfrmSaksbeh' title='Saksbehandling' /&gt;&lt;wnd cls='TListView' idx='2' /&gt;" WaitForReady="INTERACTIVE" />
-              </ui:SendHotkey.Target>
-            </ui:SendHotkey>
             <ui:WaitUiElementAppear DisplayName="Find Element for Activites Table'" FoundElement="[ContainerElement]" sap2010:WorkflowViewState.IdRef="WaitUiElementAppear_1" WaitActive="False" WaitVisible="False">
               <ui:WaitUiElementAppear.Target>
                 <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="43bc5451b53b0c76148b89f42f0255ba" Selector="&lt;wnd app='predator.exe' cls='TfrmPredator' title='PredatorNO - [Saksbehandling]' /&gt;&lt;wnd aaname='Arbeidsområde' cls='MDIClient' /&gt;&lt;wnd cls='TfrmSaksbeh' title='Saksbehandling' /&gt;&lt;wnd cls='TListView' idx='2' /&gt;" WaitForReady="INTERACTIVE" />
@@ -188,6 +245,7 @@
         </ActivityAction>
       </ui:WindowScope.Body>
     </ui:WindowScope>
+    <ui:LogMessage DisplayName="Log message" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="Make Datatable" />
     <Sequence DisplayName="Make datatable" sap2010:WorkflowViewState.IdRef="Sequence_28">
       <Assign sap2010:WorkflowViewState.IdRef="Assign_5">
         <Assign.To>
@@ -198,6 +256,7 @@
         </Assign.Value>
       </Assign>
       <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_12" Text="[oldStr]" />
+      <ui:LogMessage DisplayName="Log message" Level="Info" Message="Make Datatable" sap2010:WorkflowViewState.IdRef="LogMessage_2" />
       <Assign sap2010:WorkflowViewState.IdRef="Assign_6">
         <Assign.To>
           <OutArgument x:TypeArguments="ui:GenericValue">[newStr]</OutArgument>
@@ -207,8 +266,9 @@
         </Assign.Value>
       </Assign>
       <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_9" Text="[newStr]" />
+      <ui:LogMessage DisplayName="Log message" Level="Info" Message="Make Datatable" sap2010:WorkflowViewState.IdRef="LogMessage_3" />
       <ui:WriteTextFile DisplayName="Write text file" FileName="data.csv" sap2010:WorkflowViewState.IdRef="WriteTextFile_2" Text="[newStr]" />
-      <ui:ReadCsvFile DataTable="[_4_dtBrev]" Delimitator="Semicolon" DisplayName="Read CSV" FilePath="data.csv" sap2010:WorkflowViewState.IdRef="ReadCsvFile_3" />
+      <ui:ReadCsvFile Encoding="{x:Null}" DataTable="[_4_dtBrev]" Delimitator="Semicolon" DisplayName="Read CSV" FilePath="data.csv" sap2010:WorkflowViewState.IdRef="ReadCsvFile_3" />
     </Sequence>
     <ui:CommentOut DisplayName="Comment out" sap2010:WorkflowViewState.IdRef="CommentOut_1">
       <ui:CommentOut.Body>
@@ -232,13 +292,58 @@
         </Sequence>
       </ui:CommentOut.Body>
     </ui:CommentOut>
-    <sads:DebugSymbol.Symbol>dyxXOlxycGFcVmFza2xpc3RlclxEZWwxXExhZ2VEYXRhYmFzZUJyZXYueGFtbDhiA+wBDgIBAWc0Z8gBAgECagVqeQIBQ2sFa0wCAUFsBb4BFgIBGr8BBdQBEAIBBNUBBeoBFQIBA2pdanYCAURrFWsfAgFCbJUCbPACAgFAcgu7ARYCARvAAQfHARACARXIAQfIAWwCARPJAQfQARACAQ7RAQfRAWsCAQzSAQfSAY8BAgEJ0wEH0wGkAQIBBXcNex0CAT58DYABJgIBOoEBDYUBHwIBNYYBDboBGgIBHMUBOcUBTQIBGMIBOsIBQgIBFsgBX8gBaQIBFM4BOc4BfAIBEcsBOssBQgIBD9EBXtEBaAIBDdIBggHSAYwBAgEL0gFA0gFKAgEK0wEh0wEuAgEH0wFn0wFxAgEGeaABebECAgE/fGJ8dgIBPH6gAX6KAwIBO4EBZIEBjAECATmDAWeDAXsCATeBASeBATQCATaGAZYBhgGjAQIBNIwBE7cBHgIBHZQBFZgBJQIBMpkBFaABIwIBLaEBFaEBlQECASuiARWpASkCASaqARWqAZkBAgEkqwEVtgEaAgEelgGoAZYBuQICATOeAUieAVQCAS6bAW+bAXsCATChAW2hAZIBAgEspwFIpwFWAgEppAFvpAF7AgEnqgFtqgGWAQIBJasBI6sBRgIBH60BGbQBIgIBILIBRLIBcAIBI68BRa8BUAIBIQ==</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>dyxXOlxycGFcVmFza2xpc3RlclxEZWwxXExhZ2VEYXRhYmFzZUJyZXYueGFtbFdiA6gCDgIBAWc0Z8gBAgECagVqeQIBamsFqQEQAgFFqgEF9wEWAgEg+AEF+AGFAQIBHvkBBZACEAIBBJECBaYCFQIBA2pdanYCAWtsB6gBDwIBRqoBlQKqAfACAgFEsAEL9AEWAgEh+AFy+AGCAQIBH/oBB4ECEAIBGYICB4ICbAIBF4MCB4MChwECARWEAgeLAhACARCMAgeMAmsCAQ6NAgeNAocBAgEMjgIHjgKPAQIBCY8CB48CuAECAQVyCacBFAIBSXEacS4CAUe1AQ25ASYCAUC6AQ2+AR8CATu/AQ3zARoCASL/ATn/AU0CARz8ATr8AUICARqCAl+CAmkCARiDAkWDAlUCARaJAjmJAnwCAROGAjqGAkICARGMAl6MAmgCAQ+NAkWNAlUCAQ2OAoIBjgKMAQIBC44CQI4CSgIBCo8CNY8CQgIBB48Ce48ChQECAQZ2C3Z6AgFndwt7JAIBY3wLmwEQAgFTnAELoAEQAgFOoQELoQFSAgFMogELpgEbAgFKtQFitQF2AgFCtwGgAbcBigMCAUG6AWS6AYwBAgE/vAFnvAF7AgE9ugEnugE0AgE8vwGWAb8BowECATrFARPwAR4CASN2Y3Z3AgFod1d3ZwIBZXmeAXmvAwIBZHwZfDMCAVR+D4UBGAIBX4gBD5kBGgIBVZwBGZwBKgIBT54BD54BoAECAVGhARuhASUCAU2kAZ4BpAH5AQIBS80BFdEBJQIBONIBFdkBIwIBM9oBFdoBlQECATHbARXiASkCASzjARXjAZkBAgEq5AEV7wEaAgEkgwE7gwE/AgFigAE8gAFMAgFgiQERkAEaAgFbkQERmAEaAgFWngEgngFzAgFSzwGoAc8BuQICATnXAUjXAVQCATTUAW/UAXsCATbaAW3aAZIBAgEy4AFI4AFWAgEv3QFv3QF7AgEt4wFt4wGWAQIBK+QBI+QBRgIBJeYBGe0BIgIBJo4BPY4BQgIBXosBPosBTgIBXJYBO5YBRgIBWZMBPJMBRQIBV+sBROsBcAIBKegBRegBUAIBJw==</sads:DebugSymbol.Symbol>
   </Sequence>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
       <sap2010:ViewStateData Id="WriteLine_41" sap:VirtualizedContainerService.HintSize="538,59" />
-      <sap2010:ViewStateData Id="Delay_1" sap:VirtualizedContainerService.HintSize="538,22" />
-      <sap2010:ViewStateData Id="SendHotkey_2" sap:VirtualizedContainerService.HintSize="502,152" />
+      <sap2010:ViewStateData Id="WriteLine_47" sap:VirtualizedContainerService.HintSize="314,59" />
+      <sap2010:ViewStateData Id="WaitUiElementAppear_2" sap:VirtualizedContainerService.HintSize="314,106" />
+      <sap2010:ViewStateData Id="Assign_13" sap:VirtualizedContainerService.HintSize="242,59" />
+      <sap2010:ViewStateData Id="Assign_14" sap:VirtualizedContainerService.HintSize="242,59" />
+      <sap2010:ViewStateData Id="Assign_15" sap:VirtualizedContainerService.HintSize="242,59" />
+      <sap2010:ViewStateData Id="Sequence_38" sap:VirtualizedContainerService.HintSize="264,282">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="If_5" sap:VirtualizedContainerService.HintSize="314,49">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Throw_2" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="If_6" sap:VirtualizedContainerService.HintSize="314,49">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Delay_2" sap:VirtualizedContainerService.HintSize="314,22" />
+      <sap2010:ViewStateData Id="SendHotkey_4" sap:VirtualizedContainerService.HintSize="314,152" />
+      <sap2010:ViewStateData Id="Sequence_39" sap:VirtualizedContainerService.HintSize="336,761">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="While_2" sap:VirtualizedContainerService.HintSize="464,914" />
+      <sap2010:ViewStateData Id="Sequence_40" sap:VirtualizedContainerService.HintSize="538,1038">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="WaitUiElementAppear_1" sap:VirtualizedContainerService.HintSize="502,106" />
       <sap2010:ViewStateData Id="FindChildren_1" sap:VirtualizedContainerService.HintSize="502,106" />
       <sap2010:ViewStateData Id="SendHotkey_3" sap:VirtualizedContainerService.HintSize="464,152" />
@@ -256,21 +361,24 @@
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="ForEach`1_2" sap:VirtualizedContainerService.HintSize="502,1140" />
-      <sap2010:ViewStateData Id="Sequence_26" sap:VirtualizedContainerService.HintSize="524,1748">
+      <sap2010:ViewStateData Id="Sequence_26" sap:VirtualizedContainerService.HintSize="524,1556">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="WindowScope_11" sap:VirtualizedContainerService.HintSize="538,1894" />
+      <sap2010:ViewStateData Id="WindowScope_11" sap:VirtualizedContainerService.HintSize="538,1702" />
+      <sap2010:ViewStateData Id="LogMessage_1" sap:VirtualizedContainerService.HintSize="538,87" />
       <sap2010:ViewStateData Id="Assign_5" sap:VirtualizedContainerService.HintSize="314,59" />
       <sap2010:ViewStateData Id="WriteLine_12" sap:VirtualizedContainerService.HintSize="314,59" />
+      <sap2010:ViewStateData Id="LogMessage_2" sap:VirtualizedContainerService.HintSize="314,87" />
       <sap2010:ViewStateData Id="Assign_6" sap:VirtualizedContainerService.HintSize="314,59" />
       <sap2010:ViewStateData Id="WriteLine_9" sap:VirtualizedContainerService.HintSize="314,59" />
+      <sap2010:ViewStateData Id="LogMessage_3" sap:VirtualizedContainerService.HintSize="314,87" />
       <sap2010:ViewStateData Id="WriteTextFile_2" sap:VirtualizedContainerService.HintSize="314,87" />
       <sap2010:ViewStateData Id="ReadCsvFile_3" sap:VirtualizedContainerService.HintSize="314,59" />
-      <sap2010:ViewStateData Id="Sequence_28" sap:VirtualizedContainerService.HintSize="538,706">
+      <sap2010:ViewStateData Id="Sequence_28" sap:VirtualizedContainerService.HintSize="538,960">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -319,14 +427,14 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Sequence_24" sap:VirtualizedContainerService.HintSize="560,3780">
+      <sap2010:ViewStateData Id="Sequence_24" sap:VirtualizedContainerService.HintSize="560,4985">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="LageDatabaseBrev_1" sap:VirtualizedContainerService.HintSize="600,3860" />
+      <sap2010:ViewStateData Id="LageDatabaseBrev_1" sap:VirtualizedContainerService.HintSize="600,5305" />
     </sap2010:ViewStateManager>
   </sap2010:WorkflowViewState.ViewStateManager>
 </Activity>
